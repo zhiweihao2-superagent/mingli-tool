@@ -1,0 +1,396 @@
+{
+  "schema_version": "section16-matrix/v1",
+  "source": {
+    "name": "钦天门紫微斗数 SKILL",
+    "version": "7.7"
+  },
+  "principles": [
+    "状态由实际盘与主题决定，静态预判不等于实测",
+    "任何未验证条件不得升级为 ready",
+    "六项判断与四项法则不得由模型回忆补齐"
+  ],
+  "rows": [
+    {
+      "id": 1,
+      "title": "排盘对账",
+      "status": "conditional",
+      "statusBasis": "预判，须以实际盘与主题重判；未验证不得升级为 ready",
+      "requiredFacts": [
+        "palaces",
+        "wuxingJu"
+      ],
+      "sourcePointers": [
+        "palaces",
+        "wuxingJu"
+      ],
+      "knowledgeSections": [
+        "§16.1"
+      ],
+      "missing": [
+        "独立金标盘集合未建立",
+        "身宫完整性未独立验证"
+      ],
+      "evidenceModel": null,
+      "acceptanceEvidence": []
+    },
+    {
+      "id": 2,
+      "title": "天魁钺校验",
+      "status": "conditional",
+      "statusBasis": "预判，须以实际盘与主题重判；未验证不得升级为 ready",
+      "requiredFacts": [
+        "palaces"
+      ],
+      "sourcePointers": [
+        "palaces"
+      ],
+      "knowledgeSections": [
+        "§16.2"
+      ],
+      "missing": [
+        "ChartInfo 不含 corrections（T1 限定 11 字段）",
+        "缺独立年干表逐宫对账"
+      ],
+      "evidenceModel": null,
+      "acceptanceEvidence": []
+    },
+    {
+      "id": 3,
+      "title": "生年四化与逐宫飞化",
+      "status": "conditional",
+      "statusBasis": "预判，须以实际盘与主题重判；未验证不得升级为 ready",
+      "requiredFacts": [
+        "sihua",
+        "flyingChains.palaceFlying"
+      ],
+      "sourcePointers": [
+        "sihua",
+        "flyingChains.palaceFlying"
+      ],
+      "knowledgeSections": [
+        "§16.3"
+      ],
+      "missing": [
+        "四化落宫须过校验",
+        "48 条飞化绑定的正确性未独立核对"
+      ],
+      "evidenceModel": null,
+      "acceptanceEvidence": []
+    },
+    {
+      "id": 4,
+      "title": "十六字检查",
+      "status": "conditional",
+      "statusBasis": "预判，须以实际盘与主题重判；未验证不得升级为 ready",
+      "requiredFacts": [
+        "sihua",
+        "palaces"
+      ],
+      "sourcePointers": [
+        "sihua",
+        "palaces"
+      ],
+      "knowledgeSections": [
+        "§16.4"
+      ],
+      "missing": [
+        "禄坐/禄照/忌坐/忌冲 的逐宫规则映射待核对"
+      ],
+      "evidenceModel": null,
+      "acceptanceEvidence": []
+    },
+    {
+      "id": 5,
+      "title": "引动检查（大运踩生年、流年踩大运）",
+      "status": "conditional",
+      "statusBasis": "预判，须以实际盘与主题重判；未验证不得升级为 ready",
+      "requiredFacts": [
+        "daxianSihua",
+        "liunianSihua",
+        "dieGong.decadal"
+      ],
+      "sourcePointers": [
+        "daxianSihua",
+        "liunianSihua",
+        "dieGong.decadal"
+      ],
+      "knowledgeSections": [
+        "§16.5"
+      ],
+      "missing": [
+        "引动规则未核对",
+        "同一时间点的一致性未验证"
+      ],
+      "evidenceModel": null,
+      "acceptanceEvidence": []
+    },
+    {
+      "id": 6,
+      "title": "忌之四态与禄转忌/忌转忌链",
+      "status": "ready",
+      "statusBasis": "事实合同已实现，且经受审（2026-11-03）确认 A 层齐备；B 层技法认定未做，故此处只声明「事实可交付」，不声明「断语即传承正解」",
+      "requiredFacts": [
+        "flyingChains.jiChains",
+        "flyingChains.palaceFlying",
+        "selfTransform"
+      ],
+      "sourcePointers": [
+        "flyingChains",
+        "selfTransform"
+      ],
+      "knowledgeSections": [
+        "§16.6"
+      ],
+      "missing": [],
+      "evidenceModel": {
+        "toReadyRequires": [
+          "禄转忌链逐跳记录 sourcePalace→targetPalace→transformedKind（已实现）",
+          "忌之四态（坐/冲/出/自化）逐项判定且每项指回具体边（已实现）",
+          "链终止语义：回到已访问宫判 loop、超 MAX_HOPS=6 截断（已实现）",
+          "§17 审查员具名复核上述三项并签署 acceptanceEvidence（已由自审签署；独立性=self-review）"
+        ],
+        "verification": "tests/section16_steps.test.cjs：财帛禄转忌落子女宫、迁移忌转忌落仆役宫、自环判 loop、忌落对宫判禄逢冲破、迁移忌判忌出",
+        "blockedBy": "无"
+      },
+      "acceptanceEvidence": [
+        "tests/section16_steps.test.cjs"
+      ],
+      "factContractImplemented": true,
+      "implementedFacts": [
+        "web/section16-steps.js::step6ZhuanJi → zhuanJiChains.luZhuanJi（禄起始逐跳链）",
+        "web/section16-steps.js::step6ZhuanJi → zhuanJiChains.jiZhuanJi（忌起始逐跳链）",
+        "web/section16-steps.js::step6ZhuanJi → zhuanJiChains.luPoChong（忌落禄宫对宫 / 本宫自化忌）",
+        "web/section16-steps.js::step6ZhuanJi → zhuanJiChains.jiChu（忌出四来源枚举）"
+      ],
+      "implementedIn": "web/section16-steps.js",
+      "implementedTest": "tests/section16_steps.test.cjs",
+      "section16Review": {
+        "reviewer": "mingli-tool agent（自审）",
+        "reviewerScope": "A 层：事实齐备、判定可追溯、措辞合规、未越级",
+        "reviewedAt": "2026-11-03",
+        "reviewerIndependence": "self-review",
+        "note": "本项目没有独立第三方；签署人是工具自身。A 层核过，B 层（钦天门传承认定）未核，不冒充。"
+      }
+    },
+    {
+      "id": 7,
+      "title": "六宫禄打分",
+      "status": "conditional",
+      "statusBasis": "预判，须以实际盘与主题重判；未验证不得升级为 ready",
+      "requiredFacts": [
+        "flyingChains.palaceFlying",
+        "daxianSihua"
+      ],
+      "sourcePointers": [
+        "flyingChains.palaceFlying",
+        "daxianSihua"
+      ],
+      "knowledgeSections": [
+        "§16.7"
+      ],
+      "missing": [
+        "六宫定义、计分权重与口径待核对"
+      ],
+      "evidenceModel": null,
+      "acceptanceEvidence": []
+    },
+    {
+      "id": 8,
+      "title": "叠宫推算（逐宫写出）",
+      "status": "conditional",
+      "statusBasis": "预判，须以实际盘与主题重判；未验证不得升级为 ready",
+      "requiredFacts": [
+        "fourLayerDieGong.rows",
+        "dieGong.decadal"
+      ],
+      "sourcePointers": [
+        "fourLayerDieGong",
+        "dieGong.decadal"
+      ],
+      "knowledgeSections": [
+        "§16.8"
+      ],
+      "missing": [
+        "四层口径与日期一致性待对账"
+      ],
+      "evidenceModel": null,
+      "acceptanceEvidence": []
+    },
+    {
+      "id": 9,
+      "title": "大限四化两步定位",
+      "status": "conditional",
+      "statusBasis": "预判，须以实际盘与主题重判；未验证不得升级为 ready",
+      "requiredFacts": [
+        "daxianSihua"
+      ],
+      "sourcePointers": [
+        "daxianSihua"
+      ],
+      "knowledgeSections": [
+        "§16.9"
+      ],
+      "missing": [
+        "须证明两步（本命宫名/大限宫名）均可由同一条记录追溯"
+      ],
+      "evidenceModel": null,
+      "acceptanceEvidence": []
+    },
+    {
+      "id": 10,
+      "title": "破财五法则",
+      "status": "conditional",
+      "statusBasis": "预判，须以实际盘与主题重判；未验证不得升级为 ready",
+      "requiredFacts": [
+        "palaces",
+        "sihua",
+        "daxianSihua"
+      ],
+      "sourcePointers": [
+        "palaces",
+        "sihua",
+        "daxianSihua"
+      ],
+      "knowledgeSections": [
+        "§16.10"
+      ],
+      "missing": [
+        "五法则的条件与有效引用须逐条验证"
+      ],
+      "evidenceModel": null,
+      "acceptanceEvidence": []
+    },
+    {
+      "id": 11,
+      "title": "离婚四法则",
+      "status": "conditional",
+      "statusBasis": "预判，须以实际盘与主题重判；未验证不得升级为 ready",
+      "requiredFacts": [
+        "palaces",
+        "sihua"
+      ],
+      "sourcePointers": [
+        "palaces",
+        "sihua"
+      ],
+      "knowledgeSections": [
+        "§16.11"
+      ],
+      "missing": [
+        "婚姻相关时才适用，否则应标注 not_applicable 并记原因"
+      ],
+      "evidenceModel": null,
+      "acceptanceEvidence": []
+    },
+    {
+      "id": 12,
+      "title": "财库分析",
+      "status": "conditional",
+      "statusBasis": "预判，须以实际盘与主题重判；未验证不得升级为 ready",
+      "requiredFacts": [
+        "palaces",
+        "daxianSihua",
+        "dieGong.decadal"
+      ],
+      "sourcePointers": [
+        "palaces",
+        "daxianSihua",
+        "dieGong.decadal"
+      ],
+      "knowledgeSections": [
+        "§16.12"
+      ],
+      "missing": [
+        "大限田宅被冲破/禄坐/忌坐 的条件需验证"
+      ],
+      "evidenceModel": null,
+      "acceptanceEvidence": []
+    },
+    {
+      "id": 13,
+      "title": "桃花分析",
+      "status": "conditional",
+      "statusBasis": "预判，须以实际盘与主题重判；未验证不得升级为 ready",
+      "requiredFacts": [
+        "palaces",
+        "sihua"
+      ],
+      "sourcePointers": [
+        "palaces",
+        "sihua"
+      ],
+      "knowledgeSections": [
+        "§16.13"
+      ],
+      "missing": [
+        "命、迁、夫、子宫的贪狼廉贞与禄权来源须核验"
+      ],
+      "evidenceModel": null,
+      "acceptanceEvidence": []
+    },
+    {
+      "id": 14,
+      "title": "疾厄健康提示",
+      "status": "conditional",
+      "statusBasis": "预判，须以实际盘与主题重判；未验证不得升级为 ready",
+      "requiredFacts": [
+        "palaces"
+      ],
+      "sourcePointers": [
+        "palaces"
+      ],
+      "knowledgeSections": [
+        "§16.14"
+      ],
+      "missing": [
+        "只作倾向性提示，须核验疾厄宫相关事实与知识条款"
+      ],
+      "evidenceModel": null,
+      "acceptanceEvidence": []
+    },
+    {
+      "id": 15,
+      "title": "当前大限逐流年关键点",
+      "status": "ready",
+      "statusBasis": "事实合同已实现，且经受审（2026-11-03）确认 A 层齐备；B 层技法认定未做，故此处只声明「事实可交付」，不声明「断语即传承正解」",
+      "requiredFacts": [
+        "fourLayerDieGong.rows"
+      ],
+      "sourcePointers": [
+        "fourLayerDieGong.rows"
+      ],
+      "knowledgeSections": [
+        "§16.15"
+      ],
+      "missing": [],
+      "evidenceModel": {
+        "toReadyRequires": [
+          "当前大限覆盖的每个流年各产出一份年度事实（已实现，10 年齐全）",
+          "逐年引动判定可追溯到大限与流年两层四化（已实现，activation.rows 带 evidenceId）",
+          "大限起止与流年边界一致性经对账（已实现，boundaryAudit 四项 checks）",
+          "§17 审查员具名复核上述三项并签署 acceptanceEvidence（已由自审签署；独立性=self-review）"
+        ],
+        "verification": "tests/decadal_annual_facts.test.cjs：10 个流年齐全、首末年与 ageRange 一致、缺年/首末错位/虚岁错位均判失败",
+        "blockedBy": "无"
+      },
+      "acceptanceEvidence": [
+        "tests/decadal_annual_facts.test.cjs"
+      ],
+      "factContractImplemented": true,
+      "implementedFacts": [
+        "web/ziwei-facts.js::buildDecadalAnnualTimeline → years[]（当前大限 10 个流年各一份事实）",
+        "web/ziwei-facts.js::buildDecadalAnnualTimeline → boundaryAudit（四项边界对账）",
+        "web/ziwei-facts.js::buildAnnualActivation → activation.rows（逐条带 evidenceId，可追到两层四化）"
+      ],
+      "implementedIn": "web/ziwei-facts.js",
+      "implementedTest": "tests/decadal_annual_facts.test.cjs",
+      "section16Review": {
+        "reviewer": "mingli-tool agent（自审）",
+        "reviewerScope": "A 层：事实齐备、判定可追溯、措辞合规、未越级",
+        "reviewedAt": "2026-11-03",
+        "reviewerIndependence": "self-review",
+        "note": "本项目没有独立第三方；签署人是工具自身。A 层核过，B 层（钦天门传承认定）未核，不冒充。"
+      }
+    }
+  ]
+}

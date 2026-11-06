@@ -1,0 +1,17 @@
+﻿"use strict";
+const fs=require("node:fs"),path=require("node:path"),vm=require("node:vm");
+const ROOT=path.join(__dirname,"..");
+global.self=global;
+global.iztro=require(path.join(ROOT,"web","vendor","iztro-v2.6.2.min.js"));
+["ziwei-facts.js","ziwei-adapter.js"].forEach(n=>vm.runInThisContext(fs.readFileSync(path.join(ROOT,"web",n),"utf8")));
+const chart=global.MingliZiwei.calculate({calendar:"solar",date:"1990-05-15",time:{precision:"minute",value:"12:30",branch:null},sex_for_calculation:"male"},{asOfYear:2026,asOfDate:"2026-10-30",asOfTimeIndex:6});
+const ast=chart.astrolabe;
+const dec=ast.decadalList();
+console.log("decadals",dec.length);
+dec.forEach((d,i)=>console.log(i,d.name,d.heavenlyStem+d.earthlyBranch,"age",JSON.stringify(d.ageRange),"year",JSON.stringify(d.yearRange)));
+const active=dec.findIndex(d=>d.yearRange[0]<=2026&&2026<=d.yearRange[1]);
+console.log("activeIndex",active);
+const yearly=ast.yearlyList(active);
+console.log("yearlyList len",yearly.length);
+console.log("keys of first:",Object.keys(yearly[0]||{}).join(","));
+console.log(JSON.stringify(yearly.slice(0,2).map(y=>({year:y.year,age:y.age,index:y.index,name:y.name,gz:y.heavenlyStem+y.earthlyBranch,mut:y.mutagen,stars:Array.isArray(y.stars)})),null,1));

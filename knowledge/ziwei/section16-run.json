@@ -1,0 +1,4912 @@
+{
+ "schema": "section16-run/v1",
+ "generatedBy": "scripts/run_section16.cjs",
+ "ranAt": "2026-11-04T03:54:00.770Z",
+ "topic": "marriage",
+ "asOf": {
+  "year": 2026,
+  "date": "2026-10-30",
+  "timeIndex": 6
+ },
+ "skillSource": {
+  "name": "钦天门紫微斗数 SKILL",
+  "version": "7.7",
+  "license": "CC BY-NC-SA 4.0",
+  "distributed": false
+ },
+ "section17Audit": {
+  "status": "not_performed",
+  "reason": "§17 独立审查需人工/独立模型执行，本轮自动化只跑事实门禁，不冒充已审查"
+ },
+ "cases": [
+  {
+   "label": "标准男命",
+   "input": {
+    "calendar": "solar",
+    "date": "1990-05-15",
+    "time": {
+     "precision": "minute",
+     "value": "12:30",
+     "branch": null
+    },
+    "sex_for_calculation": "male"
+   },
+   "chartInfoStatus": "ok",
+   "chartInfoDigest": {
+    "palaces": 12,
+    "sihua": [
+     "禄:太阳",
+     "权:武曲",
+     "科:太阴",
+     "忌:天同"
+    ],
+    "palaceFlying": 48,
+    "jiChains": 12,
+    "fourLayerRows": 12,
+    "wuxingJu": "土五局",
+    "yearStem": "庚"
+   },
+   "diagnostics": [
+    "LAIYIN_EXCLUDED"
+   ],
+   "summary": {
+    "ready": 2,
+    "conditional": 13,
+    "blocked": 0,
+    "not_applicable": 0
+   },
+   "steps": [
+    {
+     "id": 1,
+     "title": "排盘对账",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "palaces",
+       "satisfied": true,
+       "resolvedAt": "palaces"
+      },
+      {
+       "path": "wuxingJu",
+       "satisfied": true,
+       "resolvedAt": "wuxingJu"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：2 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.1"
+     ],
+     "evidence": [
+      {
+       "path": "palaces",
+       "resolvedAt": "palaces"
+      },
+      {
+       "path": "wuxingJu",
+       "resolvedAt": "wuxingJu"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "palaces",
+       "wuxingJu"
+      ],
+      "coveredBy": [
+       {
+        "path": "palaces",
+        "resolvedAt": "palaces"
+       },
+       {
+        "path": "wuxingJu",
+        "resolvedAt": "wuxingJu"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "独立金标盘集合未建立",
+      "身宫完整性未独立验证"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 2,
+     "title": "天魁钺校验",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "palaces",
+       "satisfied": true,
+       "resolvedAt": "palaces"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：2 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.2"
+     ],
+     "evidence": [
+      {
+       "path": "palaces",
+       "resolvedAt": "palaces"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "palaces"
+      ],
+      "coveredBy": [
+       {
+        "path": "palaces",
+        "resolvedAt": "palaces"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "ChartInfo 不含 corrections（T1 限定 11 字段）",
+      "缺独立年干表逐宫对账"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 3,
+     "title": "生年四化与逐宫飞化",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "sihua",
+       "satisfied": true,
+       "resolvedAt": "sihua"
+      },
+      {
+       "path": "flyingChains.palaceFlying",
+       "satisfied": true,
+       "resolvedAt": "flyingChains.palaceFlying"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：2 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.3"
+     ],
+     "evidence": [
+      {
+       "path": "sihua",
+       "resolvedAt": "sihua"
+      },
+      {
+       "path": "flyingChains.palaceFlying",
+       "resolvedAt": "flyingChains.palaceFlying"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "sihua",
+       "flyingChains.palaceFlying"
+      ],
+      "coveredBy": [
+       {
+        "path": "sihua",
+        "resolvedAt": "sihua"
+       },
+       {
+        "path": "flyingChains.palaceFlying",
+        "resolvedAt": "flyingChains.palaceFlying"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "四化落宫须过校验",
+      "48 条飞化绑定的正确性未独立核对"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 4,
+     "title": "十六字检查",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "sihua",
+       "satisfied": true,
+       "resolvedAt": "sihua"
+      },
+      {
+       "path": "palaces",
+       "satisfied": true,
+       "resolvedAt": "palaces"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：1 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.4"
+     ],
+     "evidence": [
+      {
+       "path": "sihua",
+       "resolvedAt": "sihua"
+      },
+      {
+       "path": "palaces",
+       "resolvedAt": "palaces"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "sihua",
+       "palaces"
+      ],
+      "coveredBy": [
+       {
+        "path": "sihua",
+        "resolvedAt": "sihua"
+       },
+       {
+        "path": "palaces",
+        "resolvedAt": "palaces"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "禄坐/禄照/忌坐/忌冲 的逐宫规则映射待核对"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 5,
+     "title": "引动检查（大运踩生年、流年踩大运）",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "daxianSihua",
+       "satisfied": true,
+       "resolvedAt": "daxianSihua"
+      },
+      {
+       "path": "liunianSihua",
+       "satisfied": true,
+       "resolvedAt": "liunianSihua"
+      },
+      {
+       "path": "dieGong.decadal",
+       "satisfied": true,
+       "resolvedAt": "dieGong.decadal"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：2 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.5"
+     ],
+     "evidence": [
+      {
+       "path": "daxianSihua",
+       "resolvedAt": "daxianSihua"
+      },
+      {
+       "path": "liunianSihua",
+       "resolvedAt": "liunianSihua"
+      },
+      {
+       "path": "dieGong.decadal",
+       "resolvedAt": "dieGong.decadal"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "daxianSihua",
+       "liunianSihua",
+       "dieGong.decadal"
+      ],
+      "coveredBy": [
+       {
+        "path": "daxianSihua",
+        "resolvedAt": "daxianSihua"
+       },
+       {
+        "path": "liunianSihua",
+        "resolvedAt": "liunianSihua"
+       },
+       {
+        "path": "dieGong.decadal",
+        "resolvedAt": "dieGong.decadal"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "引动规则未核对",
+      "同一时间点的一致性未验证"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 6,
+     "title": "忌之四态与禄转忌/忌转忌链",
+     "declaredStatus": "ready",
+     "status": "ready",
+     "checks": [
+      {
+       "path": "flyingChains.jiChains",
+       "satisfied": true,
+       "resolvedAt": "flyingChains.jiChains"
+      },
+      {
+       "path": "flyingChains.palaceFlying",
+       "satisfied": true,
+       "resolvedAt": "flyingChains.palaceFlying"
+      },
+      {
+       "path": "selfTransform",
+       "satisfied": true,
+       "resolvedAt": "selfTransform"
+      }
+     ],
+     "missing": [],
+     "knowledgeSections": [
+      "§16.6"
+     ],
+     "evidence": [
+      {
+       "path": "flyingChains.jiChains",
+       "resolvedAt": "flyingChains.jiChains"
+      },
+      {
+       "path": "flyingChains.palaceFlying",
+       "resolvedAt": "flyingChains.palaceFlying"
+      },
+      {
+       "path": "selfTransform",
+       "resolvedAt": "selfTransform"
+      }
+     ],
+     "factContractComplete": true,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "flyingChains.jiChains",
+       "flyingChains.palaceFlying",
+       "selfTransform"
+      ],
+      "coveredBy": [
+       {
+        "path": "flyingChains.jiChains",
+        "resolvedAt": "flyingChains.jiChains"
+       },
+       {
+        "path": "flyingChains.palaceFlying",
+        "resolvedAt": "flyingChains.palaceFlying"
+       },
+       {
+        "path": "selfTransform",
+        "resolvedAt": "selfTransform"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [],
+     "reason": null
+    },
+    {
+     "id": 7,
+     "title": "六宫禄打分",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "flyingChains.palaceFlying",
+       "satisfied": true,
+       "resolvedAt": "flyingChains.palaceFlying"
+      },
+      {
+       "path": "daxianSihua",
+       "satisfied": true,
+       "resolvedAt": "daxianSihua"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：1 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.7"
+     ],
+     "evidence": [
+      {
+       "path": "flyingChains.palaceFlying",
+       "resolvedAt": "flyingChains.palaceFlying"
+      },
+      {
+       "path": "daxianSihua",
+       "resolvedAt": "daxianSihua"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "flyingChains.palaceFlying",
+       "daxianSihua"
+      ],
+      "coveredBy": [
+       {
+        "path": "flyingChains.palaceFlying",
+        "resolvedAt": "flyingChains.palaceFlying"
+       },
+       {
+        "path": "daxianSihua",
+        "resolvedAt": "daxianSihua"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "六宫定义、计分权重与口径待核对"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 8,
+     "title": "叠宫推算（逐宫写出）",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "fourLayerDieGong.rows",
+       "satisfied": true,
+       "resolvedAt": "fourLayerDieGong.rows"
+      },
+      {
+       "path": "dieGong.decadal",
+       "satisfied": true,
+       "resolvedAt": "dieGong.decadal"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：1 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.8"
+     ],
+     "evidence": [
+      {
+       "path": "fourLayerDieGong.rows",
+       "resolvedAt": "fourLayerDieGong.rows"
+      },
+      {
+       "path": "dieGong.decadal",
+       "resolvedAt": "dieGong.decadal"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "fourLayerDieGong.rows",
+       "dieGong.decadal"
+      ],
+      "coveredBy": [
+       {
+        "path": "fourLayerDieGong.rows",
+        "resolvedAt": "fourLayerDieGong.rows"
+       },
+       {
+        "path": "dieGong.decadal",
+        "resolvedAt": "dieGong.decadal"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "四层口径与日期一致性待对账"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 9,
+     "title": "大限四化两步定位",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "daxianSihua",
+       "satisfied": true,
+       "resolvedAt": "daxianSihua"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：1 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.9"
+     ],
+     "evidence": [
+      {
+       "path": "daxianSihua",
+       "resolvedAt": "daxianSihua"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "daxianSihua"
+      ],
+      "coveredBy": [
+       {
+        "path": "daxianSihua",
+        "resolvedAt": "daxianSihua"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "须证明两步（本命宫名/大限宫名）均可由同一条记录追溯"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 10,
+     "title": "破财五法则",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "palaces",
+       "satisfied": true,
+       "resolvedAt": "palaces"
+      },
+      {
+       "path": "sihua",
+       "satisfied": true,
+       "resolvedAt": "sihua"
+      },
+      {
+       "path": "daxianSihua",
+       "satisfied": true,
+       "resolvedAt": "daxianSihua"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：1 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.10"
+     ],
+     "evidence": [
+      {
+       "path": "palaces",
+       "resolvedAt": "palaces"
+      },
+      {
+       "path": "sihua",
+       "resolvedAt": "sihua"
+      },
+      {
+       "path": "daxianSihua",
+       "resolvedAt": "daxianSihua"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "palaces",
+       "sihua",
+       "daxianSihua"
+      ],
+      "coveredBy": [
+       {
+        "path": "palaces",
+        "resolvedAt": "palaces"
+       },
+       {
+        "path": "sihua",
+        "resolvedAt": "sihua"
+       },
+       {
+        "path": "daxianSihua",
+        "resolvedAt": "daxianSihua"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "五法则的条件与有效引用须逐条验证"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 11,
+     "title": "离婚四法则",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "palaces",
+       "satisfied": true,
+       "resolvedAt": "palaces"
+      },
+      {
+       "path": "sihua",
+       "satisfied": true,
+       "resolvedAt": "sihua"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：1 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.11"
+     ],
+     "evidence": [
+      {
+       "path": "palaces",
+       "resolvedAt": "palaces"
+      },
+      {
+       "path": "sihua",
+       "resolvedAt": "sihua"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "palaces",
+       "sihua"
+      ],
+      "coveredBy": [
+       {
+        "path": "palaces",
+        "resolvedAt": "palaces"
+       },
+       {
+        "path": "sihua",
+        "resolvedAt": "sihua"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "婚姻相关时才适用，否则应标注 not_applicable 并记原因"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 12,
+     "title": "财库分析",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "palaces",
+       "satisfied": true,
+       "resolvedAt": "palaces"
+      },
+      {
+       "path": "daxianSihua",
+       "satisfied": true,
+       "resolvedAt": "daxianSihua"
+      },
+      {
+       "path": "dieGong.decadal",
+       "satisfied": true,
+       "resolvedAt": "dieGong.decadal"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：1 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.12"
+     ],
+     "evidence": [
+      {
+       "path": "palaces",
+       "resolvedAt": "palaces"
+      },
+      {
+       "path": "daxianSihua",
+       "resolvedAt": "daxianSihua"
+      },
+      {
+       "path": "dieGong.decadal",
+       "resolvedAt": "dieGong.decadal"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "palaces",
+       "daxianSihua",
+       "dieGong.decadal"
+      ],
+      "coveredBy": [
+       {
+        "path": "palaces",
+        "resolvedAt": "palaces"
+       },
+       {
+        "path": "daxianSihua",
+        "resolvedAt": "daxianSihua"
+       },
+       {
+        "path": "dieGong.decadal",
+        "resolvedAt": "dieGong.decadal"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "大限田宅被冲破/禄坐/忌坐 的条件需验证"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 13,
+     "title": "桃花分析",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "palaces",
+       "satisfied": true,
+       "resolvedAt": "palaces"
+      },
+      {
+       "path": "sihua",
+       "satisfied": true,
+       "resolvedAt": "sihua"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：1 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.13"
+     ],
+     "evidence": [
+      {
+       "path": "palaces",
+       "resolvedAt": "palaces"
+      },
+      {
+       "path": "sihua",
+       "resolvedAt": "sihua"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "palaces",
+       "sihua"
+      ],
+      "coveredBy": [
+       {
+        "path": "palaces",
+        "resolvedAt": "palaces"
+       },
+       {
+        "path": "sihua",
+        "resolvedAt": "sihua"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "命、迁、夫、子宫的贪狼廉贞与禄权来源须核验"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 14,
+     "title": "疾厄健康提示",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "palaces",
+       "satisfied": true,
+       "resolvedAt": "palaces"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：1 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.14"
+     ],
+     "evidence": [
+      {
+       "path": "palaces",
+       "resolvedAt": "palaces"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "palaces"
+      ],
+      "coveredBy": [
+       {
+        "path": "palaces",
+        "resolvedAt": "palaces"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "只作倾向性提示，须核验疾厄宫相关事实与知识条款"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 15,
+     "title": "当前大限逐流年关键点",
+     "declaredStatus": "ready",
+     "status": "ready",
+     "checks": [
+      {
+       "path": "fourLayerDieGong.rows",
+       "satisfied": true,
+       "resolvedAt": "fourLayerDieGong.rows"
+      }
+     ],
+     "missing": [],
+     "knowledgeSections": [
+      "§16.15"
+     ],
+     "evidence": [
+      {
+       "path": "fourLayerDieGong.rows",
+       "resolvedAt": "fourLayerDieGong.rows"
+      }
+     ],
+     "factContractComplete": true,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "fourLayerDieGong.rows"
+      ],
+      "coveredBy": [
+       {
+        "path": "fourLayerDieGong.rows",
+        "resolvedAt": "fourLayerDieGong.rows"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [],
+     "reason": null
+    }
+   ],
+   "knowledgeByStep": {
+    "1": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§1 总纲（先定框架，再谈引动）",
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§10 四化碰撞表（禄权科忌×自化）",
+      "SKILL.md#§11 六宫禄打分",
+      "SKILL.md#§12 应期四阶梯（禁跳级）",
+      "SKILL.md#§19 神煞·十二长生·三层叠宫（格式系统·应期第三阶配套）",
+      "SKILL.md#§13 排盘自检（每次出盘必查）",
+      "SKILL.md#§14 iztro 引擎 Bug 对照（排盘后用 WMT 校正）",
+      "SKILL.md#§15 引擎调用契约（参考实现）",
+      "SKILL.md#§15 输出格式（规范化）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "SKILL.md#§18 DS Reviewer 三条硬违例（任一触发=拦退）",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/star_main14_palace.md#紫微",
+      "references/star_main14_palace.md#天机",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 14259,
+     "diagnostics": [
+      "ANCHOR_MULTI_SECTION"
+     ]
+    },
+    "2": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§2 十六字核心（万物技法不外乎）",
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§12 应期四阶梯（禁跳级）",
+      "SKILL.md#§20 扩展层索引（深查走 references/·全 0 污染）",
+      "SKILL.md#第Ⅲ部分 · 排盘规范（v7 新增·引擎 v2.5 文墨金标准）",
+      "SKILL.md#§13 排盘自检（每次出盘必查）",
+      "SKILL.md#§14 iztro 引擎 Bug 对照（排盘后用 WMT 校正）",
+      "SKILL.md#§15 引擎调用契约（参考实现）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "SKILL.md#附录A · 盘例示范（文墨2.5金标准）",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 4245,
+     "diagnostics": []
+    },
+    "3": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§3 引动机制（核心中的核心）",
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§13 排盘自检（每次出盘必查）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/palace_fly.md#大运盘飞化：四重框架、体用得失与吉凶加乘",
+      "references/palace_fly.md#一、核心断语",
+      "references/palace_fly.md#二、大运飞化的框架、体用与格局判定",
+      "references/palace_fly.md#2.1 四重框架定位",
+      "references/palace_fly.md#2.2 本命盘与大运盘体用关系",
+      "references/palace_fly.md#2.3 大运命宫的体用枢机",
+      "references/palace_fly.md#2.4 四重飞化的指示力与成局判定",
+      "references/palace_fly.md#2.5 感情婚姻飞化判定表",
+      "references/palace_fly.md#2.6 虚忌、实忌与“抓禄”的加乘效应",
+      "references/palace_fly.md#2.7 案例映射：官禄得禄与命宫自化忌",
+      "references/palace_fly.md#三、应用要点",
+      "references/palace_fly_all12.md#〇、用法与合规（先读）",
+      "references/palace_fly_all12.md#一、命宫四化入十二宫（性格倾向层）",
+      "references/sheng_nian_66.md#生年化禄（十二宫）",
+      "references/sheng_nian_66.md#生年化权（十二宫）",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 9229,
+     "diagnostics": [
+      "ANCHOR_PREFIX_MATCH"
+     ]
+    },
+    "4": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§4 星曜之神（抓神断象，勿死记断语）",
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§14 iztro 引擎 Bug 对照（排盘后用 WMT 校正）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 8346,
+     "diagnostics": []
+    },
+    "5": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§5 宫位×四化断语（高频·可直接断）",
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#第Ⅲ部分 · 排盘规范（v7 新增·引擎 v2.5 文墨金标准）",
+      "SKILL.md#§13 排盘自检（每次出盘必查）",
+      "SKILL.md#§14 iztro 引擎 Bug 对照（排盘后用 WMT 校正）",
+      "SKILL.md#§15 引擎调用契约（参考实现）",
+      "SKILL.md#§15 输出格式（规范化）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "SKILL.md#附录A · 盘例示范（文墨2.5金标准）",
+      "references/shizhan_zhuanlan.md#〇、定盘流程（实战演练专题·拿到盘先做什么）",
+      "references/shizhan_zhuanlan.md#一、应期实战细则（应期详解·实战应期专题）",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 4507,
+     "diagnostics": []
+    },
+    "6": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§6 断专题（财/业/婚）",
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/lu_zhuan_ji.md#〇、忌之本性与解忌总纲（先读）",
+      "references/lu_zhuan_ji.md#一、禄转忌 vs 忌转忌（钦天核心技法）",
+      "references/self_zihua.md#〇、自化总纲（先读）",
+      "references/self_zihua.md#一、自化两两组合断法",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 3875,
+     "diagnostics": []
+    },
+    "7": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#第Ⅲ部分 · 排盘规范（v7 新增·引擎 v2.5 文墨金标准）",
+      "SKILL.md#§13 排盘自检（每次出盘必查）",
+      "SKILL.md#§14 iztro 引擎 Bug 对照（排盘后用 WMT 校正）",
+      "SKILL.md#§15 引擎调用契约（参考实现）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/palace_fly.md#大运盘飞化：四重框架、体用得失与吉凶加乘",
+      "references/palace_fly.md#一、核心断语",
+      "references/palace_fly.md#二、大运飞化的框架、体用与格局判定",
+      "references/palace_fly.md#2.1 四重框架定位",
+      "references/palace_fly.md#2.2 本命盘与大运盘体用关系",
+      "references/palace_fly.md#2.3 大运命宫的体用枢机",
+      "references/palace_fly.md#2.4 四重飞化的指示力与成局判定",
+      "references/palace_fly.md#2.5 感情婚姻飞化判定表",
+      "references/palace_fly.md#2.6 虚忌、实忌与“抓禄”的加乘效应",
+      "references/palace_fly.md#2.7 案例映射：官禄得禄与命宫自化忌",
+      "references/palace_fly.md#三、应用要点",
+      "references/palace_fly_all12.md#〇、用法与合规（先读）",
+      "references/palace_fly_all12.md#一、命宫四化入十二宫（性格倾向层）",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 6124,
+     "diagnostics": [
+      "ANCHOR_PREFIX_MATCH"
+     ]
+    },
+    "8": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "SKILL.md#§18 DS Reviewer 三条硬违例（任一触发=拦退）",
+      "references/palace_fly.md#大运盘飞化：四重框架、体用得失与吉凶加乘",
+      "references/palace_fly.md#一、核心断语",
+      "references/palace_fly.md#二、大运飞化的框架、体用与格局判定",
+      "references/palace_fly.md#2.1 四重框架定位",
+      "references/palace_fly.md#2.2 本命盘与大运盘体用关系",
+      "references/palace_fly.md#2.3 大运命宫的体用枢机",
+      "references/palace_fly.md#2.4 四重飞化的指示力与成局判定",
+      "references/palace_fly.md#2.5 感情婚姻飞化判定表",
+      "references/palace_fly.md#2.6 虚忌、实忌与“抓禄”的加乘效应",
+      "references/palace_fly.md#2.7 案例映射：官禄得禄与命宫自化忌",
+      "references/palace_fly.md#三、应用要点",
+      "references/palace_fly_all12.md#〇、用法与合规（先读）",
+      "references/palace_fly_all12.md#一、命宫四化入十二宫（性格倾向层）",
+      "references/self_zihua.md#〇、自化总纲（先读）",
+      "references/self_zihua.md#一、自化两两组合断法",
+      "references/shizhan_zhuanlan.md#〇、定盘流程（实战演练专题·拿到盘先做什么）",
+      "references/shizhan_zhuanlan.md#一、应期实战细则（应期详解·实战应期专题）",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 6908,
+     "diagnostics": [
+      "ANCHOR_PREFIX_MATCH"
+     ]
+    },
+    "9": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§9 叠宫推算（错误则全盘错）",
+      "SKILL.md#§19 神煞·十二长生·三层叠宫（格式系统·应期第三阶配套）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/sheng_nian_66.md#生年化禄（十二宫）",
+      "references/sheng_nian_66.md#生年化权（十二宫）",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 5976,
+     "diagnostics": []
+    },
+    "10": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§10 四化碰撞表（禄权科忌×自化）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/palace_fly.md#大运盘飞化：四重框架、体用得失与吉凶加乘",
+      "references/palace_fly.md#一、核心断语",
+      "references/palace_fly.md#二、大运飞化的框架、体用与格局判定",
+      "references/palace_fly.md#2.1 四重框架定位",
+      "references/palace_fly.md#2.2 本命盘与大运盘体用关系",
+      "references/palace_fly.md#2.3 大运命宫的体用枢机",
+      "references/palace_fly.md#2.4 四重飞化的指示力与成局判定",
+      "references/palace_fly.md#2.5 感情婚姻飞化判定表",
+      "references/palace_fly.md#2.6 虚忌、实忌与“抓禄”的加乘效应",
+      "references/palace_fly.md#2.7 案例映射：官禄得禄与命宫自化忌",
+      "references/palace_fly.md#三、应用要点",
+      "references/shizhan_zhuanlan.md#〇、定盘流程（实战演练专题·拿到盘先做什么）",
+      "references/shizhan_zhuanlan.md#一、应期实战细则（应期详解·实战应期专题）",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 11000,
+     "diagnostics": [
+      "ANCHOR_PREFIX_MATCH"
+     ]
+    },
+    "11": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§11 六宫禄打分",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/shizhan_zhuanlan.md#〇、定盘流程（实战演练专题·拿到盘先做什么）",
+      "references/shizhan_zhuanlan.md#一、应期实战细则（应期详解·实战应期专题）",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 8499,
+     "diagnostics": []
+    },
+    "12": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§12 应期四阶梯（禁跳级）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/palace_fly.md#大运盘飞化：四重框架、体用得失与吉凶加乘",
+      "references/palace_fly.md#一、核心断语",
+      "references/palace_fly.md#二、大运飞化的框架、体用与格局判定",
+      "references/palace_fly.md#2.1 四重框架定位",
+      "references/palace_fly.md#2.2 本命盘与大运盘体用关系",
+      "references/palace_fly.md#2.3 大运命宫的体用枢机",
+      "references/palace_fly.md#2.4 四重飞化的指示力与成局判定",
+      "references/palace_fly.md#2.5 感情婚姻飞化判定表",
+      "references/palace_fly.md#2.6 虚忌、实忌与“抓禄”的加乘效应",
+      "references/palace_fly.md#2.7 案例映射：官禄得禄与命宫自化忌",
+      "references/palace_fly.md#三、应用要点",
+      "references/shizhan_zhuanlan.md#〇、定盘流程（实战演练专题·拿到盘先做什么）",
+      "references/shizhan_zhuanlan.md#一、应期实战细则（应期详解·实战应期专题）",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 4836,
+     "diagnostics": [
+      "ANCHOR_PREFIX_MATCH"
+     ]
+    },
+    "13": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§13 排盘自检（每次出盘必查）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/palace_fly.md#大运盘飞化：四重框架、体用得失与吉凶加乘",
+      "references/palace_fly.md#一、核心断语",
+      "references/palace_fly.md#二、大运飞化的框架、体用与格局判定",
+      "references/palace_fly.md#2.1 四重框架定位",
+      "references/palace_fly.md#2.2 本命盘与大运盘体用关系",
+      "references/palace_fly.md#2.3 大运命宫的体用枢机",
+      "references/palace_fly.md#2.4 四重飞化的指示力与成局判定",
+      "references/palace_fly.md#2.5 感情婚姻飞化判定表",
+      "references/palace_fly.md#2.6 虚忌、实忌与“抓禄”的加乘效应",
+      "references/palace_fly.md#2.7 案例映射：官禄得禄与命宫自化忌",
+      "references/palace_fly.md#三、应用要点",
+      "references/star_main14_palace.md#紫微",
+      "references/star_main14_palace.md#天机",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 19060,
+     "diagnostics": [
+      "ANCHOR_MULTI_SECTION",
+      "ANCHOR_PREFIX_MATCH"
+     ]
+    },
+    "14": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§14 iztro 引擎 Bug 对照（排盘后用 WMT 校正）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/shensha_changsheng.md#一、岁前十二神（suiqian12 / 太岁十二神）",
+      "references/shensha_changsheng.md#二、将前十二神（jiangqian12）",
+      "references/star_main14_palace.md#紫微",
+      "references/star_main14_palace.md#天机",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 17886,
+     "diagnostics": [
+      "ANCHOR_MULTI_SECTION"
+     ]
+    },
+    "15": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§15 引擎调用契约（参考实现）",
+      "SKILL.md#§15 输出格式（规范化）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/shizhan_zhuanlan.md#〇、定盘流程（实战演练专题·拿到盘先做什么）",
+      "references/shizhan_zhuanlan.md#一、应期实战细则（应期详解·实战应期专题）",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 3233,
+     "diagnostics": []
+    }
+   },
+   "deliverable": false,
+   "reason": "有 16 项未达 ready，按 §16「跳过任一步骤不得交付」不可交付"
+  },
+  {
+   "label": "标准女命",
+   "input": {
+    "calendar": "solar",
+    "date": "1990-05-15",
+    "time": {
+     "precision": "minute",
+     "value": "12:30",
+     "branch": null
+    },
+    "sex_for_calculation": "female"
+   },
+   "chartInfoStatus": "ok",
+   "chartInfoDigest": {
+    "palaces": 12,
+    "sihua": [
+     "禄:太阳",
+     "权:武曲",
+     "科:太阴",
+     "忌:天同"
+    ],
+    "palaceFlying": 48,
+    "jiChains": 12,
+    "fourLayerRows": 12,
+    "wuxingJu": "土五局",
+    "yearStem": "庚"
+   },
+   "diagnostics": [
+    "LAIYIN_EXCLUDED"
+   ],
+   "summary": {
+    "ready": 2,
+    "conditional": 13,
+    "blocked": 0,
+    "not_applicable": 0
+   },
+   "steps": [
+    {
+     "id": 1,
+     "title": "排盘对账",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "palaces",
+       "satisfied": true,
+       "resolvedAt": "palaces"
+      },
+      {
+       "path": "wuxingJu",
+       "satisfied": true,
+       "resolvedAt": "wuxingJu"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：2 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.1"
+     ],
+     "evidence": [
+      {
+       "path": "palaces",
+       "resolvedAt": "palaces"
+      },
+      {
+       "path": "wuxingJu",
+       "resolvedAt": "wuxingJu"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "palaces",
+       "wuxingJu"
+      ],
+      "coveredBy": [
+       {
+        "path": "palaces",
+        "resolvedAt": "palaces"
+       },
+       {
+        "path": "wuxingJu",
+        "resolvedAt": "wuxingJu"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "独立金标盘集合未建立",
+      "身宫完整性未独立验证"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 2,
+     "title": "天魁钺校验",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "palaces",
+       "satisfied": true,
+       "resolvedAt": "palaces"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：2 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.2"
+     ],
+     "evidence": [
+      {
+       "path": "palaces",
+       "resolvedAt": "palaces"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "palaces"
+      ],
+      "coveredBy": [
+       {
+        "path": "palaces",
+        "resolvedAt": "palaces"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "ChartInfo 不含 corrections（T1 限定 11 字段）",
+      "缺独立年干表逐宫对账"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 3,
+     "title": "生年四化与逐宫飞化",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "sihua",
+       "satisfied": true,
+       "resolvedAt": "sihua"
+      },
+      {
+       "path": "flyingChains.palaceFlying",
+       "satisfied": true,
+       "resolvedAt": "flyingChains.palaceFlying"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：2 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.3"
+     ],
+     "evidence": [
+      {
+       "path": "sihua",
+       "resolvedAt": "sihua"
+      },
+      {
+       "path": "flyingChains.palaceFlying",
+       "resolvedAt": "flyingChains.palaceFlying"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "sihua",
+       "flyingChains.palaceFlying"
+      ],
+      "coveredBy": [
+       {
+        "path": "sihua",
+        "resolvedAt": "sihua"
+       },
+       {
+        "path": "flyingChains.palaceFlying",
+        "resolvedAt": "flyingChains.palaceFlying"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "四化落宫须过校验",
+      "48 条飞化绑定的正确性未独立核对"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 4,
+     "title": "十六字检查",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "sihua",
+       "satisfied": true,
+       "resolvedAt": "sihua"
+      },
+      {
+       "path": "palaces",
+       "satisfied": true,
+       "resolvedAt": "palaces"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：1 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.4"
+     ],
+     "evidence": [
+      {
+       "path": "sihua",
+       "resolvedAt": "sihua"
+      },
+      {
+       "path": "palaces",
+       "resolvedAt": "palaces"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "sihua",
+       "palaces"
+      ],
+      "coveredBy": [
+       {
+        "path": "sihua",
+        "resolvedAt": "sihua"
+       },
+       {
+        "path": "palaces",
+        "resolvedAt": "palaces"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "禄坐/禄照/忌坐/忌冲 的逐宫规则映射待核对"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 5,
+     "title": "引动检查（大运踩生年、流年踩大运）",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "daxianSihua",
+       "satisfied": true,
+       "resolvedAt": "daxianSihua"
+      },
+      {
+       "path": "liunianSihua",
+       "satisfied": true,
+       "resolvedAt": "liunianSihua"
+      },
+      {
+       "path": "dieGong.decadal",
+       "satisfied": true,
+       "resolvedAt": "dieGong.decadal"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：2 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.5"
+     ],
+     "evidence": [
+      {
+       "path": "daxianSihua",
+       "resolvedAt": "daxianSihua"
+      },
+      {
+       "path": "liunianSihua",
+       "resolvedAt": "liunianSihua"
+      },
+      {
+       "path": "dieGong.decadal",
+       "resolvedAt": "dieGong.decadal"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "daxianSihua",
+       "liunianSihua",
+       "dieGong.decadal"
+      ],
+      "coveredBy": [
+       {
+        "path": "daxianSihua",
+        "resolvedAt": "daxianSihua"
+       },
+       {
+        "path": "liunianSihua",
+        "resolvedAt": "liunianSihua"
+       },
+       {
+        "path": "dieGong.decadal",
+        "resolvedAt": "dieGong.decadal"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "引动规则未核对",
+      "同一时间点的一致性未验证"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 6,
+     "title": "忌之四态与禄转忌/忌转忌链",
+     "declaredStatus": "ready",
+     "status": "ready",
+     "checks": [
+      {
+       "path": "flyingChains.jiChains",
+       "satisfied": true,
+       "resolvedAt": "flyingChains.jiChains"
+      },
+      {
+       "path": "flyingChains.palaceFlying",
+       "satisfied": true,
+       "resolvedAt": "flyingChains.palaceFlying"
+      },
+      {
+       "path": "selfTransform",
+       "satisfied": true,
+       "resolvedAt": "selfTransform"
+      }
+     ],
+     "missing": [],
+     "knowledgeSections": [
+      "§16.6"
+     ],
+     "evidence": [
+      {
+       "path": "flyingChains.jiChains",
+       "resolvedAt": "flyingChains.jiChains"
+      },
+      {
+       "path": "flyingChains.palaceFlying",
+       "resolvedAt": "flyingChains.palaceFlying"
+      },
+      {
+       "path": "selfTransform",
+       "resolvedAt": "selfTransform"
+      }
+     ],
+     "factContractComplete": true,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "flyingChains.jiChains",
+       "flyingChains.palaceFlying",
+       "selfTransform"
+      ],
+      "coveredBy": [
+       {
+        "path": "flyingChains.jiChains",
+        "resolvedAt": "flyingChains.jiChains"
+       },
+       {
+        "path": "flyingChains.palaceFlying",
+        "resolvedAt": "flyingChains.palaceFlying"
+       },
+       {
+        "path": "selfTransform",
+        "resolvedAt": "selfTransform"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [],
+     "reason": null
+    },
+    {
+     "id": 7,
+     "title": "六宫禄打分",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "flyingChains.palaceFlying",
+       "satisfied": true,
+       "resolvedAt": "flyingChains.palaceFlying"
+      },
+      {
+       "path": "daxianSihua",
+       "satisfied": true,
+       "resolvedAt": "daxianSihua"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：1 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.7"
+     ],
+     "evidence": [
+      {
+       "path": "flyingChains.palaceFlying",
+       "resolvedAt": "flyingChains.palaceFlying"
+      },
+      {
+       "path": "daxianSihua",
+       "resolvedAt": "daxianSihua"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "flyingChains.palaceFlying",
+       "daxianSihua"
+      ],
+      "coveredBy": [
+       {
+        "path": "flyingChains.palaceFlying",
+        "resolvedAt": "flyingChains.palaceFlying"
+       },
+       {
+        "path": "daxianSihua",
+        "resolvedAt": "daxianSihua"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "六宫定义、计分权重与口径待核对"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 8,
+     "title": "叠宫推算（逐宫写出）",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "fourLayerDieGong.rows",
+       "satisfied": true,
+       "resolvedAt": "fourLayerDieGong.rows"
+      },
+      {
+       "path": "dieGong.decadal",
+       "satisfied": true,
+       "resolvedAt": "dieGong.decadal"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：1 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.8"
+     ],
+     "evidence": [
+      {
+       "path": "fourLayerDieGong.rows",
+       "resolvedAt": "fourLayerDieGong.rows"
+      },
+      {
+       "path": "dieGong.decadal",
+       "resolvedAt": "dieGong.decadal"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "fourLayerDieGong.rows",
+       "dieGong.decadal"
+      ],
+      "coveredBy": [
+       {
+        "path": "fourLayerDieGong.rows",
+        "resolvedAt": "fourLayerDieGong.rows"
+       },
+       {
+        "path": "dieGong.decadal",
+        "resolvedAt": "dieGong.decadal"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "四层口径与日期一致性待对账"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 9,
+     "title": "大限四化两步定位",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "daxianSihua",
+       "satisfied": true,
+       "resolvedAt": "daxianSihua"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：1 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.9"
+     ],
+     "evidence": [
+      {
+       "path": "daxianSihua",
+       "resolvedAt": "daxianSihua"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "daxianSihua"
+      ],
+      "coveredBy": [
+       {
+        "path": "daxianSihua",
+        "resolvedAt": "daxianSihua"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "须证明两步（本命宫名/大限宫名）均可由同一条记录追溯"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 10,
+     "title": "破财五法则",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "palaces",
+       "satisfied": true,
+       "resolvedAt": "palaces"
+      },
+      {
+       "path": "sihua",
+       "satisfied": true,
+       "resolvedAt": "sihua"
+      },
+      {
+       "path": "daxianSihua",
+       "satisfied": true,
+       "resolvedAt": "daxianSihua"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：1 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.10"
+     ],
+     "evidence": [
+      {
+       "path": "palaces",
+       "resolvedAt": "palaces"
+      },
+      {
+       "path": "sihua",
+       "resolvedAt": "sihua"
+      },
+      {
+       "path": "daxianSihua",
+       "resolvedAt": "daxianSihua"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "palaces",
+       "sihua",
+       "daxianSihua"
+      ],
+      "coveredBy": [
+       {
+        "path": "palaces",
+        "resolvedAt": "palaces"
+       },
+       {
+        "path": "sihua",
+        "resolvedAt": "sihua"
+       },
+       {
+        "path": "daxianSihua",
+        "resolvedAt": "daxianSihua"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "五法则的条件与有效引用须逐条验证"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 11,
+     "title": "离婚四法则",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "palaces",
+       "satisfied": true,
+       "resolvedAt": "palaces"
+      },
+      {
+       "path": "sihua",
+       "satisfied": true,
+       "resolvedAt": "sihua"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：1 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.11"
+     ],
+     "evidence": [
+      {
+       "path": "palaces",
+       "resolvedAt": "palaces"
+      },
+      {
+       "path": "sihua",
+       "resolvedAt": "sihua"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "palaces",
+       "sihua"
+      ],
+      "coveredBy": [
+       {
+        "path": "palaces",
+        "resolvedAt": "palaces"
+       },
+       {
+        "path": "sihua",
+        "resolvedAt": "sihua"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "婚姻相关时才适用，否则应标注 not_applicable 并记原因"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 12,
+     "title": "财库分析",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "palaces",
+       "satisfied": true,
+       "resolvedAt": "palaces"
+      },
+      {
+       "path": "daxianSihua",
+       "satisfied": true,
+       "resolvedAt": "daxianSihua"
+      },
+      {
+       "path": "dieGong.decadal",
+       "satisfied": true,
+       "resolvedAt": "dieGong.decadal"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：1 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.12"
+     ],
+     "evidence": [
+      {
+       "path": "palaces",
+       "resolvedAt": "palaces"
+      },
+      {
+       "path": "daxianSihua",
+       "resolvedAt": "daxianSihua"
+      },
+      {
+       "path": "dieGong.decadal",
+       "resolvedAt": "dieGong.decadal"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "palaces",
+       "daxianSihua",
+       "dieGong.decadal"
+      ],
+      "coveredBy": [
+       {
+        "path": "palaces",
+        "resolvedAt": "palaces"
+       },
+       {
+        "path": "daxianSihua",
+        "resolvedAt": "daxianSihua"
+       },
+       {
+        "path": "dieGong.decadal",
+        "resolvedAt": "dieGong.decadal"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "大限田宅被冲破/禄坐/忌坐 的条件需验证"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 13,
+     "title": "桃花分析",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "palaces",
+       "satisfied": true,
+       "resolvedAt": "palaces"
+      },
+      {
+       "path": "sihua",
+       "satisfied": true,
+       "resolvedAt": "sihua"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：1 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.13"
+     ],
+     "evidence": [
+      {
+       "path": "palaces",
+       "resolvedAt": "palaces"
+      },
+      {
+       "path": "sihua",
+       "resolvedAt": "sihua"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "palaces",
+       "sihua"
+      ],
+      "coveredBy": [
+       {
+        "path": "palaces",
+        "resolvedAt": "palaces"
+       },
+       {
+        "path": "sihua",
+        "resolvedAt": "sihua"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "命、迁、夫、子宫的贪狼廉贞与禄权来源须核验"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 14,
+     "title": "疾厄健康提示",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "palaces",
+       "satisfied": true,
+       "resolvedAt": "palaces"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：1 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.14"
+     ],
+     "evidence": [
+      {
+       "path": "palaces",
+       "resolvedAt": "palaces"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "palaces"
+      ],
+      "coveredBy": [
+       {
+        "path": "palaces",
+        "resolvedAt": "palaces"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "只作倾向性提示，须核验疾厄宫相关事实与知识条款"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 15,
+     "title": "当前大限逐流年关键点",
+     "declaredStatus": "ready",
+     "status": "ready",
+     "checks": [
+      {
+       "path": "fourLayerDieGong.rows",
+       "satisfied": true,
+       "resolvedAt": "fourLayerDieGong.rows"
+      }
+     ],
+     "missing": [],
+     "knowledgeSections": [
+      "§16.15"
+     ],
+     "evidence": [
+      {
+       "path": "fourLayerDieGong.rows",
+       "resolvedAt": "fourLayerDieGong.rows"
+      }
+     ],
+     "factContractComplete": true,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "fourLayerDieGong.rows"
+      ],
+      "coveredBy": [
+       {
+        "path": "fourLayerDieGong.rows",
+        "resolvedAt": "fourLayerDieGong.rows"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [],
+     "reason": null
+    }
+   ],
+   "knowledgeByStep": {
+    "1": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§1 总纲（先定框架，再谈引动）",
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§10 四化碰撞表（禄权科忌×自化）",
+      "SKILL.md#§11 六宫禄打分",
+      "SKILL.md#§12 应期四阶梯（禁跳级）",
+      "SKILL.md#§19 神煞·十二长生·三层叠宫（格式系统·应期第三阶配套）",
+      "SKILL.md#§13 排盘自检（每次出盘必查）",
+      "SKILL.md#§14 iztro 引擎 Bug 对照（排盘后用 WMT 校正）",
+      "SKILL.md#§15 引擎调用契约（参考实现）",
+      "SKILL.md#§15 输出格式（规范化）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "SKILL.md#§18 DS Reviewer 三条硬违例（任一触发=拦退）",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/star_main14_palace.md#紫微",
+      "references/star_main14_palace.md#天机",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 14259,
+     "diagnostics": [
+      "ANCHOR_MULTI_SECTION"
+     ]
+    },
+    "2": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§2 十六字核心（万物技法不外乎）",
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§12 应期四阶梯（禁跳级）",
+      "SKILL.md#§20 扩展层索引（深查走 references/·全 0 污染）",
+      "SKILL.md#第Ⅲ部分 · 排盘规范（v7 新增·引擎 v2.5 文墨金标准）",
+      "SKILL.md#§13 排盘自检（每次出盘必查）",
+      "SKILL.md#§14 iztro 引擎 Bug 对照（排盘后用 WMT 校正）",
+      "SKILL.md#§15 引擎调用契约（参考实现）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "SKILL.md#附录A · 盘例示范（文墨2.5金标准）",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 4245,
+     "diagnostics": []
+    },
+    "3": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§3 引动机制（核心中的核心）",
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§13 排盘自检（每次出盘必查）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/palace_fly.md#大运盘飞化：四重框架、体用得失与吉凶加乘",
+      "references/palace_fly.md#一、核心断语",
+      "references/palace_fly.md#二、大运飞化的框架、体用与格局判定",
+      "references/palace_fly.md#2.1 四重框架定位",
+      "references/palace_fly.md#2.2 本命盘与大运盘体用关系",
+      "references/palace_fly.md#2.3 大运命宫的体用枢机",
+      "references/palace_fly.md#2.4 四重飞化的指示力与成局判定",
+      "references/palace_fly.md#2.5 感情婚姻飞化判定表",
+      "references/palace_fly.md#2.6 虚忌、实忌与“抓禄”的加乘效应",
+      "references/palace_fly.md#2.7 案例映射：官禄得禄与命宫自化忌",
+      "references/palace_fly.md#三、应用要点",
+      "references/palace_fly_all12.md#〇、用法与合规（先读）",
+      "references/palace_fly_all12.md#一、命宫四化入十二宫（性格倾向层）",
+      "references/sheng_nian_66.md#生年化禄（十二宫）",
+      "references/sheng_nian_66.md#生年化权（十二宫）",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 9229,
+     "diagnostics": [
+      "ANCHOR_PREFIX_MATCH"
+     ]
+    },
+    "4": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§4 星曜之神（抓神断象，勿死记断语）",
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§14 iztro 引擎 Bug 对照（排盘后用 WMT 校正）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 8346,
+     "diagnostics": []
+    },
+    "5": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§5 宫位×四化断语（高频·可直接断）",
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#第Ⅲ部分 · 排盘规范（v7 新增·引擎 v2.5 文墨金标准）",
+      "SKILL.md#§13 排盘自检（每次出盘必查）",
+      "SKILL.md#§14 iztro 引擎 Bug 对照（排盘后用 WMT 校正）",
+      "SKILL.md#§15 引擎调用契约（参考实现）",
+      "SKILL.md#§15 输出格式（规范化）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "SKILL.md#附录A · 盘例示范（文墨2.5金标准）",
+      "references/shizhan_zhuanlan.md#〇、定盘流程（实战演练专题·拿到盘先做什么）",
+      "references/shizhan_zhuanlan.md#一、应期实战细则（应期详解·实战应期专题）",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 4507,
+     "diagnostics": []
+    },
+    "6": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§6 断专题（财/业/婚）",
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/lu_zhuan_ji.md#〇、忌之本性与解忌总纲（先读）",
+      "references/lu_zhuan_ji.md#一、禄转忌 vs 忌转忌（钦天核心技法）",
+      "references/self_zihua.md#〇、自化总纲（先读）",
+      "references/self_zihua.md#一、自化两两组合断法",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 3875,
+     "diagnostics": []
+    },
+    "7": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#第Ⅲ部分 · 排盘规范（v7 新增·引擎 v2.5 文墨金标准）",
+      "SKILL.md#§13 排盘自检（每次出盘必查）",
+      "SKILL.md#§14 iztro 引擎 Bug 对照（排盘后用 WMT 校正）",
+      "SKILL.md#§15 引擎调用契约（参考实现）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/palace_fly.md#大运盘飞化：四重框架、体用得失与吉凶加乘",
+      "references/palace_fly.md#一、核心断语",
+      "references/palace_fly.md#二、大运飞化的框架、体用与格局判定",
+      "references/palace_fly.md#2.1 四重框架定位",
+      "references/palace_fly.md#2.2 本命盘与大运盘体用关系",
+      "references/palace_fly.md#2.3 大运命宫的体用枢机",
+      "references/palace_fly.md#2.4 四重飞化的指示力与成局判定",
+      "references/palace_fly.md#2.5 感情婚姻飞化判定表",
+      "references/palace_fly.md#2.6 虚忌、实忌与“抓禄”的加乘效应",
+      "references/palace_fly.md#2.7 案例映射：官禄得禄与命宫自化忌",
+      "references/palace_fly.md#三、应用要点",
+      "references/palace_fly_all12.md#〇、用法与合规（先读）",
+      "references/palace_fly_all12.md#一、命宫四化入十二宫（性格倾向层）",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 6124,
+     "diagnostics": [
+      "ANCHOR_PREFIX_MATCH"
+     ]
+    },
+    "8": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "SKILL.md#§18 DS Reviewer 三条硬违例（任一触发=拦退）",
+      "references/palace_fly.md#大运盘飞化：四重框架、体用得失与吉凶加乘",
+      "references/palace_fly.md#一、核心断语",
+      "references/palace_fly.md#二、大运飞化的框架、体用与格局判定",
+      "references/palace_fly.md#2.1 四重框架定位",
+      "references/palace_fly.md#2.2 本命盘与大运盘体用关系",
+      "references/palace_fly.md#2.3 大运命宫的体用枢机",
+      "references/palace_fly.md#2.4 四重飞化的指示力与成局判定",
+      "references/palace_fly.md#2.5 感情婚姻飞化判定表",
+      "references/palace_fly.md#2.6 虚忌、实忌与“抓禄”的加乘效应",
+      "references/palace_fly.md#2.7 案例映射：官禄得禄与命宫自化忌",
+      "references/palace_fly.md#三、应用要点",
+      "references/palace_fly_all12.md#〇、用法与合规（先读）",
+      "references/palace_fly_all12.md#一、命宫四化入十二宫（性格倾向层）",
+      "references/self_zihua.md#〇、自化总纲（先读）",
+      "references/self_zihua.md#一、自化两两组合断法",
+      "references/shizhan_zhuanlan.md#〇、定盘流程（实战演练专题·拿到盘先做什么）",
+      "references/shizhan_zhuanlan.md#一、应期实战细则（应期详解·实战应期专题）",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 6908,
+     "diagnostics": [
+      "ANCHOR_PREFIX_MATCH"
+     ]
+    },
+    "9": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§9 叠宫推算（错误则全盘错）",
+      "SKILL.md#§19 神煞·十二长生·三层叠宫（格式系统·应期第三阶配套）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/sheng_nian_66.md#生年化禄（十二宫）",
+      "references/sheng_nian_66.md#生年化权（十二宫）",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 5976,
+     "diagnostics": []
+    },
+    "10": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§10 四化碰撞表（禄权科忌×自化）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/palace_fly.md#大运盘飞化：四重框架、体用得失与吉凶加乘",
+      "references/palace_fly.md#一、核心断语",
+      "references/palace_fly.md#二、大运飞化的框架、体用与格局判定",
+      "references/palace_fly.md#2.1 四重框架定位",
+      "references/palace_fly.md#2.2 本命盘与大运盘体用关系",
+      "references/palace_fly.md#2.3 大运命宫的体用枢机",
+      "references/palace_fly.md#2.4 四重飞化的指示力与成局判定",
+      "references/palace_fly.md#2.5 感情婚姻飞化判定表",
+      "references/palace_fly.md#2.6 虚忌、实忌与“抓禄”的加乘效应",
+      "references/palace_fly.md#2.7 案例映射：官禄得禄与命宫自化忌",
+      "references/palace_fly.md#三、应用要点",
+      "references/shizhan_zhuanlan.md#〇、定盘流程（实战演练专题·拿到盘先做什么）",
+      "references/shizhan_zhuanlan.md#一、应期实战细则（应期详解·实战应期专题）",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 11000,
+     "diagnostics": [
+      "ANCHOR_PREFIX_MATCH"
+     ]
+    },
+    "11": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§11 六宫禄打分",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/shizhan_zhuanlan.md#〇、定盘流程（实战演练专题·拿到盘先做什么）",
+      "references/shizhan_zhuanlan.md#一、应期实战细则（应期详解·实战应期专题）",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 8499,
+     "diagnostics": []
+    },
+    "12": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§12 应期四阶梯（禁跳级）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/palace_fly.md#大运盘飞化：四重框架、体用得失与吉凶加乘",
+      "references/palace_fly.md#一、核心断语",
+      "references/palace_fly.md#二、大运飞化的框架、体用与格局判定",
+      "references/palace_fly.md#2.1 四重框架定位",
+      "references/palace_fly.md#2.2 本命盘与大运盘体用关系",
+      "references/palace_fly.md#2.3 大运命宫的体用枢机",
+      "references/palace_fly.md#2.4 四重飞化的指示力与成局判定",
+      "references/palace_fly.md#2.5 感情婚姻飞化判定表",
+      "references/palace_fly.md#2.6 虚忌、实忌与“抓禄”的加乘效应",
+      "references/palace_fly.md#2.7 案例映射：官禄得禄与命宫自化忌",
+      "references/palace_fly.md#三、应用要点",
+      "references/shizhan_zhuanlan.md#〇、定盘流程（实战演练专题·拿到盘先做什么）",
+      "references/shizhan_zhuanlan.md#一、应期实战细则（应期详解·实战应期专题）",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 4836,
+     "diagnostics": [
+      "ANCHOR_PREFIX_MATCH"
+     ]
+    },
+    "13": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§13 排盘自检（每次出盘必查）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/palace_fly.md#大运盘飞化：四重框架、体用得失与吉凶加乘",
+      "references/palace_fly.md#一、核心断语",
+      "references/palace_fly.md#二、大运飞化的框架、体用与格局判定",
+      "references/palace_fly.md#2.1 四重框架定位",
+      "references/palace_fly.md#2.2 本命盘与大运盘体用关系",
+      "references/palace_fly.md#2.3 大运命宫的体用枢机",
+      "references/palace_fly.md#2.4 四重飞化的指示力与成局判定",
+      "references/palace_fly.md#2.5 感情婚姻飞化判定表",
+      "references/palace_fly.md#2.6 虚忌、实忌与“抓禄”的加乘效应",
+      "references/palace_fly.md#2.7 案例映射：官禄得禄与命宫自化忌",
+      "references/palace_fly.md#三、应用要点",
+      "references/star_main14_palace.md#紫微",
+      "references/star_main14_palace.md#天机",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 19060,
+     "diagnostics": [
+      "ANCHOR_MULTI_SECTION",
+      "ANCHOR_PREFIX_MATCH"
+     ]
+    },
+    "14": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§14 iztro 引擎 Bug 对照（排盘后用 WMT 校正）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/shensha_changsheng.md#一、岁前十二神（suiqian12 / 太岁十二神）",
+      "references/shensha_changsheng.md#二、将前十二神（jiangqian12）",
+      "references/star_main14_palace.md#紫微",
+      "references/star_main14_palace.md#天机",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 17886,
+     "diagnostics": [
+      "ANCHOR_MULTI_SECTION"
+     ]
+    },
+    "15": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§15 引擎调用契约（参考实现）",
+      "SKILL.md#§15 输出格式（规范化）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/shizhan_zhuanlan.md#〇、定盘流程（实战演练专题·拿到盘先做什么）",
+      "references/shizhan_zhuanlan.md#一、应期实战细则（应期详解·实战应期专题）",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 3233,
+     "diagnostics": []
+    }
+   },
+   "deliverable": false,
+   "reason": "有 16 项未达 ready，按 §16「跳过任一步骤不得交付」不可交付"
+  },
+  {
+   "label": "缺时辰",
+   "chartInfoStatus": "unavailable",
+   "diagnostics": [
+    "CHART_NOT_OK"
+   ],
+   "summary": null,
+   "steps": [],
+   "deliverable": false,
+   "reason": "ChartInfo 不可用，§16 无法执行"
+  },
+  {
+   "label": "标准男命·不涉婚",
+   "input": {
+    "calendar": "solar",
+    "date": "1990-05-15",
+    "time": {
+     "precision": "minute",
+     "value": "12:30",
+     "branch": null
+    },
+    "sex_for_calculation": "male"
+   },
+   "chartInfoStatus": "ok",
+   "chartInfoDigest": {
+    "palaces": 12,
+    "sihua": [
+     "禄:太阳",
+     "权:武曲",
+     "科:太阴",
+     "忌:天同"
+    ],
+    "palaceFlying": 48,
+    "jiChains": 12,
+    "fourLayerRows": 12,
+    "wuxingJu": "土五局",
+    "yearStem": "庚"
+   },
+   "diagnostics": [
+    "LAIYIN_EXCLUDED"
+   ],
+   "summary": {
+    "ready": 2,
+    "conditional": 12,
+    "blocked": 0,
+    "not_applicable": 1
+   },
+   "steps": [
+    {
+     "id": 1,
+     "title": "排盘对账",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "palaces",
+       "satisfied": true,
+       "resolvedAt": "palaces"
+      },
+      {
+       "path": "wuxingJu",
+       "satisfied": true,
+       "resolvedAt": "wuxingJu"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：2 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.1"
+     ],
+     "evidence": [
+      {
+       "path": "palaces",
+       "resolvedAt": "palaces"
+      },
+      {
+       "path": "wuxingJu",
+       "resolvedAt": "wuxingJu"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "palaces",
+       "wuxingJu"
+      ],
+      "coveredBy": [
+       {
+        "path": "palaces",
+        "resolvedAt": "palaces"
+       },
+       {
+        "path": "wuxingJu",
+        "resolvedAt": "wuxingJu"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "独立金标盘集合未建立",
+      "身宫完整性未独立验证"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 2,
+     "title": "天魁钺校验",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "palaces",
+       "satisfied": true,
+       "resolvedAt": "palaces"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：2 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.2"
+     ],
+     "evidence": [
+      {
+       "path": "palaces",
+       "resolvedAt": "palaces"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "palaces"
+      ],
+      "coveredBy": [
+       {
+        "path": "palaces",
+        "resolvedAt": "palaces"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "ChartInfo 不含 corrections（T1 限定 11 字段）",
+      "缺独立年干表逐宫对账"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 3,
+     "title": "生年四化与逐宫飞化",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "sihua",
+       "satisfied": true,
+       "resolvedAt": "sihua"
+      },
+      {
+       "path": "flyingChains.palaceFlying",
+       "satisfied": true,
+       "resolvedAt": "flyingChains.palaceFlying"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：2 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.3"
+     ],
+     "evidence": [
+      {
+       "path": "sihua",
+       "resolvedAt": "sihua"
+      },
+      {
+       "path": "flyingChains.palaceFlying",
+       "resolvedAt": "flyingChains.palaceFlying"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "sihua",
+       "flyingChains.palaceFlying"
+      ],
+      "coveredBy": [
+       {
+        "path": "sihua",
+        "resolvedAt": "sihua"
+       },
+       {
+        "path": "flyingChains.palaceFlying",
+        "resolvedAt": "flyingChains.palaceFlying"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "四化落宫须过校验",
+      "48 条飞化绑定的正确性未独立核对"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 4,
+     "title": "十六字检查",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "sihua",
+       "satisfied": true,
+       "resolvedAt": "sihua"
+      },
+      {
+       "path": "palaces",
+       "satisfied": true,
+       "resolvedAt": "palaces"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：1 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.4"
+     ],
+     "evidence": [
+      {
+       "path": "sihua",
+       "resolvedAt": "sihua"
+      },
+      {
+       "path": "palaces",
+       "resolvedAt": "palaces"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "sihua",
+       "palaces"
+      ],
+      "coveredBy": [
+       {
+        "path": "sihua",
+        "resolvedAt": "sihua"
+       },
+       {
+        "path": "palaces",
+        "resolvedAt": "palaces"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "禄坐/禄照/忌坐/忌冲 的逐宫规则映射待核对"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 5,
+     "title": "引动检查（大运踩生年、流年踩大运）",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "daxianSihua",
+       "satisfied": true,
+       "resolvedAt": "daxianSihua"
+      },
+      {
+       "path": "liunianSihua",
+       "satisfied": true,
+       "resolvedAt": "liunianSihua"
+      },
+      {
+       "path": "dieGong.decadal",
+       "satisfied": true,
+       "resolvedAt": "dieGong.decadal"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：2 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.5"
+     ],
+     "evidence": [
+      {
+       "path": "daxianSihua",
+       "resolvedAt": "daxianSihua"
+      },
+      {
+       "path": "liunianSihua",
+       "resolvedAt": "liunianSihua"
+      },
+      {
+       "path": "dieGong.decadal",
+       "resolvedAt": "dieGong.decadal"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "daxianSihua",
+       "liunianSihua",
+       "dieGong.decadal"
+      ],
+      "coveredBy": [
+       {
+        "path": "daxianSihua",
+        "resolvedAt": "daxianSihua"
+       },
+       {
+        "path": "liunianSihua",
+        "resolvedAt": "liunianSihua"
+       },
+       {
+        "path": "dieGong.decadal",
+        "resolvedAt": "dieGong.decadal"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "引动规则未核对",
+      "同一时间点的一致性未验证"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 6,
+     "title": "忌之四态与禄转忌/忌转忌链",
+     "declaredStatus": "ready",
+     "status": "ready",
+     "checks": [
+      {
+       "path": "flyingChains.jiChains",
+       "satisfied": true,
+       "resolvedAt": "flyingChains.jiChains"
+      },
+      {
+       "path": "flyingChains.palaceFlying",
+       "satisfied": true,
+       "resolvedAt": "flyingChains.palaceFlying"
+      },
+      {
+       "path": "selfTransform",
+       "satisfied": true,
+       "resolvedAt": "selfTransform"
+      }
+     ],
+     "missing": [],
+     "knowledgeSections": [
+      "§16.6"
+     ],
+     "evidence": [
+      {
+       "path": "flyingChains.jiChains",
+       "resolvedAt": "flyingChains.jiChains"
+      },
+      {
+       "path": "flyingChains.palaceFlying",
+       "resolvedAt": "flyingChains.palaceFlying"
+      },
+      {
+       "path": "selfTransform",
+       "resolvedAt": "selfTransform"
+      }
+     ],
+     "factContractComplete": true,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "flyingChains.jiChains",
+       "flyingChains.palaceFlying",
+       "selfTransform"
+      ],
+      "coveredBy": [
+       {
+        "path": "flyingChains.jiChains",
+        "resolvedAt": "flyingChains.jiChains"
+       },
+       {
+        "path": "flyingChains.palaceFlying",
+        "resolvedAt": "flyingChains.palaceFlying"
+       },
+       {
+        "path": "selfTransform",
+        "resolvedAt": "selfTransform"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [],
+     "reason": null
+    },
+    {
+     "id": 7,
+     "title": "六宫禄打分",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "flyingChains.palaceFlying",
+       "satisfied": true,
+       "resolvedAt": "flyingChains.palaceFlying"
+      },
+      {
+       "path": "daxianSihua",
+       "satisfied": true,
+       "resolvedAt": "daxianSihua"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：1 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.7"
+     ],
+     "evidence": [
+      {
+       "path": "flyingChains.palaceFlying",
+       "resolvedAt": "flyingChains.palaceFlying"
+      },
+      {
+       "path": "daxianSihua",
+       "resolvedAt": "daxianSihua"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "flyingChains.palaceFlying",
+       "daxianSihua"
+      ],
+      "coveredBy": [
+       {
+        "path": "flyingChains.palaceFlying",
+        "resolvedAt": "flyingChains.palaceFlying"
+       },
+       {
+        "path": "daxianSihua",
+        "resolvedAt": "daxianSihua"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "六宫定义、计分权重与口径待核对"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 8,
+     "title": "叠宫推算（逐宫写出）",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "fourLayerDieGong.rows",
+       "satisfied": true,
+       "resolvedAt": "fourLayerDieGong.rows"
+      },
+      {
+       "path": "dieGong.decadal",
+       "satisfied": true,
+       "resolvedAt": "dieGong.decadal"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：1 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.8"
+     ],
+     "evidence": [
+      {
+       "path": "fourLayerDieGong.rows",
+       "resolvedAt": "fourLayerDieGong.rows"
+      },
+      {
+       "path": "dieGong.decadal",
+       "resolvedAt": "dieGong.decadal"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "fourLayerDieGong.rows",
+       "dieGong.decadal"
+      ],
+      "coveredBy": [
+       {
+        "path": "fourLayerDieGong.rows",
+        "resolvedAt": "fourLayerDieGong.rows"
+       },
+       {
+        "path": "dieGong.decadal",
+        "resolvedAt": "dieGong.decadal"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "四层口径与日期一致性待对账"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 9,
+     "title": "大限四化两步定位",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "daxianSihua",
+       "satisfied": true,
+       "resolvedAt": "daxianSihua"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：1 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.9"
+     ],
+     "evidence": [
+      {
+       "path": "daxianSihua",
+       "resolvedAt": "daxianSihua"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "daxianSihua"
+      ],
+      "coveredBy": [
+       {
+        "path": "daxianSihua",
+        "resolvedAt": "daxianSihua"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "须证明两步（本命宫名/大限宫名）均可由同一条记录追溯"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 10,
+     "title": "破财五法则",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "palaces",
+       "satisfied": true,
+       "resolvedAt": "palaces"
+      },
+      {
+       "path": "sihua",
+       "satisfied": true,
+       "resolvedAt": "sihua"
+      },
+      {
+       "path": "daxianSihua",
+       "satisfied": true,
+       "resolvedAt": "daxianSihua"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：1 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.10"
+     ],
+     "evidence": [
+      {
+       "path": "palaces",
+       "resolvedAt": "palaces"
+      },
+      {
+       "path": "sihua",
+       "resolvedAt": "sihua"
+      },
+      {
+       "path": "daxianSihua",
+       "resolvedAt": "daxianSihua"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "palaces",
+       "sihua",
+       "daxianSihua"
+      ],
+      "coveredBy": [
+       {
+        "path": "palaces",
+        "resolvedAt": "palaces"
+       },
+       {
+        "path": "sihua",
+        "resolvedAt": "sihua"
+       },
+       {
+        "path": "daxianSihua",
+        "resolvedAt": "daxianSihua"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "五法则的条件与有效引用须逐条验证"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 11,
+     "title": "离婚四法则",
+     "declaredStatus": "conditional",
+     "status": "not_applicable",
+     "checks": [
+      {
+       "path": "palaces",
+       "satisfied": true,
+       "resolvedAt": "palaces"
+      },
+      {
+       "path": "sihua",
+       "satisfied": true,
+       "resolvedAt": "sihua"
+      }
+     ],
+     "missing": [],
+     "knowledgeSections": [
+      "§16.11"
+     ],
+     "evidence": [
+      {
+       "path": "palaces",
+       "resolvedAt": "palaces"
+      },
+      {
+       "path": "sihua",
+       "resolvedAt": "sihua"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "palaces",
+       "sihua"
+      ],
+      "coveredBy": [
+       {
+        "path": "palaces",
+        "resolvedAt": "palaces"
+       },
+       {
+        "path": "sihua",
+        "resolvedAt": "sihua"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "婚姻相关时才适用，否则应标注 not_applicable 并记原因"
+     ],
+     "reason": "调用方显式声明本题材不涉及婚姻，按矩阵规则标注 not_applicable"
+    },
+    {
+     "id": 12,
+     "title": "财库分析",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "palaces",
+       "satisfied": true,
+       "resolvedAt": "palaces"
+      },
+      {
+       "path": "daxianSihua",
+       "satisfied": true,
+       "resolvedAt": "daxianSihua"
+      },
+      {
+       "path": "dieGong.decadal",
+       "satisfied": true,
+       "resolvedAt": "dieGong.decadal"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：1 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.12"
+     ],
+     "evidence": [
+      {
+       "path": "palaces",
+       "resolvedAt": "palaces"
+      },
+      {
+       "path": "daxianSihua",
+       "resolvedAt": "daxianSihua"
+      },
+      {
+       "path": "dieGong.decadal",
+       "resolvedAt": "dieGong.decadal"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "palaces",
+       "daxianSihua",
+       "dieGong.decadal"
+      ],
+      "coveredBy": [
+       {
+        "path": "palaces",
+        "resolvedAt": "palaces"
+       },
+       {
+        "path": "daxianSihua",
+        "resolvedAt": "daxianSihua"
+       },
+       {
+        "path": "dieGong.decadal",
+        "resolvedAt": "dieGong.decadal"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "大限田宅被冲破/禄坐/忌坐 的条件需验证"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 13,
+     "title": "桃花分析",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "palaces",
+       "satisfied": true,
+       "resolvedAt": "palaces"
+      },
+      {
+       "path": "sihua",
+       "satisfied": true,
+       "resolvedAt": "sihua"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：1 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.13"
+     ],
+     "evidence": [
+      {
+       "path": "palaces",
+       "resolvedAt": "palaces"
+      },
+      {
+       "path": "sihua",
+       "resolvedAt": "sihua"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "palaces",
+       "sihua"
+      ],
+      "coveredBy": [
+       {
+        "path": "palaces",
+        "resolvedAt": "palaces"
+       },
+       {
+        "path": "sihua",
+        "resolvedAt": "sihua"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "命、迁、夫、子宫的贪狼廉贞与禄权来源须核验"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 14,
+     "title": "疾厄健康提示",
+     "declaredStatus": "conditional",
+     "status": "conditional",
+     "checks": [
+      {
+       "path": "palaces",
+       "satisfied": true,
+       "resolvedAt": "palaces"
+      }
+     ],
+     "missing": [
+      {
+       "code": "FACT_CONTRACT_UNVERIFIED",
+       "path": "factContracts",
+       "reason": "矩阵仍有未核验条件：1 项"
+      }
+     ],
+     "knowledgeSections": [
+      "§16.14"
+     ],
+     "evidence": [
+      {
+       "path": "palaces",
+       "resolvedAt": "palaces"
+      }
+     ],
+     "factContractComplete": false,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "palaces"
+      ],
+      "coveredBy": [
+       {
+        "path": "palaces",
+        "resolvedAt": "palaces"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [
+      "只作倾向性提示，须核验疾厄宫相关事实与知识条款"
+     ],
+     "reason": "事实齐备但矩阵条件未核验，不得升级为 ready"
+    },
+    {
+     "id": 15,
+     "title": "当前大限逐流年关键点",
+     "declaredStatus": "ready",
+     "status": "ready",
+     "checks": [
+      {
+       "path": "fourLayerDieGong.rows",
+       "satisfied": true,
+       "resolvedAt": "fourLayerDieGong.rows"
+      }
+     ],
+     "missing": [],
+     "knowledgeSections": [
+      "§16.15"
+     ],
+     "evidence": [
+      {
+       "path": "fourLayerDieGong.rows",
+       "resolvedAt": "fourLayerDieGong.rows"
+      }
+     ],
+     "factContractComplete": true,
+     "factContract": {
+      "declared": true,
+      "status": "ok",
+      "paths": [
+       "fourLayerDieGong.rows"
+      ],
+      "coveredBy": [
+       {
+        "path": "fourLayerDieGong.rows",
+        "resolvedAt": "fourLayerDieGong.rows"
+       }
+      ],
+      "unsatisfied": [],
+      "problems": []
+     },
+     "callerClaimIgnored": null,
+     "blockedEvidenceSatisfied": false,
+     "topicMissing": false,
+     "declaredMissingBlockers": [],
+     "reason": null
+    }
+   ],
+   "knowledgeByStep": {
+    "1": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§1 总纲（先定框架，再谈引动）",
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§10 四化碰撞表（禄权科忌×自化）",
+      "SKILL.md#§11 六宫禄打分",
+      "SKILL.md#§12 应期四阶梯（禁跳级）",
+      "SKILL.md#§19 神煞·十二长生·三层叠宫（格式系统·应期第三阶配套）",
+      "SKILL.md#§13 排盘自检（每次出盘必查）",
+      "SKILL.md#§14 iztro 引擎 Bug 对照（排盘后用 WMT 校正）",
+      "SKILL.md#§15 引擎调用契约（参考实现）",
+      "SKILL.md#§15 输出格式（规范化）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "SKILL.md#§18 DS Reviewer 三条硬违例（任一触发=拦退）",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/star_main14_palace.md#紫微",
+      "references/star_main14_palace.md#天机",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 14259,
+     "diagnostics": [
+      "ANCHOR_MULTI_SECTION"
+     ]
+    },
+    "2": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§2 十六字核心（万物技法不外乎）",
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§12 应期四阶梯（禁跳级）",
+      "SKILL.md#§20 扩展层索引（深查走 references/·全 0 污染）",
+      "SKILL.md#第Ⅲ部分 · 排盘规范（v7 新增·引擎 v2.5 文墨金标准）",
+      "SKILL.md#§13 排盘自检（每次出盘必查）",
+      "SKILL.md#§14 iztro 引擎 Bug 对照（排盘后用 WMT 校正）",
+      "SKILL.md#§15 引擎调用契约（参考实现）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "SKILL.md#附录A · 盘例示范（文墨2.5金标准）",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 4245,
+     "diagnostics": []
+    },
+    "3": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§3 引动机制（核心中的核心）",
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§13 排盘自检（每次出盘必查）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/palace_fly.md#大运盘飞化：四重框架、体用得失与吉凶加乘",
+      "references/palace_fly.md#一、核心断语",
+      "references/palace_fly.md#二、大运飞化的框架、体用与格局判定",
+      "references/palace_fly.md#2.1 四重框架定位",
+      "references/palace_fly.md#2.2 本命盘与大运盘体用关系",
+      "references/palace_fly.md#2.3 大运命宫的体用枢机",
+      "references/palace_fly.md#2.4 四重飞化的指示力与成局判定",
+      "references/palace_fly.md#2.5 感情婚姻飞化判定表",
+      "references/palace_fly.md#2.6 虚忌、实忌与“抓禄”的加乘效应",
+      "references/palace_fly.md#2.7 案例映射：官禄得禄与命宫自化忌",
+      "references/palace_fly.md#三、应用要点",
+      "references/palace_fly_all12.md#〇、用法与合规（先读）",
+      "references/palace_fly_all12.md#一、命宫四化入十二宫（性格倾向层）",
+      "references/sheng_nian_66.md#生年化禄（十二宫）",
+      "references/sheng_nian_66.md#生年化权（十二宫）",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 9229,
+     "diagnostics": [
+      "ANCHOR_PREFIX_MATCH"
+     ]
+    },
+    "4": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§4 星曜之神（抓神断象，勿死记断语）",
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§14 iztro 引擎 Bug 对照（排盘后用 WMT 校正）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 8346,
+     "diagnostics": []
+    },
+    "5": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§5 宫位×四化断语（高频·可直接断）",
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#第Ⅲ部分 · 排盘规范（v7 新增·引擎 v2.5 文墨金标准）",
+      "SKILL.md#§13 排盘自检（每次出盘必查）",
+      "SKILL.md#§14 iztro 引擎 Bug 对照（排盘后用 WMT 校正）",
+      "SKILL.md#§15 引擎调用契约（参考实现）",
+      "SKILL.md#§15 输出格式（规范化）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "SKILL.md#附录A · 盘例示范（文墨2.5金标准）",
+      "references/shizhan_zhuanlan.md#〇、定盘流程（实战演练专题·拿到盘先做什么）",
+      "references/shizhan_zhuanlan.md#一、应期实战细则（应期详解·实战应期专题）",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 4507,
+     "diagnostics": []
+    },
+    "6": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§6 断专题（财/业/婚）",
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/lu_zhuan_ji.md#〇、忌之本性与解忌总纲（先读）",
+      "references/lu_zhuan_ji.md#一、禄转忌 vs 忌转忌（钦天核心技法）",
+      "references/self_zihua.md#〇、自化总纲（先读）",
+      "references/self_zihua.md#一、自化两两组合断法",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 3875,
+     "diagnostics": []
+    },
+    "7": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#第Ⅲ部分 · 排盘规范（v7 新增·引擎 v2.5 文墨金标准）",
+      "SKILL.md#§13 排盘自检（每次出盘必查）",
+      "SKILL.md#§14 iztro 引擎 Bug 对照（排盘后用 WMT 校正）",
+      "SKILL.md#§15 引擎调用契约（参考实现）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/palace_fly.md#大运盘飞化：四重框架、体用得失与吉凶加乘",
+      "references/palace_fly.md#一、核心断语",
+      "references/palace_fly.md#二、大运飞化的框架、体用与格局判定",
+      "references/palace_fly.md#2.1 四重框架定位",
+      "references/palace_fly.md#2.2 本命盘与大运盘体用关系",
+      "references/palace_fly.md#2.3 大运命宫的体用枢机",
+      "references/palace_fly.md#2.4 四重飞化的指示力与成局判定",
+      "references/palace_fly.md#2.5 感情婚姻飞化判定表",
+      "references/palace_fly.md#2.6 虚忌、实忌与“抓禄”的加乘效应",
+      "references/palace_fly.md#2.7 案例映射：官禄得禄与命宫自化忌",
+      "references/palace_fly.md#三、应用要点",
+      "references/palace_fly_all12.md#〇、用法与合规（先读）",
+      "references/palace_fly_all12.md#一、命宫四化入十二宫（性格倾向层）",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 6124,
+     "diagnostics": [
+      "ANCHOR_PREFIX_MATCH"
+     ]
+    },
+    "8": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "SKILL.md#§18 DS Reviewer 三条硬违例（任一触发=拦退）",
+      "references/palace_fly.md#大运盘飞化：四重框架、体用得失与吉凶加乘",
+      "references/palace_fly.md#一、核心断语",
+      "references/palace_fly.md#二、大运飞化的框架、体用与格局判定",
+      "references/palace_fly.md#2.1 四重框架定位",
+      "references/palace_fly.md#2.2 本命盘与大运盘体用关系",
+      "references/palace_fly.md#2.3 大运命宫的体用枢机",
+      "references/palace_fly.md#2.4 四重飞化的指示力与成局判定",
+      "references/palace_fly.md#2.5 感情婚姻飞化判定表",
+      "references/palace_fly.md#2.6 虚忌、实忌与“抓禄”的加乘效应",
+      "references/palace_fly.md#2.7 案例映射：官禄得禄与命宫自化忌",
+      "references/palace_fly.md#三、应用要点",
+      "references/palace_fly_all12.md#〇、用法与合规（先读）",
+      "references/palace_fly_all12.md#一、命宫四化入十二宫（性格倾向层）",
+      "references/self_zihua.md#〇、自化总纲（先读）",
+      "references/self_zihua.md#一、自化两两组合断法",
+      "references/shizhan_zhuanlan.md#〇、定盘流程（实战演练专题·拿到盘先做什么）",
+      "references/shizhan_zhuanlan.md#一、应期实战细则（应期详解·实战应期专题）",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 6908,
+     "diagnostics": [
+      "ANCHOR_PREFIX_MATCH"
+     ]
+    },
+    "9": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§9 叠宫推算（错误则全盘错）",
+      "SKILL.md#§19 神煞·十二长生·三层叠宫（格式系统·应期第三阶配套）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/sheng_nian_66.md#生年化禄（十二宫）",
+      "references/sheng_nian_66.md#生年化权（十二宫）",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 5976,
+     "diagnostics": []
+    },
+    "10": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§10 四化碰撞表（禄权科忌×自化）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/palace_fly.md#大运盘飞化：四重框架、体用得失与吉凶加乘",
+      "references/palace_fly.md#一、核心断语",
+      "references/palace_fly.md#二、大运飞化的框架、体用与格局判定",
+      "references/palace_fly.md#2.1 四重框架定位",
+      "references/palace_fly.md#2.2 本命盘与大运盘体用关系",
+      "references/palace_fly.md#2.3 大运命宫的体用枢机",
+      "references/palace_fly.md#2.4 四重飞化的指示力与成局判定",
+      "references/palace_fly.md#2.5 感情婚姻飞化判定表",
+      "references/palace_fly.md#2.6 虚忌、实忌与“抓禄”的加乘效应",
+      "references/palace_fly.md#2.7 案例映射：官禄得禄与命宫自化忌",
+      "references/palace_fly.md#三、应用要点",
+      "references/shizhan_zhuanlan.md#〇、定盘流程（实战演练专题·拿到盘先做什么）",
+      "references/shizhan_zhuanlan.md#一、应期实战细则（应期详解·实战应期专题）",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 11000,
+     "diagnostics": [
+      "ANCHOR_PREFIX_MATCH"
+     ]
+    },
+    "11": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§11 六宫禄打分",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/shizhan_zhuanlan.md#〇、定盘流程（实战演练专题·拿到盘先做什么）",
+      "references/shizhan_zhuanlan.md#一、应期实战细则（应期详解·实战应期专题）",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 8499,
+     "diagnostics": []
+    },
+    "12": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§12 应期四阶梯（禁跳级）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/palace_fly.md#大运盘飞化：四重框架、体用得失与吉凶加乘",
+      "references/palace_fly.md#一、核心断语",
+      "references/palace_fly.md#二、大运飞化的框架、体用与格局判定",
+      "references/palace_fly.md#2.1 四重框架定位",
+      "references/palace_fly.md#2.2 本命盘与大运盘体用关系",
+      "references/palace_fly.md#2.3 大运命宫的体用枢机",
+      "references/palace_fly.md#2.4 四重飞化的指示力与成局判定",
+      "references/palace_fly.md#2.5 感情婚姻飞化判定表",
+      "references/palace_fly.md#2.6 虚忌、实忌与“抓禄”的加乘效应",
+      "references/palace_fly.md#2.7 案例映射：官禄得禄与命宫自化忌",
+      "references/palace_fly.md#三、应用要点",
+      "references/shizhan_zhuanlan.md#〇、定盘流程（实战演练专题·拿到盘先做什么）",
+      "references/shizhan_zhuanlan.md#一、应期实战细则（应期详解·实战应期专题）",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 4836,
+     "diagnostics": [
+      "ANCHOR_PREFIX_MATCH"
+     ]
+    },
+    "13": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§13 排盘自检（每次出盘必查）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/palace_fly.md#大运盘飞化：四重框架、体用得失与吉凶加乘",
+      "references/palace_fly.md#一、核心断语",
+      "references/palace_fly.md#二、大运飞化的框架、体用与格局判定",
+      "references/palace_fly.md#2.1 四重框架定位",
+      "references/palace_fly.md#2.2 本命盘与大运盘体用关系",
+      "references/palace_fly.md#2.3 大运命宫的体用枢机",
+      "references/palace_fly.md#2.4 四重飞化的指示力与成局判定",
+      "references/palace_fly.md#2.5 感情婚姻飞化判定表",
+      "references/palace_fly.md#2.6 虚忌、实忌与“抓禄”的加乘效应",
+      "references/palace_fly.md#2.7 案例映射：官禄得禄与命宫自化忌",
+      "references/palace_fly.md#三、应用要点",
+      "references/star_main14_palace.md#紫微",
+      "references/star_main14_palace.md#天机",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 19060,
+     "diagnostics": [
+      "ANCHOR_MULTI_SECTION",
+      "ANCHOR_PREFIX_MATCH"
+     ]
+    },
+    "14": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§14 iztro 引擎 Bug 对照（排盘后用 WMT 校正）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#1. 星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/auxiliary_stars.md#一、星曜本义",
+      "references/shensha_changsheng.md#一、岁前十二神（suiqian12 / 太岁十二神）",
+      "references/shensha_changsheng.md#二、将前十二神（jiangqian12）",
+      "references/star_main14_palace.md#紫微",
+      "references/star_main14_palace.md#天机",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/star_theology.md#一、星曜本义",
+      "references/star_theology.md#二、逐宫象意",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 17886,
+     "diagnostics": [
+      "ANCHOR_MULTI_SECTION"
+     ]
+    },
+    "15": {
+     "status": "ok",
+     "sections": [
+      "SKILL.md#§7 铁律",
+      "SKILL.md#§8 十二宫固定对宫（铁律·只能查表）",
+      "SKILL.md#§15 引擎调用契约（参考实现）",
+      "SKILL.md#§15 输出格式（规范化）",
+      "SKILL.md#§16 强制分析清单（逐项执行·跳过任一步骤的输出不得交付用户）",
+      "SKILL.md#§17 技法合规校验清单（审查时必须逐项check）",
+      "references/shizhan_zhuanlan.md#〇、定盘流程（实战演练专题·拿到盘先做什么）",
+      "references/shizhan_zhuanlan.md#一、应期实战细则（应期详解·实战应期专题）",
+      "references/techniques_deep_clean.md#一、阴阳两仪法全解",
+      "references/techniques_deep_clean.md#核心原理",
+      "references/techniques_deep_clean.md#断命公式",
+      "references/techniques_deep_clean.md#实战口诀"
+     ],
+     "budgetUsed": 3233,
+     "diagnostics": []
+    }
+   },
+   "deliverable": false,
+   "reason": "有 15 项未达 ready，按 §16「跳过任一步骤不得交付」不可交付"
+  }
+ ]
+}

@@ -1,0 +1,232 @@
+{
+ "schema_version": "skill-manifest/v1",
+ "source": {
+  "name": "钦天门紫微斗数 SKILL",
+  "version": "7.7",
+  "origin": "C:/Users/hao/.codex/skills/ziwei-skill",
+  "license": {
+   "engine": "Apache-2.0",
+   "content": "CC BY-NC-SA 4.0",
+   "links": [
+    "https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode",
+    "https://creativecommons.org/faq/"
+   ]
+  },
+  "distributed": false,
+  "note": "知识内容不复制进仓库，仅记录路径与元数据；运行时从本地安装按需读取。商业用途需另行授权；对外分享须按条款保留作者、来源、许可链接与修改说明。"
+ },
+ "totalBytes": 402860,
+ "items": [
+  {
+   "id": "SKILL",
+   "path": "SKILL.md",
+   "version": "7.7",
+   "license": "CC BY-NC-SA 4.0",
+   "bytes": 26390,
+   "sha256": "55c6b084fb6fe985eca544a03fd785fbda9d744ac7b25d0674e3b586a7d05b39",
+   "appliesTo": [
+    "*"
+   ],
+   "necessity": "required",
+   "sectionAnchors": [
+    "§16",
+    "§17"
+   ]
+  },
+  {
+   "id": "references.auxiliary_stars",
+   "path": "references/auxiliary_stars.md",
+   "version": "7.7",
+   "license": "CC BY-NC-SA 4.0",
+   "bytes": 56911,
+   "sha256": "a332d30d1a27956a81d398916bab5496f29b07fa5776251c097e6339443073b3",
+   "appliesTo": [
+    1,
+    13,
+    14
+   ],
+   "necessity": "required",
+   "sectionAnchors": [
+    "星曜本义"
+   ]
+  },
+  {
+   "id": "references.lu_zhuan_ji",
+   "path": "references/lu_zhuan_ji.md",
+   "version": "7.7",
+   "license": "CC BY-NC-SA 4.0",
+   "bytes": 8955,
+   "sha256": "c7cdf74c81a9f1d425bfbb50b3171a0841eb31ed77da3146794b011847ed991e",
+   "appliesTo": [
+    6
+   ],
+   "necessity": "required",
+   "sectionAnchors": [
+    "忌之本性与解忌总纲",
+    "禄转忌 vs 忌转忌"
+   ]
+  },
+  {
+   "id": "references.palace_fly",
+   "path": "references/palace_fly.md",
+   "version": "7.7",
+   "license": "CC BY-NC-SA 4.0",
+   "bytes": 143322,
+   "sha256": "952bb50a36c040d74b36ba9124614694ae518a15832cce82fdb6d78bea78bf9e",
+   "appliesTo": [
+    3,
+    7,
+    8,
+    10,
+    12,
+    13
+   ],
+   "necessity": "required",
+   "sectionAnchors": [
+    "大运盘飞化"
+   ]
+  },
+  {
+   "id": "references.palace_fly_all12",
+   "path": "references/palace_fly_all12.md",
+   "version": "7.7",
+   "license": "CC BY-NC-SA 4.0",
+   "bytes": 17794,
+   "sha256": "ad85f9db7968a666be3bebf4a3f3f8251a0691e089fcfe13d830484e4c056fd4",
+   "appliesTo": [
+    3,
+    7,
+    8
+   ],
+   "necessity": "required",
+   "sectionAnchors": [
+    "用法与合规",
+    "命宫四化入十二宫"
+   ]
+  },
+  {
+   "id": "references.self_zihua",
+   "path": "references/self_zihua.md",
+   "version": "7.7",
+   "license": "CC BY-NC-SA 4.0",
+   "bytes": 7347,
+   "sha256": "412bdc49ba006855a3b39dbacc7d95f055b3a741cead62e00e7c3b8702ba22e5",
+   "appliesTo": [
+    6,
+    8
+   ],
+   "necessity": "required",
+   "sectionAnchors": [
+    "自化总纲",
+    "自化两两组合断法"
+   ]
+  },
+  {
+   "id": "references.sheng_nian_66",
+   "path": "references/sheng_nian_66.md",
+   "version": "7.7",
+   "license": "CC BY-NC-SA 4.0",
+   "bytes": 20236,
+   "sha256": "96aaa233b889cd7590a5f816d5d368cad1f93d5a99a1ed84546529ade570fb10",
+   "appliesTo": [
+    3,
+    9
+   ],
+   "necessity": "required",
+   "sectionAnchors": [
+    "生年化禄（十二宫）",
+    "生年化权（十二宫）"
+   ]
+  },
+  {
+   "id": "references.shensha_changsheng",
+   "path": "references/shensha_changsheng.md",
+   "version": "7.7",
+   "license": "CC BY-NC-SA 4.0",
+   "bytes": 5559,
+   "sha256": "c8911fd90ac256e9ab25c1c815b888e4d729cbdbe0a26c9d385be46bc4454c10",
+   "appliesTo": [
+    14
+   ],
+   "necessity": "required",
+   "sectionAnchors": [
+    "岁前十二神",
+    "将前十二神"
+   ]
+  },
+  {
+   "id": "references.shizhan_zhuanlan",
+   "path": "references/shizhan_zhuanlan.md",
+   "version": "7.7",
+   "license": "CC BY-NC-SA 4.0",
+   "bytes": 9535,
+   "sha256": "b043e2964c46dec7d8642709f4ac229e9a63be67219c32d5ebcc30fdc2a2aad2",
+   "appliesTo": [
+    5,
+    8,
+    10,
+    11,
+    12,
+    15
+   ],
+   "necessity": "required",
+   "sectionAnchors": [
+    "定盘流程",
+    "应期实战细则"
+   ]
+  },
+  {
+   "id": "references.star_main14_palace",
+   "path": "references/star_main14_palace.md",
+   "version": "7.7",
+   "license": "CC BY-NC-SA 4.0",
+   "bytes": 75848,
+   "sha256": "e91114477e7e46b3036b8e9c8bc0358bc2f8a4a8e31dd786bec4b3fffdc325f5",
+   "appliesTo": [
+    1,
+    13,
+    14
+   ],
+   "necessity": "required",
+   "sectionAnchors": [
+    "紫微",
+    "天机"
+   ]
+  },
+  {
+   "id": "references.star_theology",
+   "path": "references/star_theology.md",
+   "version": "7.7",
+   "license": "CC BY-NC-SA 4.0",
+   "bytes": 29537,
+   "sha256": "7578f0943dfb17c1cf0192eaae1d5fffb8034c27b0b8053d1c0b8915124a6c3d",
+   "appliesTo": [
+    4,
+    10,
+    11,
+    13,
+    14
+   ],
+   "necessity": "required",
+   "sectionAnchors": [
+    "星曜本义",
+    "逐宫象意"
+   ]
+  },
+  {
+   "id": "references.techniques_deep_clean",
+   "path": "references/techniques_deep_clean.md",
+   "version": "7.7",
+   "license": "CC BY-NC-SA 4.0",
+   "bytes": 1426,
+   "sha256": "f598a328d31c3ed51dd533b6548d5757a9d4a0ffb50cb8a589e4559f5519de78",
+   "appliesTo": [
+    "*"
+   ],
+   "necessity": "required",
+   "sectionAnchors": [
+    "阴阳两仪法全解"
+   ]
+  }
+ ]
+}

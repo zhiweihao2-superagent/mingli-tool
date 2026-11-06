@@ -1,0 +1,1363 @@
+{
+  "_fixture_sha256": "4ac54d14f0fa7a69bca19f1c4205b1fdf25512d4f2a196b6f96341dd64b9105a",
+  "_package_sha256": "bb30949a8d326532a74cd01a8aa223c3b08c6dc89855c23f80ccb46341921b0f",
+  "annual": {
+    "gan": "丙",
+    "ganzhi": "丙午",
+    "year": 2026,
+    "zhi": "午"
+  },
+  "birth_pillars": {
+    "day": {
+      "branch": "辰",
+      "branch_element": "土",
+      "branch_yin_yang": "阳",
+      "day_master_life_stage": "养",
+      "ganzhi": "庚辰",
+      "hidden_stems": [
+        {
+          "element": "土",
+          "nominal_weight": 0.6,
+          "role": "本气",
+          "stem": "戊",
+          "ten_god": "偏印"
+        },
+        {
+          "element": "木",
+          "nominal_weight": 0.3,
+          "role": "中气",
+          "stem": "乙",
+          "ten_god": "正财"
+        },
+        {
+          "element": "水",
+          "nominal_weight": 0.1,
+          "role": "余气",
+          "stem": "癸",
+          "ten_god": "伤官"
+        }
+      ],
+      "stem": "庚",
+      "stem_element": "金",
+      "stem_life_stage": "养",
+      "stem_yin_yang": "阳",
+      "ten_god": null
+    },
+    "hour": {
+      "branch": "午",
+      "branch_element": "火",
+      "branch_yin_yang": "阳",
+      "day_master_life_stage": "沐浴",
+      "ganzhi": "壬午",
+      "hidden_stems": [
+        {
+          "element": "火",
+          "nominal_weight": 0.7,
+          "role": "本气",
+          "stem": "丁",
+          "ten_god": "正官"
+        },
+        {
+          "element": "土",
+          "nominal_weight": 0.3,
+          "role": "中气",
+          "stem": "己",
+          "ten_god": "正印"
+        }
+      ],
+      "stem": "壬",
+      "stem_element": "水",
+      "stem_life_stage": "胎",
+      "stem_yin_yang": "阳",
+      "ten_god": "食神"
+    },
+    "month": {
+      "branch": "巳",
+      "branch_element": "火",
+      "branch_yin_yang": "阴",
+      "day_master_life_stage": "长生",
+      "ganzhi": "辛巳",
+      "hidden_stems": [
+        {
+          "element": "火",
+          "nominal_weight": 0.6,
+          "role": "本气",
+          "stem": "丙",
+          "ten_god": "偏官"
+        },
+        {
+          "element": "金",
+          "nominal_weight": 0.3,
+          "role": "中气",
+          "stem": "庚",
+          "ten_god": "比肩"
+        },
+        {
+          "element": "土",
+          "nominal_weight": 0.1,
+          "role": "余气",
+          "stem": "戊",
+          "ten_god": "偏印"
+        }
+      ],
+      "stem": "辛",
+      "stem_element": "金",
+      "stem_life_stage": "死",
+      "stem_yin_yang": "阴",
+      "ten_god": "劫财"
+    },
+    "year": {
+      "branch": "午",
+      "branch_element": "火",
+      "branch_yin_yang": "阳",
+      "day_master_life_stage": "沐浴",
+      "ganzhi": "庚午",
+      "hidden_stems": [
+        {
+          "element": "火",
+          "nominal_weight": 0.7,
+          "role": "本气",
+          "stem": "丁",
+          "ten_god": "正官"
+        },
+        {
+          "element": "土",
+          "nominal_weight": 0.3,
+          "role": "中气",
+          "stem": "己",
+          "ten_god": "正印"
+        }
+      ],
+      "stem": "庚",
+      "stem_element": "金",
+      "stem_life_stage": "沐浴",
+      "stem_yin_yang": "阳",
+      "ten_god": "比肩"
+    }
+  },
+  "coordinate": {
+    "engine": "pai_pan.solar_term_beijing(apparent_solar_longitude)",
+    "instant_note": "引擎给出带微秒的节气时刻，事实包按秒级四舍五入发布；相邻月共用同一字符串，故无缝隙无重叠，边界位置误差 ≤0.5 秒。",
+    "instant_resolution": "1us",
+    "interval": "half_open[start,end)",
+    "month_boundary": "twelve_jie",
+    "timezone": "UTC+08:00",
+    "year_boundary": "exact_lichun"
+  },
+  "evidence_index": {
+    "monthly.months[0]": "/months/0",
+    "monthly.months[0].relation.branch-arch-harmony.day.dayun": "/months/0/relations/11",
+    "monthly.months[0].relation.branch-arch-meeting.day.liuyue": "/months/0/relations/13",
+    "monthly.months[0].relation.branch-break.month.dayun": "/months/0/relations/6",
+    "monthly.months[0].relation.branch-half-harmony.hour.liuyue": "/months/0/relations/18",
+    "monthly.months[0].relation.branch-half-harmony.liunian.liuyue": "/months/0/relations/23",
+    "monthly.months[0].relation.branch-half-harmony.year.liuyue": "/months/0/relations/3",
+    "monthly.months[0].relation.branch-half-meeting.month.liunian": "/months/0/relations/8",
+    "monthly.months[0].relation.branch-harm.month.liuyue": "/months/0/relations/9",
+    "monthly.months[0].relation.branch-hidden-stem-combine-candidate.day.dayun": "/months/0/relations/12",
+    "monthly.months[0].relation.branch-hidden-stem-combine-candidate.day.liuyue": "/months/0/relations/14",
+    "monthly.months[0].relation.branch-hidden-stem-combine-candidate.dayun.liunian": "/months/0/relations/20",
+    "monthly.months[0].relation.branch-hidden-stem-combine-candidate.hour.dayun": "/months/0/relations/15",
+    "monthly.months[0].relation.branch-hidden-stem-combine-candidate.hour.liuyue": "/months/0/relations/19",
+    "monthly.months[0].relation.branch-hidden-stem-combine-candidate.liunian.liuyue": "/months/0/relations/24",
+    "monthly.months[0].relation.branch-hidden-stem-combine-candidate.year.dayun": "/months/0/relations/1",
+    "monthly.months[0].relation.branch-hidden-stem-combine-candidate.year.liuyue": "/months/0/relations/4",
+    "monthly.months[0].relation.branch-punishment.hour.liunian": "/months/0/relations/17",
+    "monthly.months[0].relation.branch-punishment.liuyue.month.dayun": "/months/0/relations/26",
+    "monthly.months[0].relation.branch-punishment.year.liunian": "/months/0/relations/2",
+    "monthly.months[0].relation.branch-six-clash.dayun.liuyue": "/months/0/relations/22",
+    "monthly.months[0].relation.branch-six-combine.month.dayun": "/months/0/relations/5",
+    "monthly.months[0].relation.stem-clash.day.dayun": "/months/0/relations/10",
+    "monthly.months[0].relation.stem-clash.dayun.liuyue": "/months/0/relations/21",
+    "monthly.months[0].relation.stem-clash.hour.liunian": "/months/0/relations/16",
+    "monthly.months[0].relation.stem-clash.year.dayun": "/months/0/relations/0",
+    "monthly.months[0].relation.stem-combine.month.liunian": "/months/0/relations/7",
+    "monthly.months[0].relation.stem-three-combine.year.day.liuyue": "/months/0/relations/25",
+    "monthly.months[10]": "/months/10",
+    "monthly.months[10].relation.branch-arch-harmony.day.dayun": "/months/10/relations/11",
+    "monthly.months[10].relation.branch-break.month.dayun": "/months/10/relations/5",
+    "monthly.months[10].relation.branch-half-harmony.day.liuyue": "/months/10/relations/13",
+    "monthly.months[10].relation.branch-half-harmony.dayun.liuyue": "/months/10/relations/21",
+    "monthly.months[10].relation.branch-half-meeting.month.liunian": "/months/10/relations/7",
+    "monthly.months[10].relation.branch-hidden-combine.month.liuyue": "/months/10/relations/8",
+    "monthly.months[10].relation.branch-hidden-stem-combine-candidate.day.dayun": "/months/10/relations/12",
+    "monthly.months[10].relation.branch-hidden-stem-combine-candidate.day.liuyue": "/months/10/relations/14",
+    "monthly.months[10].relation.branch-hidden-stem-combine-candidate.dayun.liunian": "/months/10/relations/19",
+    "monthly.months[10].relation.branch-hidden-stem-combine-candidate.dayun.liuyue": "/months/10/relations/22",
+    "monthly.months[10].relation.branch-hidden-stem-combine-candidate.hour.dayun": "/months/10/relations/15",
+    "monthly.months[10].relation.branch-hidden-stem-combine-candidate.month.liuyue": "/months/10/relations/9",
+    "monthly.months[10].relation.branch-hidden-stem-combine-candidate.year.dayun": "/months/10/relations/1",
+    "monthly.months[10].relation.branch-punishment.hour.liunian": "/months/10/relations/17",
+    "monthly.months[10].relation.branch-punishment.year.liunian": "/months/10/relations/2",
+    "monthly.months[10].relation.branch-six-clash.hour.liuyue": "/months/10/relations/18",
+    "monthly.months[10].relation.branch-six-clash.liunian.liuyue": "/months/10/relations/23",
+    "monthly.months[10].relation.branch-six-clash.year.liuyue": "/months/10/relations/3",
+    "monthly.months[10].relation.branch-six-combine.month.dayun": "/months/10/relations/4",
+    "monthly.months[10].relation.branch-three-harmony.liuyue.day.dayun": "/months/10/relations/24",
+    "monthly.months[10].relation.stem-clash.day.dayun": "/months/10/relations/10",
+    "monthly.months[10].relation.stem-clash.dayun.liuyue": "/months/10/relations/20",
+    "monthly.months[10].relation.stem-clash.hour.liunian": "/months/10/relations/16",
+    "monthly.months[10].relation.stem-clash.year.dayun": "/months/10/relations/0",
+    "monthly.months[10].relation.stem-combine.month.liunian": "/months/10/relations/6",
+    "monthly.months[10].relation.stem-three-combine.year.day.liuyue": "/months/10/relations/25",
+    "monthly.months[11]": "/months/11",
+    "monthly.months[11].relation.branch-arch-harmony.day.dayun": "/months/11/relations/11",
+    "monthly.months[11].relation.branch-arch-harmony.month.liuyue": "/months/11/relations/8",
+    "monthly.months[11].relation.branch-break.day.liuyue": "/months/11/relations/13",
+    "monthly.months[11].relation.branch-break.month.dayun": "/months/11/relations/5",
+    "monthly.months[11].relation.branch-half-meeting.month.liunian": "/months/11/relations/7",
+    "monthly.months[11].relation.branch-harm.hour.liuyue": "/months/11/relations/18",
+    "monthly.months[11].relation.branch-harm.liunian.liuyue": "/months/11/relations/22",
+    "monthly.months[11].relation.branch-harm.year.liuyue": "/months/11/relations/3",
+    "monthly.months[11].relation.branch-hidden-stem-combine-candidate.day.dayun": "/months/11/relations/12",
+    "monthly.months[11].relation.branch-hidden-stem-combine-candidate.day.liuyue": "/months/11/relations/14",
+    "monthly.months[11].relation.branch-hidden-stem-combine-candidate.dayun.liunian": "/months/11/relations/19",
+    "monthly.months[11].relation.branch-hidden-stem-combine-candidate.dayun.liuyue": "/months/11/relations/20",
+    "monthly.months[11].relation.branch-hidden-stem-combine-candidate.hour.dayun": "/months/11/relations/15",
+    "monthly.months[11].relation.branch-hidden-stem-combine-candidate.month.liuyue": "/months/11/relations/9",
+    "monthly.months[11].relation.branch-hidden-stem-combine-candidate.year.dayun": "/months/11/relations/1",
+    "monthly.months[11].relation.branch-punishment.hour.liunian": "/months/11/relations/17",
+    "monthly.months[11].relation.branch-punishment.year.liunian": "/months/11/relations/2",
+    "monthly.months[11].relation.branch-six-combine.month.dayun": "/months/11/relations/4",
+    "monthly.months[11].relation.stem-clash.day.dayun": "/months/11/relations/10",
+    "monthly.months[11].relation.stem-clash.hour.liunian": "/months/11/relations/16",
+    "monthly.months[11].relation.stem-clash.year.dayun": "/months/11/relations/0",
+    "monthly.months[11].relation.stem-combine.liunian.liuyue": "/months/11/relations/21",
+    "monthly.months[11].relation.stem-combine.month.liunian": "/months/11/relations/6",
+    "monthly.months[1]": "/months/1",
+    "monthly.months[1].relation.branch-arch-harmony.day.dayun": "/months/1/relations/10",
+    "monthly.months[1].relation.branch-break.hour.liuyue": "/months/1/relations/17",
+    "monthly.months[1].relation.branch-break.liunian.liuyue": "/months/1/relations/22",
+    "monthly.months[1].relation.branch-break.month.dayun": "/months/1/relations/5",
+    "monthly.months[1].relation.branch-break.year.liuyue": "/months/1/relations/3",
+    "monthly.months[1].relation.branch-half-meeting.day.liuyue": "/months/1/relations/13",
+    "monthly.months[1].relation.branch-half-meeting.month.liunian": "/months/1/relations/7",
+    "monthly.months[1].relation.branch-harm.day.liuyue": "/months/1/relations/12",
+    "monthly.months[1].relation.branch-hidden-combine.dayun.liuyue": "/months/1/relations/19",
+    "monthly.months[1].relation.branch-hidden-stem-combine-candidate.day.dayun": "/months/1/relations/11",
+    "monthly.months[1].relation.branch-hidden-stem-combine-candidate.dayun.liunian": "/months/1/relations/18",
+    "monthly.months[1].relation.branch-hidden-stem-combine-candidate.dayun.liuyue": "/months/1/relations/20",
+    "monthly.months[1].relation.branch-hidden-stem-combine-candidate.hour.dayun": "/months/1/relations/14",
+    "monthly.months[1].relation.branch-hidden-stem-combine-candidate.month.liuyue": "/months/1/relations/8",
+    "monthly.months[1].relation.branch-hidden-stem-combine-candidate.year.dayun": "/months/1/relations/1",
+    "monthly.months[1].relation.branch-punishment.hour.liunian": "/months/1/relations/16",
+    "monthly.months[1].relation.branch-punishment.year.liunian": "/months/1/relations/2",
+    "monthly.months[1].relation.branch-six-combine.month.dayun": "/months/1/relations/4",
+    "monthly.months[1].relation.stem-clash.day.dayun": "/months/1/relations/9",
+    "monthly.months[1].relation.stem-clash.hour.liunian": "/months/1/relations/15",
+    "monthly.months[1].relation.stem-clash.year.dayun": "/months/1/relations/0",
+    "monthly.months[1].relation.stem-combine.liunian.liuyue": "/months/1/relations/21",
+    "monthly.months[1].relation.stem-combine.month.liunian": "/months/1/relations/6",
+    "monthly.months[2]": "/months/2",
+    "monthly.months[2].relation.branch-arch-harmony.day.dayun": "/months/2/relations/9",
+    "monthly.months[2].relation.branch-arch-harmony.dayun.liuyue": "/months/2/relations/17",
+    "monthly.months[2].relation.branch-break.month.dayun": "/months/2/relations/4",
+    "monthly.months[2].relation.branch-half-meeting.month.liunian": "/months/2/relations/6",
+    "monthly.months[2].relation.branch-hidden-stem-combine-candidate.day.dayun": "/months/2/relations/10",
+    "monthly.months[2].relation.branch-hidden-stem-combine-candidate.day.liuyue": "/months/2/relations/12",
+    "monthly.months[2].relation.branch-hidden-stem-combine-candidate.dayun.liunian": "/months/2/relations/16",
+    "monthly.months[2].relation.branch-hidden-stem-combine-candidate.dayun.liuyue": "/months/2/relations/18",
+    "monthly.months[2].relation.branch-hidden-stem-combine-candidate.hour.dayun": "/months/2/relations/13",
+    "monthly.months[2].relation.branch-hidden-stem-combine-candidate.month.liuyue": "/months/2/relations/7",
+    "monthly.months[2].relation.branch-hidden-stem-combine-candidate.year.dayun": "/months/2/relations/1",
+    "monthly.months[2].relation.branch-punishment.day.liuyue": "/months/2/relations/11",
+    "monthly.months[2].relation.branch-punishment.hour.liunian": "/months/2/relations/15",
+    "monthly.months[2].relation.branch-punishment.year.liunian": "/months/2/relations/2",
+    "monthly.months[2].relation.branch-six-combine.month.dayun": "/months/2/relations/3",
+    "monthly.months[2].relation.stem-clash.day.dayun": "/months/2/relations/8",
+    "monthly.months[2].relation.stem-clash.hour.liunian": "/months/2/relations/14",
+    "monthly.months[2].relation.stem-clash.liunian.liuyue": "/months/2/relations/19",
+    "monthly.months[2].relation.stem-clash.year.dayun": "/months/2/relations/0",
+    "monthly.months[2].relation.stem-combine.month.liunian": "/months/2/relations/5",
+    "monthly.months[3]": "/months/3",
+    "monthly.months[3].relation.branch-arch-harmony.day.dayun": "/months/3/relations/9",
+    "monthly.months[3].relation.branch-break.dayun.liuyue": "/months/3/relations/18",
+    "monthly.months[3].relation.branch-break.month.dayun": "/months/3/relations/5",
+    "monthly.months[3].relation.branch-half-meeting.hour.liuyue": "/months/3/relations/15",
+    "monthly.months[3].relation.branch-half-meeting.liunian.liuyue": "/months/3/relations/19",
+    "monthly.months[3].relation.branch-half-meeting.month.liunian": "/months/3/relations/7",
+    "monthly.months[3].relation.branch-half-meeting.year.liuyue": "/months/3/relations/3",
+    "monthly.months[3].relation.branch-hidden-stem-combine-candidate.day.dayun": "/months/3/relations/10",
+    "monthly.months[3].relation.branch-hidden-stem-combine-candidate.day.liuyue": "/months/3/relations/11",
+    "monthly.months[3].relation.branch-hidden-stem-combine-candidate.dayun.liunian": "/months/3/relations/16",
+    "monthly.months[3].relation.branch-hidden-stem-combine-candidate.hour.dayun": "/months/3/relations/12",
+    "monthly.months[3].relation.branch-hidden-stem-combine-candidate.year.dayun": "/months/3/relations/1",
+    "monthly.months[3].relation.branch-punishment.hour.liunian": "/months/3/relations/14",
+    "monthly.months[3].relation.branch-punishment.year.liunian": "/months/3/relations/2",
+    "monthly.months[3].relation.branch-six-combine.dayun.liuyue": "/months/3/relations/17",
+    "monthly.months[3].relation.branch-six-combine.month.dayun": "/months/3/relations/4",
+    "monthly.months[3].relation.stem-clash.day.dayun": "/months/3/relations/8",
+    "monthly.months[3].relation.stem-clash.hour.liunian": "/months/3/relations/13",
+    "monthly.months[3].relation.stem-clash.year.dayun": "/months/3/relations/0",
+    "monthly.months[3].relation.stem-combine.month.liunian": "/months/3/relations/6",
+    "monthly.months[4]": "/months/4",
+    "monthly.months[4].relation.branch-arch-harmony.day.dayun": "/months/4/relations/11",
+    "monthly.months[4].relation.branch-break.month.dayun": "/months/4/relations/6",
+    "monthly.months[4].relation.branch-half-meeting.month.liunian": "/months/4/relations/8",
+    "monthly.months[4].relation.branch-half-meeting.month.liuyue": "/months/4/relations/9",
+    "monthly.months[4].relation.branch-hidden-stem-combine-candidate.day.dayun": "/months/4/relations/12",
+    "monthly.months[4].relation.branch-hidden-stem-combine-candidate.dayun.liunian": "/months/4/relations/18",
+    "monthly.months[4].relation.branch-hidden-stem-combine-candidate.dayun.liuyue": "/months/4/relations/19",
+    "monthly.months[4].relation.branch-hidden-stem-combine-candidate.hour.dayun": "/months/4/relations/14",
+    "monthly.months[4].relation.branch-hidden-stem-combine-candidate.year.dayun": "/months/4/relations/1",
+    "monthly.months[4].relation.branch-punishment.hour.liunian": "/months/4/relations/16",
+    "monthly.months[4].relation.branch-punishment.hour.liuyue": "/months/4/relations/17",
+    "monthly.months[4].relation.branch-punishment.liunian.liuyue": "/months/4/relations/20",
+    "monthly.months[4].relation.branch-punishment.year.liunian": "/months/4/relations/2",
+    "monthly.months[4].relation.branch-punishment.year.liuyue": "/months/4/relations/4",
+    "monthly.months[4].relation.branch-six-combine.month.dayun": "/months/4/relations/5",
+    "monthly.months[4].relation.stem-clash.day.dayun": "/months/4/relations/10",
+    "monthly.months[4].relation.stem-clash.day.liuyue": "/months/4/relations/13",
+    "monthly.months[4].relation.stem-clash.hour.liunian": "/months/4/relations/15",
+    "monthly.months[4].relation.stem-clash.year.dayun": "/months/4/relations/0",
+    "monthly.months[4].relation.stem-clash.year.liuyue": "/months/4/relations/3",
+    "monthly.months[4].relation.stem-combine.month.liunian": "/months/4/relations/7",
+    "monthly.months[5]": "/months/5",
+    "monthly.months[5].relation.branch-arch-harmony.day.dayun": "/months/5/relations/14",
+    "monthly.months[5].relation.branch-arch-meeting.month.liuyue": "/months/5/relations/11",
+    "monthly.months[5].relation.branch-break.month.dayun": "/months/5/relations/7",
+    "monthly.months[5].relation.branch-half-meeting.hour.liuyue": "/months/5/relations/21",
+    "monthly.months[5].relation.branch-half-meeting.liunian.liuyue": "/months/5/relations/25",
+    "monthly.months[5].relation.branch-half-meeting.month.liunian": "/months/5/relations/9",
+    "monthly.months[5].relation.branch-half-meeting.year.liuyue": "/months/5/relations/5",
+    "monthly.months[5].relation.branch-hidden-stem-combine-candidate.day.dayun": "/months/5/relations/15",
+    "monthly.months[5].relation.branch-hidden-stem-combine-candidate.dayun.liunian": "/months/5/relations/22",
+    "monthly.months[5].relation.branch-hidden-stem-combine-candidate.dayun.liuyue": "/months/5/relations/23",
+    "monthly.months[5].relation.branch-hidden-stem-combine-candidate.hour.dayun": "/months/5/relations/17",
+    "monthly.months[5].relation.branch-hidden-stem-combine-candidate.month.liuyue": "/months/5/relations/12",
+    "monthly.months[5].relation.branch-hidden-stem-combine-candidate.year.dayun": "/months/5/relations/1",
+    "monthly.months[5].relation.branch-punishment.hour.liunian": "/months/5/relations/19",
+    "monthly.months[5].relation.branch-punishment.year.liunian": "/months/5/relations/2",
+    "monthly.months[5].relation.branch-six-combine.hour.liuyue": "/months/5/relations/20",
+    "monthly.months[5].relation.branch-six-combine.liunian.liuyue": "/months/5/relations/24",
+    "monthly.months[5].relation.branch-six-combine.month.dayun": "/months/5/relations/6",
+    "monthly.months[5].relation.branch-six-combine.year.liuyue": "/months/5/relations/4",
+    "monthly.months[5].relation.branch-three-meeting.month.hour.liuyue": "/months/5/relations/27",
+    "monthly.months[5].relation.branch-three-meeting.month.liunian.liuyue": "/months/5/relations/28",
+    "monthly.months[5].relation.branch-three-meeting.month.year.liuyue": "/months/5/relations/26",
+    "monthly.months[5].relation.stem-clash.day.dayun": "/months/5/relations/13",
+    "monthly.months[5].relation.stem-clash.hour.liunian": "/months/5/relations/18",
+    "monthly.months[5].relation.stem-clash.month.liuyue": "/months/5/relations/10",
+    "monthly.months[5].relation.stem-clash.year.dayun": "/months/5/relations/0",
+    "monthly.months[5].relation.stem-combine.day.liuyue": "/months/5/relations/16",
+    "monthly.months[5].relation.stem-combine.month.liunian": "/months/5/relations/8",
+    "monthly.months[5].relation.stem-combine.year.liuyue": "/months/5/relations/3",
+    "monthly.months[6]": "/months/6",
+    "monthly.months[6].relation.branch-arch-harmony.day.dayun": "/months/6/relations/12",
+    "monthly.months[6].relation.branch-arch-harmony.day.liuyue": "/months/6/relations/14",
+    "monthly.months[6].relation.branch-break.month.dayun": "/months/6/relations/5",
+    "monthly.months[6].relation.branch-break.month.liuyue": "/months/6/relations/10",
+    "monthly.months[6].relation.branch-half-meeting.month.liunian": "/months/6/relations/7",
+    "monthly.months[6].relation.branch-hidden-stem-combine-candidate.day.dayun": "/months/6/relations/13",
+    "monthly.months[6].relation.branch-hidden-stem-combine-candidate.day.liuyue": "/months/6/relations/15",
+    "monthly.months[6].relation.branch-hidden-stem-combine-candidate.dayun.liunian": "/months/6/relations/21",
+    "monthly.months[6].relation.branch-hidden-stem-combine-candidate.hour.dayun": "/months/6/relations/16",
+    "monthly.months[6].relation.branch-hidden-stem-combine-candidate.hour.liuyue": "/months/6/relations/20",
+    "monthly.months[6].relation.branch-hidden-stem-combine-candidate.liunian.liuyue": "/months/6/relations/22",
+    "monthly.months[6].relation.branch-hidden-stem-combine-candidate.year.dayun": "/months/6/relations/1",
+    "monthly.months[6].relation.branch-hidden-stem-combine-candidate.year.liuyue": "/months/6/relations/3",
+    "monthly.months[6].relation.branch-punishment.hour.liunian": "/months/6/relations/18",
+    "monthly.months[6].relation.branch-punishment.year.liunian": "/months/6/relations/2",
+    "monthly.months[6].relation.branch-six-combine.month.dayun": "/months/6/relations/4",
+    "monthly.months[6].relation.branch-six-combine.month.liuyue": "/months/6/relations/9",
+    "monthly.months[6].relation.stem-clash.day.dayun": "/months/6/relations/11",
+    "monthly.months[6].relation.stem-clash.hour.liunian": "/months/6/relations/17",
+    "monthly.months[6].relation.stem-clash.hour.liuyue": "/months/6/relations/19",
+    "monthly.months[6].relation.stem-clash.year.dayun": "/months/6/relations/0",
+    "monthly.months[6].relation.stem-combine.month.liunian": "/months/6/relations/6",
+    "monthly.months[6].relation.stem-combine.month.liuyue": "/months/6/relations/8",
+    "monthly.months[7]": "/months/7",
+    "monthly.months[7].relation.branch-arch-harmony.day.dayun": "/months/7/relations/10",
+    "monthly.months[7].relation.branch-break.month.dayun": "/months/7/relations/4",
+    "monthly.months[7].relation.branch-half-harmony.month.liuyue": "/months/7/relations/7",
+    "monthly.months[7].relation.branch-half-meeting.dayun.liuyue": "/months/7/relations/18",
+    "monthly.months[7].relation.branch-half-meeting.month.liunian": "/months/7/relations/6",
+    "monthly.months[7].relation.branch-hidden-stem-combine-candidate.day.dayun": "/months/7/relations/11",
+    "monthly.months[7].relation.branch-hidden-stem-combine-candidate.dayun.liunian": "/months/7/relations/17",
+    "monthly.months[7].relation.branch-hidden-stem-combine-candidate.hour.dayun": "/months/7/relations/13",
+    "monthly.months[7].relation.branch-hidden-stem-combine-candidate.month.liuyue": "/months/7/relations/8",
+    "monthly.months[7].relation.branch-hidden-stem-combine-candidate.year.dayun": "/months/7/relations/1",
+    "monthly.months[7].relation.branch-punishment.hour.liunian": "/months/7/relations/15",
+    "monthly.months[7].relation.branch-punishment.year.liunian": "/months/7/relations/2",
+    "monthly.months[7].relation.branch-six-combine.day.liuyue": "/months/7/relations/12",
+    "monthly.months[7].relation.branch-six-combine.month.dayun": "/months/7/relations/3",
+    "monthly.months[7].relation.stem-clash.day.dayun": "/months/7/relations/9",
+    "monthly.months[7].relation.stem-clash.hour.liunian": "/months/7/relations/14",
+    "monthly.months[7].relation.stem-clash.year.dayun": "/months/7/relations/0",
+    "monthly.months[7].relation.stem-combine.hour.liuyue": "/months/7/relations/16",
+    "monthly.months[7].relation.stem-combine.month.liunian": "/months/7/relations/5",
+    "monthly.months[8]": "/months/8",
+    "monthly.months[8].relation.branch-arch-harmony.day.dayun": "/months/8/relations/10",
+    "monthly.months[8].relation.branch-arch-meeting.dayun.liuyue": "/months/8/relations/19",
+    "monthly.months[8].relation.branch-break.month.dayun": "/months/8/relations/5",
+    "monthly.months[8].relation.branch-half-harmony.hour.liuyue": "/months/8/relations/17",
+    "monthly.months[8].relation.branch-half-harmony.liunian.liuyue": "/months/8/relations/21",
+    "monthly.months[8].relation.branch-half-harmony.year.liuyue": "/months/8/relations/3",
+    "monthly.months[8].relation.branch-half-meeting.month.liunian": "/months/8/relations/7",
+    "monthly.months[8].relation.branch-hidden-stem-combine-candidate.day.dayun": "/months/8/relations/11",
+    "monthly.months[8].relation.branch-hidden-stem-combine-candidate.day.liuyue": "/months/8/relations/13",
+    "monthly.months[8].relation.branch-hidden-stem-combine-candidate.dayun.liunian": "/months/8/relations/18",
+    "monthly.months[8].relation.branch-hidden-stem-combine-candidate.dayun.liuyue": "/months/8/relations/20",
+    "monthly.months[8].relation.branch-hidden-stem-combine-candidate.hour.dayun": "/months/8/relations/14",
+    "monthly.months[8].relation.branch-hidden-stem-combine-candidate.month.liuyue": "/months/8/relations/8",
+    "monthly.months[8].relation.branch-hidden-stem-combine-candidate.year.dayun": "/months/8/relations/1",
+    "monthly.months[8].relation.branch-punishment.hour.liunian": "/months/8/relations/16",
+    "monthly.months[8].relation.branch-punishment.year.liunian": "/months/8/relations/2",
+    "monthly.months[8].relation.branch-six-clash.day.liuyue": "/months/8/relations/12",
+    "monthly.months[8].relation.branch-six-combine.month.dayun": "/months/8/relations/4",
+    "monthly.months[8].relation.stem-clash.day.dayun": "/months/8/relations/9",
+    "monthly.months[8].relation.stem-clash.hour.liunian": "/months/8/relations/15",
+    "monthly.months[8].relation.stem-clash.year.dayun": "/months/8/relations/0",
+    "monthly.months[8].relation.stem-combine.month.liunian": "/months/8/relations/6",
+    "monthly.months[9]": "/months/9",
+    "monthly.months[9].relation.branch-arch-harmony.day.dayun": "/months/9/relations/11",
+    "monthly.months[9].relation.branch-break.month.dayun": "/months/9/relations/6",
+    "monthly.months[9].relation.branch-half-meeting.month.liunian": "/months/9/relations/8",
+    "monthly.months[9].relation.branch-harm.dayun.liuyue": "/months/9/relations/20",
+    "monthly.months[9].relation.branch-hidden-combine.hour.liuyue": "/months/9/relations/16",
+    "monthly.months[9].relation.branch-hidden-combine.liunian.liuyue": "/months/9/relations/21",
+    "monthly.months[9].relation.branch-hidden-combine.year.liuyue": "/months/9/relations/3",
+    "monthly.months[9].relation.branch-hidden-stem-combine-candidate.day.dayun": "/months/9/relations/12",
+    "monthly.months[9].relation.branch-hidden-stem-combine-candidate.dayun.liunian": "/months/9/relations/18",
+    "monthly.months[9].relation.branch-hidden-stem-combine-candidate.hour.dayun": "/months/9/relations/13",
+    "monthly.months[9].relation.branch-hidden-stem-combine-candidate.hour.liuyue": "/months/9/relations/17",
+    "monthly.months[9].relation.branch-hidden-stem-combine-candidate.liunian.liuyue": "/months/9/relations/22",
+    "monthly.months[9].relation.branch-hidden-stem-combine-candidate.year.dayun": "/months/9/relations/1",
+    "monthly.months[9].relation.branch-hidden-stem-combine-candidate.year.liuyue": "/months/9/relations/4",
+    "monthly.months[9].relation.branch-punishment.hour.liunian": "/months/9/relations/15",
+    "monthly.months[9].relation.branch-punishment.year.liunian": "/months/9/relations/2",
+    "monthly.months[9].relation.branch-six-clash.month.liuyue": "/months/9/relations/9",
+    "monthly.months[9].relation.branch-six-combine.month.dayun": "/months/9/relations/5",
+    "monthly.months[9].relation.stem-clash.day.dayun": "/months/9/relations/10",
+    "monthly.months[9].relation.stem-clash.hour.liunian": "/months/9/relations/14",
+    "monthly.months[9].relation.stem-clash.year.dayun": "/months/9/relations/0",
+    "monthly.months[9].relation.stem-combine.dayun.liuyue": "/months/9/relations/19",
+    "monthly.months[9].relation.stem-combine.month.liunian": "/months/9/relations/7",
+    "natal.relation.branch-half-meeting.month.hour": "/natal_relations/0",
+    "natal.relation.branch-half-meeting.year.month": "/natal_relations/1",
+    "natal.relation.branch-hidden-stem-combine-candidate.month.day": "/natal_relations/2",
+    "natal.relation.branch-punishment.year.hour": "/natal_relations/3"
+  },
+  "fingerprint": "mf-b8292845",
+  "half_years": {
+    "first_half": {
+      "end": "2026-08-07T19:38:50.507308+08:00",
+      "evidence_ids": [
+        "monthly.months[0]",
+        "monthly.months[1]",
+        "monthly.months[2]",
+        "monthly.months[3]",
+        "monthly.months[4]",
+        "monthly.months[5]"
+      ],
+      "first_ganzhi": "庚寅",
+      "last_ganzhi": "乙未",
+      "months": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "start": "2026-02-04T03:54:40.548839+08:00"
+    },
+    "second_half": {
+      "end": "2027-02-04T09:42:10.431403+08:00",
+      "evidence_ids": [
+        "monthly.months[6]",
+        "monthly.months[7]",
+        "monthly.months[8]",
+        "monthly.months[9]",
+        "monthly.months[10]",
+        "monthly.months[11]"
+      ],
+      "first_ganzhi": "丙申",
+      "last_ganzhi": "辛丑",
+      "months": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "start": "2026-08-07T19:38:50.507308+08:00"
+    }
+  },
+  "layers": {
+    "luck": {
+      "crossed_months": [],
+      "cycles_used": [
+        "甲申"
+      ],
+      "mid_year": {
+        "at": "2026-07-01T12:00:00+08:00",
+        "from": "2017-08-15T12:30:00+08:00",
+        "ganzhi": "甲申",
+        "reason": null,
+        "scope": "mid-year",
+        "sequence": "3",
+        "status": "ok",
+        "to": "2027-08-15T12:30:00+08:00"
+      },
+      "months_with_luck": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "months_without_luck": [],
+      "note": "大运按每月中点分别定位；跨运年的月份可能分属不同大运，若换运点落在某月区间内，该月标 crosses_boundary 且不绑定单一大运。",
+      "resolved_per_month": true,
+      "status": "ok"
+    }
+  },
+  "months": [
+    {
+      "boundary_source": "solar_term_apparent_longitude",
+      "candidate_count": 8,
+      "confirmed_count": 19,
+      "duration_days": 29.7459,
+      "end": "2026-03-05T21:48:50.213262+08:00",
+      "evidence_id": "monthly.months[0]",
+      "gan": "庚",
+      "ganzhi": "庚寅",
+      "index": 1,
+      "jie": "立春",
+      "jie_longitude": 315,
+      "json_pointer": "/months/0",
+      "label": "正月",
+      "luck": {
+        "age_range": "27-36岁",
+        "at": "2026-02-19T00:51:45.381051+08:00",
+        "from": "2017-08-15T12:30:00+08:00",
+        "gan": "甲",
+        "ganzhi": "甲申",
+        "sequence": "3",
+        "status": "ok",
+        "to": "2027-08-15T12:30:00+08:00",
+        "zhi": "申"
+      },
+      "next_jie": "惊蛰",
+      "relation_count": 27,
+      "relation_scope": {
+        "boundaries": [],
+        "computed_layers": [
+          "natal",
+          "annual",
+          "monthly",
+          "luck"
+        ],
+        "natal_complete": true,
+        "omitted_layers": [],
+        "reason": null,
+        "segments": 1,
+        "suggestion": null
+      },
+      "relations_digest": "e3f34713",
+      "start": "2026-02-04T03:54:40.548839+08:00",
+      "start_utc_offset": "+08:00",
+      "status": "ok",
+      "zhi": "寅"
+    },
+    {
+      "boundary_source": "solar_term_apparent_longitude",
+      "candidate_count": 6,
+      "confirmed_count": 17,
+      "duration_days": 30.1934,
+      "end": "2026-04-05T02:27:16.875893+08:00",
+      "evidence_id": "monthly.months[1]",
+      "gan": "辛",
+      "ganzhi": "辛卯",
+      "index": 2,
+      "jie": "惊蛰",
+      "jie_longitude": 345,
+      "json_pointer": "/months/1",
+      "label": "二月",
+      "luck": {
+        "age_range": "27-36岁",
+        "at": "2026-03-21T00:08:03.544578+08:00",
+        "from": "2017-08-15T12:30:00+08:00",
+        "gan": "甲",
+        "ganzhi": "甲申",
+        "sequence": "3",
+        "status": "ok",
+        "to": "2027-08-15T12:30:00+08:00",
+        "zhi": "申"
+      },
+      "next_jie": "清明",
+      "relation_count": 23,
+      "relation_scope": {
+        "boundaries": [],
+        "computed_layers": [
+          "natal",
+          "annual",
+          "monthly",
+          "luck"
+        ],
+        "natal_complete": true,
+        "omitted_layers": [],
+        "reason": null,
+        "segments": 1,
+        "suggestion": null
+      },
+      "relations_digest": "b5a4c810",
+      "start": "2026-03-05T21:48:50.213262+08:00",
+      "start_utc_offset": "+08:00",
+      "status": "ok",
+      "zhi": "卯"
+    },
+    {
+      "boundary_source": "solar_term_apparent_longitude",
+      "candidate_count": 7,
+      "confirmed_count": 13,
+      "duration_days": 30.7138,
+      "end": "2026-05-05T19:35:06.542440+08:00",
+      "evidence_id": "monthly.months[2]",
+      "gan": "壬",
+      "ganzhi": "壬辰",
+      "index": 3,
+      "jie": "清明",
+      "jie_longitude": 15,
+      "json_pointer": "/months/2",
+      "label": "三月",
+      "luck": {
+        "age_range": "27-36岁",
+        "at": "2026-04-20T11:01:11.709167+08:00",
+        "from": "2017-08-15T12:30:00+08:00",
+        "gan": "甲",
+        "ganzhi": "甲申",
+        "sequence": "3",
+        "status": "ok",
+        "to": "2027-08-15T12:30:00+08:00",
+        "zhi": "申"
+      },
+      "next_jie": "立夏",
+      "relation_count": 20,
+      "relation_scope": {
+        "boundaries": [],
+        "computed_layers": [
+          "natal",
+          "annual",
+          "monthly",
+          "luck"
+        ],
+        "natal_complete": true,
+        "omitted_layers": [],
+        "reason": null,
+        "segments": 1,
+        "suggestion": null
+      },
+      "relations_digest": "5afda24a",
+      "start": "2026-04-05T02:27:16.875893+08:00",
+      "start_utc_offset": "+08:00",
+      "status": "ok",
+      "zhi": "辰"
+    },
+    {
+      "boundary_source": "solar_term_apparent_longitude",
+      "candidate_count": 5,
+      "confirmed_count": 15,
+      "duration_days": 31.1675,
+      "end": "2026-06-05T23:36:22.277280+08:00",
+      "evidence_id": "monthly.months[3]",
+      "gan": "癸",
+      "ganzhi": "癸巳",
+      "index": 4,
+      "jie": "立夏",
+      "jie_longitude": 45,
+      "json_pointer": "/months/3",
+      "label": "四月",
+      "luck": {
+        "age_range": "27-36岁",
+        "at": "2026-05-21T09:35:44.409860+08:00",
+        "from": "2017-08-15T12:30:00+08:00",
+        "gan": "甲",
+        "ganzhi": "甲申",
+        "sequence": "3",
+        "status": "ok",
+        "to": "2027-08-15T12:30:00+08:00",
+        "zhi": "申"
+      },
+      "next_jie": "芒种",
+      "relation_count": 20,
+      "relation_scope": {
+        "boundaries": [],
+        "computed_layers": [
+          "natal",
+          "annual",
+          "monthly",
+          "luck"
+        ],
+        "natal_complete": true,
+        "omitted_layers": [],
+        "reason": null,
+        "segments": 1,
+        "suggestion": null
+      },
+      "relations_digest": "9dad1544",
+      "start": "2026-05-05T19:35:06.542440+08:00",
+      "start_utc_offset": "+08:00",
+      "status": "ok",
+      "zhi": "巳"
+    },
+    {
+      "boundary_source": "solar_term_apparent_longitude",
+      "candidate_count": 5,
+      "confirmed_count": 16,
+      "duration_days": 31.4252,
+      "end": "2026-07-07T09:48:38.082006+08:00",
+      "evidence_id": "monthly.months[4]",
+      "gan": "甲",
+      "ganzhi": "甲午",
+      "index": 5,
+      "jie": "芒种",
+      "jie_longitude": 75,
+      "json_pointer": "/months/4",
+      "label": "五月",
+      "luck": {
+        "age_range": "27-36岁",
+        "at": "2026-06-21T16:42:30.179643+08:00",
+        "from": "2017-08-15T12:30:00+08:00",
+        "gan": "甲",
+        "ganzhi": "甲申",
+        "sequence": "3",
+        "status": "ok",
+        "to": "2027-08-15T12:30:00+08:00",
+        "zhi": "申"
+      },
+      "next_jie": "小暑",
+      "relation_count": 21,
+      "relation_scope": {
+        "boundaries": [],
+        "computed_layers": [
+          "natal",
+          "annual",
+          "monthly",
+          "luck"
+        ],
+        "natal_complete": true,
+        "omitted_layers": [],
+        "reason": null,
+        "segments": 1,
+        "suggestion": null
+      },
+      "relations_digest": "4ed38ecf",
+      "start": "2026-06-05T23:36:22.277280+08:00",
+      "start_utc_offset": "+08:00",
+      "status": "ok",
+      "zhi": "午"
+    },
+    {
+      "boundary_source": "solar_term_apparent_longitude",
+      "candidate_count": 6,
+      "confirmed_count": 23,
+      "duration_days": 31.4099,
+      "end": "2026-08-07T19:38:50.507308+08:00",
+      "evidence_id": "monthly.months[5]",
+      "gan": "乙",
+      "ganzhi": "乙未",
+      "index": 6,
+      "jie": "小暑",
+      "jie_longitude": 105,
+      "json_pointer": "/months/5",
+      "label": "六月",
+      "luck": {
+        "age_range": "27-36岁",
+        "at": "2026-07-23T02:43:44.294657+08:00",
+        "from": "2017-08-15T12:30:00+08:00",
+        "gan": "甲",
+        "ganzhi": "甲申",
+        "sequence": "3",
+        "status": "ok",
+        "to": "2027-08-15T12:30:00+08:00",
+        "zhi": "申"
+      },
+      "next_jie": "立秋",
+      "relation_count": 29,
+      "relation_scope": {
+        "boundaries": [],
+        "computed_layers": [
+          "natal",
+          "annual",
+          "monthly",
+          "luck"
+        ],
+        "natal_complete": true,
+        "omitted_layers": [],
+        "reason": null,
+        "segments": 1,
+        "suggestion": null
+      },
+      "relations_digest": "6f32f00a",
+      "start": "2026-07-07T09:48:38.082006+08:00",
+      "start_utc_offset": "+08:00",
+      "status": "ok",
+      "zhi": "未"
+    },
+    {
+      "boundary_source": "solar_term_apparent_longitude",
+      "candidate_count": 8,
+      "confirmed_count": 15,
+      "duration_days": 31.1262,
+      "end": "2026-09-07T22:40:36.751431+08:00",
+      "evidence_id": "monthly.months[6]",
+      "gan": "丙",
+      "ganzhi": "丙申",
+      "index": 7,
+      "jie": "立秋",
+      "jie_longitude": 135,
+      "json_pointer": "/months/6",
+      "label": "七月",
+      "luck": {
+        "age_range": "27-36岁",
+        "at": "2026-08-23T09:09:43.629370+08:00",
+        "from": "2017-08-15T12:30:00+08:00",
+        "gan": "甲",
+        "ganzhi": "甲申",
+        "sequence": "3",
+        "status": "ok",
+        "to": "2027-08-15T12:30:00+08:00",
+        "zhi": "申"
+      },
+      "next_jie": "白露",
+      "relation_count": 23,
+      "relation_scope": {
+        "boundaries": [],
+        "computed_layers": [
+          "natal",
+          "annual",
+          "monthly",
+          "luck"
+        ],
+        "natal_complete": true,
+        "omitted_layers": [],
+        "reason": null,
+        "segments": 1,
+        "suggestion": null
+      },
+      "relations_digest": "089ed578",
+      "start": "2026-08-07T19:38:50.507308+08:00",
+      "start_utc_offset": "+08:00",
+      "status": "ok",
+      "zhi": "申"
+    },
+    {
+      "boundary_source": "solar_term_apparent_longitude",
+      "candidate_count": 5,
+      "confirmed_count": 14,
+      "duration_days": 30.6586,
+      "end": "2026-10-08T14:28:56.142142+08:00",
+      "evidence_id": "monthly.months[7]",
+      "gan": "丁",
+      "ganzhi": "丁酉",
+      "index": 8,
+      "jie": "白露",
+      "jie_longitude": 165,
+      "json_pointer": "/months/7",
+      "label": "八月",
+      "luck": {
+        "age_range": "27-36岁",
+        "at": "2026-09-23T06:34:46.446787+08:00",
+        "from": "2017-08-15T12:30:00+08:00",
+        "gan": "甲",
+        "ganzhi": "甲申",
+        "sequence": "3",
+        "status": "ok",
+        "to": "2027-08-15T12:30:00+08:00",
+        "zhi": "申"
+      },
+      "next_jie": "寒露",
+      "relation_count": 19,
+      "relation_scope": {
+        "boundaries": [],
+        "computed_layers": [
+          "natal",
+          "annual",
+          "monthly",
+          "luck"
+        ],
+        "natal_complete": true,
+        "omitted_layers": [],
+        "reason": null,
+        "segments": 1,
+        "suggestion": null
+      },
+      "relations_digest": "6c4fa54f",
+      "start": "2026-09-07T22:40:36.751431+08:00",
+      "start_utc_offset": "+08:00",
+      "status": "ok",
+      "zhi": "酉"
+    },
+    {
+      "boundary_source": "solar_term_apparent_longitude",
+      "candidate_count": 7,
+      "confirmed_count": 15,
+      "duration_days": 30.1395,
+      "end": "2026-11-07T17:49:50.839541+08:00",
+      "evidence_id": "monthly.months[8]",
+      "gan": "戊",
+      "ganzhi": "戊戌",
+      "index": 9,
+      "jie": "寒露",
+      "jie_longitude": 195,
+      "json_pointer": "/months/8",
+      "label": "九月",
+      "luck": {
+        "age_range": "27-36岁",
+        "at": "2026-10-23T16:09:23.490842+08:00",
+        "from": "2017-08-15T12:30:00+08:00",
+        "gan": "甲",
+        "ganzhi": "甲申",
+        "sequence": "3",
+        "status": "ok",
+        "to": "2027-08-15T12:30:00+08:00",
+        "zhi": "申"
+      },
+      "next_jie": "立冬",
+      "relation_count": 22,
+      "relation_scope": {
+        "boundaries": [],
+        "computed_layers": [
+          "natal",
+          "annual",
+          "monthly",
+          "luck"
+        ],
+        "natal_complete": true,
+        "omitted_layers": [],
+        "reason": null,
+        "segments": 1,
+        "suggestion": null
+      },
+      "relations_digest": "dceba106",
+      "start": "2026-10-08T14:28:56.142142+08:00",
+      "start_utc_offset": "+08:00",
+      "status": "ok",
+      "zhi": "戌"
+    },
+    {
+      "boundary_source": "solar_term_apparent_longitude",
+      "candidate_count": 7,
+      "confirmed_count": 16,
+      "duration_days": 29.7074,
+      "end": "2026-12-07T10:48:28.815296+08:00",
+      "evidence_id": "monthly.months[9]",
+      "gan": "己",
+      "ganzhi": "己亥",
+      "index": 10,
+      "jie": "立冬",
+      "jie_longitude": 225,
+      "json_pointer": "/months/9",
+      "label": "十月",
+      "luck": {
+        "age_range": "27-36岁",
+        "at": "2026-11-22T14:19:09.827419+08:00",
+        "from": "2017-08-15T12:30:00+08:00",
+        "gan": "甲",
+        "ganzhi": "甲申",
+        "sequence": "3",
+        "status": "ok",
+        "to": "2027-08-15T12:30:00+08:00",
+        "zhi": "申"
+      },
+      "next_jie": "大雪",
+      "relation_count": 23,
+      "relation_scope": {
+        "boundaries": [],
+        "computed_layers": [
+          "natal",
+          "annual",
+          "monthly",
+          "luck"
+        ],
+        "natal_complete": true,
+        "omitted_layers": [],
+        "reason": null,
+        "segments": 1,
+        "suggestion": null
+      },
+      "relations_digest": "af9987a2",
+      "start": "2026-11-07T17:49:50.839541+08:00",
+      "start_utc_offset": "+08:00",
+      "status": "ok",
+      "zhi": "亥"
+    },
+    {
+      "boundary_source": "solar_term_apparent_longitude",
+      "candidate_count": 7,
+      "confirmed_count": 19,
+      "duration_days": 29.47,
+      "end": "2027-01-05T22:05:20.400247+08:00",
+      "evidence_id": "monthly.months[10]",
+      "gan": "庚",
+      "ganzhi": "庚子",
+      "index": 11,
+      "jie": "大雪",
+      "jie_longitude": 255,
+      "json_pointer": "/months/10",
+      "label": "冬月",
+      "luck": {
+        "age_range": "27-36岁",
+        "at": "2026-12-22T04:26:54.607772+08:00",
+        "from": "2017-08-15T12:30:00+08:00",
+        "gan": "甲",
+        "ganzhi": "甲申",
+        "sequence": "3",
+        "status": "ok",
+        "to": "2027-08-15T12:30:00+08:00",
+        "zhi": "申"
+      },
+      "next_jie": "小寒",
+      "relation_count": 26,
+      "relation_scope": {
+        "boundaries": [],
+        "computed_layers": [
+          "natal",
+          "annual",
+          "monthly",
+          "luck"
+        ],
+        "natal_complete": true,
+        "omitted_layers": [],
+        "reason": null,
+        "segments": 1,
+        "suggestion": null
+      },
+      "relations_digest": "2489e6bc",
+      "start": "2026-12-07T10:48:28.815296+08:00",
+      "start_utc_offset": "+08:00",
+      "status": "ok",
+      "zhi": "子"
+    },
+    {
+      "boundary_source": "solar_term_apparent_longitude",
+      "candidate_count": 7,
+      "confirmed_count": 16,
+      "duration_days": 29.4839,
+      "end": "2027-02-04T09:42:10.431403+08:00",
+      "evidence_id": "monthly.months[11]",
+      "gan": "辛",
+      "ganzhi": "辛丑",
+      "index": 12,
+      "jie": "小寒",
+      "jie_longitude": 285,
+      "json_pointer": "/months/11",
+      "label": "腊月",
+      "luck": {
+        "age_range": "27-36岁",
+        "at": "2027-01-20T15:53:45.415825+08:00",
+        "from": "2017-08-15T12:30:00+08:00",
+        "gan": "甲",
+        "ganzhi": "甲申",
+        "sequence": "3",
+        "status": "ok",
+        "to": "2027-08-15T12:30:00+08:00",
+        "zhi": "申"
+      },
+      "next_jie": "立春",
+      "relation_count": 23,
+      "relation_scope": {
+        "boundaries": [],
+        "computed_layers": [
+          "natal",
+          "annual",
+          "monthly",
+          "luck"
+        ],
+        "natal_complete": true,
+        "omitted_layers": [],
+        "reason": null,
+        "segments": 1,
+        "suggestion": null
+      },
+      "relations_digest": "6eab96b7",
+      "start": "2027-01-05T22:05:20.400247+08:00",
+      "start_utc_offset": "+08:00",
+      "status": "ok",
+      "zhi": "丑"
+    }
+  ],
+  "natal_relations": [
+    {
+      "bindings": [
+        {
+          "channel": "branch",
+          "layer": "natal",
+          "participant": "month",
+          "value": "巳"
+        },
+        {
+          "channel": "branch",
+          "layer": "natal",
+          "participant": "hour",
+          "value": "午"
+        }
+      ],
+      "evidence_id": "natal.relation.branch-half-meeting.month.hour",
+      "group_element": "火",
+      "json_pointer": "/natal_relations/0",
+      "kind": "branch-half-meeting",
+      "layers": [
+        "natal",
+        "natal"
+      ],
+      "participants": [
+        "month",
+        "hour"
+      ],
+      "result_element": "火",
+      "values": [
+        "巳",
+        "午"
+      ]
+    },
+    {
+      "bindings": [
+        {
+          "channel": "branch",
+          "layer": "natal",
+          "participant": "year",
+          "value": "午"
+        },
+        {
+          "channel": "branch",
+          "layer": "natal",
+          "participant": "month",
+          "value": "巳"
+        }
+      ],
+      "evidence_id": "natal.relation.branch-half-meeting.year.month",
+      "group_element": "火",
+      "json_pointer": "/natal_relations/1",
+      "kind": "branch-half-meeting",
+      "layers": [
+        "natal",
+        "natal"
+      ],
+      "participants": [
+        "year",
+        "month"
+      ],
+      "result_element": "火",
+      "values": [
+        "午",
+        "巳"
+      ]
+    },
+    {
+      "bindings": [
+        {
+          "channel": "branch",
+          "layer": "natal",
+          "participant": "month",
+          "value": "巳"
+        },
+        {
+          "channel": "branch",
+          "layer": "natal",
+          "participant": "day",
+          "value": "辰"
+        }
+      ],
+      "evidence_id": "natal.relation.branch-hidden-stem-combine-candidate.month.day",
+      "hidden_stem_pairs": [
+        {
+          "left_stem": "戊",
+          "result_element": "火",
+          "right_stem": "癸"
+        },
+        {
+          "left_stem": "庚",
+          "result_element": "金",
+          "right_stem": "乙"
+        }
+      ],
+      "json_pointer": "/natal_relations/2",
+      "kind": "branch-hidden-stem-combine-candidate",
+      "layers": [
+        "natal",
+        "natal"
+      ],
+      "note": "藏干五合枚举候选，不等于严格暗合或合化成立",
+      "participants": [
+        "month",
+        "day"
+      ],
+      "values": [
+        "巳",
+        "辰"
+      ]
+    },
+    {
+      "bindings": [
+        {
+          "channel": "branch",
+          "layer": "natal",
+          "participant": "year",
+          "value": "午"
+        },
+        {
+          "channel": "branch",
+          "layer": "natal",
+          "participant": "hour",
+          "value": "午"
+        }
+      ],
+      "evidence_id": "natal.relation.branch-punishment.year.hour",
+      "json_pointer": "/natal_relations/3",
+      "kind": "branch-punishment",
+      "layers": [
+        "natal",
+        "natal"
+      ],
+      "participants": [
+        "year",
+        "hour"
+      ],
+      "subtype": "self",
+      "values": [
+        "午",
+        "午"
+      ]
+    }
+  ],
+  "relation_audit": {
+    "layers": [
+      "natal",
+      "annual",
+      "monthly",
+      "luck"
+    ],
+    "luck_coverage": {
+      "coverage": "full",
+      "months_with_luck": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "months_without_luck": []
+    },
+    "natal": {
+      "complete": true,
+      "missing": [],
+      "present": [
+        "day",
+        "hour",
+        "month",
+        "year"
+      ],
+      "uncertain": false
+    },
+    "note": null,
+    "status": "ok",
+    "supported": [
+      "branch-arch-harmony",
+      "branch-arch-meeting",
+      "branch-break",
+      "branch-half-harmony",
+      "branch-half-meeting",
+      "branch-harm",
+      "branch-hidden-combine",
+      "branch-hidden-stem-combine-candidate",
+      "branch-punishment",
+      "branch-six-clash",
+      "branch-six-combine",
+      "branch-three-harmony",
+      "branch-three-meeting",
+      "stem-clash",
+      "stem-combine",
+      "stem-three-combine"
+    ],
+    "unsupported": [],
+    "unsupported_note": "已覆盖全部已登记的关系类型，没有未实现项。"
+  },
+  "schema_version": "1.1",
+  "scope": "monthly",
+  "status": "ok",
+  "system": "bazi",
+  "target_year": 2026,
+  "validation": {
+    "checks": [
+      {
+        "detail": "实际 12 个",
+        "id": "months.count",
+        "pass": true
+      },
+      {
+        "detail": "索引应为 1..12 各一次",
+        "id": "months.index",
+        "pass": true
+      },
+      {
+        "detail": "相邻月首尾必须相接且不重叠",
+        "id": "months.contiguous",
+        "pass": true
+      },
+      {
+        "detail": "每月起点必须早于终点",
+        "id": "months.order",
+        "pass": true
+      },
+      {
+        "detail": "干支拼接必须与分字段一致",
+        "id": "months.ganzhi",
+        "pass": true
+      },
+      {
+        "detail": "首月起点应为当年立春，末月终点应为次年立春",
+        "id": "months.boundary_year",
+        "pass": true
+      },
+      {
+        "detail": "每个月都必须带 computed_layers",
+        "id": "months.relation_scope_present",
+        "pass": true
+      },
+      {
+        "detail": "同一层不能既算过又声明没算",
+        "id": "months.relation_scope_disjoint",
+        "pass": true
+      },
+      {
+        "detail": "声明了没算的层就必须说明原因",
+        "id": "months.relation_scope_reason",
+        "pass": true
+      },
+      {
+        "detail": "逐月 scope 必须显式标注原局四柱是否完整",
+        "id": "months.natal_complete",
+        "pass": true
+      },
+      {
+        "detail": "四柱不全时必须在 scope 里说明",
+        "id": "months.natal_completeness_consistent",
+        "pass": true
+      },
+      {
+        "detail": "声明切成 N 段就必须真有 N 段明细；没声明分段就不该有分段数组",
+        "id": "months.relation_segments",
+        "pass": true
+      }
+    ],
+    "status": "pass"
+  }
+}

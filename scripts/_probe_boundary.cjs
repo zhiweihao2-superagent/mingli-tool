@@ -1,0 +1,15 @@
+﻿"use strict";
+const fs=require("node:fs"),path=require("node:path"),vm=require("node:vm");
+const ROOT=path.join(__dirname,"..");
+global.self=global;
+global.iztro=require(path.join(ROOT,"web","vendor","iztro-v2.6.2.min.js"));
+["ziwei-facts.js","ziwei-adapter.js"].forEach(n=>vm.runInThisContext(fs.readFileSync(path.join(ROOT,"web",n),"utf8")));
+const chart=global.MingliZiwei.calculate({calendar:"solar",date:"1990-05-15",time:{precision:"minute",value:"12:30",branch:null},sex_for_calculation:"male"},{asOfYear:2026,asOfDate:"2026-10-30",asOfTimeIndex:6});
+const tl=global.MingliZiweiFacts.buildDecadalAnnualTimeline(chart.astrolabe,chart.palaces,2026);
+const rawDecadal=chart.astrolabe.decadalList()[tl.decadal.index];
+const rawYears=chart.astrolabe.yearlyList(tl.decadal.index);
+const stub={index:0,name:"大限",palaceName:"命宫",ageRange:[35,44],yearRange:[2024,2033],heavenlyStem:"戊",earthlyBranch:"寅",palaceNames:[...rawDecadal.palaceNames]};
+const years=rawYears.filter(i=>i.year!==2029);
+const r=global.MingliZiweiFacts.buildDecadalAnnualTimeline({decadalList:()=>[stub],yearlyList:()=>years},chart.palaces,2024);
+console.log("n",r.years.length,"boundary",r.boundaryAudit.status,JSON.stringify(r.boundaryAudit.hardFailures));
+r.boundaryAudit.checks.forEach(c=>console.log(c.pass?"PASS":"FAIL",c.id,c.message));

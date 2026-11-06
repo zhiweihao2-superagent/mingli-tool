@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "profile": {
+    "display_name": null,
+    "calendar": "solar",
+    "date": "1990-05-15",
+    "is_leap_month": false,
+    "time": {
+      "precision": "minute",
+      "value": "12:30",
+      "branch": null
+    },
+    "timezone": "Asia/Shanghai",
+    "sex_for_calculation": "male",
+    "birthplace": {
+      "label": null,
+      "longitude": null,
+      "latitude": null
+    }
+  },
+  "rules": {
+    "profile_id": "engine-default-v1",
+    "true_solar_time": false
+  },
+  "options": {
+    "save_history": false,
+    "annual_cycles_through": 2026
+  }
+}

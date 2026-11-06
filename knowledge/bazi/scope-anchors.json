@@ -1,0 +1,49 @@
+{
+  "schema": "bazi-scope-anchors/v1",
+  "note": "scope → 可引章节。与 web/bazi-knowledge.js 的 SCOPE_ANCHORS 逐条一致（tests/bazi_knowledge.test.cjs 有一致性断言）。这里单独落一份 JSON，是为了让 Python 侧的规则报告也能挂同一套出处，而不必重复维护两份映射。只映射已验证存在的 anchor；上游未覆盖的 scope（纳音/旬空/胎元）如实留空。",
+  "scopes": {
+    "bazi:pillars": [
+      "十天干阴阳五行表",
+      "十二地支阴阳五行表",
+      "日上起时法（五鼠遁元）"
+    ],
+    "bazi:stem-branch-properties": [
+      "十天干阴阳五行表",
+      "十二地支阴阳五行表",
+      "天干五合"
+    ],
+    "bazi:ten-gods": [
+      "十神定义及生克关系/十神推导规则",
+      "十神定义及生克关系/十神详解",
+      "渊海子平/十神与六亲"
+    ],
+    "bazi:hidden-stems": ["地支藏干表"],
+    "bazi:twelve-life-stages": ["十二长生表"],
+    "bazi:natal-relations": [
+      "地支关系/六冲",
+      "地支关系/三合局",
+      "地支关系/六合",
+      "地支关系/相刑",
+      "地支关系/相害（相穿）"
+    ],
+    "bazi:element-inventory": ["滴天髓/旺衰判断原则"],
+    "bazi:strength-candidate": ["滴天髓/旺衰判断原则", "滴天髓/气势流通", "滴天髓/核心理论"],
+    "bazi:follow-pattern-candidate": ["渊海子平/基本格局分类", "滴天髓/气势流通"],
+    "bazi:dominant-pattern-candidate": ["渊海子平/基本格局分类", "神峰通考/核心观点"],
+    "bazi:pattern-candidates": ["三命通会/核心格局", "渊海子平/基本格局分类", "子平真诠/格局高低"],
+    "bazi:balance-useful-elements": ["渊海子平/用神取法", "子平真诠/用神与相神"],
+    "bazi:pattern-useful-elements": ["子平真诠/用神与相神", "子平真诠/格局成败"],
+    "bazi:full-qiongtong-120-cell-climate-candidate": ["穷通宝典/核心规则", "穷通宝典/关键口诀举例"],
+    "bazi:useful-element-conflicts": ["子平真诠/格局成败", "子平真诠/格局高低"],
+    "bazi:combination-transformation-condition-audit": ["天干五合", "地支关系/六合"],
+    "bazi:luck-cycle-relations": [
+      "大运顺逆规则",
+      "大运排列方法/顺排",
+      "大运排列方法/逆排",
+      "起运年龄计算/顺排起运年龄"
+    ],
+    "bazi:annual-relations": ["流年", "注意事项"],
+    "bazi:annual-cycle-coverage": ["流年"],
+    "bazi:auxiliary-shensha": ["吉", "凶 / 中性"]
+  }
+}

@@ -1,0 +1,1937 @@
+{
+  "status": "pass",
+  "months": [
+    {
+      "index": 1,
+      "status": "ok",
+      "reason": null,
+      "coordinateAligned": false,
+      "coordinateBasis": "iztro-lunar-month",
+      "coordinateNote": "该节气月横跨两个农历月，已按月切成 2 段；顶层字段取天数最多的那段，各段分别给出自己的紫微流月。",
+      "segments": [
+        {
+          "index": 1,
+          "from": "2026-02-04",
+          "to": "2026-02-16",
+          "days": 13,
+          "isDominant": false,
+          "lunarMonthSignature": "二〇二五年腊月|流月|己丑|疾厄宫,财帛宫,子女宫,夫妻宫,兄弟宫,命宫,父母宫,福德宫,田宅宫,官禄宫,仆役宫,迁移宫",
+          "asOfDate": "2026-02-16",
+          "lunarDate": "二〇二五年腊月廿九",
+          "lunarMonth": "二〇二五年腊月",
+          "ganzhi": "己丑",
+          "name": "流月",
+          "validationStatus": "pass",
+          "fieldStatuses": {
+            "palaceOverlay": "validated",
+            "fourTransformations": "validated",
+            "transitStars": "validated"
+          },
+          "verified": true,
+          "evidenceId": "monthly.months[0].ziwei.segments[0]",
+          "jsonPointer": "/months/0/ziwei/segments/0",
+          "fieldPointers": {
+            "palaceOverlay": "/months/0/ziwei/segments/0/palaceOverlay",
+            "fourTransformations": "/months/0/ziwei/segments/0/fourTransformations",
+            "transitStars": "/months/0/ziwei/segments/0/transitStars"
+          },
+          "palaceOverlay": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          },
+          "fourTransformations": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-mutagen"
+          },
+          "transitStars": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          }
+        },
+        {
+          "index": 2,
+          "from": "2026-02-17",
+          "to": "2026-03-05",
+          "days": 17,
+          "isDominant": true,
+          "lunarMonthSignature": "二〇二六年正月|流月|庚寅|仆役宫,迁移宫,疾厄宫,财帛宫,子女宫,夫妻宫,兄弟宫,命宫,父母宫,福德宫,田宅宫,官禄宫",
+          "asOfDate": "2026-02-25",
+          "lunarDate": "二〇二六年正月初九",
+          "lunarMonth": "二〇二六年正月",
+          "ganzhi": "庚寅",
+          "name": "流月",
+          "validationStatus": "pass",
+          "fieldStatuses": {
+            "palaceOverlay": "validated",
+            "fourTransformations": "validated",
+            "transitStars": "validated"
+          },
+          "verified": true,
+          "evidenceId": "monthly.months[0].ziwei.segments[1]",
+          "jsonPointer": "/months/0/ziwei/segments/1",
+          "fieldPointers": {
+            "palaceOverlay": "/months/0/ziwei/segments/1/palaceOverlay",
+            "fourTransformations": "/months/0/ziwei/segments/1/fourTransformations",
+            "transitStars": "/months/0/ziwei/segments/1/transitStars"
+          },
+          "palaceOverlay": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          },
+          "fourTransformations": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-mutagen"
+          },
+          "transitStars": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          }
+        }
+      ],
+      "segmentCount": 2,
+      "coverage": "partial",
+      "sampleDates": {
+        "start": "2026-02-04",
+        "midpoint": "2026-02-19",
+        "end": "2026-03-05"
+      },
+      "lunarMonth": "二〇二六年正月",
+      "lunarDate": "二〇二六年正月初九",
+      "baziGanzhi": "庚寅",
+      "ganzhi": "庚寅",
+      "validation": {
+        "status": "pass",
+        "checks": [
+          {
+            "id": "monthly_twelve_palaces_unique",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_four_hua_complete",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_ganzhi_valid",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_transit_stars_valid",
+            "pass": true,
+            "note": null
+          }
+        ],
+        "hardFailures": []
+      },
+      "validationStatus": "pass",
+      "fieldStatuses": {
+        "palaceOverlay": "validated",
+        "fourTransformations": "validated",
+        "transitStars": "validated"
+      },
+      "palaceOverlay": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-monthly"
+      },
+      "fourTransformations": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-mutagen"
+      },
+      "transitStars": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-monthly"
+      }
+    },
+    {
+      "index": 2,
+      "status": "ok",
+      "reason": null,
+      "coordinateAligned": false,
+      "coordinateBasis": "iztro-lunar-month",
+      "coordinateNote": "该节气月横跨两个农历月，已按月切成 2 段；顶层字段取天数最多的那段，各段分别给出自己的紫微流月。",
+      "segments": [
+        {
+          "index": 1,
+          "from": "2026-03-05",
+          "to": "2026-03-18",
+          "days": 14,
+          "isDominant": false,
+          "lunarMonthSignature": "二〇二六年正月|流月|庚寅|仆役宫,迁移宫,疾厄宫,财帛宫,子女宫,夫妻宫,兄弟宫,命宫,父母宫,福德宫,田宅宫,官禄宫",
+          "asOfDate": "2026-03-18",
+          "lunarDate": "二〇二六年正月三十",
+          "lunarMonth": "二〇二六年正月",
+          "ganzhi": "庚寅",
+          "name": "流月",
+          "validationStatus": "pass",
+          "fieldStatuses": {
+            "palaceOverlay": "validated",
+            "fourTransformations": "validated",
+            "transitStars": "validated"
+          },
+          "verified": true,
+          "evidenceId": "monthly.months[1].ziwei.segments[0]",
+          "jsonPointer": "/months/1/ziwei/segments/0",
+          "fieldPointers": {
+            "palaceOverlay": "/months/1/ziwei/segments/0/palaceOverlay",
+            "fourTransformations": "/months/1/ziwei/segments/0/fourTransformations",
+            "transitStars": "/months/1/ziwei/segments/0/transitStars"
+          },
+          "palaceOverlay": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          },
+          "fourTransformations": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-mutagen"
+          },
+          "transitStars": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          }
+        },
+        {
+          "index": 2,
+          "from": "2026-03-19",
+          "to": "2026-04-05",
+          "days": 18,
+          "isDominant": true,
+          "lunarMonthSignature": "二〇二六年二月|流月|辛卯|官禄宫,仆役宫,迁移宫,疾厄宫,财帛宫,子女宫,夫妻宫,兄弟宫,命宫,父母宫,福德宫,田宅宫",
+          "asOfDate": "2026-03-27",
+          "lunarDate": "二〇二六年二月初九",
+          "lunarMonth": "二〇二六年二月",
+          "ganzhi": "辛卯",
+          "name": "流月",
+          "validationStatus": "pass",
+          "fieldStatuses": {
+            "palaceOverlay": "validated",
+            "fourTransformations": "validated",
+            "transitStars": "validated"
+          },
+          "verified": true,
+          "evidenceId": "monthly.months[1].ziwei.segments[1]",
+          "jsonPointer": "/months/1/ziwei/segments/1",
+          "fieldPointers": {
+            "palaceOverlay": "/months/1/ziwei/segments/1/palaceOverlay",
+            "fourTransformations": "/months/1/ziwei/segments/1/fourTransformations",
+            "transitStars": "/months/1/ziwei/segments/1/transitStars"
+          },
+          "palaceOverlay": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          },
+          "fourTransformations": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-mutagen"
+          },
+          "transitStars": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          }
+        }
+      ],
+      "segmentCount": 2,
+      "coverage": "partial",
+      "sampleDates": {
+        "start": "2026-03-05",
+        "midpoint": "2026-03-21",
+        "end": "2026-04-05"
+      },
+      "lunarMonth": "二〇二六年二月",
+      "lunarDate": "二〇二六年二月初九",
+      "baziGanzhi": "辛卯",
+      "ganzhi": "辛卯",
+      "validation": {
+        "status": "pass",
+        "checks": [
+          {
+            "id": "monthly_twelve_palaces_unique",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_four_hua_complete",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_ganzhi_valid",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_transit_stars_valid",
+            "pass": true,
+            "note": null
+          }
+        ],
+        "hardFailures": []
+      },
+      "validationStatus": "pass",
+      "fieldStatuses": {
+        "palaceOverlay": "validated",
+        "fourTransformations": "validated",
+        "transitStars": "validated"
+      },
+      "palaceOverlay": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-monthly"
+      },
+      "fourTransformations": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-mutagen"
+      },
+      "transitStars": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-monthly"
+      }
+    },
+    {
+      "index": 3,
+      "status": "ok",
+      "reason": null,
+      "coordinateAligned": false,
+      "coordinateBasis": "iztro-lunar-month",
+      "coordinateNote": "该节气月横跨两个农历月，已按月切成 2 段；顶层字段取天数最多的那段，各段分别给出自己的紫微流月。",
+      "segments": [
+        {
+          "index": 1,
+          "from": "2026-04-05",
+          "to": "2026-04-16",
+          "days": 12,
+          "isDominant": false,
+          "lunarMonthSignature": "二〇二六年二月|流月|辛卯|官禄宫,仆役宫,迁移宫,疾厄宫,财帛宫,子女宫,夫妻宫,兄弟宫,命宫,父母宫,福德宫,田宅宫",
+          "asOfDate": "2026-04-16",
+          "lunarDate": "二〇二六年二月廿九",
+          "lunarMonth": "二〇二六年二月",
+          "ganzhi": "辛卯",
+          "name": "流月",
+          "validationStatus": "pass",
+          "fieldStatuses": {
+            "palaceOverlay": "validated",
+            "fourTransformations": "validated",
+            "transitStars": "validated"
+          },
+          "verified": true,
+          "evidenceId": "monthly.months[2].ziwei.segments[0]",
+          "jsonPointer": "/months/2/ziwei/segments/0",
+          "fieldPointers": {
+            "palaceOverlay": "/months/2/ziwei/segments/0/palaceOverlay",
+            "fourTransformations": "/months/2/ziwei/segments/0/fourTransformations",
+            "transitStars": "/months/2/ziwei/segments/0/transitStars"
+          },
+          "palaceOverlay": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          },
+          "fourTransformations": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-mutagen"
+          },
+          "transitStars": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          }
+        },
+        {
+          "index": 2,
+          "from": "2026-04-17",
+          "to": "2026-05-05",
+          "days": 19,
+          "isDominant": true,
+          "lunarMonthSignature": "二〇二六年三月|流月|壬辰|田宅宫,官禄宫,仆役宫,迁移宫,疾厄宫,财帛宫,子女宫,夫妻宫,兄弟宫,命宫,父母宫,福德宫",
+          "asOfDate": "2026-04-26",
+          "lunarDate": "二〇二六年三月初十",
+          "lunarMonth": "二〇二六年三月",
+          "ganzhi": "壬辰",
+          "name": "流月",
+          "validationStatus": "pass",
+          "fieldStatuses": {
+            "palaceOverlay": "validated",
+            "fourTransformations": "validated",
+            "transitStars": "validated"
+          },
+          "verified": true,
+          "evidenceId": "monthly.months[2].ziwei.segments[1]",
+          "jsonPointer": "/months/2/ziwei/segments/1",
+          "fieldPointers": {
+            "palaceOverlay": "/months/2/ziwei/segments/1/palaceOverlay",
+            "fourTransformations": "/months/2/ziwei/segments/1/fourTransformations",
+            "transitStars": "/months/2/ziwei/segments/1/transitStars"
+          },
+          "palaceOverlay": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          },
+          "fourTransformations": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-mutagen"
+          },
+          "transitStars": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          }
+        }
+      ],
+      "segmentCount": 2,
+      "coverage": "partial",
+      "sampleDates": {
+        "start": "2026-04-05",
+        "midpoint": "2026-04-20",
+        "end": "2026-05-05"
+      },
+      "lunarMonth": "二〇二六年三月",
+      "lunarDate": "二〇二六年三月初十",
+      "baziGanzhi": "壬辰",
+      "ganzhi": "壬辰",
+      "validation": {
+        "status": "pass",
+        "checks": [
+          {
+            "id": "monthly_twelve_palaces_unique",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_four_hua_complete",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_ganzhi_valid",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_transit_stars_valid",
+            "pass": true,
+            "note": null
+          }
+        ],
+        "hardFailures": []
+      },
+      "validationStatus": "pass",
+      "fieldStatuses": {
+        "palaceOverlay": "validated",
+        "fourTransformations": "validated",
+        "transitStars": "validated"
+      },
+      "palaceOverlay": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-monthly"
+      },
+      "fourTransformations": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-mutagen"
+      },
+      "transitStars": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-monthly"
+      }
+    },
+    {
+      "index": 4,
+      "status": "ok",
+      "reason": null,
+      "coordinateAligned": false,
+      "coordinateBasis": "iztro-lunar-month",
+      "coordinateNote": "该节气月横跨两个农历月，已按月切成 2 段；顶层字段取天数最多的那段，各段分别给出自己的紫微流月。",
+      "segments": [
+        {
+          "index": 1,
+          "from": "2026-05-05",
+          "to": "2026-05-16",
+          "days": 12,
+          "isDominant": false,
+          "lunarMonthSignature": "二〇二六年三月|流月|壬辰|田宅宫,官禄宫,仆役宫,迁移宫,疾厄宫,财帛宫,子女宫,夫妻宫,兄弟宫,命宫,父母宫,福德宫",
+          "asOfDate": "2026-05-16",
+          "lunarDate": "二〇二六年三月三十",
+          "lunarMonth": "二〇二六年三月",
+          "ganzhi": "壬辰",
+          "name": "流月",
+          "validationStatus": "pass",
+          "fieldStatuses": {
+            "palaceOverlay": "validated",
+            "fourTransformations": "validated",
+            "transitStars": "validated"
+          },
+          "verified": true,
+          "evidenceId": "monthly.months[3].ziwei.segments[0]",
+          "jsonPointer": "/months/3/ziwei/segments/0",
+          "fieldPointers": {
+            "palaceOverlay": "/months/3/ziwei/segments/0/palaceOverlay",
+            "fourTransformations": "/months/3/ziwei/segments/0/fourTransformations",
+            "transitStars": "/months/3/ziwei/segments/0/transitStars"
+          },
+          "palaceOverlay": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          },
+          "fourTransformations": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-mutagen"
+          },
+          "transitStars": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          }
+        },
+        {
+          "index": 2,
+          "from": "2026-05-17",
+          "to": "2026-06-05",
+          "days": 20,
+          "isDominant": true,
+          "lunarMonthSignature": "二〇二六年四月|流月|癸巳|福德宫,田宅宫,官禄宫,仆役宫,迁移宫,疾厄宫,财帛宫,子女宫,夫妻宫,兄弟宫,命宫,父母宫",
+          "asOfDate": "2026-05-26",
+          "lunarDate": "二〇二六年四月初十",
+          "lunarMonth": "二〇二六年四月",
+          "ganzhi": "癸巳",
+          "name": "流月",
+          "validationStatus": "pass",
+          "fieldStatuses": {
+            "palaceOverlay": "validated",
+            "fourTransformations": "validated",
+            "transitStars": "validated"
+          },
+          "verified": true,
+          "evidenceId": "monthly.months[3].ziwei.segments[1]",
+          "jsonPointer": "/months/3/ziwei/segments/1",
+          "fieldPointers": {
+            "palaceOverlay": "/months/3/ziwei/segments/1/palaceOverlay",
+            "fourTransformations": "/months/3/ziwei/segments/1/fourTransformations",
+            "transitStars": "/months/3/ziwei/segments/1/transitStars"
+          },
+          "palaceOverlay": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          },
+          "fourTransformations": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-mutagen"
+          },
+          "transitStars": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          }
+        }
+      ],
+      "segmentCount": 2,
+      "coverage": "partial",
+      "sampleDates": {
+        "start": "2026-05-05",
+        "midpoint": "2026-05-21",
+        "end": "2026-06-05"
+      },
+      "lunarMonth": "二〇二六年四月",
+      "lunarDate": "二〇二六年四月初十",
+      "baziGanzhi": "癸巳",
+      "ganzhi": "癸巳",
+      "validation": {
+        "status": "pass",
+        "checks": [
+          {
+            "id": "monthly_twelve_palaces_unique",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_four_hua_complete",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_ganzhi_valid",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_transit_stars_valid",
+            "pass": true,
+            "note": null
+          }
+        ],
+        "hardFailures": []
+      },
+      "validationStatus": "pass",
+      "fieldStatuses": {
+        "palaceOverlay": "validated",
+        "fourTransformations": "validated",
+        "transitStars": "validated"
+      },
+      "palaceOverlay": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-monthly"
+      },
+      "fourTransformations": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-mutagen"
+      },
+      "transitStars": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-monthly"
+      }
+    },
+    {
+      "index": 5,
+      "status": "ok",
+      "reason": null,
+      "coordinateAligned": false,
+      "coordinateBasis": "iztro-lunar-month",
+      "coordinateNote": "该节气月横跨两个农历月，已按月切成 2 段；顶层字段取天数最多的那段，各段分别给出自己的紫微流月。",
+      "segments": [
+        {
+          "index": 1,
+          "from": "2026-06-05",
+          "to": "2026-06-14",
+          "days": 10,
+          "isDominant": false,
+          "lunarMonthSignature": "二〇二六年四月|流月|癸巳|福德宫,田宅宫,官禄宫,仆役宫,迁移宫,疾厄宫,财帛宫,子女宫,夫妻宫,兄弟宫,命宫,父母宫",
+          "asOfDate": "2026-06-14",
+          "lunarDate": "二〇二六年四月廿九",
+          "lunarMonth": "二〇二六年四月",
+          "ganzhi": "癸巳",
+          "name": "流月",
+          "validationStatus": "pass",
+          "fieldStatuses": {
+            "palaceOverlay": "validated",
+            "fourTransformations": "validated",
+            "transitStars": "validated"
+          },
+          "verified": true,
+          "evidenceId": "monthly.months[4].ziwei.segments[0]",
+          "jsonPointer": "/months/4/ziwei/segments/0",
+          "fieldPointers": {
+            "palaceOverlay": "/months/4/ziwei/segments/0/palaceOverlay",
+            "fourTransformations": "/months/4/ziwei/segments/0/fourTransformations",
+            "transitStars": "/months/4/ziwei/segments/0/transitStars"
+          },
+          "palaceOverlay": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          },
+          "fourTransformations": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-mutagen"
+          },
+          "transitStars": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          }
+        },
+        {
+          "index": 2,
+          "from": "2026-06-15",
+          "to": "2026-07-07",
+          "days": 23,
+          "isDominant": true,
+          "lunarMonthSignature": "二〇二六年五月|流月|甲午|父母宫,福德宫,田宅宫,官禄宫,仆役宫,迁移宫,疾厄宫,财帛宫,子女宫,夫妻宫,兄弟宫,命宫",
+          "asOfDate": "2026-06-26",
+          "lunarDate": "二〇二六年五月十二",
+          "lunarMonth": "二〇二六年五月",
+          "ganzhi": "甲午",
+          "name": "流月",
+          "validationStatus": "pass",
+          "fieldStatuses": {
+            "palaceOverlay": "validated",
+            "fourTransformations": "validated",
+            "transitStars": "validated"
+          },
+          "verified": true,
+          "evidenceId": "monthly.months[4].ziwei.segments[1]",
+          "jsonPointer": "/months/4/ziwei/segments/1",
+          "fieldPointers": {
+            "palaceOverlay": "/months/4/ziwei/segments/1/palaceOverlay",
+            "fourTransformations": "/months/4/ziwei/segments/1/fourTransformations",
+            "transitStars": "/months/4/ziwei/segments/1/transitStars"
+          },
+          "palaceOverlay": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          },
+          "fourTransformations": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-mutagen"
+          },
+          "transitStars": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          }
+        }
+      ],
+      "segmentCount": 2,
+      "coverage": "partial",
+      "sampleDates": {
+        "start": "2026-06-05",
+        "midpoint": "2026-06-21",
+        "end": "2026-07-07"
+      },
+      "lunarMonth": "二〇二六年五月",
+      "lunarDate": "二〇二六年五月十二",
+      "baziGanzhi": "甲午",
+      "ganzhi": "甲午",
+      "validation": {
+        "status": "pass",
+        "checks": [
+          {
+            "id": "monthly_twelve_palaces_unique",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_four_hua_complete",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_ganzhi_valid",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_transit_stars_valid",
+            "pass": true,
+            "note": null
+          }
+        ],
+        "hardFailures": []
+      },
+      "validationStatus": "pass",
+      "fieldStatuses": {
+        "palaceOverlay": "validated",
+        "fourTransformations": "validated",
+        "transitStars": "validated"
+      },
+      "palaceOverlay": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-monthly"
+      },
+      "fourTransformations": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-mutagen"
+      },
+      "transitStars": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-monthly"
+      }
+    },
+    {
+      "index": 6,
+      "status": "ok",
+      "reason": null,
+      "coordinateAligned": false,
+      "coordinateBasis": "iztro-lunar-month",
+      "coordinateNote": "该节气月横跨两个农历月，已按月切成 2 段；顶层字段取天数最多的那段，各段分别给出自己的紫微流月。",
+      "segments": [
+        {
+          "index": 1,
+          "from": "2026-07-07",
+          "to": "2026-07-13",
+          "days": 7,
+          "isDominant": false,
+          "lunarMonthSignature": "二〇二六年五月|流月|甲午|父母宫,福德宫,田宅宫,官禄宫,仆役宫,迁移宫,疾厄宫,财帛宫,子女宫,夫妻宫,兄弟宫,命宫",
+          "asOfDate": "2026-07-13",
+          "lunarDate": "二〇二六年五月廿九",
+          "lunarMonth": "二〇二六年五月",
+          "ganzhi": "甲午",
+          "name": "流月",
+          "validationStatus": "pass",
+          "fieldStatuses": {
+            "palaceOverlay": "validated",
+            "fourTransformations": "validated",
+            "transitStars": "validated"
+          },
+          "verified": true,
+          "evidenceId": "monthly.months[5].ziwei.segments[0]",
+          "jsonPointer": "/months/5/ziwei/segments/0",
+          "fieldPointers": {
+            "palaceOverlay": "/months/5/ziwei/segments/0/palaceOverlay",
+            "fourTransformations": "/months/5/ziwei/segments/0/fourTransformations",
+            "transitStars": "/months/5/ziwei/segments/0/transitStars"
+          },
+          "palaceOverlay": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          },
+          "fourTransformations": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-mutagen"
+          },
+          "transitStars": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          }
+        },
+        {
+          "index": 2,
+          "from": "2026-07-14",
+          "to": "2026-08-07",
+          "days": 25,
+          "isDominant": true,
+          "lunarMonthSignature": "二〇二六年六月|流月|乙未|命宫,父母宫,福德宫,田宅宫,官禄宫,仆役宫,迁移宫,疾厄宫,财帛宫,子女宫,夫妻宫,兄弟宫",
+          "asOfDate": "2026-07-26",
+          "lunarDate": "二〇二六年六月十三",
+          "lunarMonth": "二〇二六年六月",
+          "ganzhi": "乙未",
+          "name": "流月",
+          "validationStatus": "pass",
+          "fieldStatuses": {
+            "palaceOverlay": "validated",
+            "fourTransformations": "validated",
+            "transitStars": "validated"
+          },
+          "verified": true,
+          "evidenceId": "monthly.months[5].ziwei.segments[1]",
+          "jsonPointer": "/months/5/ziwei/segments/1",
+          "fieldPointers": {
+            "palaceOverlay": "/months/5/ziwei/segments/1/palaceOverlay",
+            "fourTransformations": "/months/5/ziwei/segments/1/fourTransformations",
+            "transitStars": "/months/5/ziwei/segments/1/transitStars"
+          },
+          "palaceOverlay": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          },
+          "fourTransformations": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-mutagen"
+          },
+          "transitStars": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          }
+        }
+      ],
+      "segmentCount": 2,
+      "coverage": "partial",
+      "sampleDates": {
+        "start": "2026-07-07",
+        "midpoint": "2026-07-23",
+        "end": "2026-08-07"
+      },
+      "lunarMonth": "二〇二六年六月",
+      "lunarDate": "二〇二六年六月十三",
+      "baziGanzhi": "乙未",
+      "ganzhi": "乙未",
+      "validation": {
+        "status": "pass",
+        "checks": [
+          {
+            "id": "monthly_twelve_palaces_unique",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_four_hua_complete",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_ganzhi_valid",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_transit_stars_valid",
+            "pass": true,
+            "note": null
+          }
+        ],
+        "hardFailures": []
+      },
+      "validationStatus": "pass",
+      "fieldStatuses": {
+        "palaceOverlay": "validated",
+        "fourTransformations": "validated",
+        "transitStars": "validated"
+      },
+      "palaceOverlay": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-monthly"
+      },
+      "fourTransformations": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-mutagen"
+      },
+      "transitStars": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-monthly"
+      }
+    },
+    {
+      "index": 7,
+      "status": "ok",
+      "reason": null,
+      "coordinateAligned": false,
+      "coordinateBasis": "iztro-lunar-month",
+      "coordinateNote": "该节气月横跨两个农历月，已按月切成 2 段；顶层字段取天数最多的那段，各段分别给出自己的紫微流月。",
+      "segments": [
+        {
+          "index": 1,
+          "from": "2026-08-07",
+          "to": "2026-08-12",
+          "days": 6,
+          "isDominant": false,
+          "lunarMonthSignature": "二〇二六年六月|流月|乙未|命宫,父母宫,福德宫,田宅宫,官禄宫,仆役宫,迁移宫,疾厄宫,财帛宫,子女宫,夫妻宫,兄弟宫",
+          "asOfDate": "2026-08-12",
+          "lunarDate": "二〇二六年六月三十",
+          "lunarMonth": "二〇二六年六月",
+          "ganzhi": "乙未",
+          "name": "流月",
+          "validationStatus": "pass",
+          "fieldStatuses": {
+            "palaceOverlay": "validated",
+            "fourTransformations": "validated",
+            "transitStars": "validated"
+          },
+          "verified": true,
+          "evidenceId": "monthly.months[6].ziwei.segments[0]",
+          "jsonPointer": "/months/6/ziwei/segments/0",
+          "fieldPointers": {
+            "palaceOverlay": "/months/6/ziwei/segments/0/palaceOverlay",
+            "fourTransformations": "/months/6/ziwei/segments/0/fourTransformations",
+            "transitStars": "/months/6/ziwei/segments/0/transitStars"
+          },
+          "palaceOverlay": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          },
+          "fourTransformations": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-mutagen"
+          },
+          "transitStars": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          }
+        },
+        {
+          "index": 2,
+          "from": "2026-08-13",
+          "to": "2026-09-07",
+          "days": 26,
+          "isDominant": true,
+          "lunarMonthSignature": "二〇二六年七月|流月|丙申|兄弟宫,命宫,父母宫,福德宫,田宅宫,官禄宫,仆役宫,迁移宫,疾厄宫,财帛宫,子女宫,夫妻宫",
+          "asOfDate": "2026-08-25",
+          "lunarDate": "二〇二六年七月十三",
+          "lunarMonth": "二〇二六年七月",
+          "ganzhi": "丙申",
+          "name": "流月",
+          "validationStatus": "pass",
+          "fieldStatuses": {
+            "palaceOverlay": "validated",
+            "fourTransformations": "validated",
+            "transitStars": "validated"
+          },
+          "verified": true,
+          "evidenceId": "monthly.months[6].ziwei.segments[1]",
+          "jsonPointer": "/months/6/ziwei/segments/1",
+          "fieldPointers": {
+            "palaceOverlay": "/months/6/ziwei/segments/1/palaceOverlay",
+            "fourTransformations": "/months/6/ziwei/segments/1/fourTransformations",
+            "transitStars": "/months/6/ziwei/segments/1/transitStars"
+          },
+          "palaceOverlay": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          },
+          "fourTransformations": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-mutagen"
+          },
+          "transitStars": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          }
+        }
+      ],
+      "segmentCount": 2,
+      "coverage": "partial",
+      "sampleDates": {
+        "start": "2026-08-07",
+        "midpoint": "2026-08-23",
+        "end": "2026-09-07"
+      },
+      "lunarMonth": "二〇二六年七月",
+      "lunarDate": "二〇二六年七月十三",
+      "baziGanzhi": "丙申",
+      "ganzhi": "丙申",
+      "validation": {
+        "status": "pass",
+        "checks": [
+          {
+            "id": "monthly_twelve_palaces_unique",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_four_hua_complete",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_ganzhi_valid",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_transit_stars_valid",
+            "pass": true,
+            "note": null
+          }
+        ],
+        "hardFailures": []
+      },
+      "validationStatus": "pass",
+      "fieldStatuses": {
+        "palaceOverlay": "validated",
+        "fourTransformations": "validated",
+        "transitStars": "validated"
+      },
+      "palaceOverlay": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-monthly"
+      },
+      "fourTransformations": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-mutagen"
+      },
+      "transitStars": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-monthly"
+      }
+    },
+    {
+      "index": 8,
+      "status": "ok",
+      "reason": null,
+      "coordinateAligned": false,
+      "coordinateBasis": "iztro-lunar-month",
+      "coordinateNote": "该节气月横跨两个农历月，已按月切成 2 段；顶层字段取天数最多的那段，各段分别给出自己的紫微流月。",
+      "segments": [
+        {
+          "index": 1,
+          "from": "2026-09-07",
+          "to": "2026-09-10",
+          "days": 4,
+          "isDominant": false,
+          "lunarMonthSignature": "二〇二六年七月|流月|丙申|兄弟宫,命宫,父母宫,福德宫,田宅宫,官禄宫,仆役宫,迁移宫,疾厄宫,财帛宫,子女宫,夫妻宫",
+          "asOfDate": "2026-09-10",
+          "lunarDate": "二〇二六年七月廿九",
+          "lunarMonth": "二〇二六年七月",
+          "ganzhi": "丙申",
+          "name": "流月",
+          "validationStatus": "pass",
+          "fieldStatuses": {
+            "palaceOverlay": "validated",
+            "fourTransformations": "validated",
+            "transitStars": "validated"
+          },
+          "verified": true,
+          "evidenceId": "monthly.months[7].ziwei.segments[0]",
+          "jsonPointer": "/months/7/ziwei/segments/0",
+          "fieldPointers": {
+            "palaceOverlay": "/months/7/ziwei/segments/0/palaceOverlay",
+            "fourTransformations": "/months/7/ziwei/segments/0/fourTransformations",
+            "transitStars": "/months/7/ziwei/segments/0/transitStars"
+          },
+          "palaceOverlay": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          },
+          "fourTransformations": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-mutagen"
+          },
+          "transitStars": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          }
+        },
+        {
+          "index": 2,
+          "from": "2026-09-11",
+          "to": "2026-10-08",
+          "days": 28,
+          "isDominant": true,
+          "lunarMonthSignature": "二〇二六年八月|流月|丁酉|夫妻宫,兄弟宫,命宫,父母宫,福德宫,田宅宫,官禄宫,仆役宫,迁移宫,疾厄宫,财帛宫,子女宫",
+          "asOfDate": "2026-09-24",
+          "lunarDate": "二〇二六年八月十四",
+          "lunarMonth": "二〇二六年八月",
+          "ganzhi": "丁酉",
+          "name": "流月",
+          "validationStatus": "pass",
+          "fieldStatuses": {
+            "palaceOverlay": "validated",
+            "fourTransformations": "validated",
+            "transitStars": "validated"
+          },
+          "verified": true,
+          "evidenceId": "monthly.months[7].ziwei.segments[1]",
+          "jsonPointer": "/months/7/ziwei/segments/1",
+          "fieldPointers": {
+            "palaceOverlay": "/months/7/ziwei/segments/1/palaceOverlay",
+            "fourTransformations": "/months/7/ziwei/segments/1/fourTransformations",
+            "transitStars": "/months/7/ziwei/segments/1/transitStars"
+          },
+          "palaceOverlay": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          },
+          "fourTransformations": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-mutagen"
+          },
+          "transitStars": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          }
+        }
+      ],
+      "segmentCount": 2,
+      "coverage": "partial",
+      "sampleDates": {
+        "start": "2026-09-07",
+        "midpoint": "2026-09-23",
+        "end": "2026-10-08"
+      },
+      "lunarMonth": "二〇二六年八月",
+      "lunarDate": "二〇二六年八月十四",
+      "baziGanzhi": "丁酉",
+      "ganzhi": "丁酉",
+      "validation": {
+        "status": "pass",
+        "checks": [
+          {
+            "id": "monthly_twelve_palaces_unique",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_four_hua_complete",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_ganzhi_valid",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_transit_stars_valid",
+            "pass": true,
+            "note": null
+          }
+        ],
+        "hardFailures": []
+      },
+      "validationStatus": "pass",
+      "fieldStatuses": {
+        "palaceOverlay": "validated",
+        "fourTransformations": "validated",
+        "transitStars": "validated"
+      },
+      "palaceOverlay": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-monthly"
+      },
+      "fourTransformations": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-mutagen"
+      },
+      "transitStars": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-monthly"
+      }
+    },
+    {
+      "index": 9,
+      "status": "ok",
+      "reason": null,
+      "coordinateAligned": false,
+      "coordinateBasis": "iztro-lunar-month",
+      "coordinateNote": "该节气月横跨两个农历月，已按月切成 2 段；顶层字段取天数最多的那段，各段分别给出自己的紫微流月。",
+      "segments": [
+        {
+          "index": 1,
+          "from": "2026-10-08",
+          "to": "2026-10-09",
+          "days": 2,
+          "isDominant": false,
+          "lunarMonthSignature": "二〇二六年八月|流月|丁酉|夫妻宫,兄弟宫,命宫,父母宫,福德宫,田宅宫,官禄宫,仆役宫,迁移宫,疾厄宫,财帛宫,子女宫",
+          "asOfDate": "2026-10-09",
+          "lunarDate": "二〇二六年八月廿九",
+          "lunarMonth": "二〇二六年八月",
+          "ganzhi": "丁酉",
+          "name": "流月",
+          "validationStatus": "pass",
+          "fieldStatuses": {
+            "palaceOverlay": "validated",
+            "fourTransformations": "validated",
+            "transitStars": "validated"
+          },
+          "verified": true,
+          "evidenceId": "monthly.months[8].ziwei.segments[0]",
+          "jsonPointer": "/months/8/ziwei/segments/0",
+          "fieldPointers": {
+            "palaceOverlay": "/months/8/ziwei/segments/0/palaceOverlay",
+            "fourTransformations": "/months/8/ziwei/segments/0/fourTransformations",
+            "transitStars": "/months/8/ziwei/segments/0/transitStars"
+          },
+          "palaceOverlay": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          },
+          "fourTransformations": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-mutagen"
+          },
+          "transitStars": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          }
+        },
+        {
+          "index": 2,
+          "from": "2026-10-10",
+          "to": "2026-11-07",
+          "days": 29,
+          "isDominant": true,
+          "lunarMonthSignature": "二〇二六年九月|流月|戊戌|子女宫,夫妻宫,兄弟宫,命宫,父母宫,福德宫,田宅宫,官禄宫,仆役宫,迁移宫,疾厄宫,财帛宫",
+          "asOfDate": "2026-10-24",
+          "lunarDate": "二〇二六年九月十五",
+          "lunarMonth": "二〇二六年九月",
+          "ganzhi": "戊戌",
+          "name": "流月",
+          "validationStatus": "pass",
+          "fieldStatuses": {
+            "palaceOverlay": "validated",
+            "fourTransformations": "validated",
+            "transitStars": "validated"
+          },
+          "verified": true,
+          "evidenceId": "monthly.months[8].ziwei.segments[1]",
+          "jsonPointer": "/months/8/ziwei/segments/1",
+          "fieldPointers": {
+            "palaceOverlay": "/months/8/ziwei/segments/1/palaceOverlay",
+            "fourTransformations": "/months/8/ziwei/segments/1/fourTransformations",
+            "transitStars": "/months/8/ziwei/segments/1/transitStars"
+          },
+          "palaceOverlay": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          },
+          "fourTransformations": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-mutagen"
+          },
+          "transitStars": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          }
+        }
+      ],
+      "segmentCount": 2,
+      "coverage": "partial",
+      "sampleDates": {
+        "start": "2026-10-08",
+        "midpoint": "2026-10-23",
+        "end": "2026-11-07"
+      },
+      "lunarMonth": "二〇二六年九月",
+      "lunarDate": "二〇二六年九月十五",
+      "baziGanzhi": "戊戌",
+      "ganzhi": "戊戌",
+      "validation": {
+        "status": "pass",
+        "checks": [
+          {
+            "id": "monthly_twelve_palaces_unique",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_four_hua_complete",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_ganzhi_valid",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_transit_stars_valid",
+            "pass": true,
+            "note": null
+          }
+        ],
+        "hardFailures": []
+      },
+      "validationStatus": "pass",
+      "fieldStatuses": {
+        "palaceOverlay": "validated",
+        "fourTransformations": "validated",
+        "transitStars": "validated"
+      },
+      "palaceOverlay": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-monthly"
+      },
+      "fourTransformations": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-mutagen"
+      },
+      "transitStars": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-monthly"
+      }
+    },
+    {
+      "index": 10,
+      "status": "ok",
+      "reason": null,
+      "coordinateAligned": false,
+      "coordinateBasis": "iztro-lunar-month",
+      "coordinateNote": "该节气月横跨两个农历月，已按月切成 2 段；顶层字段取天数最多的那段，各段分别给出自己的紫微流月。",
+      "segments": [
+        {
+          "index": 1,
+          "from": "2026-11-07",
+          "to": "2026-11-08",
+          "days": 2,
+          "isDominant": false,
+          "lunarMonthSignature": "二〇二六年九月|流月|戊戌|子女宫,夫妻宫,兄弟宫,命宫,父母宫,福德宫,田宅宫,官禄宫,仆役宫,迁移宫,疾厄宫,财帛宫",
+          "asOfDate": "2026-11-08",
+          "lunarDate": "二〇二六年九月三十",
+          "lunarMonth": "二〇二六年九月",
+          "ganzhi": "戊戌",
+          "name": "流月",
+          "validationStatus": "pass",
+          "fieldStatuses": {
+            "palaceOverlay": "validated",
+            "fourTransformations": "validated",
+            "transitStars": "validated"
+          },
+          "verified": true,
+          "evidenceId": "monthly.months[9].ziwei.segments[0]",
+          "jsonPointer": "/months/9/ziwei/segments/0",
+          "fieldPointers": {
+            "palaceOverlay": "/months/9/ziwei/segments/0/palaceOverlay",
+            "fourTransformations": "/months/9/ziwei/segments/0/fourTransformations",
+            "transitStars": "/months/9/ziwei/segments/0/transitStars"
+          },
+          "palaceOverlay": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          },
+          "fourTransformations": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-mutagen"
+          },
+          "transitStars": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          }
+        },
+        {
+          "index": 2,
+          "from": "2026-11-09",
+          "to": "2026-12-07",
+          "days": 29,
+          "isDominant": true,
+          "lunarMonthSignature": "二〇二六年十月|流月|己亥|财帛宫,子女宫,夫妻宫,兄弟宫,命宫,父母宫,福德宫,田宅宫,官禄宫,仆役宫,迁移宫,疾厄宫",
+          "asOfDate": "2026-11-23",
+          "lunarDate": "二〇二六年十月十五",
+          "lunarMonth": "二〇二六年十月",
+          "ganzhi": "己亥",
+          "name": "流月",
+          "validationStatus": "pass",
+          "fieldStatuses": {
+            "palaceOverlay": "validated",
+            "fourTransformations": "validated",
+            "transitStars": "validated"
+          },
+          "verified": true,
+          "evidenceId": "monthly.months[9].ziwei.segments[1]",
+          "jsonPointer": "/months/9/ziwei/segments/1",
+          "fieldPointers": {
+            "palaceOverlay": "/months/9/ziwei/segments/1/palaceOverlay",
+            "fourTransformations": "/months/9/ziwei/segments/1/fourTransformations",
+            "transitStars": "/months/9/ziwei/segments/1/transitStars"
+          },
+          "palaceOverlay": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          },
+          "fourTransformations": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-mutagen"
+          },
+          "transitStars": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          }
+        }
+      ],
+      "segmentCount": 2,
+      "coverage": "partial",
+      "sampleDates": {
+        "start": "2026-11-07",
+        "midpoint": "2026-11-22",
+        "end": "2026-12-07"
+      },
+      "lunarMonth": "二〇二六年十月",
+      "lunarDate": "二〇二六年十月十五",
+      "baziGanzhi": "己亥",
+      "ganzhi": "己亥",
+      "validation": {
+        "status": "pass",
+        "checks": [
+          {
+            "id": "monthly_twelve_palaces_unique",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_four_hua_complete",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_ganzhi_valid",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_transit_stars_valid",
+            "pass": true,
+            "note": null
+          }
+        ],
+        "hardFailures": []
+      },
+      "validationStatus": "pass",
+      "fieldStatuses": {
+        "palaceOverlay": "validated",
+        "fourTransformations": "validated",
+        "transitStars": "validated"
+      },
+      "palaceOverlay": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-monthly"
+      },
+      "fourTransformations": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-mutagen"
+      },
+      "transitStars": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-monthly"
+      }
+    },
+    {
+      "index": 11,
+      "status": "ok",
+      "reason": null,
+      "coordinateAligned": false,
+      "coordinateBasis": "iztro-lunar-month",
+      "coordinateNote": "该节气月横跨两个农历月，已按月切成 2 段；顶层字段取天数最多的那段，各段分别给出自己的紫微流月。",
+      "segments": [
+        {
+          "index": 1,
+          "from": "2026-12-07",
+          "to": "2026-12-08",
+          "days": 2,
+          "isDominant": false,
+          "lunarMonthSignature": "二〇二六年十月|流月|己亥|财帛宫,子女宫,夫妻宫,兄弟宫,命宫,父母宫,福德宫,田宅宫,官禄宫,仆役宫,迁移宫,疾厄宫",
+          "asOfDate": "2026-12-08",
+          "lunarDate": "二〇二六年十月三十",
+          "lunarMonth": "二〇二六年十月",
+          "ganzhi": "己亥",
+          "name": "流月",
+          "validationStatus": "pass",
+          "fieldStatuses": {
+            "palaceOverlay": "validated",
+            "fourTransformations": "validated",
+            "transitStars": "validated"
+          },
+          "verified": true,
+          "evidenceId": "monthly.months[10].ziwei.segments[0]",
+          "jsonPointer": "/months/10/ziwei/segments/0",
+          "fieldPointers": {
+            "palaceOverlay": "/months/10/ziwei/segments/0/palaceOverlay",
+            "fourTransformations": "/months/10/ziwei/segments/0/fourTransformations",
+            "transitStars": "/months/10/ziwei/segments/0/transitStars"
+          },
+          "palaceOverlay": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          },
+          "fourTransformations": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-mutagen"
+          },
+          "transitStars": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          }
+        },
+        {
+          "index": 2,
+          "from": "2026-12-09",
+          "to": "2027-01-05",
+          "days": 28,
+          "isDominant": true,
+          "lunarMonthSignature": "二〇二六年冬月|流月|庚子|疾厄宫,财帛宫,子女宫,夫妻宫,兄弟宫,命宫,父母宫,福德宫,田宅宫,官禄宫,仆役宫,迁移宫",
+          "asOfDate": "2026-12-22",
+          "lunarDate": "二〇二六年冬月十四",
+          "lunarMonth": "二〇二六年冬月",
+          "ganzhi": "庚子",
+          "name": "流月",
+          "validationStatus": "pass",
+          "fieldStatuses": {
+            "palaceOverlay": "validated",
+            "fourTransformations": "validated",
+            "transitStars": "validated"
+          },
+          "verified": true,
+          "evidenceId": "monthly.months[10].ziwei.segments[1]",
+          "jsonPointer": "/months/10/ziwei/segments/1",
+          "fieldPointers": {
+            "palaceOverlay": "/months/10/ziwei/segments/1/palaceOverlay",
+            "fourTransformations": "/months/10/ziwei/segments/1/fourTransformations",
+            "transitStars": "/months/10/ziwei/segments/1/transitStars"
+          },
+          "palaceOverlay": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          },
+          "fourTransformations": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-mutagen"
+          },
+          "transitStars": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          }
+        }
+      ],
+      "segmentCount": 2,
+      "coverage": "partial",
+      "sampleDates": {
+        "start": "2026-12-07",
+        "midpoint": "2026-12-22",
+        "end": "2027-01-05"
+      },
+      "lunarMonth": "二〇二六年冬月",
+      "lunarDate": "二〇二六年冬月十四",
+      "baziGanzhi": "庚子",
+      "ganzhi": "庚子",
+      "validation": {
+        "status": "pass",
+        "checks": [
+          {
+            "id": "monthly_twelve_palaces_unique",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_four_hua_complete",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_ganzhi_valid",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_transit_stars_valid",
+            "pass": true,
+            "note": null
+          }
+        ],
+        "hardFailures": []
+      },
+      "validationStatus": "pass",
+      "fieldStatuses": {
+        "palaceOverlay": "validated",
+        "fourTransformations": "validated",
+        "transitStars": "validated"
+      },
+      "palaceOverlay": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-monthly"
+      },
+      "fourTransformations": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-mutagen"
+      },
+      "transitStars": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-monthly"
+      }
+    },
+    {
+      "index": 12,
+      "status": "ok",
+      "reason": null,
+      "coordinateAligned": false,
+      "coordinateBasis": "iztro-lunar-month",
+      "coordinateNote": "该节气月横跨两个农历月，已按月切成 2 段；顶层字段取天数最多的那段，各段分别给出自己的紫微流月。",
+      "segments": [
+        {
+          "index": 1,
+          "from": "2027-01-05",
+          "to": "2027-01-07",
+          "days": 3,
+          "isDominant": false,
+          "lunarMonthSignature": "二〇二六年冬月|流月|庚子|疾厄宫,财帛宫,子女宫,夫妻宫,兄弟宫,命宫,父母宫,福德宫,田宅宫,官禄宫,仆役宫,迁移宫",
+          "asOfDate": "2027-01-07",
+          "lunarDate": "二〇二六年冬月三十",
+          "lunarMonth": "二〇二六年冬月",
+          "ganzhi": "庚子",
+          "name": "流月",
+          "validationStatus": "pass",
+          "fieldStatuses": {
+            "palaceOverlay": "validated",
+            "fourTransformations": "validated",
+            "transitStars": "validated"
+          },
+          "verified": true,
+          "evidenceId": "monthly.months[11].ziwei.segments[0]",
+          "jsonPointer": "/months/11/ziwei/segments/0",
+          "fieldPointers": {
+            "palaceOverlay": "/months/11/ziwei/segments/0/palaceOverlay",
+            "fourTransformations": "/months/11/ziwei/segments/0/fourTransformations",
+            "transitStars": "/months/11/ziwei/segments/0/transitStars"
+          },
+          "palaceOverlay": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          },
+          "fourTransformations": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-mutagen"
+          },
+          "transitStars": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          }
+        },
+        {
+          "index": 2,
+          "from": "2027-01-08",
+          "to": "2027-02-04",
+          "days": 28,
+          "isDominant": true,
+          "lunarMonthSignature": "二〇二六年腊月|流月|辛丑|迁移宫,疾厄宫,财帛宫,子女宫,夫妻宫,兄弟宫,命宫,父母宫,福德宫,田宅宫,官禄宫,仆役宫",
+          "asOfDate": "2027-01-21",
+          "lunarDate": "二〇二六年腊月十四",
+          "lunarMonth": "二〇二六年腊月",
+          "ganzhi": "辛丑",
+          "name": "流月",
+          "validationStatus": "pass",
+          "fieldStatuses": {
+            "palaceOverlay": "validated",
+            "fourTransformations": "validated",
+            "transitStars": "validated"
+          },
+          "verified": true,
+          "evidenceId": "monthly.months[11].ziwei.segments[1]",
+          "jsonPointer": "/months/11/ziwei/segments/1",
+          "fieldPointers": {
+            "palaceOverlay": "/months/11/ziwei/segments/1/palaceOverlay",
+            "fourTransformations": "/months/11/ziwei/segments/1/fourTransformations",
+            "transitStars": "/months/11/ziwei/segments/1/transitStars"
+          },
+          "palaceOverlay": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          },
+          "fourTransformations": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-mutagen"
+          },
+          "transitStars": {
+            "status": "validated",
+            "value": null,
+            "reason": null,
+            "source": "iztro-horoscope-monthly"
+          }
+        }
+      ],
+      "segmentCount": 2,
+      "coverage": "partial",
+      "sampleDates": {
+        "start": "2027-01-05",
+        "midpoint": "2027-01-20",
+        "end": "2027-02-04"
+      },
+      "lunarMonth": "二〇二六年腊月",
+      "lunarDate": "二〇二六年腊月十四",
+      "baziGanzhi": "辛丑",
+      "ganzhi": "辛丑",
+      "validation": {
+        "status": "pass",
+        "checks": [
+          {
+            "id": "monthly_twelve_palaces_unique",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_four_hua_complete",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_ganzhi_valid",
+            "pass": true,
+            "note": null
+          },
+          {
+            "id": "monthly_transit_stars_valid",
+            "pass": true,
+            "note": null
+          }
+        ],
+        "hardFailures": []
+      },
+      "validationStatus": "pass",
+      "fieldStatuses": {
+        "palaceOverlay": "validated",
+        "fourTransformations": "validated",
+        "transitStars": "validated"
+      },
+      "palaceOverlay": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-monthly"
+      },
+      "fourTransformations": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-mutagen"
+      },
+      "transitStars": {
+        "status": "validated",
+        "value": null,
+        "reason": null,
+        "source": "iztro-horoscope-monthly"
+      }
+    }
+  ]
+}

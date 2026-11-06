@@ -1,0 +1,90 @@
+{
+  "schema": "section16-fact-contracts/v1",
+  "source": "与本矩阵同源，逐条人写；未从外部数据推导",
+  "authoredBy": "mingli-tool agent（自审）",
+  "authoredAt": "2026-11-04",
+  "reviewIndependence": "self-review",
+  "policy": "每一步声明它最少需要哪些事实路径才能支撑判断。门禁只做四件事：①合同必须声明、②声明的路径必须出现在矩阵 requiredFacts 里（否则算合同未被矩阵覆盖）、③每条路径必须能解析到非空值、④能解析的还要过结构规则。合同不声明 = 不升级 ready。",
+  "notes": [
+    "paths 与矩阵 requiredFacts 一一对应，是为了让「改了 requiredFacts 却没改合同」这类漂移当场显形；覆盖关系由门禁逐条比对，不靠人工看。",
+    "minimum 只用于阅读与文档对齐，门禁判的是结构规则（SHAPE_RULES），不读 minimum。",
+    "本文件是内部编著，不冒充第三方复核；独立性字段如实写 self-review。"
+  ],
+  "contracts": {
+    "1": {
+      "why": "定盘先说清十二宫与五行局，缺任一项后面全部无从谈起",
+      "paths": ["palaces", "wuxingJu"],
+      "minimum": { "palaces": 12 }
+    },
+    "2": {
+      "why": "命身与十二宫分属是后续所有引动的坐标",
+      "paths": ["palaces"],
+      "minimum": { "palaces": 12 }
+    },
+    "3": {
+      "why": "生年四化必须落在十二宫坐标系里，且宫干飞化 48 条齐全",
+      "paths": ["sihua", "flyingChains.palaceFlying"],
+      "minimum": { "sihua": 4, "flyingChains.palaceFlying": 48 }
+    },
+    "4": {
+      "why": "四化归宫要有宫位承接，否则只能看到星名",
+      "paths": ["sihua", "palaces"],
+      "minimum": { "sihua": 4, "palaces": 12 }
+    },
+    "5": {
+      "why": "大限与流年四化要同时在场，且大限落在哪些宫可查",
+      "paths": ["daxianSihua", "liunianSihua", "dieGong.decadal"],
+      "minimum": { "daxianSihua": 4, "liunianSihua": 4, "dieGong.decadal": 12 }
+    },
+    "6": {
+      "why": "忌链与宫干飞化要成环，自化方向要能读到",
+      "paths": ["flyingChains.jiChains", "flyingChains.palaceFlying", "selfTransform"],
+      "minimum": { "flyingChains.palaceFlying": 48 }
+    },
+    "7": {
+      "why": "大限四化要与本命飞化并置，才能判是引动还是原局",
+      "paths": ["flyingChains.palaceFlying", "daxianSihua"],
+      "minimum": { "flyingChains.palaceFlying": 48, "daxianSihua": 4 }
+    },
+    "8": {
+      "why": "四层叠宫要有十二行，且大限落宫可查",
+      "paths": ["fourLayerDieGong.rows", "dieGong.decadal"],
+      "minimum": { "fourLayerDieGong.rows": 12, "dieGong.decadal": 12 }
+    },
+    "9": {
+      "why": "大限四化是这一步唯一的证据来源",
+      "paths": ["daxianSihua"],
+      "minimum": { "daxianSihua": 4 }
+    },
+    "10": {
+      "why": "要同时有宫位、生年四化与大限四化才能说清谁引动谁",
+      "paths": ["palaces", "sihua", "daxianSihua"],
+      "minimum": { "palaces": 12, "sihua": 4, "daxianSihua": 4 }
+    },
+    "11": {
+      "why": "婚姻相关项只看宫位与生年四化，不引入未声明的推断",
+      "paths": ["palaces", "sihua"],
+      "minimum": { "palaces": 12, "sihua": 4 }
+    },
+    "12": {
+      "why": "要把大限落宫与宫位对齐，缺任一项无法定位",
+      "paths": ["palaces", "daxianSihua", "dieGong.decadal"],
+      "minimum": { "palaces": 12, "daxianSihua": 4, "dieGong.decadal": 12 }
+    },
+    "13": {
+      "why": "宫位与四化并置是最小的可核对组合",
+      "paths": ["palaces", "sihua"],
+      "minimum": { "palaces": 12, "sihua": 4 }
+    },
+    "14": {
+      "why": "这一步只要求十二宫坐标，不额外索取四化",
+      "paths": ["palaces"],
+      "minimum": { "palaces": 12 }
+    },
+    "15": {
+      "why": "逐年下钻必须有四层叠宫的十二行",
+      "paths": ["fourLayerDieGong.rows"],
+      "minimum": { "fourLayerDieGong.rows": 12 }
+    }
+  }
+}

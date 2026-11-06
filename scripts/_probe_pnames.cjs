@@ -1,0 +1,16 @@
+﻿"use strict";
+const fs=require("node:fs"),path=require("node:path"),vm=require("node:vm");
+const ROOT=path.join(__dirname,"..");
+global.self=global;
+global.iztro=require(path.join(ROOT,"web","vendor","iztro-v2.6.2.min.js"));
+["ziwei-facts.js","ziwei-adapter.js"].forEach(n=>vm.runInThisContext(fs.readFileSync(path.join(ROOT,"web",n),"utf8")));
+const chart=global.MingliZiwei.calculate({calendar:"solar",date:"1990-05-15",time:{precision:"minute",value:"12:30",branch:null},sex_for_calculation:"male"},{asOfYear:2026,asOfDate:"2026-10-30",asOfTimeIndex:6});
+const dec=chart.astrolabe.decadalList()[3];
+const ys=chart.astrolabe.yearlyList(3);
+console.log("decadal.palaceNames",JSON.stringify(dec.palaceNames));
+console.log("decadal.index",dec.index);
+console.log("annual[0].palaceNames",JSON.stringify(ys[0].palaceNames));
+console.log("annual[0].index",ys[0].index);
+console.log("annual[1].palaceNames",JSON.stringify(ys[1].palaceNames));
+console.log("palace indices",chart.palaces.map(p=>p.index).join(","));
+console.log("palace names",chart.palaces.map(p=>p.name).join(","));

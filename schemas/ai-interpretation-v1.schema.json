@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mingli.example/schemas/ai-interpretation-v1.schema.json",
+  "title": "Mingli AI Interpretation v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "status", "mode", "contractId", "summary", "sections", "limitations", "audit"],
+  "properties": {
+    "schemaVersion": { "const": "mingli-ai-interpretation/v1" },
+    "status": { "const": "ok" },
+    "mode": { "enum": ["mock", "model", "model-report"] },
+    "contractId": { "type": "string", "minLength": 1 },
+    "summary": { "$ref": "#/$defs/evidenceBlock" },
+    "sections": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 20,
+      "items": { "$ref": "#/$defs/section" }
+    },
+    "limitations": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "audit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "evidenceCount"],
+      "properties": {
+        "status": { "const": "pass" },
+        "evidenceCount": { "type": "integer", "minimum": 1 }
+      }
+    }
+  },
+  "$defs": {
+    "evidenceBlock": {
+      "type": "object",
+      "required": ["plainLanguage", "evidencePaths", "confidence"],
+      "properties": {
+        "plainLanguage": { "type": "string", "minLength": 1 },
+        "evidencePaths": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "pattern": "^/systems/" }
+        },
+        "confidence": { "enum": ["low", "medium", "high"] }
+      }
+    },
+    "section": {
+      "allOf": [
+        { "$ref": "#/$defs/evidenceBlock" },
+        {
+          "type": "object",
+          "required": ["topic", "kind", "title", "reflectionQuestion"],
+          "properties": {
+            "topic": { "enum": ["self", "relationship", "current-cycle", "cross-system", "bazi-foundation", "bazi-strength", "bazi-pattern", "bazi-useful", "bazi-climate", "bazi-relations", "bazi-cycles", "overview", "personality", "love", "career", "wealth", "health", "family", "children", "move", "friends", "home", "spirit", "parents"] },
+            "kind": { "const": "interpretation" },
+            "title": { "type": "string", "minLength": 1 },
+            "reflectionQuestion": { "type": "string", "minLength": 1 },
+            "oneLineSummary": { "type": "string", "minLength": 1 },
+            "evidenceExplanation": { "type": "string", "minLength": 1 },
+            "practicalAdvice": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 3,
+              "items": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

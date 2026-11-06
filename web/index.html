@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="本地优先、规则透明的八字与紫微斗数排盘工具。">
+    <title>命理工具 · 八字与紫微斗数</title>
+    <link rel="stylesheet" href="/styles.css?v=20261105-8">
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">跳到主要内容</a>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="命理工具首页">
+        <svg class="brand-mark" viewBox="0 0 36 36" aria-hidden="true">
+          <circle cx="18" cy="18" r="14"></circle>
+          <path d="M9 18h18M18 9v18M12.5 12.5l11 11"></path>
+          <circle cx="18" cy="18" r="2.5"></circle>
+        </svg>
+        <span>命理工具</span>
+      </a>
+      <nav class="site-nav" aria-label="页面导航">
+        <a href="#home">概览</a>
+        <a href="#chart-form">排盘</a>
+        <a href="#interpretation-section">解读</a>
+        <a href="#ai-reading-section" id="nav-ai-reading">AI 报告</a>
+      </nav>
+      <div class="header-meta">
+        <button id="open-archive" class="ghost-button" type="button" hidden>报告库<span id="archive-count">0</span></button>
+        <span class="header-note">本地计算 · 规则可追溯</span>
+      </div>
+    </header>
+
+    <main id="main-content" class="app-shell">
+      <section class="intro" aria-labelledby="page-title">
+        <h1 id="page-title">出生时刻，排成一张可核对的表</h1>
+        <p>一次填写，同时得到八字与紫微斗数。先把盘面确定下来，再谈解释。</p>
+      </section>
+
+      <section id="home" class="home" aria-labelledby="home-title">
+        <div class="home-head">
+          <div class="home-head-text">
+            <span class="home-eyebrow">第一屏</span>
+            <h2 id="home-title">先看结论，再决定要不要细排</h2>
+            <p class="home-lead">这里只显示已经算过的盘面事实：命宫、身宫、五行局，以及今年按规则挑出的三条主线。没有记录时，直接填一次出生资料。</p>
+          </div>
+          <button id="home-start" class="home-cta" type="button">开始排盘</button>
+        </div>
+
+        <div id="home-recents" class="home-recents" hidden>
+          <h3>最近的盘</h3>
+          <ul id="home-recent-list" class="home-recent-list"></ul>
+        </div>
+
+        <article id="home-summary" class="home-summary" hidden>
+          <div id="home-summary-head" class="home-summary-head"></div>
+          <h4>今年三条主线</h4>
+          <ul id="home-mainlines" class="home-mainlines"></ul>
+          <div class="home-months">
+            <div class="home-month-group">
+              <h4>值得提前准备</h4>
+              <ul id="home-prepare-list" class="home-month-list"></ul>
+            </div>
+            <div class="home-month-group">
+              <h4>建议放慢</h4>
+              <ul id="home-slow-list" class="home-month-list"></ul>
+            </div>
+          </div>
+          <p id="home-month-rules" class="home-month-rules"></p>
+          <p id="home-months-note" class="home-months-note"></p>
+          <p id="home-limits" class="home-limits"></p>
+        </article>
+      </section>
+
+      <div class="workbench">
+        <section class="input-panel" aria-labelledby="input-title">
+          <div class="section-heading">
+            <span class="section-index" aria-hidden="true">01</span>
+            <div>
+              <h2 id="input-title">出生信息</h2>
+              <p>填一次出生资料；八字可不填时间，紫微斗数需要时辰。</p>
+            </div>
+          </div>
+
+          <div id="error-summary" class="error-summary" role="alert" tabindex="-1" hidden>
+            <strong>请检查以下信息</strong>
+            <ul id="error-list"></ul>
+          </div>
+
+          <form id="chart-form" novalidate>
+            <fieldset>
+              <legend>历法</legend>
+              <div class="segmented" role="group" aria-label="选择历法">
+                <label><input type="radio" name="calendar" value="solar" checked><span>公历</span></label>
+                <label><input type="radio" name="calendar" value="lunar"><span>农历</span></label>
+              </div>
+            </fieldset>
+
+            <div class="field-row date-field-row">
+              <fieldset class="date-field" aria-describedby="date-help date-error">
+                <legend>出生日期 <span class="required-mark">必填</span></legend>
+                <div class="date-parts" role="group" aria-label="按年、月、日填写出生日期">
+                  <label class="date-part date-part-year"><span class="sr-only">出生年份</span><input id="birth-year" name="birthYear" type="text" inputmode="numeric" enterkeyhint="next" pattern="[0-9]*" maxlength="4" autocomplete="bday-year" aria-label="出生年份" aria-describedby="date-help date-error" aria-required="true" placeholder="1990"><span>年</span></label>
+                  <label class="date-part"><span class="sr-only">出生月份</span><input id="birth-month" name="birthMonth" type="text" inputmode="numeric" enterkeyhint="next" pattern="[0-9]*" maxlength="2" autocomplete="bday-month" aria-label="出生月份" aria-describedby="date-help date-error" aria-required="true" placeholder="05"><span>月</span></label>
+                  <label class="date-part"><span class="sr-only">出生日期</span><input id="birth-day" name="birthDay" type="text" inputmode="numeric" enterkeyhint="done" pattern="[0-9]*" maxlength="2" autocomplete="bday-day" aria-label="出生日期" aria-describedby="date-help date-error" aria-required="true" placeholder="15"><span>日</span></label>
+                </div>
+                <span id="date-help" class="field-help">直接填写年、月、日；年和月填满后会自动跳到下一项。</span>
+                <span id="date-error" class="field-error"></span>
+              </fieldset>
+              <label id="leap-field" class="check-field" hidden>
+                <input id="is-leap" name="isLeap" type="checkbox">
+                <span>出生月份是闰月</span>
+              </label>
+            </div>
+
+            <div id="minute-field" class="field">
+              <label for="birth-time">出生时间 <span class="optional">选填</span></label>
+              <input id="birth-time" name="birthTime" type="time" step="60" aria-describedby="time-help time-error">
+              <span id="time-help" class="field-help">不知道可以留空：八字会保留时柱未知，紫微斗数则暂不生成。</span>
+              <span id="time-error" class="field-error"></span>
+              <button id="branch-mode-toggle" class="text-action" type="button" aria-expanded="false" aria-controls="branch-field">我只知道大概时辰</button>
+            </div>
+
+            <div id="branch-field" class="field" hidden>
+              <label for="time-branch">出生时辰</label>
+              <select id="time-branch" name="timeBranch" aria-describedby="branch-help branch-error">
+                <option value="">请选择</option>
+                <option value="子">子时 · 23:00–00:59</option>
+                <option value="丑">丑时 · 01:00–02:59</option>
+                <option value="寅">寅时 · 03:00–04:59</option>
+                <option value="卯">卯时 · 05:00–06:59</option>
+                <option value="辰">辰时 · 07:00–08:59</option>
+                <option value="巳">巳时 · 09:00–10:59</option>
+                <option value="午">午时 · 11:00–12:59</option>
+                <option value="未">未时 · 13:00–14:59</option>
+                <option value="申">申时 · 15:00–16:59</option>
+                <option value="酉">酉时 · 17:00–18:59</option>
+                <option value="戌">戌时 · 19:00–20:59</option>
+                <option value="亥">亥时 · 21:00–22:59</option>
+              </select>
+              <span id="branch-help" class="field-help">按大约两小时为一个时辰；紫微斗数遇到子时仍需具体时间，以区分晚上 23 点和凌晨 0 点。</span>
+              <span id="branch-error" class="field-error"></span>
+              <button id="minute-mode-toggle" class="text-action" type="button">改填具体时间</button>
+            </div>
+
+            <fieldset>
+              <legend>排盘性别 <span class="required-mark">必选</span></legend>
+              <div class="segmented" role="group" aria-label="选择排盘性别" aria-describedby="sex-error">
+                <label><input type="radio" name="sex" value="male"><span>男</span></label>
+                <label><input type="radio" name="sex" value="female"><span>女</span></label>
+              </div>
+              <p class="field-help">仅用于传统大运顺逆规则，不代表身份记录。</p>
+              <span id="sex-error" class="field-error"></span>
+            </fieldset>
+
+            <div class="field focus-year-field">
+              <label for="focus-year-mode">重点年份 <span class="optional-mark">选填</span></label>
+              <div class="focus-year-controls">
+                <select id="focus-year-mode" name="focusYearMode" aria-describedby="focus-year-help focus-year-error">
+                  <option value="current">今年</option>
+                  <option value="next">明年</option>
+                  <option value="custom">自选年份</option>
+                </select>
+                <input id="focus-year-custom" name="focusYearCustom" type="number" inputmode="numeric" min="1900" max="2100" placeholder="例如 2030" hidden aria-describedby="focus-year-help focus-year-error">
+              </div>
+              <span id="focus-year-help" class="field-help">默认解读今年；只增加年度观察坐标，不改变出生排盘。</span>
+              <span id="focus-year-error" class="field-error"></span>
+            </div>
+
+            <details class="advanced-input">
+              <summary>出生地校时（选填）</summary>
+              <p class="field-help">出生时间接近时辰交界时再填写。经度用于真太阳时校正；不填则继续按北京时间排盘。</p>
+              <div class="field">
+                <label for="birthplace-label">出生地</label>
+                <input id="birthplace-label" name="birthplaceLabel" type="text" autocomplete="address-level2" placeholder="例如：北京市">
+              </div>
+              <div class="field">
+                <label for="birth-longitude">东经度数</label>
+                <input id="birth-longitude" name="birthLongitude" type="number" inputmode="decimal" min="-180" max="180" step="0.0001" placeholder="例如：116.4074" aria-describedby="longitude-help longitude-error">
+                <span id="longitude-help" class="field-help">东经为正，西经为负。填写后，八字与紫微会共用同一校正时间。</span>
+                <span id="longitude-error" class="field-error"></span>
+              </div>
+              <label class="check-field">
+                <input id="dst-clock" name="dstClock" type="checkbox">
+                <span>出生证明记录的是夏令时钟表时间，先减 1 小时</span>
+              </label>
+            </details>
+
+            <div class="form-actions">
+              <button id="submit-button" class="button button-primary" type="submit">
+                <span>开始排盘</span>
+                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 6l4 4-4 4"></path></svg>
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <section class="result-panel" aria-labelledby="result-title" aria-live="polite" aria-busy="false">
+          <div class="result-topline">
+            <div class="section-heading">
+              <span class="section-index" aria-hidden="true">02</span>
+              <div>
+                <h2 id="result-title">排盘结果</h2>
+                <p id="result-subtitle">等待出生信息</p>
+              </div>
+            </div>
+            <span id="result-stamp" class="result-stamp">未计算</span>
+          </div>
+
+          <div id="system-switch" class="system-switch" role="tablist" aria-label="选择排盘体系" hidden>
+            <button id="system-bazi" type="button" role="tab" aria-selected="true" aria-controls="result-content">八字</button>
+            <button id="system-ziwei" type="button" role="tab" aria-selected="false" aria-controls="ziwei-content" tabindex="-1">紫微斗数</button>
+          </div>
+
+          <div id="empty-state" class="empty-state">
+            <div class="pillar-grid pillar-grid-empty" aria-label="四柱占位">
+              <div><span>年柱</span><strong>· ·</strong></div>
+              <div><span>月柱</span><strong>· ·</strong></div>
+              <div><span>日柱</span><strong>· ·</strong></div>
+              <div><span>时柱</span><strong>· ·</strong></div>
+            </div>
+            <div class="empty-copy">
+              <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="17"></circle><path d="M24 12v24M12 24h24"></path></svg>
+              <div><h3>结果将在这里展开</h3><p>同一份出生资料会生成八字和紫微斗数两个结果；缺少时辰时不会猜测紫微命盘。</p></div>
+            </div>
+          </div>
+
+          <div id="loading-state" class="loading-state" hidden>
+            <div class="loading-rule"></div>
+            <p>正在按固定规则计算…</p>
+          </div>
+
+          <div id="result-content" class="result-content" hidden>
+            <div class="calendar-line">
+              <span id="solar-display"></span>
+              <span id="lunar-display"></span>
+            </div>
+
+            <div id="pillar-grid" class="pillar-grid"></div>
+            <div class="rhythm-line" aria-hidden="true"><span></span></div>
+
+            <section id="interpretation-section" class="interpretation-section" aria-labelledby="interpretation-title" hidden>
+              <div class="interpretation-heading">
+                <div>
+                  <h3 id="interpretation-title">白话解读</h3>
+                  <p>先看日主，再逐柱展开；每一项都对应这张盘的实际排盘结果。</p>
+                </div>
+                <span class="interpretation-label">入门版</span>
+              </div>
+              <div id="day-master-summary" class="day-master-summary"></div>
+              <div id="interpretation-cards" class="interpretation-cards"></div>
+              <p id="interpretation-note" class="interpretation-note"></p>
+            </section>
+
+            <div id="warning-list" class="warning-list" hidden></div>
+
+            <div class="tab-list" role="tablist" aria-label="结果分类">
+              <button id="tab-summary" role="tab" aria-selected="true" aria-controls="panel-summary">总览</button>
+              <button id="tab-luck" role="tab" aria-selected="false" aria-controls="panel-luck" tabindex="-1">大运</button>
+              <button id="tab-annual" role="tab" aria-selected="false" aria-controls="panel-annual" tabindex="-1">流年</button>
+              <button id="tab-source" role="tab" aria-selected="false" aria-controls="panel-source" tabindex="-1">规则与来源</button>
+            </div>
+
+            <div id="panel-summary" class="tab-panel" role="tabpanel" aria-labelledby="tab-summary"></div>
+            <div id="panel-luck" class="tab-panel" role="tabpanel" aria-labelledby="tab-luck" hidden></div>
+            <div id="panel-annual" class="tab-panel" role="tabpanel" aria-labelledby="tab-annual" hidden></div>
+            <div id="panel-source" class="tab-panel" role="tabpanel" aria-labelledby="tab-source" hidden></div>
+          </div>
+
+          <div id="ziwei-content" class="ziwei-content" role="tabpanel" aria-labelledby="system-ziwei" hidden></div>
+
+          <section id="overview" class="overview" aria-labelledby="overview-title" hidden>
+            <div class="overview-heading">
+              <div>
+                <span class="section-index" aria-hidden="true">01</span>
+                <div>
+                  <h3 id="overview-title">先看这一页</h3>
+                  <p>这里把两套并排放在一起（四柱 + 紫微命盘 + 这一年该注意的六件事），和上面的页签无关；上面的页签只切详细盘。</p>
+                </div>
+              </div>
+              <label class="overview-year-label">看哪一年
+                <select id="overview-year-top"></select>
+              </label>
+            </div>
+            <div id="overview-body" class="overview-body"></div>
+          </section>
+
+
+          <section id="annual-timeline-section" class="annual-timeline-section" aria-labelledby="annual-timeline-title" hidden>
+            <div class="annual-timeline-heading">
+              <div>
+                <span class="annual-timeline-kicker">确定性事实</span>
+                <h3 id="annual-timeline-title">年度月份时间轴（12 个节气流月）</h3>
+                <p>按节气划分的十二个月，附八字流月干支、关系条数与紫微流月状态。这里只展示已经计算并校验过的事实，不含推测或吉凶判断。</p>
+              </div>
+              <span id="annual-timeline-year" class="annual-timeline-year">—</span>
+            </div>
+            <p id="annual-timeline-summary" class="annual-timeline-summary"></p>
+            <details id="annual-timeline-diagnostics" class="annual-timeline-diagnostics">
+              <summary>校验明细与指纹</summary>
+              <p id="annual-timeline-fingerprints" class="annual-timeline-fingerprints"></p>
+              <ul id="annual-timeline-checks" class="annual-timeline-checks"></ul>
+            </details>
+            <div id="annual-timeline-months" class="annual-timeline-months"></div>
+          </section>
+
+
+          <section id="ai-reading-section" class="ai-reading-section" aria-labelledby="ai-reading-title" hidden>
+            <div class="ai-reading-heading">
+              <div>
+                <span class="ai-reading-kicker">按需调用</span>
+                <h3 id="ai-reading-title">基于盘面证据的解读报告</h3>
+                <p>授权后，本机服务会把出生日期、时辰、用于排盘的性别和盘面事实发送给 DeepSeek；姓名与出生地不发送。生成过的报告会留在本机浏览器里，可从页头的「报告库」再打开；服务端不保存。</p>
+              </div>
+              <span id="ai-reading-badge" class="ai-reading-badge" hidden>DeepSeek 测试</span>
+            </div>
+            <label class="ai-consent"><input id="ai-reading-consent" type="checkbox"><span>我已了解上述数据流转，并同意将本次排盘事实发送给模型生成解读。</span></label>
+            <div class="ai-reading-toolbar">
+              <button id="generate-ai-reading" class="button button-primary" type="button" disabled>同意并生成报告</button>
+              <button id="clear-ai-reading-cache" class="ghost-button" type="button" hidden>清除本机临时报告</button>
+            </div>
+            <p id="ai-reading-status" class="ai-reading-status" role="status">排盘完成后可选择是否授权；未勾选不会发送任何资料。</p>
+            <details id="ai-report-plan" class="ai-report-plan" hidden>
+              <summary>查看完整报告目录与盘面证据</summary>
+              <div id="ai-report-plan-content"></div>
+            </details>
+            <div id="ai-reading-result" class="ai-reading-result" hidden></div>
+          </section>
+
+          <section id="annual-reading-section" class="annual-reading-section" aria-labelledby="annual-reading-title" hidden>
+            <div class="annual-reading-heading">
+              <div>
+                <span class="ai-reading-kicker">年度专项</span>
+                <h3 id="annual-reading-title">年度报告</h3>
+                <p id="annual-reading-description">先算所选年份的年度坐标，再生成六个生活主题的白话说明。报告只用当前页签那一套体系（八字看流年干支与十神，紫微看流年四化与宫位），两套结论不互相串联。</p>
+      <div class="annual-year-row">
+        <label for="annual-year">看哪一年</label>
+        <select id="annual-year" class="annual-year-pick"></select>
+        <span id="annual-year-note" class="annual-year-note"></span>
+      </div>
+              </div>
+              <span id="annual-reading-year" class="annual-year-badge"></span>
+            </div>
+            <button id="generate-annual-reading" class="ai-reading-action" type="button" disabled>生成年度专项解读</button>
+            <p id="annual-reading-status" class="ai-reading-status" role="status"></p>
+            <div id="annual-reading-result" class="annual-reading-result" hidden></div>
+          </section>
+        </section>
+      </div>
+
+      <p class="disclaimer">传统文化学习与娱乐参考 · 不构成医疗、法律、投资或其他现实决策建议</p>
+    </main>
+
+    <dialog id="archive-dialog" class="archive-dialog" aria-labelledby="archive-title">
+      <div class="archive-head">
+        <div>
+          <span class="archive-kicker">本机</span>
+          <h2 id="archive-title">报告库</h2>
+          <p>只存模型输出与校验后的引用，不存出生资料。</p>
+        </div>
+        <button id="archive-close" class="ghost-button" type="button">关闭</button>
+      </div>
+      <div class="archive-body">
+        <ul id="archive-list" class="archive-list"></ul>
+        <article id="archive-view" class="archive-view" hidden></article>
+      </div>
+      <p id="archive-status" class="archive-status" role="status"></p>
+      <button id="archive-clear" class="ghost-button" type="button" hidden>清空报告库</button>
+    </dialog>
+    <script src="/vendor/iztro-v2.6.2.min.js" defer></script>
+    <script src="/vendor/renhuai-patterns.js" defer></script>
+    <script src="/ziwei-facts.js?v=20261105-1" defer></script>
+<script src="/annual-timeline.js?v=20261105-1" defer></script>
+    <script src="/ziwei-adapter.js?v=20261105-1" defer></script>
+    <script src="/ziwei-interpretation.js?v=20261105-1" defer></script>
+<script src="/ziwei-knowledge-digest.js?v=20261105-1" defer></script>
+<script src="/bazi-knowledge.js?v=20261105-1" defer></script>
+    <script src="/interpretation.js?v=20261105-1" defer></script>
+    <script src="/report-structure.js?v=20261105-2" defer></script>
+    <script src="/ai-contract.js?v=20261105-1" defer></script>
+    <script src="/ai-interpretation.js?v=20261105-3" defer></script>
+    <script src="/report-archive.js?v=20261105-1" defer></script>
+    <script src="/overview.js?v=20261105-9" defer></script>
+      <script src="/home.js?v=20261105-1" defer></script>
+    <script src="/date-input.js?v=20261105-1" defer></script>
+    <script src="/app.js?v=20261105-8" defer></script>
+  </body>
+</html>
