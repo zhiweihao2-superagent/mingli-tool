@@ -97,3 +97,4 @@ const bare = api.layoutReport({ sections: [] }, stubMeasure);
 assert.ok(bare.height > 0, "空报告也要能出图");
 
 console.log(`report_image.test.cjs: ${__checks} assertions passed`);
+console.log(`===== 报告配图检查 ${__checks} 项全部通过 =====`);
