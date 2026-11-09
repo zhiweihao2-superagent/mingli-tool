@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="dsh-design" content="miniprogram">
+<title>今日流日 · 命理工具</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="app.css">
+<style>
+  .day-head { padding-top: var(--space-4); }
+  .day-head h1 { font-size: var(--fs-h1); line-height: 1.25; margin-top: var(--space-2); }
+  .day-head .meta { margin-top: var(--space-2); }
+
+  .card { margin-top: var(--space-4); background: var(--surface); border: var(--hair); border-radius: var(--radius); padding: var(--space-4); }
+  .card h2 { font-size: var(--fs-h3); }
+  .card .lead { margin-top: var(--space-2); font-size: var(--fs-meta); color: var(--muted); line-height: 1.7; }
+
+  .pair { margin-top: var(--space-3); display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); border-top: var(--hair); padding-top: var(--space-3); }
+  .pair div { min-width: 0; }
+  .pair span { display: block; font-size: 11px; color: var(--muted); letter-spacing: .12em; }
+  .pair b { display: block; margin-top: 2px; font-family: var(--font-serif); font-weight: var(--w-head); font-size: var(--fs-h3); letter-spacing: .04em; }
+
+  .rows { list-style: none; margin: var(--space-3) 0 0; padding: 0; }
+  .rows li { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); padding: var(--space-3) 0; border-top: var(--hair); }
+  .rows li:first-child { border-top: 0; }
+  .rows b { font-family: var(--font-serif); font-weight: var(--w-head); font-size: var(--fs-body); letter-spacing: .04em; }
+  .rows .meta { text-align: right; letter-spacing: 0; }
+
+  .tips { margin-top: var(--space-4); padding: var(--space-4); background: var(--wash); border-radius: var(--radius); }
+  .tips b { font-family: var(--font-serif); font-weight: var(--w-head); font-size: var(--fs-meta); }
+  .tips ul { margin: var(--space-2) 0 0; padding-left: 18px; font-size: var(--fs-meta); color: var(--muted); line-height: 1.75; }
+
+  .notice { margin-top: var(--space-4); padding: var(--space-4); border: 1px solid rgba(163, 58, 43, .35); border-radius: var(--radius); background: var(--surface); }
+  .notice b { display: block; font-family: var(--font-serif); font-size: var(--fs-body); }
+  .notice p { margin-top: var(--space-2); font-size: 12px; color: var(--muted); line-height: 1.7; }
+  .notice .btn { display: inline-flex; width: auto; margin-top: var(--space-3); line-height: 1; }
+  .who { margin-top: var(--space-4); display: grid; grid-template-columns: 1fr auto; gap: var(--space-2); align-items: center; }
+  .who label { grid-column: 1 / -1; font-size: 11px; color: var(--muted); letter-spacing: .12em; }
+  .who select {
+    width: 100%; min-height: 44px; padding: 0 var(--space-2);
+    background: var(--bg); border: var(--hair); border-radius: var(--radius); color: var(--text); font-size: var(--fs-body);
+  }
+  .who .ghost {
+    min-height: 44px; padding: 0 var(--space-3); display: inline-flex; align-items: center;
+    border-radius: var(--radius); box-shadow: inset 0 0 0 1px var(--line); font-size: var(--fs-meta);
+  }
+  .who .ghost[disabled] { opacity: .45; }
+  .who-note { margin-top: var(--space-2); font-size: 12px; color: var(--muted); }
+</style>
+</head>
+<body>
+<svg class="sprite" aria-hidden="true">
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M14.5 6l-6 6 6 6"/></symbol>
+</svg>
+
+<header class="mp-top">
+  <div class="mp-status">
+    <span>9:41</span>
+    <span class="status-icons">
+      <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx=".8"/><rect x="5" y="5.5" width="3" height="6.5" rx=".8"/><rect x="10" y="3" width="3" height="9" rx=".8"/><rect x="15" y="0" width="3" height="12" rx=".8"/></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1.5 4.3a9.5 9.5 0 0 1 13 0"/><path d="M4 7.1a6 6 0 0 1 8 0"/><circle cx="8" cy="10" r="1.3" fill="currentColor" stroke="none"/></svg>
+      <svg width="27" height="12" viewBox="0 0 27 12"><rect x=".5" y=".5" width="23" height="11" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="2" y="2" width="17" height="8" rx="1.8" fill="currentColor"/><path d="M25 4v4c.8-.3 1.4-1.1 1.4-2s-.6-1.7-1.4-2z" fill="currentColor" fill-opacity=".4"/></svg>
+    </span>
+  </div>
+  <div class="mp-nav">
+    <a class="mp-back" href="home.html" aria-label="返回今日"><svg class="ico"><use href="#i-back"/></svg></a>
+    <h1 class="head">今日流日</h1>
+  </div>
+</header>
+
+<main class="mp-page">
+  <div id="empty" class="notice" hidden>
+    <b>还没有出生资料</b>
+    <p>这一页把今天的干支和你的日主、当前大运放在一起看。填一次出生资料就能对照。</p>
+    <a class="btn" href="input.html">去填写</a>
+  </div>
+
+  <div id="error" class="notice" hidden>
+    <b>没连上本机排盘服务</b>
+    <p id="error-text"></p>
+  </div>
+
+  <div id="content" hidden>
+    <div class="who" id="who-bar">
+      <label for="who-select">看谁的流日</label>
+      <select id="who-select" aria-label="选择档案"></select>
+      <button type="button" id="who-default" class="ghost">设为默认</button>
+    </div>
+    <p class="who-note" id="who-note"></p>
+
+    <section class="day-head">
+      <p class="eyebrow" id="today-date">今天</p>
+      <h1 class="head" id="today-gz">—</h1>
+      <p class="meta" id="today-sub"></p>
+    </section>
+
+    <section class="card">
+      <h2 class="head">和你的关系</h2>
+      <p class="lead" id="relation-lead"></p>
+      <div class="pair">
+        <div><span>你的日主</span><b id="day-master">—</b></div>
+        <div><span>今日十神</span><b id="today-god">—</b></div>
+      </div>
+      <ul class="rows" id="relations"></ul>
+    </section>
+
+    <section class="card">
+      <h2 class="head">今天的坐标</h2>
+      <ul class="rows" id="context"></ul>
+    </section>
+
+    <div class="tips">
+      <b>可以怎么用</b>
+      <ul id="tips"></ul>
+    </div>
+
+    <section class="card" style="margin-top:var(--space-4)">
+      <h2 class="head">让 AI 讲这一天</h2>
+      <p class="lead">把今天的干支放到你的盘上，讲节奏、场景和今天能做的事；输出经服务端复核。</p>
+      <button class="ai-btn" id="today-ai" type="button" style="margin-top:var(--space-3)">生成这天的解读</button>
+      <div class="ai-result" id="today-result"></div>
+    </section>
+  </div>
+</main>
+
+<script src="profile.js"></script>
+<script src="glossary.js"></script>
+<script src="vendor/ai-contract.js"></script>
+<script src="vendor/report-structure.js"></script>
+<script src="vendor/bazi-knowledge.js"></script>
+<script src="ai.js"></script>
+<script src="today-data.js"></script>
+</body>
+</html>

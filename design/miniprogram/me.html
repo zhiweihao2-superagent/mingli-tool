@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="dsh-design" content="miniprogram">
+<title>我的 · 命理工具</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="app.css">
+<style>
+  .me-head { padding-top: var(--space-4); }
+  .me-head h1 { font-size: var(--fs-h1); line-height: 1.3; margin-top: var(--space-2); }
+
+  .card { margin-top: var(--space-5); background: var(--surface); border: var(--hair); border-radius: var(--radius); padding: var(--space-4); }
+  .card-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); }
+  .card-head h2 { font-size: var(--fs-h3); }
+  .card-head .meta { letter-spacing: 0; }
+  .card-head a.meta { min-height: 44px; min-width: 44px; display: inline-flex; align-items: center; justify-content: flex-end; }
+
+  .profiles { list-style: none; margin: var(--space-3) 0 0; padding: 0; border-top: var(--hair); }
+  .profiles li { display: flex; align-items: center; gap: var(--space-2); border-bottom: var(--hair); }
+  .profiles li.on { background: var(--wash); margin: 0 calc(var(--space-3) * -1); padding: 0 var(--space-3); }
+  .profiles .pick { flex: 1; min-width: 0; min-height: 60px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 2px; text-align: left; }
+  .profiles .who { font-family: var(--font-serif); font-weight: var(--w-head); font-size: var(--fs-body); letter-spacing: .04em; display: flex; align-items: center; gap: var(--space-2); }
+  .profiles .badge { font-style: normal; font-family: var(--font-sans); font-size: 10px; color: var(--accent); border: 1px solid rgba(163, 58, 43, .4); border-radius: 2px; padding: 0 4px; line-height: 16px; letter-spacing: .06em; }
+  .profiles .sum { font-size: 12px; color: var(--muted); }
+  .profiles .del { flex: 0 0 auto; min-height: 44px; padding: 0 var(--space-2); font-size: 12px; color: var(--muted); }
+
+  .rows { list-style: none; margin: var(--space-3) 0 0; padding: 0; }
+  .rows li { border-top: var(--hair); }
+  .rows li:last-child { border-bottom: var(--hair); }
+  .rows a, .rows button {
+    width: 100%; min-height: 52px; display: flex; align-items: center; justify-content: space-between; gap: var(--space-3);
+    font-size: var(--fs-body); text-align: left; color: var(--text);
+  }
+  .rows a .arrow, .rows button .arrow { color: var(--muted); font-size: var(--fs-meta); }
+  .rows .danger { color: var(--accent); }
+
+  .notice { margin-top: var(--space-4); padding: var(--space-4); border: 1px solid rgba(163, 58, 43, .35); border-radius: var(--radius); background: var(--surface); }
+  .notice b { display: block; font-family: var(--font-serif); font-size: var(--fs-body); }
+  .notice p { margin-top: var(--space-2); font-size: 12px; color: var(--muted); line-height: 1.7; }
+  .notice .btn { display: inline-flex; width: auto; margin-top: var(--space-3); line-height: 1; }
+
+  .about { margin-top: var(--space-5); font-size: 12px; color: var(--muted); line-height: 1.8; }
+  .about b { display: block; font-family: var(--font-serif); font-weight: var(--w-head); font-size: var(--fs-meta); color: var(--text); margin-bottom: var(--space-1); }
+  .toast { margin-top: var(--space-3); font-size: 12px; color: var(--accent); }
+</style>
+</head>
+<body>
+<svg class="sprite" aria-hidden="true">
+  <symbol id="i-today" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 3.5v2M12 18.5v2M4.5 12h2M17.5 12h2M6.7 6.7l1.4 1.4M15.9 15.9l1.4 1.4M17.3 6.7l-1.4 1.4M8.1 15.9l-1.4 1.4"/></symbol>
+  <symbol id="i-journal" viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="1.5"/><path d="M8.5 8.5h7M8.5 12h7M8.5 15.5h4"/></symbol>
+  <symbol id="i-me" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c1.2-3.6 4-5.5 7-5.5s5.8 1.9 7 5.5"/></symbol>
+</svg>
+
+<header class="mp-top">
+  <div class="mp-status">
+    <span>9:41</span>
+    <span class="status-icons">
+      <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx=".8"/><rect x="5" y="5.5" width="3" height="6.5" rx=".8"/><rect x="10" y="3" width="3" height="9" rx=".8"/><rect x="15" y="0" width="3" height="12" rx=".8"/></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1.5 4.3a9.5 9.5 0 0 1 13 0"/><path d="M4 7.1a6 6 0 0 1 8 0"/><circle cx="8" cy="10" r="1.3" fill="currentColor" stroke="none"/></svg>
+      <svg width="27" height="12" viewBox="0 0 27 12"><rect x=".5" y=".5" width="23" height="11" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="2" y="2" width="17" height="8" rx="1.8" fill="currentColor"/><path d="M25 4v4c.8-.3 1.4-1.1 1.4-2s-.6-1.7-1.4-2z" fill="currentColor" fill-opacity=".4"/></svg>
+    </span>
+  </div>
+  <div class="mp-nav custom">
+    <span class="brand"><b>我的</b></span>
+  </div>
+</header>
+
+<main class="mp-page">
+  <section class="me-head">
+    <p class="eyebrow">本机 · 不联网</p>
+    <h1 class="head">本机</h1>
+  </section>
+
+  <section class="card">
+    <div class="card-head">
+      <h2 class="head">档案</h2>
+      <a class="meta" href="input.html?new=1" style="color:var(--accent)">新增</a>
+    </div>
+    <ul class="profiles" id="profiles"></ul>
+  </section>
+
+  <div id="no-profile" class="notice" hidden>
+    <b>还没有填过出生资料</b>
+    <p>填一次就能看八字、紫微和年度；家里几个人可以各存一份，随时切换。</p>
+    <a class="btn" href="input.html">去填写</a>
+  </div>
+
+  <section class="card">
+    <div class="card-head">
+      <h2 class="head">本机数据</h2>
+      <span class="meta" id="report-count">0 份报告</span>
+    </div>
+    <ul class="rows">
+      <li><a href="journal.html">解读记录<span class="arrow">›</span></a></li>
+      <li><a href="match.html">合盘对照<span class="arrow">›</span></a></li>
+      <li><button type="button" class="danger" id="clear">清除本机数据<span class="arrow">›</span></button></li>
+    </ul>
+    <p class="toast" id="toast" hidden></p>
+  </section>
+
+  <section class="about">
+    <b>关于</b>
+    命理工具 · 本地计算，规则可追溯。排盘由固定版本的确定性引擎完成，AI 解读只读取已校验的盘面事实，输出经服务端复核后展示。<br>
+    传统文化学习与娱乐参考，不构成医疗、法律、投资或其他现实决策建议。
+  </section>
+</main>
+
+<nav class="mp-tabbar" aria-label="主导航">
+  <a href="home.html"><svg class="ico"><use href="#i-today"/></svg>今日</a>
+  <a href="journal.html"><svg class="ico"><use href="#i-journal"/></svg>记录</a>
+  <a class="is-on" href="me.html" aria-current="page"><svg class="ico"><use href="#i-me"/></svg>我的</a>
+</nav>
+
+<script src="profile.js"></script>
+<script src="me-data.js"></script>
+</body>
+</html>

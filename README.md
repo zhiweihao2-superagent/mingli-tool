@@ -110,3 +110,36 @@ node tests/ai_interpretation.test.cjs
 八字引擎基于 MIT 许可的 [`jinchenma94/bazi-skill`](https://github.com/jinchenma94/bazi-skill)，固定提交为 `112a5d84cd1a001a0038cafca3be68d93e4c0cc9`。原始算法与回归测试保留在 `scripts/` 中，适配层位于 `src/mingli_tool/`。
 
 紫微斗数网页引擎基于 MIT 许可的 [`SylarLong/iztro`](https://github.com/SylarLong/iztro)，固定为 `2.6.2`。项目通过 `web/ziwei-adapter.js` 转换为自己的稳定结构，不让页面组件直接依赖第三方原始字段。
+
+## 微信小程序原型（design/miniprogram）
+
+`design/miniprogram/` 是可在浏览器里直接跑的十二屏原型（静态 HTML + 原生 JS，无构建步骤），
+用来先定交互与信息结构，后续再转成 uni-app / 原生小程序：
+
+| 屏 | 文件 | 说明 |
+| --- | --- | --- |
+| 今日 | `home.html` | 今日干支、公历农历对、三张盘的快捷入口、最近解读 |
+| 出生信息 | `input.html` | 公历/农历、闰月、三种时辰精度、出生地与真太阳时 |
+| 八字 | `bazi.html` | 四柱、藏干、纳音、五行、旺衰·格局·调候·用神候选、神煞、大运、流年 |
+| 紫微 | `ziwei.html` | 十二宫、中宫、四化、大运、重点宫位；宫格可点进详情 |
+| 宫位详情 | `palace.html` | 单宫的主星/辅星/对宫/大限 |
+| 年度 | `annual.html` | 流年干支、与四柱关系、十二流月、六主题 |
+| 时间坐标 | `cycle.html` | 单步大运 / 单个流月展开，并可出 AI 解读 |
+| 今日流日 | `today.html` | 今日与当前档案的十神、地支关系、大运流月坐标，可出 AI 解读 |
+| 合盘 | `match.html` | 八字与紫微两套视角的对照，AI 合盘解读 |
+| 记录 | `journal.html` | 本机生成的解读报告列表 |
+| 解读报告 | `report.html` | 全文、复制、存成长图 |
+| 我的 | `me.html` | 档案管理（默认档案 / 删除）、报告数、清除本机数据 |
+
+本地预览：`python design/miniprogram/serve.py 8899`，然后打开 `http://127.0.0.1:8899/input.html`。
+页面通过 `127.0.0.1:8765` 调用本机服务，跨域已对 `/api/*` 开放。
+
+## AI 接口
+
+| 端点 | 用途 |
+| --- | --- |
+| `POST /api/v1/interpret` | 单批主题解读（八字 7 / 紫微 7 / 年度 6 个主题，分批调用） |
+| `POST /api/v1/match` | 双盘合盘对照，两份单体系契约分别校验后带 `a:` / `b:` 前缀引用证据 |
+| `POST /api/v1/moment` | 流日 / 流月解读，把指定干支放到本命盘上 |
+
+三者都会校验契约事实、证据路径（必须能在契约里解析）与违禁措辞，不通过则退回重试。

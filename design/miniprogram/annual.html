@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="dsh-design" content="miniprogram">
+<title>年度解读 · 命理工具</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="app.css">
+<style>
+  .yearbar {
+    margin-top: var(--space-3);
+    display: grid; grid-template-columns: 44px 1fr 44px; align-items: center; gap: var(--space-2);
+    padding: var(--space-3) var(--space-2);
+    background: var(--surface); border: var(--hair); border-radius: var(--radius);
+  }
+  .yearbar button { width: 44px; height: 44px; display: grid; place-items: center; color: var(--muted); }
+  .yearbar button:disabled { opacity: .35; }
+  .yearbar .ico { width: 20px; height: 20px; }
+  .yearbar .mid { text-align: center; }
+  .yearbar .mid b { display: block; font-family: var(--font-serif); font-weight: var(--w-head); font-size: var(--fs-h1); line-height: 1.2; letter-spacing: .06em; }
+  .yearbar .mid span { font-size: 12px; color: var(--muted); letter-spacing: 0; }
+
+  .annual-head { margin-top: var(--space-4); display: flex; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; }
+  .annual-head b { font-family: var(--font-serif); font-weight: var(--w-head); font-size: var(--fs-h1); letter-spacing: .08em; }
+  .annual-head .meta { letter-spacing: 0; }
+
+  .rail { display: flex; gap: var(--space-2); overflow-x: auto; margin: 0 calc(var(--gutter) * -1); padding: 0 var(--gutter) var(--space-1); scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .rail::-webkit-scrollbar { display: none; }
+  .mon { flex: 0 0 62px; scroll-snap-align: start; text-align: center; padding: var(--space-3) 2px; border-radius: var(--radius); box-shadow: inset 0 0 0 1px var(--line); }
+  .mon b { display: block; font-family: var(--font-serif); font-weight: var(--w-head); font-size: var(--fs-body); letter-spacing: .04em; }
+  .mon span { font-size: 10px; color: var(--muted); }`n  .mon .mon-day { display: block; font-size: 10px; color: var(--muted); opacity: .8; }
+  .mon.on { background: var(--primary); box-shadow: none; }
+  .mon.on b { color: var(--on); }
+  .mon.on span { color: rgba(247, 243, 234, .8); }
+
+  .topics { list-style: none; margin: 0; padding: 0; border-top: var(--hair); }
+  .topics li { border-bottom: var(--hair); }
+  .topics div { display: flex; align-items: baseline; gap: var(--space-3); padding: var(--space-4) 0; min-height: 56px; }
+  .t-idx { flex: 0 0 24px; font-family: var(--font-serif); font-size: var(--fs-meta); color: var(--muted); }
+  .t-txt { flex: 1; min-width: 0; }
+  .t-txt b { display: block; font-family: var(--font-serif); font-weight: var(--w-head); font-size: var(--fs-body); letter-spacing: .08em; }
+  .t-txt p { margin-top: 2px; font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+  .notice { margin-top: var(--space-4); padding: var(--space-4); border: 1px solid rgba(163, 58, 43, .35); border-radius: var(--radius); background: var(--surface); }
+  .notice b { display: block; font-family: var(--font-serif); font-size: var(--fs-body); }
+  .notice p { margin-top: var(--space-2); font-size: 12px; color: var(--muted); line-height: 1.7; }
+  .notice .btn { display: inline-flex; width: auto; align-self: flex-start; margin-top: var(--space-3); line-height: 1; }
+  .who-quick {
+    max-width: 120px; min-height: 44px; padding: 0 var(--space-2);
+    background: var(--bg); border: var(--hair); border-radius: var(--radius);
+    color: var(--text); font-size: var(--fs-meta);
+  }
+</style>
+</head>
+<body>
+<svg class="sprite" aria-hidden="true">
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M14.5 6l-6 6 6 6"/></symbol>
+  <symbol id="i-cycle" viewBox="0 0 24 24"><path d="M4.5 12a7.5 7.5 0 0 1 12.8-5.3L20 9"/><path d="M20 4.5V9h-4.5"/><path d="M19.5 12a7.5 7.5 0 0 1-12.8 5.3L4 15"/><path d="M4 19.5V15h4.5"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="M14.5 6l-6 6 6 6"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path d="M9.5 6l6 6-6 6"/></symbol>
+  <symbol id="i-today" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 3.5v2M12 18.5v2M4.5 12h2M17.5 12h2M6.7 6.7l1.4 1.4M15.9 15.9l1.4 1.4M17.3 6.7l-1.4 1.4M8.1 15.9l-1.4 1.4"/></symbol>
+  <symbol id="i-journal" viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="1.5"/><path d="M8.5 8.5h7M8.5 12h7M8.5 15.5h4"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9.5 6l6 6-6 6"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 4.5l1.8 4.7 4.7 1.8-4.7 1.8L12 17.5l-1.8-4.7L5.5 11l4.7-1.8z"/><path d="M18 16.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></symbol>
+</svg>
+
+<header class="mp-top">
+  <div class="mp-status">
+    <span>9:41</span>
+    <span class="status-icons">
+      <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx=".8"/><rect x="5" y="5.5" width="3" height="6.5" rx=".8"/><rect x="10" y="3" width="3" height="9" rx=".8"/><rect x="15" y="0" width="3" height="12" rx=".8"/></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1.5 4.3a9.5 9.5 0 0 1 13 0"/><path d="M4 7.1a6 6 0 0 1 8 0"/><circle cx="8" cy="10" r="1.3" fill="currentColor" stroke="none"/></svg>
+      <svg width="27" height="12" viewBox="0 0 27 12"><rect x=".5" y=".5" width="23" height="11" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="2" y="2" width="17" height="8" rx="1.8" fill="currentColor"/><path d="M25 4v4c.8-.3 1.4-1.1 1.4-2s-.6-1.7-1.4-2z" fill="currentColor" fill-opacity=".4"/></svg>
+    </span>
+  </div>
+  <div class="mp-nav">
+    <a class="mp-back" href="home.html" aria-label="返回今日"><svg class="ico"><use href="#i-back"/></svg></a>
+    <h1 class="head">年度解读</h1>
+  </div>
+</header>
+
+<main class="mp-page">
+  <nav class="mp-seg" aria-label="切换命盘体系">
+    <a href="bazi.html">八字</a>
+    <a href="ziwei.html">紫微</a>
+    <a class="on" href="annual.html" aria-current="page">年度</a>
+  </nav>
+  <div id="empty" class="notice" hidden>
+    <b>还没有出生资料</b>
+    <p>年度解读要先有一张本命盘。填一次出生资料，就能逐年看流年与流月。</p>
+    <a class="btn" href="input.html">去填写</a>
+  </div>
+
+  <div id="error" class="notice" hidden>
+    <b>没能算出这一年的流年</b>
+    <p id="error-text"></p>
+  </div>
+
+  <div id="content" hidden>
+    <select id="who-quick" class="who-quick" aria-label="这次看谁的盘"></select>
+    <div class="yearbar">
+      <button type="button" id="prev" aria-label="上一年"><svg class="ico"><use href="#i-left"/></svg></button>
+      <div class="mid"><b id="year">—</b><span id="year-meta">—</span></div>
+      <button type="button" id="next" aria-label="下一年"><svg class="ico"><use href="#i-right"/></svg></button>
+    </div>
+
+    <div class="annual-head">
+      <b id="ganzhi">—</b>
+      <span class="meta" id="head-meta"></span>
+    </div>
+
+    <section class="ai-card" aria-label="AI 年度报告">
+      <div class="ai-head">
+        <span class="ai-tag">AI</span>
+        <h2 class="ai-title" id="ai-title">年度解读</h2>
+      </div>
+      <p class="ai-body" id="ai-body"></p>
+      <div class="ai-actions">
+        <button class="ai-btn" type="button"><svg class="ico"><use href="#i-spark"/></svg>生成年度报告（6 个主题）</button>
+        <span class="ai-note" id="ai-note"></span>
+      </div>
+      <div class="ai-result" id="ai-result"></div>
+      <a class="ai-report-link" id="report-link" href="report.html" hidden>查看完整报告 · 存长图<svg class="ico" style="width:14px;height:14px"><use href="#i-chev"/></svg></a>
+    </section>
+
+    <div class="section-head">
+      <h2 class="head">流月</h2>
+      <span class="meta" id="month-meta"></span>
+    </div>
+    <div class="rail" id="months" aria-label="十二流月"></div>
+
+    <div class="section-head">
+      <h2 class="head">六个主题</h2>
+      <span class="meta">按流年十神与盘面关系</span>
+    </div>
+    <ul class="topics" id="topics"></ul>
+  </div>
+</main>
+
+<script src="vendor/ai-contract.js"></script>
+<script src="vendor/report-structure.js"></script>
+<script src="vendor/bazi-knowledge.js"></script>
+<script src="limits.js"></script>
+<script src="ai.js"></script>
+<script src="profile.js"></script>
+<script src="who-quick.js"></script>
+<script src="annual-data.js"></script>
+</body>
+</html>

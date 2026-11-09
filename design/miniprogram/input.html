@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="dsh-design" content="miniprogram">
+<title>出生信息 · 命理工具</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="app.css">
+<style>
+  .lead { padding-top: var(--space-4); }
+  .lead h1 { font-size: var(--fs-h1); line-height: 1.35; margin-top: var(--space-2); }
+  .lead p { margin-top: var(--space-2); color: var(--muted); }
+
+  .card { margin-top: var(--space-5); background: var(--surface); border: var(--hair); border-radius: var(--radius); padding: var(--space-4); }
+  .card-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); }
+  .card-head h2 { font-size: var(--fs-h3); }
+  .card-head .meta { letter-spacing: .04em; }
+
+  .tabs { display: flex; gap: var(--space-2); margin-top: var(--space-3); border-bottom: var(--hair); }
+  .tabs button {
+    position: relative; min-height: 44px; min-width: 44px; padding: 0 var(--space-2);
+    display: inline-flex; align-items: center;
+    font-size: var(--fs-body); color: var(--muted); letter-spacing: .1em;
+  }
+  .tabs button[aria-selected="true"] { color: var(--text); font-weight: 600; }
+  .tabs button[aria-selected="true"]::after {
+    content: ""; position: absolute; left: 0; right: .1em; bottom: -1px; height: 2px; background: var(--primary);
+  }
+
+  .date-row { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: var(--space-3); margin-top: var(--space-4); }
+  .field { min-width: 0; }
+  .field label { display: block; font-size: 12px; color: var(--muted); letter-spacing: .12em; margin-bottom: var(--space-1); }
+  .field input {
+    width: 100%; min-height: 44px; padding: 0 var(--space-3);
+    background: var(--bg); border: var(--hair); border-radius: var(--radius);
+    color: var(--text); font: 500 17px/1 var(--font-sans); letter-spacing: .06em;
+  }
+  .field input::placeholder { color: var(--muted); opacity: .7; font-weight: 400; }
+  .field input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+  /* 三段式：精确 / 只知时辰 / 未知 */
+  .seg3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-top: var(--space-3); padding: 4px; background: var(--wash); border-radius: var(--radius); }
+  .seg3 button {
+    min-height: 44px; display: grid; place-items: center;
+    font-size: var(--fs-body); letter-spacing: .04em; color: var(--muted); border-radius: 3px;
+  }
+  .seg3 button[aria-pressed="true"] { background: var(--surface); color: var(--text); font-weight: 600; box-shadow: 0 0 0 1px var(--line); }
+
+  .precise { margin-top: var(--space-4); }
+  .precise input[type="time"] {
+    width: 100%; min-height: 52px; padding: 0 var(--space-3);
+    background: var(--bg); border: var(--hair); border-radius: var(--radius);
+    color: var(--text); font: 500 24px/1 var(--font-sans); letter-spacing: .1em;
+    text-align: center;
+  }
+  .readout {
+    margin-top: var(--space-2); display: flex; align-items: baseline; justify-content: center; gap: var(--space-2);
+    font-size: var(--fs-meta); color: var(--muted);
+  }
+  .readout b { font-family: var(--font-serif); font-weight: var(--w-head); font-size: var(--fs-h3); color: var(--text); letter-spacing: .08em; }
+
+  .chips { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-2); margin-top: var(--space-3); }
+  .chip {
+    min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
+    border-radius: var(--radius); box-shadow: inset 0 0 0 1px var(--line); color: var(--text);
+  }
+  .chip b { font-family: var(--font-serif); font-weight: var(--w-head); font-size: var(--fs-h3); line-height: 1.1; }
+  .chip span { font-size: 10px; color: var(--muted); letter-spacing: .02em; }
+  .chip[aria-pressed="true"] { background: var(--primary); box-shadow: none; }
+  .chip[aria-pressed="true"] b { color: var(--on); }
+  .chip[aria-pressed="true"] span { color: rgba(247, 243, 234, .8); }
+
+  .solar-readout {
+    margin-top: var(--space-3); padding: var(--space-2) var(--space-3);
+    display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3);
+    background: var(--wash); border-radius: var(--radius);
+  }
+  .solar-readout span { font-size: 12px; color: var(--muted); letter-spacing: .06em; }
+  .solar-readout b { font-family: var(--font-serif); font-weight: var(--w-head); font-size: var(--fs-h3); letter-spacing: .06em; }
+  .solar-readout.bad b { color: var(--accent); font-size: var(--fs-meta); }
+  .hint { margin-top: var(--space-3); font-size: 12px; color: var(--muted); line-height: 1.6; }
+  .hint.warn { color: var(--accent); }
+
+  .seg2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); margin-top: var(--space-3); }
+  .seg2 button {
+    min-height: 46px; display: grid; place-items: center;
+    border-radius: var(--radius); box-shadow: inset 0 0 0 1px var(--line);
+    font-size: var(--fs-body); letter-spacing: .2em; color: var(--muted);
+  }
+  .seg2 button[aria-pressed="true"] { background: var(--surface); box-shadow: inset 0 0 0 1.5px var(--primary); color: var(--text); font-weight: 600; }
+
+  .row-switch {
+    display: flex; align-items: center; justify-content: space-between; gap: var(--space-3);
+    margin-top: var(--space-4); min-height: 44px; cursor: pointer;
+  }
+  .row-switch .txt { min-width: 0; }
+  .row-switch b { display: block; font-weight: 500; }
+  .switch { flex: 0 0 auto; width: 46px; height: 28px; border-radius: var(--radius-pill); background: var(--line); position: relative; }
+  .switch[aria-checked="true"] { background: var(--primary); }
+  .switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: var(--surface); transition: transform .2s; }
+  .switch[aria-checked="true"]::after { transform: translateX(18px); }
+
+  .tips { margin-top: var(--space-4); display: flex; gap: var(--space-3); padding: var(--space-3) var(--space-4); background: var(--wash); border-radius: var(--radius); }
+  .tips .ico { flex: 0 0 20px; width: 20px; height: 20px; color: var(--gold); margin-top: 2px; }
+  .tips p { font-size: 12px; color: var(--muted); line-height: 1.7; }
+  .tips b { color: var(--text); font-weight: 500; }
+
+  .actionbar {
+    position: fixed; left: 0; right: 0; bottom: 0;
+    padding: 8px var(--gutter) calc(var(--home-bar) + 8px);
+    background: var(--bg); border-top: var(--hair);
+  }
+  .actionbar .btn { width: 100%; }
+  .actionbar .btn[aria-disabled="true"] { opacity: .45; }
+  .page-pad { padding-bottom: 112px; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<svg class="sprite" aria-hidden="true">
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M14.5 6l-6 6 6 6"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5M12 7.8v.4"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13M13 7l5 5-5 5"/></symbol>
+</svg>
+
+<header class="mp-top">
+  <div class="mp-status">
+    <span>9:41</span>
+    <span class="status-icons">
+      <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx=".8"/><rect x="5" y="5.5" width="3" height="6.5" rx=".8"/><rect x="10" y="3" width="3" height="9" rx=".8"/><rect x="15" y="0" width="3" height="12" rx=".8"/></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1.5 4.3a9.5 9.5 0 0 1 13 0"/><path d="M4 7.1a6 6 0 0 1 8 0"/><circle cx="8" cy="10" r="1.3" fill="currentColor" stroke="none"/></svg>
+      <svg width="27" height="12" viewBox="0 0 27 12"><rect x=".5" y=".5" width="23" height="11" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="2" y="2" width="17" height="8" rx="1.8" fill="currentColor"/><path d="M25 4v4c.8-.3 1.4-1.1 1.4-2s-.6-1.7-1.4-2z" fill="currentColor" fill-opacity=".4"/></svg>
+    </span>
+  </div>
+  <div class="mp-nav">
+    <a class="mp-back" href="home.html" aria-label="返回今日"><svg class="ico"><use href="#i-back"/></svg></a>
+    <h1 class="head">出生信息</h1>
+  </div>
+</header>
+
+<main class="mp-page page-pad">
+  <section class="lead">
+    <p class="eyebrow">第一步 · 排盘资料</p>
+    <h1 class="head">填一次，两套盘一起算</h1>
+    <p class="meta">资料只存在本机，用来排这一次盘。</p>
+  </section>
+
+  <section class="card">
+    <div class="card-head">
+      <h2 class="head">这是谁的盘</h2>
+      <span class="meta">选填</span>
+    </div>
+    <div class="field" style="margin-top:var(--space-3)">
+      <label for="who">称呼</label>
+      <input id="who" type="text" placeholder="我" maxlength="12" autocomplete="off">
+    </div>
+    <p class="hint">填「妈妈」「小林」都行，换人看盘时按这个名字找。</p>
+  </section>
+
+  <section class="card">
+    <div class="card-head">
+      <h2 class="head">出生日期</h2>
+      <span class="meta" id="calendar-label">公历</span>
+    </div>
+    <div class="tabs" role="tablist" aria-label="历法">
+      <button type="button" role="tab" id="tab-solar" aria-selected="true">公历</button>
+      <button type="button" role="tab" id="tab-lunar" aria-selected="false">农历</button>
+    </div>
+    <div class="date-row">
+      <div class="field"><label for="y">年</label><input id="y" type="text" inputmode="numeric" maxlength="4" placeholder="1990" value="1990" autocomplete="bday-year"></div>
+      <div class="field"><label for="m">月</label><input id="m" type="text" inputmode="numeric" maxlength="2" placeholder="05" value="05" autocomplete="bday-month"></div>
+      <div class="field"><label for="d">日</label><input id="d" type="text" inputmode="numeric" maxlength="2" placeholder="15" value="15" autocomplete="bday-day"></div>
+    </div>
+    <div id="leap-row" hidden style="margin-top:var(--space-3)">
+      <p class="hint" id="leap-hint">这一年有闰月，选一下你出生的是哪个月。</p>
+      <div class="seg2" role="group" aria-label="是否闰月">
+        <button type="button" id="leap-no" aria-pressed="true">四月</button>
+        <button type="button" id="leap-yes" aria-pressed="false">闰四月</button>
+      </div>
+    </div>
+    <p class="hint" id="date-hint">按公历填，年月日填满会自动跳到下一项。</p>
+    <div class="solar-readout" id="solar-readout" hidden>
+      <span>对应公历</span><b id="solar-date">—</b>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head">
+      <h2 class="head">出生时间</h2>
+      <span class="meta">北京时间</span>
+    </div>
+
+    <div class="seg3" role="group" aria-label="时间精度">
+      <button type="button" id="p-minute" aria-pressed="true">精确到分</button>
+      <button type="button" id="p-branch" aria-pressed="false">只知时辰</button>
+      <button type="button" id="p-unknown" aria-pressed="false">不知道</button>
+    </div>
+
+    <div class="precise" id="block-minute">
+      <input type="time" id="time" value="12:30" step="60" aria-label="出生时间">
+      <p class="readout" id="readout"><b>午时</b><span>11:00–12:59</span></p>
+    </div>
+
+    <div id="block-branch" hidden>
+      <div class="chips" role="group" aria-label="出生时辰">
+        <button class="chip" type="button" aria-pressed="false" data-branch="子" data-hour="23"><b>子</b><span>23–01</span></button>
+        <button class="chip" type="button" aria-pressed="false" data-branch="丑" data-hour="1"><b>丑</b><span>01–03</span></button>
+        <button class="chip" type="button" aria-pressed="false" data-branch="寅" data-hour="3"><b>寅</b><span>03–05</span></button>
+        <button class="chip" type="button" aria-pressed="false" data-branch="卯" data-hour="5"><b>卯</b><span>05–07</span></button>
+        <button class="chip" type="button" aria-pressed="false" data-branch="辰" data-hour="7"><b>辰</b><span>07–09</span></button>
+        <button class="chip" type="button" aria-pressed="false" data-branch="巳" data-hour="9"><b>巳</b><span>09–11</span></button>
+        <button class="chip" type="button" aria-pressed="true" data-branch="午" data-hour="11"><b>午</b><span>11–13</span></button>
+        <button class="chip" type="button" aria-pressed="false" data-branch="未" data-hour="13"><b>未</b><span>13–15</span></button>
+        <button class="chip" type="button" aria-pressed="false" data-branch="申" data-hour="15"><b>申</b><span>15–17</span></button>
+        <button class="chip" type="button" aria-pressed="false" data-branch="酉" data-hour="17"><b>酉</b><span>17–19</span></button>
+        <button class="chip" type="button" aria-pressed="false" data-branch="戌" data-hour="19"><b>戌</b><span>19–21</span></button>
+        <button class="chip" type="button" aria-pressed="false" data-branch="亥" data-hour="21"><b>亥</b><span>21–23</span></button>
+      </div>
+      <p class="readout" id="branch-readout"><b>午时</b><span>11:00–12:59</span></p>
+    </div>
+
+    <div id="block-unknown" hidden>
+      <p class="hint warn">已按时柱未知处理：八字照常出四柱（时柱显示未知），紫微斗数需要时辰，暂时不出盘。</p>
+    </div>
+
+    <p class="hint" id="time-hint">不记得几点几分就用「只知时辰」；完全不确定就选「不知道」。</p>
+  </section>
+
+  <section class="card">
+    <div class="card-head">
+      <h2 class="head">排盘性别</h2>
+      <span class="meta">只用于大运顺逆</span>
+    </div>
+    <div class="seg2" role="group" aria-label="性别">
+      <button type="button" aria-pressed="true">男</button>
+      <button type="button" aria-pressed="false">女</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-head">
+      <h2 class="head">出生地</h2>
+      <span class="meta">可不填</span>
+    </div>
+    <p class="hint" style="margin-top:var(--space-2)">知道出生城市就填，用来做真太阳时校正；不知道就留空，按北京时间排。</p>
+    <div class="field" style="margin-top:var(--space-3)">
+      <label for="city">城市</label>
+      <input id="city" type="text" placeholder="例如：杭州" autocomplete="address-level2">
+    </div>
+    <div class="field" id="lng-field" hidden style="margin-top:var(--space-3)">
+      <label for="lng">东经度数</label>
+      <input id="lng" type="text" inputmode="decimal" placeholder="例如：120.15">
+    </div>
+    <p class="hint" id="place-status">留空即可。只有出生时间贴着时辰交界（比如 10:58、12:59）时，出生地才会改变时柱。</p>
+  </section>
+
+  <div class="tips">
+    <svg class="ico"><use href="#i-info"/></svg>
+    <p><b>紫微斗数必须有时辰。</b>选「不知道」时八字照常出四柱，紫微会提示补充时辰。</p>
+  </div>
+</main>
+
+<div class="actionbar">
+  <a class="btn" id="start" href="bazi.html">开始排盘 <svg class="ico"><use href="#i-arrow"/></svg></a>
+</div>
+
+<script src="profile.js"></script>
+<script src="lunar.js"></script>
+<script src="input.js"></script>
+</body>
+</html>

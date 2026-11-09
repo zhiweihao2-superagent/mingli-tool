@@ -1,0 +1,110 @@
+{
+  "format": 1,
+  "type": "design",
+  "title": {
+    "zh": "命理工具",
+    "en": "Mingli Tool"
+  },
+  "description": {
+    "zh": "八字与紫微斗数排盘的微信小程序：今日、出生信息、八字、紫微、年度解读、记录六屏",
+    "en": "A WeChat mini program for BaZi and Zi Wei charts: today, input, bazi, ziwei, annual and journal"
+  },
+  "kind": "miniprogram",
+  "screens": [
+    {
+      "file": "home.html",
+      "title": {
+        "zh": "今日",
+        "en": "Today"
+      }
+    },
+    {
+      "file": "input.html",
+      "title": {
+        "zh": "出生信息",
+        "en": "Birth details"
+      }
+    },
+    {
+      "file": "bazi.html",
+      "title": {
+        "zh": "八字",
+        "en": "BaZi"
+      }
+    },
+    {
+      "file": "ziwei.html",
+      "title": {
+        "zh": "紫微斗数",
+        "en": "Zi Wei"
+      }
+    },
+    {
+      "file": "annual.html",
+      "title": {
+        "zh": "年度解读",
+        "en": "Annual"
+      }
+    },
+    {
+      "file": "journal.html",
+      "title": {
+        "zh": "记录",
+        "en": "Journal"
+      }
+    },
+    {
+      "file": "report.html",
+      "title": {
+        "zh": "解读报告",
+        "en": "Report"
+      }
+    },
+    {
+      "file": "me.html",
+      "title": {
+        "zh": "我的",
+        "en": "Mine"
+      }
+    },
+    {
+      "file": "palace.html",
+      "title": {
+        "zh": "宫位详情",
+        "en": "Palace"
+      }
+    }    ,
+    {
+      "file": "today.html",
+      "title": { "zh": "今日与我", "en": "Today & me" }
+    },
+    {
+      "file": "cycle.html",
+      "title": { "zh": "时间坐标", "en": "Cycle" }
+    },
+    {
+      "file": "match.html",
+      "title": { "zh": "合盘对照", "en": "Match" }
+    }
+  ],
+  "style": "ink",
+  "categories": [
+    "lifestyle"
+  ],
+  "tags": [
+    "form",
+    "chart",
+    "calendar",
+    "profile"
+  ],
+  "lang": "zh",
+  "license": "CC0-1.0",
+  "from": {
+    "id": "orderg-x__slow-breath",
+    "rev": "08e9e40834f9",
+    "author": "orderg-x",
+    "license": "CC0-1.0",
+    "url": "https://github.com/OrderG-X/dsh-design-gallery/tree/main/templates/orderg-x__slow-breath",
+    "at": "2026-11-08T07:43:24.041Z"
+  }
+}

@@ -1,0 +1,51 @@
+:root {
+  /* 色彩：宣纸、墨、朱砂、铜金 */
+  --bg: #F4EFE5;
+  --surface: #FBF8F2;
+  --text: #23201B;
+  --muted: #6B6157;
+  --line: #DCD2C1;
+  --primary: #2A3C38;
+  --accent: #A33A2B;
+  --gold: #8E6E42;
+  --on: #F7F3EA;
+  --link: #A33A2B;
+  --wash: #EDE6D8;
+  --wash-deep: #E2D9C8;
+  --nav-bg: #F4EFE5;
+
+  /* 字体：标题宋、正文黑 */
+  --font-sans: -apple-system, "PingFang SC", "HarmonyOS Sans SC", "MiSans", "Microsoft YaHei", system-ui, sans-serif;
+  --font-serif: "Songti SC", "Noto Serif SC", "Source Han Serif SC", "SimSun", serif;
+  --w-head: 500;
+
+  /* 字号阶梯 */
+  --fs-micro: 11px;
+  --fs-meta: 13px;
+  --fs-body: 15px;
+  --fs-h3: 18px;
+  --fs-h1: 26px;
+  --fs-num: 40px;
+
+  /* 间距 */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --gutter: 16px;
+
+  /* 形状 */
+  --radius: 4px;
+  --radius-pill: 999px;
+  --shadow: none;
+  --hair: 1px solid var(--line);
+
+  /* 微信小程序骨架：状态栏 44 + 导航 44，标签栏 50 + 安全区 34 */
+  --status-h: 44px;
+  --nav-h: 44px;
+  --tab-h: 50px;
+  --home-bar: 34px;
+}

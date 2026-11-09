@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="dsh-design" content="miniprogram">
+<title>记录 · 命理工具</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="app.css">
+<style>
+  .j-top { display: flex; align-items: center; justify-content: space-between; padding-top: var(--space-4); gap: var(--space-3); }
+  .j-top h1 { font-size: var(--fs-h1); line-height: 1.3; letter-spacing: .12em; }
+  .pen {
+    display: inline-flex; align-items: center; gap: var(--space-2);
+    min-height: 44px; padding: 0 var(--space-4);
+    border-radius: var(--radius-pill); box-shadow: inset 0 0 0 1px var(--line);
+    font-size: var(--fs-meta); letter-spacing: .06em; white-space: nowrap;
+  }
+  .pen .ico { width: 18px; height: 18px; }
+
+  .entries { list-style: none; margin: var(--space-4) 0 0; padding: 0; }
+  .entries li { border-top: var(--hair); }
+  .entries li:last-child { border-bottom: var(--hair); }
+  .entries a { display: grid; grid-template-columns: 44px 1fr 16px; gap: var(--space-3); align-items: center; padding: var(--space-4) 0; min-height: 64px; }
+  .e-mark {
+    width: 44px; height: 44px; border-radius: 3px; display: grid; place-items: center;
+    font-family: var(--font-serif); font-size: var(--fs-h3); color: var(--primary);
+    box-shadow: inset 0 0 0 1px var(--line);
+  }
+  .e-txt { min-width: 0; }
+  .e-line { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-2); }
+  .e-line b { font-weight: 600; font-size: var(--fs-body); }
+  .e-line span { font-size: 12px; color: var(--muted); white-space: nowrap; }
+  .e-meta { margin-top: 2px; font-size: 12px; color: var(--muted); }
+  .e-chev { color: var(--muted); }
+  .e-chev .ico { width: 16px; height: 16px; }
+
+  .notice { margin-top: var(--space-4); padding: var(--space-4); border: 1px solid rgba(163, 58, 43, .35); border-radius: var(--radius); background: var(--surface); }
+  .notice b { display: block; font-family: var(--font-serif); font-size: var(--fs-body); }
+  .notice p { margin-top: var(--space-2); font-size: 12px; color: var(--muted); line-height: 1.7; }
+  .notice .btn { display: inline-flex; width: auto; margin-top: var(--space-3); line-height: 1; }
+
+  .footnote { margin-top: var(--space-4); font-size: 12px; color: var(--muted); line-height: 1.7; }
+</style>
+</head>
+<body>
+<svg class="sprite" aria-hidden="true">
+  <symbol id="i-today" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 3.5v2M12 18.5v2M4.5 12h2M17.5 12h2M6.7 6.7l1.4 1.4M15.9 15.9l1.4 1.4M17.3 6.7l-1.4 1.4M8.1 15.9l-1.4 1.4"/></symbol>
+  <symbol id="i-journal" viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="1.5"/><path d="M8.5 8.5h7M8.5 12h7M8.5 15.5h4"/></symbol>
+  <symbol id="i-me" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c1.2-3.6 4-5.5 7-5.5s5.8 1.9 7 5.5"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24"><path d="M5 19l1-4.5L15.5 5a2.1 2.1 0 0 1 3 3L9 17.5z"/><path d="M13.5 7l3 3"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9.5 6l6 6-6 6"/></symbol>
+</svg>
+
+<header class="mp-top">
+  <div class="mp-status">
+    <span>9:41</span>
+    <span class="status-icons">
+      <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx=".8"/><rect x="5" y="5.5" width="3" height="6.5" rx=".8"/><rect x="10" y="3" width="3" height="9" rx=".8"/><rect x="15" y="0" width="3" height="12" rx=".8"/></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1.5 4.3a9.5 9.5 0 0 1 13 0"/><path d="M4 7.1a6 6 0 0 1 8 0"/><circle cx="8" cy="10" r="1.3" fill="currentColor" stroke="none"/></svg>
+      <svg width="27" height="12" viewBox="0 0 27 12"><rect x=".5" y=".5" width="23" height="11" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="2" y="2" width="17" height="8" rx="1.8" fill="currentColor"/><path d="M25 4v4c.8-.3 1.4-1.1 1.4-2s-.6-1.7-1.4-2z" fill="currentColor" fill-opacity=".4"/></svg>
+    </span>
+  </div>
+  <div class="mp-nav custom">
+    <span class="brand"><b>记录</b></span>
+  </div>
+</header>
+
+<main class="mp-page">
+  <div class="j-top">
+    <h1 class="head">解读记录</h1>
+    <a class="pen" href="input.html"><svg class="ico"><use href="#i-pen"/></svg>新排盘</a>
+  </div>
+
+  <div id="empty" class="notice" hidden>
+    <b>还没有生成过解读</b>
+    <p>排完盘点「生成完整解读」，跑完的报告会留在这里，随时能翻回来看全文、存成长图。</p>
+    <a class="btn" href="input.html">去排盘</a>
+  </div>
+
+  <ul class="entries" id="entries"></ul>
+
+  <p class="footnote">只存模型输出与校验后的引用，不存出生资料；换设备或清缓存就没了。</p>
+</main>
+
+<nav class="mp-tabbar" aria-label="主导航">
+  <a href="home.html"><svg class="ico"><use href="#i-today"/></svg>今日</a>
+  <a class="is-on" href="journal.html" aria-current="page"><svg class="ico"><use href="#i-journal"/></svg>记录</a>
+  <a href="me.html"><svg class="ico"><use href="#i-me"/></svg>我的</a>
+</nav>
+
+<script src="journal-data.js"></script>
+</body>
+</html>

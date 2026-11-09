@@ -316,6 +316,7 @@
             <label class="ai-consent"><input id="ai-reading-consent" type="checkbox"><span>我已了解上述数据流转，并同意将本次排盘事实发送给模型生成解读。</span></label>
             <div class="ai-reading-toolbar">
               <button id="generate-ai-reading" class="button button-primary" type="button" disabled>同意并生成报告</button>
+              <button id="download-ai-reading" class="ghost-button" type="button" hidden>下载图片</button>
               <button id="clear-ai-reading-cache" class="ghost-button" type="button" hidden>清除本机临时报告</button>
             </div>
             <p id="ai-reading-status" class="ai-reading-status" role="status">排盘完成后可选择是否授权；未勾选不会发送任何资料。</p>
@@ -341,6 +342,7 @@
               <span id="annual-reading-year" class="annual-year-badge"></span>
             </div>
             <button id="generate-annual-reading" class="ai-reading-action" type="button" disabled>生成年度专项解读</button>
+            <button id="download-annual-reading" class="ghost-button" type="button" hidden>下载年度图片</button>
             <p id="annual-reading-status" class="ai-reading-status" role="status"></p>
             <div id="annual-reading-result" class="annual-reading-result" hidden></div>
           </section>
@@ -357,6 +359,7 @@
           <h2 id="archive-title">报告库</h2>
           <p>只存模型输出与校验后的引用，不存出生资料。</p>
         </div>
+        <button id="archive-download" class="ghost-button" type="button" hidden>下载这份</button>
         <button id="archive-close" class="ghost-button" type="button">关闭</button>
       </div>
       <div class="archive-body">
@@ -382,6 +385,8 @@
     <script src="/overview.js?v=20261105-9" defer></script>
       <script src="/home.js?v=20261105-1" defer></script>
     <script src="/date-input.js?v=20261105-1" defer></script>
+    <script src="/report-image.js?v=20261107-2" defer></script>
+    <script src="/report-export.js?v=20261107-1" defer></script>
     <script src="/app.js?v=20261105-8" defer></script>
   </body>
 </html>

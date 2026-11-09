@@ -64,6 +64,12 @@ const archiveList = document.querySelector("#archive-list");
 const archiveView = document.querySelector("#archive-view");
 const archiveStatus = document.querySelector("#archive-status");
 const archiveClearButton = document.querySelector("#archive-clear");
+const downloadAiReadingButton = document.querySelector("#download-ai-reading");
+const archiveDownloadButton = document.querySelector("#archive-download");
+const downloadAnnualReadingButton = document.querySelector("#download-annual-reading");
+let lastAiRecord = null;
+let currentArchiveRecord = null;
+let lastAnnualRecord = null;
 const focusYearMode = document.querySelector("#focus-year-mode");
 const focusYearCustom = document.querySelector("#focus-year-custom");
 const annualReadingSection = document.querySelector("#annual-reading-section");
@@ -691,6 +697,8 @@ function prepareAiReading(contract) {
   aiReadingConsent.checked = false;
   aiReadingResult.hidden = true;
   aiReadingResult.replaceChildren();
+  lastAiRecord = null;
+  if (downloadAiReadingButton) downloadAiReadingButton.hidden = true;
   aiReadingSection.hidden = false;
   aiReadingButton.disabled = true;
   const report = contract.reportPlan;
@@ -876,6 +884,8 @@ annualReadingButton.addEventListener("click", async () => {
     });
     renderAnnualReading(output);
     rememberReport(output, `annual-${year}`, `${year} 年度`);
+    lastAnnualRecord = lastAiRecord;
+    if (downloadAnnualReadingButton) downloadAnnualReadingButton.hidden = false;
     aiReadingCacheClear.hidden = false;
     annualReadingStatus.textContent = `${year} 年度六主题报告已完成 · ${output.audit.evidenceCount} 条证据引用通过校验`;
   } catch (error) {
@@ -2184,7 +2194,7 @@ function refreshArchiveBadge() {
 function rememberReport(output, system, systemLabel) {
   const api = archiveApi();
   if (!api || !output?.sections?.length) return;
-  api.save({
+  const saved = api.save({
     system,
     systemLabel,
     requirementId: output.requirementId || latestAiContract?.requirementId || "",
@@ -2193,11 +2203,20 @@ function rememberReport(output, system, systemLabel) {
     summary: output.summary,
     audit: output.audit,
   });
+  // 下载按钮优先用报告库落盘的那一份；落盘失败时退回内存记录，保证「刚生成的」也能导出。
+  lastAiRecord = saved?.record || window.MingliReportExport?.recordFromResult(output, { system, systemLabel })
+    || { system, systemLabel, title: `${systemLabel}解读报告`, sections: output.sections, summary: output.summary, audit: output.audit, createdAt: new Date().toISOString() };
+  if (downloadAiReadingButton) {
+    downloadAiReadingButton.hidden = false;
+    downloadAiReadingButton.textContent = "下载图片";
+  }
   refreshArchiveBadge();
 }
 
 function renderArchivedReport(record) {
   if (!archiveView) return;
+  currentArchiveRecord = record || null;
+  if (archiveDownloadButton) archiveDownloadButton.hidden = !record;
   archiveView.replaceChildren();
   const head = make("div", null, "archive-view-head");
   head.append(
@@ -2295,6 +2314,58 @@ function closeArchive() {
   if (!archiveDialog) return;
   if (typeof archiveDialog.close === "function") archiveDialog.close();
   else archiveDialog.removeAttribute("open");
+}
+
+async function exportReport(record, format, statusNode) {
+  if (!record) {
+    if (statusNode) statusNode.textContent = "还没有可导出的报告。";
+    return;
+  }
+  const notify = message => { if (statusNode) statusNode.textContent = message; };
+
+  // 默认导出 PNG；按住 Shift 仍可导出 JSON 备份。
+  if (format === "json") {
+    const backup = window.MingliReportExport;
+    if (!backup) { notify("导出模块未加载，请刷新页面重试。"); return; }
+    const result = backup.download(record, "json");
+    notify(result.ok ? `已导出 ${result.name}` : (result.reason || "导出失败。"));
+    return;
+  }
+
+  const images = window.MingliReportImage;
+  if (!images) { notify("图片模块未加载，请刷新页面重试。"); return; }
+  notify("正在生成图片…");
+  try {
+    const result = await images.download(record);
+    if (result && result.ok) {
+      notify(`已保存 ${result.name}（${result.width}×${result.height}）`);
+    } else {
+      notify((result && result.reason) || "导出失败。");
+    }
+  } catch (error) {
+    notify(`导出失败：${error && error.message ? error.message : error}`);
+  }
+}
+
+if (downloadAiReadingButton) {
+  downloadAiReadingButton.title = "下载 PNG 图片；按住 Shift 导出 JSON";
+  downloadAiReadingButton.addEventListener("click", event => {
+    exportReport(lastAiRecord, event.shiftKey ? "json" : "md", aiReadingStatus);
+  });
+}
+
+if (downloadAnnualReadingButton) {
+  downloadAnnualReadingButton.title = "下载 PNG 图片；按住 Shift 导出 JSON";
+  downloadAnnualReadingButton.addEventListener("click", event => {
+    exportReport(lastAnnualRecord, event.shiftKey ? "json" : "md", annualReadingStatus);
+  });
+}
+
+if (archiveDownloadButton) {
+  archiveDownloadButton.title = "下载 PNG 图片；按住 Shift 导出 JSON";
+  archiveDownloadButton.addEventListener("click", event => {
+    exportReport(currentArchiveRecord, event.shiftKey ? "json" : "md", archiveStatus);
+  });
 }
 
 if (openArchiveButton) openArchiveButton.addEventListener("click", openArchive);

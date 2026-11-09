@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="dsh-design" content="miniprogram">
+<title>紫微斗数 · 命理工具</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="app.css">
+<style>
+  .idline { margin-top: var(--space-3); font-size: 12px; color: var(--muted); letter-spacing: 0; }
+
+  .board {
+    margin-top: var(--space-3);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+      "si wu wei shen"
+      "chen mid mid you"
+      "mao mid mid xu"
+      "yin chou zi hai";
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .p { background: var(--surface); padding: var(--space-2) 4px; min-height: 96px; min-width: 0; display: flex; flex-direction: column; gap: 0; }
+  .p-name { font-size: 10px; color: var(--muted); letter-spacing: 0; display: flex; justify-content: space-between; gap: 2px; }
+  .p-name em { font-style: normal; font-family: var(--font-serif); color: var(--text); white-space: nowrap; }
+  .p-star { font-family: var(--font-serif); font-size: 12px; line-height: 1.35; color: var(--text); white-space: nowrap; }
+  .p-star i { font-style: normal; font-size: 10px; color: var(--accent); margin-left: 1px; }
+  .p-line { font-size: 10px; line-height: 1.5; color: var(--muted); white-space: nowrap; }
+  .p-spacer { margin-top: auto; }
+  .p.on { background: var(--wash); }
+  .p.on .p-name { color: var(--accent); font-weight: 600; }
+  .p.on .p-name em { color: var(--accent); }
+
+  .mid { grid-area: mid; background: var(--surface); padding: var(--space-3); display: flex; flex-direction: column; justify-content: center; gap: 3px; }
+  .mid-title { font-family: var(--font-serif); font-size: var(--fs-body); letter-spacing: .06em; }
+  .mid-line { font-size: 10px; color: var(--muted); letter-spacing: 0; line-height: 1.6; white-space: nowrap; }
+  .hua { display: grid; grid-template-columns: 1fr 1fr; gap: 1px var(--space-2); margin-top: var(--space-1); }
+  .hua span { font-size: 10px; letter-spacing: 0; color: var(--text); }
+  .hua i { font-style: normal; color: var(--accent); margin-left: 2px; }
+
+  .g-si { grid-area: si; } .g-wu { grid-area: wu; } .g-wei { grid-area: wei; } .g-shen { grid-area: shen; }
+  .g-chen { grid-area: chen; } .g-you { grid-area: you; } .g-mao { grid-area: mao; } .g-xu { grid-area: xu; }
+  .g-yin { grid-area: yin; } .g-chou { grid-area: chou; } .g-zi { grid-area: zi; } .g-hai { grid-area: hai; }
+
+  .rail { display: flex; gap: var(--space-2); overflow-x: auto; margin: 0 calc(var(--gutter) * -1); padding: 0 var(--gutter) var(--space-1); scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .rail::-webkit-scrollbar { display: none; }
+  .dec { flex: 0 0 74px; scroll-snap-align: start; text-align: center; padding: var(--space-3) 2px; border-radius: var(--radius); box-shadow: inset 0 0 0 1px var(--line); }
+  .dec b { display: block; font-family: var(--font-serif); font-weight: var(--w-head); font-size: var(--fs-body); letter-spacing: 0; }
+  .dec span { font-size: 12px; color: var(--muted); }
+  .dec.on { background: var(--primary); box-shadow: none; }
+  .dec.on b { color: var(--on); }
+  .dec.on span { color: rgba(247, 243, 234, .8); }
+
+  .keypalaces { list-style: none; margin: 0; padding: 0; border-top: var(--hair); }
+  .keypalaces li { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); padding: var(--space-3) 0; border-bottom: var(--hair); min-height: 48px; }
+  .keypalaces b { font-family: var(--font-serif); font-weight: var(--w-head); font-size: var(--fs-body); letter-spacing: 0; }
+  .keypalaces .meta { text-align: right; letter-spacing: 0; font-size: 12px; }
+
+  .notice { margin-top: var(--space-4); padding: var(--space-4); border: 1px solid rgba(163, 58, 43, .35); border-radius: var(--radius); background: var(--surface); }
+  .notice b { display: block; font-family: var(--font-serif); font-size: var(--fs-body); }
+  .notice p { margin-top: var(--space-2); font-size: 12px; color: var(--muted); line-height: 1.7; }
+  .notice .btn { display: inline-flex; width: auto; align-self: flex-start; margin-top: var(--space-3); line-height: 1; }
+  .hour-fix { margin-top: var(--space-3); border-top: var(--hair); padding-top: var(--space-3); }
+  .hour-fix-title { font-size: var(--fs-meta); color: var(--muted); }
+  .hour-fix-grid { margin-top: var(--space-2); display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-2); }
+  .hour-fix-grid button {
+    min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+    border-radius: var(--radius); box-shadow: inset 0 0 0 1px var(--line);
+  }
+  .hour-fix-grid button b { font-family: var(--font-serif); font-size: var(--fs-body); }
+  .hour-fix-grid button span { font-size: 11px; color: var(--muted); }
+  .hour-fix-grid button:active { background: var(--wash); }
+  .who-quick {
+    max-width: 120px; min-height: 44px; padding: 0 var(--space-2);
+    background: var(--bg); border: var(--hair); border-radius: var(--radius);
+    color: var(--text); font-size: var(--fs-meta);
+  }
+</style>
+</head>
+<body>
+<svg class="sprite" aria-hidden="true">
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M14.5 6l-6 6 6 6"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 4.5l1.8 4.7 4.7 1.8-4.7 1.8L12 17.5l-1.8-4.7L5.5 11l4.7-1.8z"/><path d="M18 16.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9.5 6l6 6-6 6"/></symbol>
+</svg>
+
+<header class="mp-top">
+  <div class="mp-status">
+    <span>9:41</span>
+    <span class="status-icons">
+      <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx=".8"/><rect x="5" y="5.5" width="3" height="6.5" rx=".8"/><rect x="10" y="3" width="3" height="9" rx=".8"/><rect x="15" y="0" width="3" height="12" rx=".8"/></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1.5 4.3a9.5 9.5 0 0 1 13 0"/><path d="M4 7.1a6 6 0 0 1 8 0"/><circle cx="8" cy="10" r="1.3" fill="currentColor" stroke="none"/></svg>
+      <svg width="27" height="12" viewBox="0 0 27 12"><rect x=".5" y=".5" width="23" height="11" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="2" y="2" width="17" height="8" rx="1.8" fill="currentColor"/><path d="M25 4v4c.8-.3 1.4-1.1 1.4-2s-.6-1.7-1.4-2z" fill="currentColor" fill-opacity=".4"/></svg>
+    </span>
+  </div>
+  <div class="mp-nav">
+    <a class="mp-back" href="input.html" aria-label="返回出生信息"><svg class="ico"><use href="#i-back"/></svg></a>
+    <h1 class="head">紫微斗数</h1>
+  </div>
+</header>
+
+<main class="mp-page">
+  <nav class="mp-seg" aria-label="切换命盘体系">
+    <a href="bazi.html">八字</a>
+    <a class="on" href="ziwei.html" aria-current="page">紫微</a>
+    <a href="annual.html">年度</a>
+  </nav>
+
+  <div id="empty" class="notice" hidden>
+    <b>还没有出生资料</b>
+    <p>紫微斗数需要出生时辰。填一次就能同时看到八字和紫微。</p>
+    <a class="btn" href="input.html">去填写</a>
+  </div>
+
+  <div id="error" class="notice" hidden>
+    <b>没能排出这张盘</b>
+    <p id="error-text"></p>
+  </div>
+
+  <div id="content" hidden>
+    <div class="idrow">
+      <p class="idline" id="idline" style="margin-top:0"></p>
+      <select id="who-quick" class="who-quick" aria-label="这次看谁的盘"></select>
+      <button class="mini-action" id="save-chart" type="button">存盘面图</button>
+    </div>
+    <section class="board" id="board" aria-label="紫微十二宫"></section>
+
+    <section class="ai-card" aria-label="AI 解读">
+      <div class="ai-head">
+        <span class="ai-tag">AI</span>
+        <h2 class="ai-title" id="ai-title">解读</h2>
+      </div>
+      <p class="ai-body" id="ai-body"></p>
+      <div class="ai-actions">
+        <button class="ai-btn" type="button"><svg class="ico"><use href="#i-spark"/></svg>生成完整解读（7 个主题）</button>
+        <span class="ai-note" id="ai-note"></span>
+      </div>
+      <div class="ai-result" id="ai-result"></div>
+      <a class="ai-report-link" id="report-link" href="report.html" hidden>查看完整报告 · 存长图<svg class="ico" style="width:14px;height:14px"><use href="#i-chev"/></svg></a>
+    </section>
+
+    <div class="section-head">
+      <h2 class="head">大限</h2>
+      <span class="meta" id="decadal-meta"></span>
+    </div>
+    <div class="rail" id="decadal"></div>
+
+    <div class="section-head">
+      <h2 class="head">重点宫位</h2>
+      <a class="more" href="annual.html">年度解读<svg class="ico" style="width:14px;height:14px"><use href="#i-chev"/></svg></a>
+    </div>
+    <ul class="keypalaces" id="keypalaces"></ul>
+  </div>
+</main>
+
+<script src="vendor/iztro-v2.6.2.min.js"></script>
+<script src="vendor/ziwei-facts.js"></script>
+<script src="vendor/ziwei-adapter.js"></script>
+<script src="vendor/ai-contract.js"></script>
+<script src="vendor/report-structure.js"></script>
+<script src="vendor/ziwei-knowledge-digest.js"></script>
+<script src="limits.js"></script>
+<script src="ai.js"></script>
+<script src="profile.js"></script>
+<script src="who-quick.js"></script>
+<script src="chart-image.js"></script>
+<script src="glossary.js"></script>
+<script src="ziwei-data.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="dsh-design" content="miniprogram">
+<title>宫位详情 · 命理工具</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="app.css">
+<style>
+  .head-line { padding-top: var(--space-4); display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); }
+  .head-line h1 { font-size: var(--fs-h1); line-height: 1.25; }
+  .head-line .meta { letter-spacing: 0; }
+
+  .card { margin-top: var(--space-4); background: var(--surface); border: var(--hair); border-radius: var(--radius); padding: var(--space-4); }
+  .card h2 { font-size: var(--fs-h3); }
+
+  .stars { list-style: none; margin: var(--space-3) 0 0; padding: 0; }
+  .stars li { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); padding: var(--space-2) 0; border-top: var(--hair); }
+  .stars li:first-child { border-top: 0; }
+  .stars b { font-family: var(--font-serif); font-weight: var(--w-head); font-size: var(--fs-body); letter-spacing: .04em; }
+  .stars .meta { text-align: right; letter-spacing: 0; }
+  .stars .hua { color: var(--accent); }
+
+  .kv { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); margin-top: var(--space-3); }
+  .kv span { display: block; font-size: 11px; color: var(--muted); letter-spacing: .12em; }
+  .kv b { display: block; margin-top: 2px; font-family: var(--font-serif); font-weight: var(--w-head); font-size: var(--fs-body); letter-spacing: .04em; }
+
+  .note { margin-top: var(--space-3); font-size: 12px; color: var(--muted); line-height: 1.75; }
+
+  .notice { margin-top: var(--space-4); padding: var(--space-4); border: 1px solid rgba(163, 58, 43, .35); border-radius: var(--radius); background: var(--surface); }
+  .notice b { display: block; font-family: var(--font-serif); font-size: var(--fs-body); }
+  .notice p { margin-top: var(--space-2); font-size: 12px; color: var(--muted); line-height: 1.7; }
+  .notice .btn { display: inline-flex; width: auto; margin-top: var(--space-3); line-height: 1; }
+</style>
+</head>
+<body>
+<svg class="sprite" aria-hidden="true">
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M14.5 6l-6 6 6 6"/></symbol>
+</svg>
+
+<header class="mp-top">
+  <div class="mp-status">
+    <span>9:41</span>
+    <span class="status-icons">
+      <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx=".8"/><rect x="5" y="5.5" width="3" height="6.5" rx=".8"/><rect x="10" y="3" width="3" height="9" rx=".8"/><rect x="15" y="0" width="3" height="12" rx=".8"/></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1.5 4.3a9.5 9.5 0 0 1 13 0"/><path d="M4 7.1a6 6 0 0 1 8 0"/><circle cx="8" cy="10" r="1.3" fill="currentColor" stroke="none"/></svg>
+      <svg width="27" height="12" viewBox="0 0 27 12"><rect x=".5" y=".5" width="23" height="11" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="2" y="2" width="17" height="8" rx="1.8" fill="currentColor"/><path d="M25 4v4c.8-.3 1.4-1.1 1.4-2s-.6-1.7-1.4-2z" fill="currentColor" fill-opacity=".4"/></svg>
+    </span>
+  </div>
+  <div class="mp-nav">
+    <a class="mp-back" href="ziwei.html" aria-label="返回命盘"><svg class="ico"><use href="#i-back"/></svg></a>
+    <h1 class="head">宫位</h1>
+  </div>
+</header>
+
+<main class="mp-page">
+  <div id="empty" class="notice" hidden>
+    <b>还没有出生资料</b>
+    <p>宫位详情要先有紫微命盘。填一次出生资料就能看。</p>
+    <a class="btn" href="input.html">去填写</a>
+  </div>
+
+  <div id="content" hidden>
+    <div class="head-line">
+      <h1 class="head" id="palace-name">—</h1>
+      <span class="meta" id="palace-gz"></span>
+    </div>
+    <p class="note" id="palace-topic"></p>
+
+    <section class="card">
+      <h2 class="head">主星</h2>
+      <ul class="stars" id="majors"></ul>
+    </section>
+
+    <section class="card">
+      <h2 class="head">辅星与杂曜</h2>
+      <ul class="stars" id="others"></ul>
+    </section>
+
+    <section class="card">
+      <h2 class="head">这一宫的位置</h2>
+      <div class="kv" id="context"></div>
+      <p class="note" id="context-note"></p>
+    </section>
+  </div>
+</main>
+
+<script src="vendor/iztro-v2.6.2.min.js"></script>
+<script src="vendor/ziwei-facts.js"></script>
+<script src="vendor/ziwei-adapter.js"></script>
+<script src="profile.js"></script>
+<script src="glossary.js"></script>
+<script src="palace-data.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="dsh-design" content="miniprogram">
+<title>解读报告 · 命理工具</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="app.css">
+<style>
+  .report-head { padding-top: var(--space-4); }
+  .report-head h1 { font-size: var(--fs-h1); line-height: 1.3; margin-top: var(--space-2); }
+  .report-meta { margin-top: var(--space-2); font-size: 12px; color: var(--muted); }
+
+  .section { margin-top: var(--space-5); padding-top: var(--space-4); border-top: var(--hair); }
+  .section h2 { margin: 0; font-family: var(--font-serif); font-weight: var(--w-head); font-size: var(--fs-h3); letter-spacing: .06em; }
+  .section .lead { margin-top: var(--space-2); color: var(--accent); font-size: var(--fs-meta); line-height: 1.6; }
+  .section p { margin-top: var(--space-2); line-height: 1.75; }
+  .advice { margin: var(--space-2) 0 0; padding-left: 18px; color: var(--muted); line-height: 1.7; font-size: var(--fs-meta); }
+  .ask { margin-top: var(--space-2); color: var(--muted); font-size: var(--fs-meta); }
+
+  .limits { margin-top: var(--space-5); padding-top: var(--space-4); border-top: var(--hair); }
+  .limits b { font-family: var(--font-serif); font-weight: var(--w-head); font-size: var(--fs-meta); }
+  .limits ul { margin: var(--space-2) 0 0; padding-left: 18px; color: var(--muted); font-size: var(--fs-meta); line-height: 1.7; }
+
+  .foot { margin-top: var(--space-5); padding-top: var(--space-3); border-top: var(--hair); font-size: 12px; color: var(--muted); line-height: 1.7; }
+
+  .actionbar {
+    position: fixed; left: 0; right: 0; bottom: 0;
+    display: flex; gap: var(--space-2);
+    padding: 8px var(--gutter) calc(var(--home-bar) + 8px);
+    background: var(--bg); border-top: var(--hair);
+  }
+  .actionbar .btn { flex: 1; min-height: 46px; }
+  .actionbar .ghost {
+    flex: 0 0 auto; min-height: 46px; padding: 0 var(--space-4);
+    display: inline-flex; align-items: center; border-radius: var(--radius);
+    box-shadow: inset 0 0 0 1px var(--line); color: var(--text);
+    font-size: var(--fs-meta); letter-spacing: .04em;
+  }
+  .page-pad { padding-bottom: 108px; }
+
+  .notice { margin-top: var(--space-4); padding: var(--space-4); border: 1px solid rgba(163, 58, 43, .35); border-radius: var(--radius); background: var(--surface); }
+  .notice b { display: block; font-family: var(--font-serif); font-size: var(--fs-body); }
+  .notice p { margin-top: var(--space-2); font-size: 12px; color: var(--muted); line-height: 1.7; }
+  .notice .btn { display: inline-flex; width: auto; margin-top: var(--space-3); line-height: 1; }
+  .toast { margin-top: var(--space-2); font-size: 12px; color: var(--accent); }
+  .limits-more { margin-top: var(--space-2); }
+  .limits-more summary { min-height: 44px; display: flex; align-items: center; font-size: 12px; color: var(--muted); cursor: pointer; }
+  .limits-more ul { margin: 0 0 var(--space-2); padding-left: 18px; color: var(--muted); font-size: 12px; line-height: 1.7; }
+</style>
+</head>
+<body>
+<svg class="sprite" aria-hidden="true">
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M14.5 6l-6 6 6 6"/></symbol>
+  <symbol id="i-save" viewBox="0 0 24 24"><path d="M12 4v11M8 11l4 4 4-4"/><path d="M5 19h14"/></symbol>
+</svg>
+
+<header class="mp-top">
+  <div class="mp-status">
+    <span>9:41</span>
+    <span class="status-icons">
+      <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx=".8"/><rect x="5" y="5.5" width="3" height="6.5" rx=".8"/><rect x="10" y="3" width="3" height="9" rx=".8"/><rect x="15" y="0" width="3" height="12" rx=".8"/></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1.5 4.3a9.5 9.5 0 0 1 13 0"/><path d="M4 7.1a6 6 0 0 1 8 0"/><circle cx="8" cy="10" r="1.3" fill="currentColor" stroke="none"/></svg>
+      <svg width="27" height="12" viewBox="0 0 27 12"><rect x=".5" y=".5" width="23" height="11" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="2" y="2" width="17" height="8" rx="1.8" fill="currentColor"/><path d="M25 4v4c.8-.3 1.4-1.1 1.4-2s-.6-1.7-1.4-2z" fill="currentColor" fill-opacity=".4"/></svg>
+    </span>
+  </div>
+  <div class="mp-nav">
+    <a class="mp-back" href="bazi.html" aria-label="返回命盘"><svg class="ico"><use href="#i-back"/></svg></a>
+    <h1 class="head">解读报告</h1>
+  </div>
+</header>
+
+<main class="mp-page page-pad">
+  <div id="empty" class="notice" hidden>
+    <b>还没有生成过报告</b>
+    <p>回命盘页点「生成完整解读」，跑完就能在这里看全文、存成长图。</p>
+    <a class="btn" href="bazi.html">回八字页</a>
+  </div>
+
+  <div id="report" hidden>
+    <section class="report-head">
+      <p class="eyebrow">本机生成 · 服务端已校验</p>
+      <h1 class="head" id="title">解读报告</h1>
+      <p class="report-meta" id="meta"></p>
+    </section>
+
+    <div id="sections"></div>
+    <div class="limits" id="limits" hidden>
+      <b>资料边界（这份报告回答什么、不回答什么）</b>
+      <ul id="limit-list"></ul>
+      <details id="limit-more" class="limits-more" hidden><summary>更多</summary><ul></ul></details>
+    </div>
+    <p class="foot" id="foot"></p>
+    <p class="toast" id="toast" hidden></p>
+  </div>
+</main>
+
+<div class="actionbar" id="actions" hidden>
+  <button class="ghost" type="button" id="copy">复制全文</button>
+  <button class="btn" type="button" id="save"><svg class="ico" style="width:16px;height:16px"><use href="#i-save"/></svg>存成长图</button>
+</div>
+
+<script src="vendor/report-image.js"></script>
+<script src="limits.js"></script>
+<script src="report-data.js"></script>
+</body>
+</html>
