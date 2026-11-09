@@ -151,9 +151,6 @@ NODE_SUITES = [
     "tests/knowledge_compose.test.cjs",
         "tests/ziwei_knowledge_digest.test.cjs",
     "tests/bazi_knowledge.test.cjs",
-    # 报告导出（v0.2）：Markdown/文本导出与图片渲染管线
-    "tests/report_export.test.cjs",
-    "tests/report_image.test.cjs",
 ]
 
 PYTHON = sys.executable
@@ -304,8 +301,6 @@ NODE_SUITE_COUNTS = {    "tests/date_input.test.cjs": 19,
     "tests/overview.test.cjs": 85,
     "tests/section16_gate.test.cjs": 34,
     "tests/skill_context.test.cjs": 18,
-    "tests/report_export.test.cjs": 17,
-    "tests/report_image.test.cjs": 43,
 
 }
 

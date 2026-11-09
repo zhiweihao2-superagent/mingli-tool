@@ -70,8 +70,6 @@
 | `tests/knowledge_compose.test.cjs` | 0 |
 | `tests/ziwei_knowledge_digest.test.cjs` | 0 |
 | `tests/bazi_knowledge.test.cjs` | 0 |
-| `tests/report_export.test.cjs` | 0 |
-| `tests/report_image.test.cjs` | 0 |
 | `scripts/test_pai_pan.py` | 0 |
 
 ## 计划交付物

@@ -82,4 +82,3 @@ assert.equal(result.ok, true, "有 DOM 时应导出成功");
 assert.match(clicked, /\.json$/, "应按目标格式命名");
 
 console.log(`report_export.test.cjs: ${__checks} assertions passed`);
-console.log(`===== 报告导出检查 ${__checks} 项全部通过 =====`);
