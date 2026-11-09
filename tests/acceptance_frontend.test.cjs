@@ -115,7 +115,7 @@ const EXPECTED_SCRIPT_TAGS = [
   "<script src=\"/date-input.js?v=20261105-1\" defer>",
   "<script src=\"/report-image.js?v=20261107-2\" defer>",
   "<script src=\"/report-export.js?v=20261107-1\" defer>",
-  "<script src=\"/app.js?v=20261105-8\" defer>",
+  "<script src=\"/app.js?v=20261109-1\" defer>",
 ];
 
 let passed = 0;
