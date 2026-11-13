@@ -60,6 +60,8 @@
 | `tests/report_archive.test.cjs` | 0 |
 | `tests/overview.test.cjs` | 0 |
 | `tests/home.test.cjs` | 0 |
+| `tests/miniprogram_home_recent.test.cjs` | 0 |
+| `tests/miniprogram_themes.test.cjs` | 0 |
 | `tests/skill_context.test.cjs` | 0 |
 | `tests/section16_gate.test.cjs` | 0 |
 | `tests/decadal_annual_facts.test.cjs` | 0 |

@@ -1767,11 +1767,16 @@ function overviewYears() {
 
 function fillYearSelect(select, years, current) {
   if (!select) return;
+  // 传进来的年份可能不在算好的范围内；直接丢掉会让 select 自己跳回第一个选项，
+  // 用户看到的是「选了 2030 却显示 1990」。所以范围外的年份也补一项，并标注未算。
+  const list = years.slice();
+  if (Number.isFinite(Number(current)) && !list.includes(Number(current))) list.push(Number(current));
+  list.sort((left, right) => left - right);
   select.innerHTML = "";
-  years.forEach(year => {
+  list.forEach(year => {
     const option = document.createElement("option");
     option.value = String(year);
-    option.textContent = String(year);
+    option.textContent = years.includes(Number(year)) ? String(year) : `${year}（未算）`;
     if (Number(year) === Number(current)) option.selected = true;
     select.append(option);
   });

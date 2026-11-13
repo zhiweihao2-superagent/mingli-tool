@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="本地优先、规则透明的八字与紫微斗数排盘工具。">
     <title>命理工具 · 八字与紫微斗数</title>
-    <link rel="stylesheet" href="/styles.css?v=20261105-8">
+    <link rel="stylesheet" href="/styles.css?v=20261111-7">
   </head>
   <body>
     <a class="skip-link" href="#main-content">跳到主要内容</a>
@@ -206,10 +206,6 @@
             <span id="result-stamp" class="result-stamp">未计算</span>
           </div>
 
-          <div id="system-switch" class="system-switch" role="tablist" aria-label="选择排盘体系" hidden>
-            <button id="system-bazi" type="button" role="tab" aria-selected="true" aria-controls="result-content">八字</button>
-            <button id="system-ziwei" type="button" role="tab" aria-selected="false" aria-controls="ziwei-content" tabindex="-1">紫微斗数</button>
-          </div>
 
           <div id="empty-state" class="empty-state">
             <div class="pillar-grid pillar-grid-empty" aria-label="四柱占位">
@@ -227,6 +223,27 @@
           <div id="loading-state" class="loading-state" hidden>
             <div class="loading-rule"></div>
             <p>正在按固定规则计算…</p>
+          </div>
+
+          <section id="overview" class="overview" aria-labelledby="overview-title" hidden>
+            <div class="overview-heading">
+              <div>
+                <span class="section-index" aria-hidden="true">01</span>
+                <div>
+                  <h3 id="overview-title">先看这一页</h3>
+                  <p>四柱、紫微命盘、这一年该注意的六件事放在同一屏，先看结论；下面才是逐项细节。</p>
+                </div>
+              </div>
+              <label class="overview-year-label">看哪一年
+                <select id="overview-year-top"></select>
+              </label>
+            </div>
+            <div id="overview-body" class="overview-body"></div>
+          </section>
+
+          <div id="system-switch" class="system-switch" role="tablist" aria-label="选择排盘体系" hidden>
+            <button id="system-bazi" type="button" role="tab" aria-selected="true" aria-controls="result-content">八字</button>
+            <button id="system-ziwei" type="button" role="tab" aria-selected="false" aria-controls="ziwei-content" tabindex="-1">紫微斗数</button>
           </div>
 
           <div id="result-content" class="result-content" hidden>
@@ -268,21 +285,6 @@
 
           <div id="ziwei-content" class="ziwei-content" role="tabpanel" aria-labelledby="system-ziwei" hidden></div>
 
-          <section id="overview" class="overview" aria-labelledby="overview-title" hidden>
-            <div class="overview-heading">
-              <div>
-                <span class="section-index" aria-hidden="true">01</span>
-                <div>
-                  <h3 id="overview-title">先看这一页</h3>
-                  <p>这里把两套并排放在一起（四柱 + 紫微命盘 + 这一年该注意的六件事），和上面的页签无关；上面的页签只切详细盘。</p>
-                </div>
-              </div>
-              <label class="overview-year-label">看哪一年
-                <select id="overview-year-top"></select>
-              </label>
-            </div>
-            <div id="overview-body" class="overview-body"></div>
-          </section>
 
 
           <section id="annual-timeline-section" class="annual-timeline-section" aria-labelledby="annual-timeline-title" hidden>
@@ -302,7 +304,6 @@
             </details>
             <div id="annual-timeline-months" class="annual-timeline-months"></div>
           </section>
-
 
           <section id="ai-reading-section" class="ai-reading-section" aria-labelledby="ai-reading-title" hidden>
             <div class="ai-reading-heading">
@@ -382,11 +383,11 @@
     <script src="/ai-contract.js?v=20261105-1" defer></script>
     <script src="/ai-interpretation.js?v=20261105-3" defer></script>
     <script src="/report-archive.js?v=20261105-1" defer></script>
-    <script src="/overview.js?v=20261105-9" defer></script>
+    <script src="/overview.js?v=20261111-7" defer></script>
       <script src="/home.js?v=20261105-1" defer></script>
     <script src="/date-input.js?v=20261105-1" defer></script>
     <script src="/report-image.js?v=20261107-2" defer></script>
     <script src="/report-export.js?v=20261107-1" defer></script>
-    <script src="/app.js?v=20261105-8" defer></script>
+    <script src="/app.js?v=20261111-2" defer></script>
   </body>
 </html>

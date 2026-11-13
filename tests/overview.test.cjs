@@ -225,6 +225,46 @@ check.ok(html.includes("ov-year-line"));
 check.ok(html.includes("ov-year"));
 check.equal(html.includes("id=\"overview-year\""), false, "正文里不再出现第二个年份下拉");
 check.ok(html.includes("2026"));
+
+// 年份在算好的范围外：不能画一张看起来正常的盘，要明说「没算」。
+// 拉不到流年就把选择器弹回第一年，读者会以为「2030 年就是这样」，比空着更糟。
+check.equal(model.yearCoverage.inRange, true);
+check.equal(model.yearCoverage.first, Math.min(...model.yearOptions));
+check.equal(model.yearCoverage.last, Math.max(...model.yearOptions));
+const outOfRange = OV.build({ bazi: makeBazi(), ziwei: makeZiwei(), year: model.yearCoverage.last + 10, sex: "male" });
+check.equal(outOfRange.yearCoverage.inRange, false);
+check.ok(OV.render(outOfRange).includes("ov-year-note"), "范围外要有说明");
+check.ok(OV.render(outOfRange).includes("不在本次算好的范围里"));
+check.equal(OV.render(model).includes("ov-year-note"), false, "范围内不该出现这句说明");
+
+// ── 往后几年 ────────────────────────────────────────────────────────────
+// 只有算过的年份可以出现；不够 5 年就往前补，不编没算过的年份。
+const multi = [2023, 2024, 2025, 2026, 2027, 2028].map((year, index) => ({
+  year,
+  ganzhi: ["癸卯", "甲辰", "乙巳", "丙午", "丁未", "戊申"][index],
+  stem: "丙", branch: "午",
+  ten_god: ["正印", "偏印", "正财", "食神", "伤官", "偏财"][index],
+  relations_to_natal: []
+}));
+const outlookModel = OV.build({ bazi: makeBazi({ annual: multi }), ziwei: makeZiwei(), year: 2026, sex: "male" });
+const outlook = outlookModel.outlook;
+check.ok(Array.isArray(outlook), "outlook 是数组");
+check.equal(outlook.length, 5, "默认看五年");
+// 当年往后能取到 3 年（2026–2028），差 2 年就往前补（2024–2025），拼成连续五年。
+check.deepEqual(outlook.map(row => row.year), [2024, 2025, 2026, 2027, 2028], "当年往后取，不够就往前补");
+check.ok(outlook.every(row => outlookModel.yearOptions.includes(row.year)), "只列算过的年份");
+check.deepEqual(outlook[0].items.map(item => item.key), ["career", "relationship", "wealth"]);
+check.ok(outlook.every(row => row.items.length === 3 && row.items.every(item => item.headline && item.label)), "每年三句、每句都有落点");
+const outlookHtml = OV.render(outlookModel);
+check.ok(outlookHtml.includes("ov-outlook"), "渲染出这一段");
+check.ok(outlookHtml.includes("这几年各是什么调子"));
+check.equal((outlookHtml.match(/ov-outlook-row/g) || []).length, 5, "五行一年");
+check.ok(outlookHtml.includes("is-current"), "当年那行有标记");
+
+// 只有一年算过：这一段直接不出，避免只剩一行看起来像结论
+const single = OV.build({ bazi: makeBazi({ annual: [multi[3]] }), ziwei: makeZiwei(), year: 2026, sex: "male" });
+check.equal(single.outlook.length, 0);
+check.equal(OV.render(single).includes("ov-outlook"), false);
 check.equal((html.match(/ov-domain /g) || []).length, 6);
 check.equal((html.match(/ov-cell/g) || []).length >= 12, true);
 check.ok(html.includes("ov-taiji"), "命盘中心是太极图");

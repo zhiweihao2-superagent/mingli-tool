@@ -1046,7 +1046,16 @@ p  { color: var(--ink-soft); }
 .home-line strong { grid-area: title; display: block; font-size: var(--step-3); }
 .home-line p { grid-area: text; margin: 2px 0 0; font-size: var(--step-2); }
 .home-line-basis { grid-area: basis; color: var(--ink-soft); font-size: 11px; }
-.home-line.is-empty { display: block; color: var(--ink-soft); }
+.home-line.is-empty {
+  /* 空态只有一句纯文字，不能沿用上面的两列网格：文本会落进 26px 的序号列，
+     被压成一字一行。这里把网格彻底关掉。 */
+  display: block;
+  grid-template-columns: none;
+  grid-template-areas: none;
+  width: 100%;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
 
 .home-months {
   display: grid;
@@ -1682,6 +1691,43 @@ p  { color: var(--ink-soft); }
 .ov-year select { font: inherit; padding: 3px 6px; border: 1px solid var(--rule); background: transparent; }
 /* 年份选择只在标题右侧一处，正文里不再放第二个下拉，避免「两个都像入口」。 */
 .ov-year select { display: none; }
+/* 往后几年：一列年份 + 三句话，横向不抢宽度，窄屏也不塌。 */
+.ov-outlook { margin-top: 18px; }
+.ov-outlook-title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: .08em;
+}
+.ov-outlook-lead { margin: 4px 0 10px; font-size: 12px; line-height: 1.7; color: var(--ink-soft); }
+.ov-outlook-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+.ov-outlook-row {
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr);
+  gap: 10px 14px;
+  align-items: start;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.ov-outlook-row.is-current { background: rgba(156, 68, 51, .04); }
+.ov-outlook-year { margin: 0; font-size: 13px; line-height: 1.5; }
+.ov-outlook-year strong { font-family: var(--font-serif); font-size: 16px; }
+.ov-outlook-year span { margin-left: 5px; color: var(--ink-soft); }
+.ov-outlook-year em { display: block; font-style: normal; font-size: 11px; color: var(--ink-soft); }
+.ov-outlook-items { display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.ov-outlook-item { margin: 0; font-size: 12px; line-height: 1.6; color: var(--ink); }
+.ov-outlook-item span { margin-right: 5px; font-size: 11px; color: var(--ink-soft); }
+.ov-outlook-item.is-caution { color: var(--cinnabar); }
+.ov-outlook-item.is-opportunity { color: var(--jade); }
+@media (max-width: 720px) {
+  .ov-outlook-row { grid-template-columns: minmax(0, 1fr); }
+  .ov-outlook-year em { display: inline; margin-left: 6px; }
+}
+
+/* 年份不在这次算好的范围里时给一句说明：空着不解释，读者会以为是算错了。 */
+.ov-year-note { flex: 1 0 100%; margin: 2px 0 0; font-size: 12px; line-height: 1.6; color: var(--cinnabar); }
+
 .ov-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
 .ov-chip { font-size: 12px; padding: 2px 8px; border: 1px solid var(--rule); color: var(--ink-soft); }
 .ov-chip.is-caution { border-color: var(--cinnabar); color: var(--cinnabar); }
@@ -1750,6 +1796,9 @@ p  { color: var(--ink-soft); }
 /* ── 四柱表 / 太极盘（参考专业排盘 App 的编排，只换排法不加判据） ── */
 .ov-table { border-top: 1px solid var(--ink); border-bottom: 1px solid var(--rule); }
 .ov-trow { display: grid; grid-template-columns: 52px repeat(4, minmax(0, 1fr)); align-items: center; border-bottom: 1px solid var(--rule); }
+.ov-trow.cols-5 { grid-template-columns: 52px repeat(5, minmax(0, 1fr)); }
+.ov-trow.cols-6 { grid-template-columns: 52px repeat(6, minmax(0, 1fr)); }
+.ov-trow.is-head .ov-tcell.is-extra { color: var(--cinnabar); }
 .ov-trow:last-child { border-bottom: 0; }
 .ov-trow.is-head .ov-tcell { font-size: 11px; letter-spacing: .16em; color: var(--ink-soft); }
 .ov-tlabel { padding: 5px 0 5px 2px; font-size: 11px; letter-spacing: .12em; color: var(--ink-soft); }
@@ -1757,6 +1806,9 @@ p  { color: var(--ink-soft); }
 .ov-trow.is-strong .ov-tcell { font-family: var(--font-serif); font-size: 21px; font-weight: 600; padding: 2px 6px; letter-spacing: .06em; }
 .ov-hidden { font-size: 11px; line-height: 1.35; color: var(--ink-soft); }
 .ov-hidden small { display: inline-block; font-size: 9px; margin-left: 1px; margin-right: 4px; opacity: .72; }
+/* 大运/流年两列没有藏干、纳音、空亡、地势，留空白格，不画「—」，
+   否则一排短横看起来像「数据缺了」。 */
+.ov-tcell-blank { color: transparent; }
 .ov-char.el-wood { color: #3f5c43; }
 .ov-char.el-fire { color: #a2452f; }
 .ov-char.el-earth { color: #7d6544; }
@@ -1770,28 +1822,47 @@ p  { color: var(--ink-soft); }
 .ov-element-name small { margin-left: 3px; font-size: 10px; color: var(--cinnabar); }
 
 .ov-ziwei { margin-top: 4px; }
-.ov-ring { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: repeat(4, minmax(84px, auto)); border: 1px solid var(--rule); }
-.ov-cell { display: flex; flex-direction: column; gap: 2px; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 6px 7px; font-size: 11px; line-height: 1.45; }
+.ov-ring { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-template-rows: repeat(4, minmax(112px, auto)); border: 1px solid var(--rule); }
+.ov-cell { display: flex; flex-direction: column; gap: 2px; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 6px 7px 7px; font-size: 11px; line-height: 1.45; }
 .ov-cell:nth-child(4n) { border-right: 0; }
 .ov-cell.is-body { background: var(--paper); }
 .ov-cell.is-soul { background: var(--jade-light); }
+.ov-cell.is-period-soul { box-shadow: inset 0 0 0 1.5px var(--cinnabar); }
 .ov-cell.is-original .ov-cell-name::after { content: " 来因"; color: var(--cinnabar); }
+.ov-cell-head { display: flex; align-items: baseline; justify-content: space-between; gap: 4px; }
 .ov-cell-stem { font-size: 10.5px; letter-spacing: .1em; color: var(--ink-soft); }
 .ov-cell-stars { font-family: var(--font-serif); font-size: 14px; letter-spacing: .04em; }
 .ov-cell-stars em { font-style: normal; }
 .ov-cell-stars small { font-size: 9.5px; margin-left: 1px; color: var(--ink-soft); }
 .ov-cell-stars b.ov-hua { display: inline-block; margin-left: 2px; font-size: 9.5px; font-weight: 600; color: var(--cinnabar); }
-.ov-cell-name { font-size: 10.5px; letter-spacing: .1em; color: var(--ink-soft); }
-.ov-cell-decadal { margin-top: auto; font-size: 9.5px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.ov-cell-others { font-size: 10px; line-height: 1.4; color: var(--ink-soft); letter-spacing: .02em; }
+.ov-cell-self { display: flex; flex-wrap: wrap; gap: 2px 6px; font-size: 9.5px; color: var(--cinnabar); }
+.ov-cell-self small { color: var(--ink-soft); margin-left: 1px; }
+.ov-cell-ages { display: flex; align-items: baseline; gap: 6px; font-size: 9.5px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.ov-cell-ages b { font-weight: 600; letter-spacing: .04em; color: var(--ink-soft); }
+.ov-cell-changsheng { margin-left: auto; letter-spacing: .08em; }
+.ov-cell-shensha { font-size: 9.5px; color: var(--ink-soft); letter-spacing: .04em; opacity: .9; }
+.ov-cell-name { margin-top: auto; font-size: 10.5px; letter-spacing: .1em; color: var(--ink-soft); }
+.ov-cell-name small { margin-left: 3px; color: var(--cinnabar); letter-spacing: 0; }
+.ov-cell-decadal { font-size: 9.5px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
 .ov-cell .ov-empty { font-size: 11px; color: var(--ink-soft); }
-.ov-ring-center { grid-area: 2 / 2 / 4 / 4; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; border: 1px solid var(--rule); background: var(--paper); }
-.ov-taiji { width: 76px; height: 76px; color: var(--ink); }
-.ov-ring-center span { font-size: 11px; letter-spacing: .18em; color: var(--ink-soft); }
-.ov-ring-center small { font-size: 10.5px; color: var(--ink-soft); }
+.ov-ring-center { grid-area: 2 / 2 / 4 / 4; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; border: 1px solid var(--rule); background: var(--paper); padding: 10px; text-align: center; }
+.ov-taiji { width: 64px; height: 64px; color: var(--ink); }
+.ov-center-rows { display: grid; gap: 3px; }
+.ov-center-rows .ov-center-title { font-family: var(--font-serif); font-size: 12px; letter-spacing: .22em; color: var(--ink-soft); }
+.ov-center-rows p { margin: 0; font-size: 10.5px; line-height: 1.5; color: var(--ink-soft); }
+.ov-center-rows p span { margin-right: 4px; color: var(--ink-soft); opacity: .8; }
+.ov-center-rows p span + span { margin-left: 8px; }
+.ov-center-legend { margin-top: 4px !important; font-size: 9.5px !important; opacity: .75; }
 
 @media (max-width: 720px) {
   .ov-trow { grid-template-columns: 44px repeat(4, minmax(0, 1fr)); }
+  .ov-trow.cols-5 { grid-template-columns: 34px repeat(5, minmax(0, 1fr)); }
+  .ov-trow.cols-6 { grid-template-columns: 30px repeat(6, minmax(0, 1fr)); }
+  .ov-trow.cols-6 .ov-tcell, .ov-trow.cols-5 .ov-tcell { padding: 5px 3px; font-size: 11px; }
+  .ov-trow.cols-6.is-strong .ov-tcell { font-size: 16px; }
   .ov-trow.is-strong .ov-tcell { font-size: 18px; }
-  .ov-ring { grid-template-rows: repeat(4, minmax(72px, auto)); }
-  .ov-taiji { width: 56px; height: 56px; }
+  .ov-ring { grid-template-rows: repeat(4, minmax(96px, auto)); }
+  .ov-taiji { width: 44px; height: 44px; }
+  .ov-center-rows p { font-size: 9.5px; }
 }

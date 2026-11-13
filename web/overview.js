@@ -135,6 +135,11 @@
     return map[stem] || "";
   }
 
+  function elementOfBranch(branch) {
+    const map = { 子: "水", 丑: "土", 寅: "木", 卯: "木", 辰: "土", 巳: "火", 午: "火", 未: "土", 申: "金", 酉: "金", 戌: "土", 亥: "水" };
+    return map[branch] || "";
+  }
+
   const ELEMENT_GENERATES = { 木: "火", 火: "土", 土: "金", 金: "水", 水: "木" };
   const ELEMENT_CONTROLS = { 木: "土", 土: "水", 水: "火", 火: "金", 金: "木" };
 
@@ -238,6 +243,8 @@
 
   function palacesOf(ziwei) {
     const basics = ziwei?.basics || {};
+    const periods = ziwei?.aiFacts?.periods || {};
+    const selfTransformRows = asArray(ziwei?.aiFacts?.selfTransformations);
     const soul = palaceBrief(ziwei, "命宫") || {
       palace: "命宫",
       branch: text(basics.soulPalaceBranch),
@@ -265,24 +272,57 @@
         }
         : null,
       // 12 宫按固定方位摆放，前端画 4×4 方盘用。
-      ring: asArray(ziwei?.palaces).map(palace => ({
-        name: text(palace.name),
-        branch: text(palace.earthlyBranch),
-        stem: text(palace.heavenlyStem),
-        isBody: Boolean(palace.isBodyPalace),
-        majors: asArray(palace.majorStars).map(star => ({
-          name: text(star.name),
-          brightness: text(star.brightness),
-          transformation: text(star.transformation) || null
-        })),
-        decadal: palace.decadal ? {
-          from: palace.decadal.fromAge ?? palace.decadal.range?.[0] ?? null,
-          to: palace.decadal.toAge ?? palace.decadal.range?.[1] ?? null,
-          ganzhi: text(palace.decadal.ganzhi)
-            || (text(palace.decadal.heavenlyStem) + text(palace.decadal.earthlyBranch))
-        } : null
-      }))
+      // 每格除了主星，还要带大限岁数、十二长生、神煞、流年岁数——
+      // 这是参考小程序的排法：一格之内把「这一宫十年、一年、一生」的坐标都放全。
+      ring: asArray(ziwei?.palaces).map(palace => {
+        const branch = text(palace.earthlyBranch);
+        const cycles = palace.cycles || {};
+        const overlay = asArray(periods?.annual?.palaceOverlay)
+          .find(row => text(row.branch) === branch) || null;
+        return {
+          name: text(palace.name),
+          branch,
+          stem: text(palace.heavenlyStem),
+          isBody: Boolean(palace.isBodyPalace),
+          majors: asArray(palace.majorStars).map(star => ({
+            name: text(star.name),
+            brightness: text(star.brightness),
+            transformation: text(star.transformation) || null
+          })),
+          minorNames: asArray(palace.minorStars).map(star => text(star.name)).filter(Boolean),
+          auxNames: asArray(palace.auxiliaryStars).map(star => text(star.name)).filter(Boolean),
+          selfTransforms: selfTransformsOf(selfTransformRows, text(palace.name)),
+          ages: asArray(palace.ages).map(Number).filter(Number.isFinite),
+          minorLimitAges: asArray(palace.minorLimitAges).map(Number).filter(Number.isFinite),
+          changsheng: text(cycles.changsheng12) || null,
+          shensha: [text(cycles.suiqian12), text(cycles.boshi12)].filter(Boolean),
+          periodPalace: overlay ? text(overlay.periodPalace) || null : null,
+          isPeriodSoul: Boolean(overlay && text(overlay.periodPalace) === "命宫"),
+          isDecadalSoul: Boolean(overlay && text(overlay.decadalPalace) === "命宫"),
+          decadal: palace.decadal ? {
+            from: palace.decadal.fromAge ?? palace.decadal.range?.[0] ?? null,
+            to: palace.decadal.toAge ?? palace.decadal.range?.[1] ?? null,
+            ganzhi: text(palace.decadal.ganzhi)
+              || (text(palace.decadal.heavenlyStem) + text(palace.decadal.earthlyBranch))
+          } : null
+        };
+      })
     };
+  }
+
+  // 本宫自化：只取「落在本宫自己身上」的两条（↑ 禄入、↓ 忌出），
+  // 因为方盘一格放不下十二宫之间的全部飞化，格子里只留本宫记号；
+  // 完整的飞化链条在下面的紫微细节里照旧能看到。
+  function selfTransformsOf(rows, palaceName) {
+    if (!palaceName) return [];
+    return asArray(rows)
+      .filter(row => text(row.palace) === palaceName)
+      .map(row => ({
+        kind: text(row.kind),
+        star: text(row.star),
+        symbol: text(row.symbol) || (text(row.direction) === "inward" ? "↑" : "↓")
+      }))
+      .slice(0, 2);
   }
 
   function annualCycleOf(bazi, year) {
@@ -604,10 +644,75 @@
       year: yearOf(bazi, ziwei, year, sex)
     };
     model.domains = domainCards(model);
+    // 年份清单要先建：下面的「往后几年」和范围判断都拿它当边界。
     model.yearOptions = Array.isArray(bazi?.ai_facts?.annual_cycles)
       ? bazi.ai_facts.annual_cycles.map(item => Number(item.year)).filter(Number.isFinite)
       : [];
+    model.outlook = outlookOf(model, bazi, ziwei, sex);
+    model.centers = ziwei ? centersOf(ziwei, sex) : null;
+    // 年份下拉只能选算过的年份；调用方偶尔会塞一个范围外的年份进来
+    // （比如 URL 参数或年度报告点名），这时要说清楚「没算」，而不是画一张空盘。
+    model.yearCoverage = {
+      inRange: model.yearOptions.length ? model.yearOptions.includes(Number(model.year.year)) : false,
+      first: model.yearOptions.length ? Math.min(...model.yearOptions) : null,
+      last: model.yearOptions.length ? Math.max(...model.yearOptions) : null
+    };
     return model;
+  }
+
+  // 往后几年：用同一套领域规则逐年算一遍，只留三句最常用的
+  //（事业 / 关系 / 钱财）。这一块是「今年怎么样、明年怎么样」的直接回答，
+  // 不用等模型；每句仍带依据，和上面六张卡是同一套判断。
+  const OUTLOOK_FIELDS = ["career", "relationship", "wealth"];
+  const OUTLOOK_YEARS = 5;
+
+  // 能画几年的前提是「那几年的流年已经算好」。盘按「重点年份」算到哪一年为止，
+  // 所以这里先取窗口：从当前这年往后数，能取几年取几年；不够 5 年就往前补。
+  // 不编没算过的年份——宁可只画 3 年，也不画一条看起来正常的空行。
+  function outlookWindow(yearOptions, focus) {
+    const list = asArray(yearOptions).map(Number).filter(Number.isFinite).sort((a, b) => a - b);
+    if (!list.length || !Number.isFinite(focus)) return [];
+    const forward = list.filter(year => year >= focus).slice(0, OUTLOOK_YEARS);
+    if (forward.length >= OUTLOOK_YEARS) return forward;
+    const back = list.filter(year => year < focus).slice(-(OUTLOOK_YEARS - forward.length));
+    return back.concat(forward);
+  }
+
+  function outlookOf(model, bazi, ziwei, sex) {
+    const focus = Number(model.year?.year) || null;
+    const years = outlookWindow(model.yearOptions, focus);
+    if (years.length < 2) return [];
+    return years.map(year => {
+      const probe = { ...model, year: yearOf(bazi, ziwei, year, sex) };
+      const cards = domainCards(probe);
+      const pick = key => {
+        const card = cards.find(item => item.key === key);
+        return card ? { key: card.key, label: card.label, headline: card.headline, tone: card.tone } : null;
+      };
+      return {
+        year,
+        ganzhi: probe.year.ganzhi,
+        tenGod: probe.year.tenGod,
+        age: probe.year.age,
+        luck: probe.year.luck ? { ganzhi: probe.year.luck.ganzhi, ageRange: probe.year.luck.ageRange } : null,
+        items: OUTLOOK_FIELDS.map(pick).filter(Boolean)
+      };
+    });
+  }
+
+  // 方盘中间 2×2：放「这是谁的盘」的坐标（几局、什么性别、四柱、农历、公历）。
+  // 参考小程序也把这些放在正中，因为四周十二宫只有位置，没有身份。
+  function centersOf(ziwei, sex) {
+    const display = ziwei?.calendarDisplay || {};
+    const dual = ziwei?.dualFourPillars || {};
+    const pillars = asArray(dual.solarTermPillars).map(text).join(" ");
+    return {
+      gender: { male: "男", female: "女" }[text(sex)] || text(sex),
+      pillars,
+      lunar: text(display.lunar),
+      solar: text(display.solar),
+      time: text(display.time)
+    };
   }
 
   // ── 渲染（返回 HTML 字符串，便于测试）────────────────────────────────
@@ -625,29 +730,75 @@
   }
 
   // 四柱表：干神 / 天干 / 地支 / 藏干 / 支神 / 纳音 / 空亡 / 地势。
-  // 一眼看完一柱的八个层面，比读长句快得多。
+  // 右边再接两列「大运」「流年」——参考小程序的排法：
+  // 一横排把「本命四柱 + 眼下十年 + 这一年」放在同一张表里，从上往下读一遍就串起来了。
   function renderChart(model) {
     if (!model.chart) return "";
-    const pillars = model.chart.pillars;
-    const cell = (value, extra = "") =>
-      `<span class="ov-tcell${extra}">${escapeHtml(value) || "—"}</span>`;
-    const colored = (value, element) => cell(value, ` ov-char${elementTagClass(element)}`);
+    const pillars = model.chart.pillars.slice();
+    const extra = [];
+    const year = model.year || {};
+    if (year.luck && year.luck.ganzhi) {
+      extra.push({
+        label: "大运",
+        ganzhi: year.luck.ganzhi,
+        tenGod: year.luck.tenGod,
+        ageRange: year.luck.ageRange
+      });
+    }
+    if (year.ganzhi) {
+      extra.push({ label: "流年", ganzhi: year.ganzhi, tenGod: year.tenGod, ageRange: year.age ? `${year.age} 岁` : "" });
+    }
+    extra.forEach(item => {
+      const chars = Array.from(item.ganzhi);
+      pillars.push({
+        key: "extra",
+        label: item.label,
+        ganzhi: item.ganzhi,
+        stem: chars[0] || "",
+        branch: chars[1] || "",
+        tenGod: item.tenGod || "",
+        hidden: [],
+        branchGod: "",
+        ageRange: item.ageRange || "",
+        nayin: "",
+        xunkong: [],
+        stage: "",
+        stemElement: elementOfStem(chars[0] || ""),
+        branchElement: elementOfBranch(chars[1] || ""),
+        isExtra: true
+      });
+    });
+    // 大运/流年两列只有干支与十神，其余几行留空而不是画一排「—」：
+    // 一排短横会让人以为「这里缺数据」，实际是这两列本来就没有藏干/纳音/空亡。
+    const cell = (pillar, value, extra2 = "") =>
+      pillar && pillar.isExtra && !text(value)
+        ? `<span class="ov-tcell ov-tcell-blank${extra2}"></span>`
+        : `<span class="ov-tcell${extra2}">${escapeHtml(value) || "—"}</span>`;
+    const colored = (pillar, value, element) => cell(pillar, value, ` ov-char${elementTagClass(element)}`);
     const row = (label, items, className = "") =>
-      `<div class="ov-trow${className}"><span class="ov-tlabel">${label}</span>${items.join("")}</div>`;
-    const head = `<div class="ov-trow is-head"><span class="ov-tlabel"></span>${pillars
-      .map(pillar => `<span class="ov-tcell">${escapeHtml(pillar.label)}</span>`)
+      `<div class="ov-trow${className} cols-${pillars.length}"><span class="ov-tlabel">${label}</span>${items.join("")}</div>`;
+    const head = `<div class="ov-trow is-head cols-${pillars.length}"><span class="ov-tlabel"></span>${pillars
+      .map(pillar => `<span class="ov-tcell${pillar.isExtra ? " is-extra" : ""}">${escapeHtml(pillar.label)}</span>`)
       .join("")}</div>`;
     const rows = [
-      row("干神", pillars.map(pillar => cell(pillar.tenGod))),
-      row("天干", pillars.map(pillar => colored(pillar.stem, pillar.stemElement)), " is-strong"),
-      row("地支", pillars.map(pillar => colored(pillar.branch, pillar.branchElement)), " is-strong"),
-      row("藏干", pillars.map(pillar => `<span class="ov-tcell ov-hidden">${
-        pillar.hidden.map(item => `${escapeHtml(item.stem)}<small>${escapeHtml(item.tenGod)}</small>`).join("") || "—"
-      }</span>`)),
-      row("支神", pillars.map(pillar => cell(pillar.branchGod))),
-      row("纳音", pillars.map(pillar => cell(pillar.nayin))),
-      row("空亡", pillars.map(pillar => cell(pillar.xunkong.join("") || "—"))),
-      row("地势", pillars.map(pillar => cell(pillar.stage)))
+      row("干神", pillars.map(pillar => cell(pillar, pillar.tenGod))),
+      row("天干", pillars.map(pillar => colored(pillar, pillar.stem, pillar.stemElement)), " is-strong"),
+      row("地支", pillars.map(pillar => colored(pillar, pillar.branch, pillar.branchElement)), " is-strong"),
+      row("藏干", pillars.map(pillar => {
+        if (!pillar.hidden.length) return cell(pillar, "");
+        return `<span class="ov-tcell ov-hidden">${pillar.hidden
+          .map(item => `${escapeHtml(item.stem)}<small>${escapeHtml(item.tenGod)}</small>`)
+          .join("")}</span>`;
+      })),
+      row("支神", pillars.map(pillar => cell(pillar, pillar.branchGod))),
+      row("纳音", pillars.map(pillar => cell(pillar, pillar.nayin))),
+      row("空亡", pillars.map(pillar => cell(pillar, pillar.xunkong.join("")))),
+      row("地势", pillars.map(pillar => cell(pillar, pillar.stage))),
+      // 「行运」这行只给大运/流年写岁数，四柱那四格留白：
+      // 本命柱的岁数没有意义，写「—」反而像缺数据。
+      row("行运", pillars.map(pillar => (pillar.isExtra
+        ? cell(pillar, pillar.ageRange)
+        : `<span class="ov-tcell ov-tcell-blank"></span>`)))
     ].join("");
     const useful = model.structure?.useful || { primary: [], secondary: [], avoid: [] };
     const chips = list => list.map(item => `<span class="ov-chip">${escapeHtml(item)}</span>`).join("");
@@ -675,21 +826,42 @@
     const starLine = palace => palace && palace.stars.length
       ? palace.stars.map(star => `${star.name}${star.brightness ? `(${star.brightness})` : ""}`).join(" ")
       : "借对宫";
+    const ages = list => (list || []).slice(0, 4).join(" ");
     const cells = model.palaces.ring.map(palace => {
       const stars = palace.majors.length
         ? palace.majors.map(star => `<em>${escapeHtml(star.name)}</em>${star.brightness ? `<small>${escapeHtml(star.brightness)}</small>` : ""}${star.transformation ? `<b class="ov-hua">${escapeHtml(star.transformation)}</b>` : ""}`).join("")
         : `<span class="ov-empty">空</span>`;
+      const others = (palace.minorNames || []).concat(palace.auxNames || []);
       const isSoul = palace.name === "命宫";
       const isOriginal = original && palace.branch === original.branch;
-      const tags = [isSoul ? "命" : "", palace.isBody ? "身" : "", isOriginal ? "因" : ""].join("");
+      const tags = [isSoul ? "命" : "", palace.isBody ? "身" : "", isOriginal ? "因" : ""].filter(Boolean);
+      const self = (palace.selfTransforms || [])
+        .map(item => `<span class="ov-self">${escapeHtml(item.symbol)}${escapeHtml(item.kind)}<small>${escapeHtml(item.star)}</small></span>`)
+        .join("");
       return `
-        <div class="ov-cell${palace.isBody ? " is-body" : ""}${isSoul ? " is-soul" : ""}${isOriginal ? " is-original" : ""}" data-branch="${escapeHtml(palace.branch)}">
-          <span class="ov-cell-stem">${escapeHtml(palace.stem)}${escapeHtml(palace.branch)}</span>
+        <div class="ov-cell${palace.isBody ? " is-body" : ""}${isSoul ? " is-soul" : ""}${isOriginal ? " is-original" : ""}${palace.isPeriodSoul ? " is-period-soul" : ""}" data-branch="${escapeHtml(palace.branch)}">
+          <span class="ov-cell-head">
+            <span class="ov-cell-stem">${escapeHtml(palace.stem)}${escapeHtml(palace.branch)}</span>
+            ${palace.decadal && palace.decadal.from != null ? `<span class="ov-cell-decadal">${palace.decadal.from}-${palace.decadal.to}</span>` : ""}
+          </span>
           <span class="ov-cell-stars">${stars}</span>
-          <span class="ov-cell-name">${escapeHtml(palace.name)}${tags ? ` · ${tags}` : ""}</span>
-          ${palace.decadal && palace.decadal.from != null ? `<span class="ov-cell-decadal">${palace.decadal.from}-${palace.decadal.to}岁</span>` : ""}
+          ${others.length ? `<span class="ov-cell-others">${others.map(escapeHtml).join(" ")}</span>` : ""}
+          ${self ? `<span class="ov-cell-self">${self}</span>` : ""}
+          <span class="ov-cell-ages">
+            ${palace.periodPalace ? `<span>流年<b>${escapeHtml(palace.periodPalace)}</b></span>` : ""}
+            ${palace.ages && palace.ages.length ? `<span>小限<b>${escapeHtml(ages(palace.ages))}</b></span>` : ""}
+            ${palace.changsheng ? `<span class="ov-cell-changsheng">${escapeHtml(palace.changsheng)}</span>` : ""}
+          </span>
+          ${palace.shensha && palace.shensha.length ? `<span class="ov-cell-shensha">${palace.shensha.map(escapeHtml).join(" · ")}</span>` : ""}
+          <span class="ov-cell-name">${escapeHtml(palace.name)}${tags.length ? `<small>${escapeHtml(tags.join(""))}</small>` : ""}</span>
         </div>`;
     }).join("");
+    const center = model.centers || {};
+    const centerRows = [];
+    if (center.gender) centerRows.push(["", `${center.gender} · ${escapeHtml(model.palaces.fiveElementsClass)}`]);
+    if (center.pillars) centerRows.push(["节气四柱", escapeHtml(center.pillars)]);
+    if (center.lunar) centerRows.push(["农历", escapeHtml(center.lunar)]);
+    if (center.solar) centerRows.push(["公历", escapeHtml(center.solar)]);
     return `
       <div class="ov-ziwei">
         <p class="ov-chart-line">命宫 <strong>${escapeHtml(soul.branch)}</strong> ${escapeHtml(starLine(soul))}${body ? ` · 身宫 <strong>${escapeHtml(body.branch)}</strong>` : ""}</p>
@@ -701,13 +873,20 @@
             <circle cx="50" cy="27" r="7" fill="#faf7ef"></circle>
             <circle cx="50" cy="73" r="7" fill="currentColor" opacity="0.82"></circle>
           </svg>
-          <span>紫微斗数</span><small>${escapeHtml(model.palaces.fiveElementsClass)}</small>
+          <div class="ov-center-rows">
+            <p class="ov-center-title">紫微斗数</p>
+            ${centerRows.map(([label, value]) => `<p>${label ? `<span>${label}</span>` : ""}${value}</p>`).join("")}
+            <p><span>命主</span>${escapeHtml(model.palaces.soulRuler)}<span>身主</span>${escapeHtml(model.palaces.bodyRuler)}</p>
+            ${body ? `<p><span>身宫</span>${escapeHtml(body.branch)}${original ? `<span>来因</span>${escapeHtml(original.palace)}` : ""}</p>` : ""}
+            <p class="ov-center-legend">↑ 本宫自化 · 庙旺为亮度 · 数字为流年虚岁</p>
+          </div>
         </div></div>
       </div>`;
   }
 
   function renderYear(model) {
     const year = model.year || {};
+    const coverage = model.yearCoverage || null;
     const basis = [];
     if (year.ganzhi) basis.push(`${year.ganzhi}${year.tenGod ? ` · ${year.tenGod}` : ""}`);
     if (year.luck) basis.push(`大限 ${year.luck.ganzhi}${year.luck.tenGod ? ` · ${year.luck.tenGod}` : ""}（${year.luck.ageRange}）`);
@@ -715,7 +894,38 @@
       <div class="ov-year-head">
         <p class="ov-year-line">${year.year ? `<strong>${year.year}</strong> 年 ｜ ` : ""}${escapeHtml(basis.join(" ｜ "))}${year.age ? ` ｜ 虚岁 ${year.age}` : ""}</p>
         ${year.ziwei ? `<p class="ov-chart-meta">紫微流年：${year.ziwei.fourHua.map(item => `${escapeHtml(item.kind)}→${escapeHtml(item.periodPalace)}(${escapeHtml(item.star)})`).join("、")}</p>` : `<p class="ov-chart-meta">紫微流年四化只对当前年份计算，其他年份按八字流年给倾向。</p>`}
+        ${coverage && coverage.inRange === false && coverage.first != null
+          ? `<p class="ov-year-note">这一年不在本次算好的范围里（${coverage.first}–${coverage.last} 年）。改看出生资料里的「重点年份」再排一次，或直接看年度报告。</p>`
+          : ""}
       </div>`;
+  }
+
+  function renderOutlook(model) {
+    const rows = asArray(model.outlook);
+    if (rows.length < 2) return "";
+    const toneClass = { opportunity: "is-opportunity", caution: "is-caution", neutral: "" };
+    const first = rows[0].year;
+    const last = rows[rows.length - 1].year;
+    const focus = Number(model.year?.year) || null;
+    // 后面还有没有算过的年份，决定这句话是「往后看」还是「只能回看」。
+    const hasFuture = Number.isFinite(focus) && last > focus;
+    const lead = hasFuture
+      ? `从 ${first} 到 ${last} 年，每年三句话：事业、关系、钱财。用的是同一套规则；想细看某一年，把上面那张表的年份切过去。`
+      : `${first}–${last} 年，每年三句话：事业、关系、钱财。这几年的流年已经算好；想看 ${last + 1} 年往后，把出生资料里的「重点年份」调后一点再排一次。`;
+    return `
+      <section class="ov-block ov-outlook">
+        <h3 class="ov-outlook-title">这几年各是什么调子</h3>
+        <p class="ov-outlook-lead">${escapeHtml(lead)}</p>
+        <ol class="ov-outlook-list">
+          ${rows.map(row => `
+            <li class="ov-outlook-row${row.year === focus ? " is-current" : ""}">
+              <p class="ov-outlook-year"><strong>${row.year}</strong> <span>${escapeHtml(row.ganzhi)}${row.tenGod ? ` · ${escapeHtml(row.tenGod)}` : ""}</span>${row.age ? `<em>虚岁 ${row.age}</em>` : ""}</p>
+              <div class="ov-outlook-items">
+                ${row.items.map(item => `<p class="ov-outlook-item ${toneClass[item.tone] || ""}"><span>${escapeHtml(item.label)}</span>${escapeHtml(item.headline)}</p>`).join("")}
+              </div>
+            </li>`).join("")}
+        </ol>
+      </section>`;
   }
 
   function renderDomains(model) {
@@ -739,7 +949,8 @@
         <section class="ov-block">${renderChart(model)}</section>
         <section class="ov-block">${renderPalaces(model)}</section>
       </div>
-      <section class="ov-block ov-year">${renderYear(model)}<div class="ov-domains">${renderDomains(model)}</div></section>`;
+      <section class="ov-block ov-year">${renderYear(model)}<div class="ov-domains">${renderDomains(model)}</div></section>
+      ${renderOutlook(model)}`;
   }
 
   const api = {
@@ -758,7 +969,9 @@
     renderChart,
     renderPalaces,
     renderYear,
-    renderDomains
+    renderDomains,
+    outlookOf,
+    renderOutlook
   };
 
   global.MingliOverview = api;
