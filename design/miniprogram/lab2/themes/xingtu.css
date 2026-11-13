@@ -1,0 +1,245 @@
+/* ============================================================================
+   星图 · xingtu — 藏青底 + 银灰 + 暗金
+   ----------------------------------------------------------------------------
+   一句话：一张翻开的星图。底 #1B2233 是夜里偏蓝的藏青，字是银灰，朱砂位让给暗金，
+          背景铺星点与二十八宿细线。
+
+   挂法：接在 d-chart.css 之后。lab2 的 d-chart-*.html 本身不引用本文件，
+        靠 themes/theme-boot.js 按 ?theme=xingtu 在 <head> 末尾补 <link>。
+
+   色板  paper #1B2233 · ink #DFE5F0 · zhu #C9A961 · faint #9FB0C9
+   实测  正文 12.55:1 · 次要 7.20:1 · 朱 7.05:1 · 罗盘刻度 8.87:1 · 格线 3.78:1
+
+   刻意不定义 --line：.cover-date 的 var(--line) 没有回退值，定义了就凭空多一条
+   1px 实线（原设计那里不画线）。.rows li 的点线由 --th-rule-soft 单独覆盖。
+   ========================================================================== */
+
+:root {
+  --paper: #1B2233;
+  --ink: #DFE5F0;
+  --zhu: #C9A961;
+  --faint: #9FB0C9;
+
+  /* 本主题内部量：藏青分两层，线用银灰的透明度阶梯 */
+  --th-cover: #171D2B;                         /* 封面再深半档，像图幅外框 */
+  --th-rule-strong: rgba(223, 229, 240, .66);  /* 外框 / 页头 / 底栏 / 区段顶线 → 6.26:1 */
+  --th-rule: rgba(223, 229, 240, .46);         /* 命盘格线 / 四柱 / 分栏 → 3.78:1 */
+  --th-rule-soft: rgba(223, 229, 240, .34);    /* 列表点线 → 2.68:1（纯分隔，非信息） */
+  --th-tint-zhu: rgba(201, 169, 97, .13);      /* 金浅底：选中 / 按压 */
+  --th-tint-ink: rgba(223, 229, 240, .09);     /* 银浅底：按压 */
+  --th-dial-label: #B4C3D8;                    /* 罗盘外圈八卦字，比 faint 再亮一档 */
+  --th-art: .30;                               /* 封面底纹：浅线压到 30% 才不抢字 */
+}
+
+html { background: var(--paper); }
+body { background: var(--paper); color: var(--ink); }
+
+/* ---- 线：写死 var(--ink) 的地方按「外框 / 格线 / 点线」分三级 ----------- */
+header,
+nav.tabbar,
+.section-title,
+.sec-head,
+.coord,
+.datebar,
+.stepper,
+.entries li,
+.seg,
+.reading article,
+.months h2,
+.months12,
+.hua,
+.cover { border-color: var(--th-rule-strong); }
+
+.double { border-color: var(--th-rule-strong); outline-color: var(--th-rule); }
+
+.palace,
+.center,
+.pillar,
+.seg a,
+.hua div,
+.months12 div,
+.months > div + div { border-color: var(--th-rule); }
+
+.rows li,
+.stars2 li,
+.theme-list li,
+.field { border-bottom-color: var(--th-rule-soft); }
+
+.empty { border-color: var(--th-rule); }
+
+/* ---- 按压态：d-chart.css 里两处写死的 rgba() ------------------------------ */
+.btn:active { background: var(--th-tint-ink); }
+.btn.zhu:active { background: var(--th-tint-zhu); }
+
+/* 逐月选中格：写死的朱浅底换成金的浅底；box-shadow 是 0 模糊的内描边，只换色 */
+.months12 .on {
+  background: var(--th-tint-zhu);
+  box-shadow: inset 0 0 0 1px var(--zhu);
+}
+
+/* ---- 封面 ---------------------------------------------------------------- */
+.cover { background: var(--th-cover); }
+.cover .art { color: var(--ink); opacity: var(--th-art); z-index: 0; }
+.cover-txt { z-index: 2; }
+/* d-chart-home.html 里写死的旧纸色圆点：跟着换纸，否则藏青底上会留一块米黄 */
+.cover .art circle[fill="#F0E5CB"] { fill: var(--th-cover); }
+
+/* ---- 罗盘：<text fill=> 是 presentation attribute，用属性选择器精确提亮 ---- */
+.dial { color: var(--ink); }
+.dial text[fill="var(--faint)"] { fill: var(--th-dial-label); }
+.dial path[stroke="var(--faint)"] { stroke: var(--th-dial-label); }
+
+/* ---- 底栏图标：深底上 1.3px 描边发虚，明确给色并加半档线宽 ---------------- */
+nav.tabbar .ico { stroke: var(--faint); stroke-width: 1.45; }
+nav.tabbar a.on .ico { stroke: var(--zhu); stroke-width: 1.6; }
+
+/* ============================================================================
+   装饰层
+   只挂容器边缘与背景层：body::before/::after、.cover::before/::after、
+   .sec-head::before、.empty::before。
+   四柱表 .pillars、紫微格 .palace、罗盘 .dial 里一律不挂。
+   ========================================================================== */
+
+body > header,
+body > main,
+body > nav { position: relative; z-index: 1; }
+
+/* 全页：从左上角一点暗金散开的薄光 + 满幅星点细线。
+   全站唯一的渐变只出现在这一层，opacity .10。 */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(86% 52% at 22% -10%, var(--zhu) 0%, rgba(201, 169, 97, 0) 58%);
+  opacity: .10;
+  -webkit-mask-image: url(../ornaments/xingxiu.svg);
+  mask-image: url(../ornaments/xingxiu.svg);
+  -webkit-mask-size: 104px 104px;
+  mask-size: 104px 104px;
+  -webkit-mask-repeat: repeat;
+  mask-repeat: repeat;
+}
+
+/* 页脚：星点稀疏一层，压在底边做远景 */
+body::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 120px;
+  z-index: 0;
+  pointer-events: none;
+  background-color: var(--faint);
+  opacity: .10;
+  -webkit-mask-image: url(../ornaments/xingxiu.svg);
+  mask-image: url(../ornaments/xingxiu.svg);
+  -webkit-mask-size: 132px 132px;
+  mask-size: 132px 132px;
+  -webkit-mask-repeat: repeat;
+  mask-repeat: repeat;
+  -webkit-mask-position: center bottom;
+  mask-position: center bottom;
+}
+
+/* 封面右端：二十八宿细线环（这屏的主角，比玄机那套大一号、亮一档） */
+.cover::before {
+  content: "";
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  width: 190px;
+  height: 190px;
+  margin-top: -95px;
+  z-index: 0;
+  pointer-events: none;
+  background-color: var(--zhu);
+  opacity: .30;
+  -webkit-mask-image: url(../ornaments/xiuhuan.svg);
+  mask-image: url(../ornaments/xiuhuan.svg);
+  -webkit-mask-size: 190px 190px;
+  mask-size: 190px 190px;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+/* 封面底：远山剪影压住下沿，让星图落在山脊上 */
+.cover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 88px;
+  z-index: 0;
+  pointer-events: none;
+  background-color: var(--faint);
+  opacity: .16;
+  -webkit-mask-image: url(../ornaments/shanying.svg);
+  mask-image: url(../ornaments/shanying.svg);
+  -webkit-mask-size: 390px 88px;
+  mask-size: 390px 88px;
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+  -webkit-mask-position: center bottom;
+  mask-position: center bottom;
+}
+
+/* 区段标题左端一枚银菱（落在正文左侧页边距里，4px 见方，不挤标题） */
+.sec-head { position: relative; }
+.sec-head::before {
+  content: "";
+  position: absolute;
+  left: -6px;
+  top: 4px;
+  width: 4px;
+  height: 4px;
+  border: 1px solid var(--zhu);
+  transform: rotate(45deg);
+  opacity: .85;
+}
+
+/* 空态：底下一枚二十八宿细线环，字压在上面 */
+.empty { position: relative; overflow: hidden; }
+.empty::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 132px;
+  height: 132px;
+  margin: -66px 0 0 -66px;
+  z-index: 0;
+  pointer-events: none;
+  background-color: var(--faint);
+  opacity: .22;
+  -webkit-mask-image: url(../ornaments/xiuhuan.svg);
+  mask-image: url(../ornaments/xiuhuan.svg);
+  -webkit-mask-size: 132px 132px;
+  mask-size: 132px 132px;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+.empty > * { position: relative; z-index: 1; }
+
+/* ==== 位图装饰（codex 生图）==== */
+/* 纸张：藏青星图纸，稀疏星点（900×900，平铺） */
+body { background-image: url("../art/paper-xingtu.png"); background-size: 900px 900px; background-repeat: repeat; }
+/* 封面右侧：太极八卦盘（位图，暗金描边） */
+.cover::before {
+  content: ""; position: absolute; right: 2px; top: 50%;
+  width: 176px; height: 176px; margin-top: -88px;
+  background: url("../art/plate-taiji.png") center / contain no-repeat;
+  opacity: .26; z-index: 0; pointer-events: none;
+  -webkit-mask-image: none; mask-image: none;
+}
+/* 封面下沿：远山（位图） */
+.cover::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 70px;
+  background: url("../art/orn-shanying.png") center bottom / cover no-repeat;
+  opacity: .20; z-index: 0; pointer-events: none;
+  -webkit-mask-image: none; mask-image: none;
+}
+/* ==== 位图装饰结束 ==== */

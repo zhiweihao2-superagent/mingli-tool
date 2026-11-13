@@ -6,6 +6,14 @@
   var entries = document.getElementById("entries");
   var empty = document.getElementById("empty");
 
+  function hasProfiles() {
+    try {
+      if (window.MingliProfile && window.MingliProfile.list) return (window.MingliProfile.list() || []).length > 0;
+      var raw = localStorage.getItem("mingli.profiles.v1");
+      return !!(raw && JSON.parse(raw).length);
+    } catch (e) { return false; }
+  }
+
   function esc(text) {
     return String(text == null ? "" : text).replace(/[&<>"]/g, function (c) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
@@ -47,6 +55,16 @@
 
   if (!list.length) {
     empty.hidden = false;
+    var cta = empty.querySelector(".btn");
+    if (cta) {
+      if (hasProfiles()) {
+        cta.textContent = "去命盘生成解读";
+        cta.href = "bazi.html";
+      } else {
+        cta.textContent = "去填写出生信息";
+        cta.href = "input.html";
+      }
+    }
     return;
   }
 
@@ -62,6 +80,58 @@
       (failed ? " · " + failed + " 批已跳过" : "") + "</span>" +
       "</span>" +
       '<span class="e-chev"><svg class="ico"><use href="#i-chev"/></svg></span>' +
-      "</a></li>";
+      "</a>" +
+      '<div class="entry-actions"><button type="button" class="save-report" data-id="' +
+      esc(report.id) + '">存长图</button></div>' +
+      "</li>";
   }).join("");
+
+  function toRecord(report) {
+    return {
+      system: report.system || "",
+      systemLabel: report.systemLabel || report.system || "命盘",
+      title: report.title || "解读报告",
+      createdAt: report.createdAt,
+      summary: report.summary || {},
+      sections: (report.sections || []).map(function (section) {
+        return {
+          topic: section.topic,
+          title: section.title,
+          oneLineSummary: section.oneLineSummary,
+          plainLanguage: section.plainLanguage,
+          evidenceExplanation: section.evidenceExplanation,
+          practicalAdvice: section.practicalAdvice || [],
+          reflectionQuestion: section.reflectionQuestion,
+          evidencePaths: section.evidencePaths || [],
+          knowledgeCitations: section.knowledgeCitations || []
+        };
+      }),
+      limitations: report.limitations || [],
+      audit: report.audit || null
+    };
+  }
+
+  entries.addEventListener("click", function (event) {
+    var button = event.target.closest ? event.target.closest(".save-report") : null;
+    if (!button) return;
+    event.preventDefault();
+    var id = button.getAttribute("data-id");
+    var report = list.filter(function (item) { return String(item.id) === String(id); })[0];
+    if (!report) return;
+    if (!window.MingliReportImage) {
+      button.textContent = "出图模块未加载";
+      setTimeout(function () { button.textContent = "存长图"; }, 1600);
+      return;
+    }
+    var keep = "存长图";
+    button.disabled = true;
+    button.textContent = "正在出图…";
+    Promise.resolve(window.MingliReportImage.download(toRecord(report))).then(function (result) {
+      button.textContent = result && result.ok ? "已保存" : "导出失败";
+    }).catch(function () {
+      button.textContent = "导出失败";
+    }).then(function () {
+      setTimeout(function () { button.textContent = keep; button.disabled = false; }, 1800);
+    });
+  });
 })();

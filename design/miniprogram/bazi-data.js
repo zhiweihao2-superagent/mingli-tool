@@ -2,8 +2,21 @@
 // 服务没起、或还没填资料时给出明确提示，不拿样例数据冒充。
 (function () {
   "use strict";
+function mingliApiBase() {
+  var loc = window.location;
+  var host = loc.host || "";
+  var name = loc.hostname || "";
+  var loopback = name === "127.0.0.1" || name === "localhost" || name === "::1" || name === "[::1]";
+  // file:// 打开、或本机静态预览服务（如 serve.py 的 8899）都没有 /api：
+  // 这两种情况显式回到排盘服务端口，避免把请求发到静态服务器上 404。
+  if (!host || (loopback && host !== "127.0.0.1:8765" && host !== "localhost:8765")) {
+    return "http://127.0.0.1:8765";
+  }
+  // 其它情况（公网隧道、局域网 IP、8765 同源）一律用同源，由隧道/服务自己转发。
+  return loc.protocol + "//" + host;
+}
 
-  var API = "http://127.0.0.1:8765/api/v1/bazi/calculate";
+  var API = mingliApiBase() + "/api/v1/bazi/calculate";
   var STORE = "mingli.profile.v1";
 
   var NAYIN = ["海中金","炉中火","大林木","路旁土","剑锋金","山头火","涧下水","城头土","白蜡金","杨柳木",
@@ -22,15 +35,34 @@
   var reportLink = document.getElementById("report-link");
   var lastCalc = null;
   var saveChartButton = document.getElementById("save-chart");
+  var profileRetried = false;
+
+  // 「还没有出生资料」这句只有在真的没有资料时才成立。
+  // 公网隧道偶发把 profile.js / demo.js 抓成 502，此时 MingliProfile 根本不存在，
+  // 若照旧弹「去填写」就是拿网络问题冤枉用户。所以先补一次，补不上如实说网络问题。
+  function profileScriptsReady() {
+    return typeof window.MingliProfile !== "undefined";
+  }
+
+  function showResourceError() {
+    errorText.textContent = "页面脚本没有加载完整——多半是网络中途断了。点下面的按钮重新加载一次就好。";
+    errorBox.hidden = false;
+    content.hidden = true;
+    empty.hidden = true;
+    var retry = document.getElementById("retry");
+    if (retry) retry.textContent = "重新加载";
+  }
 
   function loadProfile() {
     try {
-      if (window.MingliProfile) return window.MingliProfile.currentProfile();
+      if (window.MingliProfile) {
+        var current = window.MingliProfile.currentProfile();
+        if (current) return current;
+      }
       var raw = localStorage.getItem(STORE);
-      return raw ? JSON.parse(raw) : null;
-    } catch (e) {
-      return null;
-    }
+      if (raw) return JSON.parse(raw);
+    } catch (e) { /* 存储不可用时退回示例盘 */ }
+    return window.MINGLI_DEMO_PROFILE || null;
   }
 
   function nayinOf(ganzhi) {
@@ -50,7 +82,7 @@
 
   function renderPillars(pillars) {
     var order = ["year", "month", "day", "hour"];
-    var names = { year: "年柱", month: "月柱", day: "日柱", hour: "时柱" };
+    var names = { year: "年柱", month: "月柱", day: "日主", hour: "时柱" };
     document.getElementById("pillars").innerHTML = order.map(function (key) {
       var p = pillars[key];
       if (!p) {
@@ -152,17 +184,47 @@
     var cycles = ((calc.luck_cycles || {}).cycles) || [];
     var start = (calc.luck_cycles || {}).start || {};
     var direction = (calc.luck_cycles || {}).direction === "forward" ? "顺行" : "逆行";
-    var startText = start.years != null ? "起运 " + start.years + " 岁" + (start.months ? " " + start.months + " 个月" : "") : "";
+    var startText = start.years != null
+      ? "起运 " + start.years + " 岁" + (start.months ? " " + start.months + " 个月" : "")
+      : "";
     document.getElementById("luck-meta").textContent = [startText, direction].filter(Boolean).join(" · ");
 
-    var currentAge = new Date().getFullYear() - 1990;
-    document.getElementById("luck").innerHTML = cycles.map(function (cycle, index) {
+    var solar = String((calc.calendar_display || {}).solar || "");
+    var birthYear = Number(solar.slice(0, 4)) || 0;
+    if (!birthYear) {
+      var seed = window.MINGLI_DEMO_PROFILE || null;
+      var seedDate = seed && ((seed.profile && seed.profile.date) || seed.date);
+      if (seedDate) birthYear = Number(String(seedDate).slice(0, 4)) || 0;
+    }
+    if (!birthYear) {
+      var inputYear = document.getElementById("birth-year");
+      birthYear = Number((inputYear && inputYear.value) || 0);
+    }
+    var currentAge = birthYear ? new Date().getFullYear() - birthYear + 1 : 0;
+
+    var rail = document.getElementById("luck");
+    var nowIndex = -1;
+    rail.innerHTML = cycles.map(function (cycle, index) {
       var range = String(cycle.age_range || "");
-      var ageMatch = range.match(/(\d+)/g);
-      var isNow = ageMatch && ageMatch.length >= 2 && currentAge >= Number(ageMatch[0]) && currentAge <= Number(ageMatch[1]) && cycle.sequence !== "起运前";
+      var nums = range.match(/\d+/g) || [];
+      var ganzhi = String(cycle.ganzhi || "");
+      var wrapped = ganzhi.match(/^(.+?)[（(]([^）)]*)[）)]$/);
+      if (wrapped) ganzhi = wrapped[1];
+      var isPre = cycle.sequence === "起运前";
+      var ageText = isPre ? "小运" : (nums.length >= 2 ? nums[0] + "-" + nums[1] : range.replace("岁", ""));
+      var isNow = !isPre && nums.length >= 2 && currentAge >= Number(nums[0]) && currentAge <= Number(nums[1]);
+      if (isNow && nowIndex < 0) nowIndex = index;
       return '<a class="luck' + (isNow ? " on" : "") + '" href="cycle.html?type=luck&index=' + index + '">' +
-        "<b>" + esc(cycle.ganzhi) + "</b><span>" + esc(range.replace("岁", "")) + "</span></a>";
+        "<b>" + esc(ganzhi) + "</b><span>" + esc(ageText) + "</span></a>";
     }).join("");
+
+    if (nowIndex > 0) {
+      var on = rail.querySelector(".luck.on");
+      if (on) {
+        var left = on.offsetLeft - rail.offsetLeft - 8;
+        if (left > 0) rail.scrollLeft = left;
+      }
+    }
   }
 
   function renderYears(calc) {
@@ -175,13 +237,64 @@
     }).join("");
   }
 
+  function paint(data) {
+    lastCalc = data;
+    var calc = data.calculation;
+    var display = calc.calendar_display || {};
+    var sex = (data.normalized_input.profile.sex_for_calculation === "female") ? "女" : "男";
+    document.getElementById("idline").textContent =
+      [window.MingliProfile && window.MingliProfile.currentName(), display.solar, sex, display.lunar]
+        .filter(Boolean).join(" · ");
+
+    renderPillars(calc.pillars);
+    renderElements((data.ai_facts || {}).element_inventory || calc.element_inventory);
+    renderJudge(data.ai_facts || {});
+    renderAi(calc.pillars, data.ai_facts || {});
+    renderShensha(calc.derived);
+    if (document.getElementById("luck")) renderLuck(calc);
+    if (document.getElementById("years")) renderYears(calc);
+  }
+
   async function main() {
+    if (!profileScriptsReady() && !profileRetried) {
+      profileRetried = true;
+      var ensure = window.MingliBoot && window.MingliBoot.ensure;
+      if (typeof ensure === "function") {
+        var repaired = await ensure([
+          { src: "profile.js", ready: profileScriptsReady },
+          { src: "demo.js", ready: function () { return !!window.MINGLI_DEMO_PROFILE; } }
+        ]);
+        if (repaired && repaired.ok) {
+          await main();
+        } else {
+          showResourceError();
+        }
+        return;
+      }
+      showResourceError();
+      return;
+    }
+    if (!profileScriptsReady()) {
+      showResourceError();
+      return;
+    }
     var profile = loadProfile();
     if (!profile) {
       empty.hidden = false;
       return;
     }
     content.hidden = false;
+
+    var paintedFromSnapshot = false;
+    if (window.MINGLI_DEMO_BAZI && profile === window.MINGLI_DEMO_PROFILE) {
+      try {
+        paint(window.MINGLI_DEMO_BAZI);
+        paintedFromSnapshot = true;
+      } catch (snapshotError) {
+        paintedFromSnapshot = false;
+      }
+    }
+
     try {
       var response = await fetch(API, {
         method: "POST",
@@ -191,28 +304,24 @@
       var data = await response.json();
       if (!response.ok || data.status !== "ok") {
         var detail = (data.error && data.error.message) || "排盘失败";
+        if (paintedFromSnapshot) {
+          errorText.textContent = detail + "（上面是示例盘快照，联网后会自动更新）";
+          errorBox.hidden = false;
+          return;
+        }
         errorText.textContent = detail;
         errorBox.hidden = false;
         content.hidden = true;
         return;
       }
-      lastCalc = data;
-      var calc = data.calculation;
-      var display = calc.calendar_display || {};
-      var sex = (data.normalized_input.profile.sex_for_calculation === "female") ? "女" : "男";
-      document.getElementById("idline").textContent =
-        [window.MingliProfile && window.MingliProfile.currentName(), display.solar, sex, display.lunar]
-          .filter(Boolean).join(" · ");
-
-      renderPillars(calc.pillars);
-      renderElements((data.ai_facts || {}).element_inventory || calc.element_inventory);
-      renderJudge(data.ai_facts || {});
-      renderAi(calc.pillars, data.ai_facts || {});
-      renderShensha(calc.derived);
-      renderLuck(calc);
-      renderYears(calc);
+      paint(data);
     } catch (err) {
-      errorText.textContent = "请求失败：" + (err && err.message ? err.message : err) + "。请确认本机服务在 127.0.0.1:8765 运行。";
+      if (paintedFromSnapshot) {
+        errorText.textContent = "没连上本机排盘服务，上面先显示示例盘快照。";
+        errorBox.hidden = false;
+        return;
+      }
+      errorText.textContent = "请求失败：" + (err && err.message ? err.message : err) + "。排盘服务没有响应，请稍后点「重试」。";
       errorBox.hidden = false;
       content.hidden = true;
     }
@@ -253,6 +362,12 @@
           aiResult.innerHTML = '<p class="ai-audit">正在生成 ' + done + "/" + total + " 批…（每批 20–40 秒）</p>";
         });
         window.MingliAi.renderOutput(aiResult, report);
+        try {
+          report.system = "八字";
+          report.systemLabel = "八字体系";
+          var saved = window.MingliAi.saveReport(report);
+          if (reportLink && saved) { reportLink.href = "report.html?id=" + encodeURIComponent(saved.id); }
+        } catch (e) { /* 存不下不影响当前展示 */ }
         if (reportLink) reportLink.hidden = false;
       } catch (err) {
         window.MingliAi.renderError(aiResult, "解读失败：" + (err && err.message ? err.message : err));
@@ -263,9 +378,24 @@
     });
   }
 
-  if (reportLink && window.MingliAi && window.MingliAi.loadReport()) reportLink.hidden = false;
+  (function () {
+    if (!reportLink || !window.MingliAi) return;
+    var latest = window.MingliAi.loadReport();
+    if (!latest) return;
+    if (latest.id) reportLink.href = "report.html?id=" + encodeURIComponent(latest.id);
+    reportLink.hidden = false;
+  })();
 
   if (window.MingliGlossary) window.MingliGlossary.bind(content);
 
   main();
+
+  var retryButton = document.getElementById("retry");
+  if (retryButton) {
+    retryButton.addEventListener("click", function () {
+      retryButton.disabled = true;
+      retryButton.textContent = "重试中…";
+      location.reload();
+    });
+  }
 })();

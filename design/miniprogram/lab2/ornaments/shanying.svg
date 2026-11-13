@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 104" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <!-- 远山剪影：390×104，贴封面底 / 页脚底。横向可平铺（首尾山脚都在 y=104）。
+       三层山脊，由远到近线越重；山脊内不填色，只留 outline。 -->
+  <!-- 远山 -->
+  <path d="M 0 74 L 22 62 L 44 70 L 70 54 L 96 66 L 120 58 L 146 72 L 172 60 L 196 70 L 222 56 L 248 68 L 274 58 L 300 70 L 326 60 L 352 70 L 374 62 L 390 72" stroke-width=".6" opacity=".55"/>
+  <!-- 中山 -->
+  <path d="M 0 88 L 30 72 L 58 82 L 88 66 L 118 80 L 150 70 L 180 84 L 210 72 L 240 84 L 270 70 L 302 82 L 332 72 L 362 84 L 390 74" stroke-width=".9" opacity=".8"/>
+  <!-- 近山：最重的一道，压在底边 -->
+  <path d="M 0 104 L 26 92 L 52 100 L 84 86 L 112 98 L 142 90 L 170 100 L 200 88 L 228 100 L 258 90 L 288 100 L 318 90 L 348 100 L 376 92 L 390 100 L 390 104 L 0 104 Z" stroke-width="1.1"/>
+  <!-- 山脚水口：一道极淡的横向水纹，收住底边 -->
+  <path d="M 0 101 H 390" stroke-width=".5" opacity=".45"/>
+  <!-- 峰顶小气口：三处短竖，避免剪影太闷 -->
+  <path d="M 88 66 V 62" stroke-width=".6" opacity=".7"/>
+  <path d="M 200 88 V 84" stroke-width=".6" opacity=".7"/>
+  <path d="M 318 90 V 86" stroke-width=".6" opacity=".7"/>
+</svg>

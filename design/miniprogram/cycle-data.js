@@ -2,8 +2,21 @@
 // 参数：?type=luck&index=3  或  ?type=month&index=5
 (function () {
   "use strict";
+function mingliApiBase() {
+  var loc = window.location;
+  var host = loc.host || "";
+  var name = loc.hostname || "";
+  var loopback = name === "127.0.0.1" || name === "localhost" || name === "::1" || name === "[::1]";
+  // file:// 打开、或本机静态预览服务（如 serve.py 的 8899）都没有 /api：
+  // 这两种情况显式回到排盘服务端口，避免把请求发到静态服务器上 404。
+  if (!host || (loopback && host !== "127.0.0.1:8765" && host !== "localhost:8765")) {
+    return "http://127.0.0.1:8765";
+  }
+  // 其它情况（公网隧道、局域网 IP、8765 同源）一律用同源，由隧道/服务自己转发。
+  return loc.protocol + "//" + host;
+}
 
-  var API = "http://127.0.0.1:8765/api/v1/bazi/calculate";
+  var API = mingliApiBase() + "/api/v1/bazi/calculate";
   var empty = document.getElementById("empty");
   var errorBox = document.getElementById("error");
   var errorText = document.getElementById("error-text");
@@ -31,12 +44,14 @@
 
   function profile() {
     try {
-      if (window.MingliProfile) return window.MingliProfile.currentProfile();
+      if (window.MingliProfile) {
+        var current = window.MingliProfile.currentProfile();
+        if (current) return current;
+      }
       var raw = localStorage.getItem("mingli.profile.v1");
-      return raw ? JSON.parse(raw) : null;
-    } catch (e) {
-      return null;
-    }
+      if (raw) return JSON.parse(raw);
+    } catch (e) { /* 存储不可用时退回示例盘 */ }
+    return window.MINGLI_DEMO_PROFILE || null;
   }
 
   function post(payload) {
@@ -128,7 +143,7 @@
       try {
         var contract = await window.MingliAiContract.build({ bazi: lastData });
         var active = window.MingliProfile && window.MingliProfile.active();
-        var response = await fetch("http://127.0.0.1:8765/api/v1/moment", {
+        var response = await fetch(mingliApiBase() + "/api/v1/moment", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -175,7 +190,7 @@
       if (window.MingliGlossary) window.MingliGlossary.bind(document.getElementById("relations"));
     }).catch(function (err) {
       errorText.textContent = "请求失败：" + (err && err.message ? err.message : err) +
-        "。请确认本机服务在 127.0.0.1:8765 运行。";
+        "。排盘服务没有响应，请稍后点「重试」。";
       errorBox.hidden = false;
       content.hidden = true;
     });

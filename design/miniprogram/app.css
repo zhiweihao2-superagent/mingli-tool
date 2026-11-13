@@ -1,4 +1,8 @@
 * { box-sizing: border-box; }
+/* 滚动条：手机页面不显示（小程序无滚动条；桌面预览/设计工作台里经典滚动条
+   会吃掉 15px，让 375 视口的正文只占 360，看上去左右边距不等） */
+html{scrollbar-width:none;-ms-overflow-style:none}
+html::-webkit-scrollbar,body::-webkit-scrollbar{width:0;height:0;display:none}
 html { background: var(--bg); }
 body {
   margin: 0;
@@ -19,40 +23,33 @@ svg { display: block; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 /* ── 微信小程序骨架 ───────────────────────────── */
+/* 状态栏（时间/信号/电量）由系统画在小程序窗口之外，页面里不重复画，
+   只留出这块高度，真机上标题才不会被系统状态栏压住。 */
 .mp-top {
   position: sticky;
   top: 0;
   z-index: 20;
+  padding-top: var(--status-h);
   background: var(--nav-bg);
 }
-.mp-status {
-  height: var(--status-h);
-  padding: 0 26px 0 32px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font: 600 15px/1 var(--font-sans);
-  letter-spacing: .01em;
-}
-.status-icons { display: flex; align-items: center; gap: 6px; color: var(--text); }
 .mp-nav {
   position: relative;
   height: var(--nav-h);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 101px;              /* 右侧 101 让给微信胶囊 */
+  padding: 0 var(--cap-r) 0 var(--cap-l);   /* 左 :: 右 对称内缩；胶囊区由 --cap-r 撑开 */
   border-bottom: var(--hair);
 }
 .mp-nav h1 {
   margin: 0;
-  font-size: 17px;
+  font-size: var(--fs-h3);
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.mp-nav.custom { justify-content: flex-start; padding-left: var(--gutter); }
+.mp-nav.custom { justify-content: flex-start; padding-left: var(--gutter); padding-right: var(--gutter); }
 .mp-nav .brand { display: flex; align-items: center; gap: var(--space-2); }
 .mp-nav .brand b { font-family: var(--font-serif); font-size: var(--fs-h3); font-weight: var(--w-head); letter-spacing: .18em; }
 .mp-back { position: absolute; left: 4px; top: 0; width: 44px; height: 44px; display: grid; place-items: center; }
@@ -64,9 +61,9 @@ svg { display: block; }
   bottom: 0;
   z-index: 20;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   height: calc(var(--tab-h) + var(--home-bar));
-  padding-bottom: var(--home-bar);
+  padding: 0 var(--gutter) var(--home-bar);
   background: var(--surface);
   border-top: var(--hair);
 }
@@ -77,7 +74,7 @@ svg { display: block; }
   align-items: center;
   justify-content: center;
   gap: 2px;
-  font-size: 10px;
+  font-size: var(--fs-micro);
   letter-spacing: .06em;
   color: var(--muted);
 }
@@ -97,12 +94,12 @@ svg { display: block; }
   height: 36px;
   border-radius: 3px;
   background: var(--accent);
-  color: var(--on);
+  color: var(--accent-ink);
   font-family: var(--font-serif);
   font-size: var(--fs-h3);
   font-weight: 600;
   line-height: 1;
-  box-shadow: inset 0 0 0 2px var(--accent), inset 0 0 0 3px rgba(247, 243, 234, .55);
+  box-shadow: inset 0 0 0 2px var(--accent), inset 0 0 0 3px var(--shadow-color);
 }
 
 /* 小标题：前面一截细线 */
@@ -153,7 +150,7 @@ svg { display: block; }
   padding: 0 var(--space-5);
   border-radius: var(--radius);
   background: var(--primary);
-  color: var(--on);
+  color: var(--primary-ink);
   font-size: var(--fs-body);
   letter-spacing: .16em;
   transition: transform .2s cubic-bezier(.2, .8, .2, 1), opacity .2s;
@@ -169,7 +166,8 @@ svg { display: block; }
 /* ── 体系切换（八字 / 紫微） ─────────────────── */
 .mp-seg {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
   gap: 4px;
   padding: 4px;
   background: var(--wash);
@@ -188,7 +186,7 @@ svg { display: block; }
   background: var(--surface);
   color: var(--text);
   font-weight: 600;
-  box-shadow: 0 0 0 1px var(--line);
+  box-shadow: inset 0 0 0 1px var(--line);
 }
 
 /* ── AI 解读卡：每个结果页都要在第一屏看得到 ─── */
@@ -197,7 +195,7 @@ svg { display: block; }
   margin-top: var(--space-4);
   padding: var(--space-4) var(--space-4) var(--space-4) calc(var(--space-4) + 6px);
   background: var(--surface);
-  border: 1px solid rgba(163, 58, 43, .34);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
 }
 .ai-card::before {
@@ -214,7 +212,7 @@ svg { display: block; }
   font-size: var(--fs-micro);
   letter-spacing: .14em;
   color: var(--accent);
-  border: 1px solid rgba(163, 58, 43, .4);
+  border: 1px solid var(--line);
   border-radius: 2px;
   padding: 1px 6px;
   line-height: 18px;
@@ -222,7 +220,7 @@ svg { display: block; }
 .ai-title { font-family: var(--font-serif); font-size: var(--fs-h3); letter-spacing: .06em; }
 .ai-body { margin-top: var(--space-2); color: var(--muted); line-height: 1.7; }
 .ai-body strong { color: var(--text); font-weight: 500; }
-.ai-actions { margin-top: var(--space-3); display: flex; align-items: center; gap: var(--space-3); }
+.ai-actions { margin-top: var(--space-3); display: flex; align-items: center; flex-wrap: wrap; gap: var(--space-3); }
 .ai-btn {
   min-height: 44px;
   padding: 0 var(--space-4);
@@ -231,12 +229,14 @@ svg { display: block; }
   gap: var(--space-2);
   border-radius: var(--radius);
   background: var(--accent);
-  color: var(--on);
+  color: var(--accent-ink);
   font-size: var(--fs-meta);
   letter-spacing: .12em;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .ai-btn .ico { width: 16px; height: 16px; }
-.ai-note { font-size: var(--fs-micro); color: var(--muted); letter-spacing: .06em; }
+.ai-note { font-size: var(--fs-micro); color: var(--muted); letter-spacing: .06em; white-space: nowrap; }
 
 /* ── AI 解读结果 ─────────────────────────────── */
 .ai-result { margin-top: var(--space-4); }
@@ -266,14 +266,86 @@ svg { display: block; }
 
 .mini-action {
   min-height: 44px;
-  padding: 0 var(--space-3);
+  padding: 0 var(--space-4);
   display: inline-flex;
   align-items: center;
+  border: 0;
   border-radius: var(--radius);
-  box-shadow: inset 0 0 0 1px var(--line);
-  font-size: 12px;
-  color: var(--text);
+  background: var(--primary);
+  color: var(--primary-ink);
+  font-size: var(--fs-meta);
+  font-weight: var(--w-head);
   letter-spacing: .04em;
   white-space: nowrap;
 }
-.idrow { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
+.mini-action:active { opacity: .85; }
+.ai-btn[hidden], .ai-report-link[hidden] { display: none; }
+/* 身份行：一行说明 +（可选）档案下拉 + 存图按钮。
+   用 flex 而不是 grid：档案只有一个时下拉会 display:none 退出排版，
+   grid 下按钮会掉进第 1 列、贴到左边、右边缘留 32px（左右差 16px）；
+   flex 下按钮靠 margin-left:auto 永远贴右，与其它块的 16px 边距对齐。 */
+.idrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-2);
+}
+.idrow .idline { flex: 1 0 100%; }
+.idrow .who-quick { flex: 1 1 auto; min-width: 0; }
+.idrow .mini-action { flex: 0 0 auto; margin-left: auto; }
+
+/* 年份选择器：覆盖在年份数字上，外观不变，点数字即可跳年 */
+.yearbar .mid { position: relative; }
+.year-pick {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  border: 0;
+  background: transparent;
+  appearance: none;
+  cursor: pointer;
+}
+
+
+/* 首页右上角印章：可点，点击区按 44 起 */
+.top a.seal {
+  width: 44px;
+  height: 44px;
+  text-decoration: none;
+}
+
+/* 紫微三档：主星最大，辅星与小星一档，宫名一档 */
+.ziwei .p-star { font-size: var(--fs-meta); font-weight: var(--w-head); }
+.ziwei .p-star i { font-size: var(--fs-micro); }
+.ziwei .p-line { font-size: var(--fs-micro); }
+.ziwei .p-name { font-size: var(--fs-micro); }
+
+/* 存成图后的去处提示 */
+.save-note {
+  margin-top: var(--space-2);
+  font-size: var(--fs-micro);
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* 换年/换月时的轻微提示：内容淡一点，别让用户以为没反应 */
+.is-loading { opacity: .55; transition: opacity .15s ease; }
+
+/* 设置 · 主题：三行，当前那套描朱色 + 后缀「· 当前」 */
+.theme-list { list-style: none; margin: 0; padding: 0; }
+.theme-list li + li { border-top: var(--hair); }
+.theme-opt {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: var(--space-3); padding: var(--space-3) 0;
+}
+.theme-opt b { font-family: var(--font-serif); font-weight: var(--w-head); font-size: var(--fs-body); }
+.theme-opt span { font-size: var(--fs-micro); color: var(--muted); letter-spacing: .04em; }
+.theme-opt[aria-current="true"] b { color: var(--accent); }
+html[data-theme="songke"] .theme-opt[data-name="songke"] b,
+html[data-theme="qinglv"] .theme-opt[data-name="qinglv"] b,
+html[data-theme="fuyao"] .theme-opt[data-name="fuyao"] b { color: var(--accent); }
+html[data-theme="songke"] .theme-opt[data-name="songke"] span::after,
+html[data-theme="qinglv"] .theme-opt[data-name="qinglv"] span::after,
+html[data-theme="fuyao"] .theme-opt[data-name="fuyao"] span::after { content: " · 当前"; color: var(--accent); }

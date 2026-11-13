@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-linecap="butt" aria-hidden="true">
+  <!-- 太极 + 后天八卦环。外 57 内 50 / 41 三环，爻线落在 r=43..37。
+       结构线一律 currentColor；太极的阳眼取朱色变量，阴眼留空（不描边）。 -->
+  <circle cx="60" cy="60" r="57" stroke-width="1.1"/>
+  <circle cx="60" cy="60" r="50" stroke-width="0.5"/>
+  <circle cx="60" cy="60" r="41" stroke-width="0.5"/>
+
+  <!-- 八卦：正上方起顺时针。每组三爻，由内向外是初、二、三爻（实线=阳，断线=阴）。 -->
+  <!-- 乾 111 -->
+  <g>
+    <line x1="53" y1="17" x2="67" y2="17" stroke-width="1.7"/>
+    <line x1="53" y1="20" x2="67" y2="20" stroke-width="1.7"/>
+    <line x1="53" y1="23" x2="67" y2="23" stroke-width="1.7"/>
+  </g>
+  <!-- 巽 011 -->
+  <g transform="rotate(45 60 60)">
+    <line x1="53" y1="17" x2="67" y2="17" stroke-width="1.7"/>
+    <line x1="53" y1="20" x2="67" y2="20" stroke-width="1.7"/>
+    <line x1="53" y1="23" x2="58.6" y2="23" stroke-width="1.7"/>
+    <line x1="61.4" y1="23" x2="67" y2="23" stroke-width="1.7"/>
+  </g>
+  <!-- 坎 010 -->
+  <g transform="rotate(90 60 60)">
+    <line x1="53" y1="17" x2="67" y2="17" stroke-width="1.7"/>
+    <line x1="53" y1="20" x2="58.6" y2="20" stroke-width="1.7"/>
+    <line x1="61.4" y1="20" x2="67" y2="20" stroke-width="1.7"/>
+    <line x1="53" y1="23" x2="67" y2="23" stroke-width="1.7"/>
+  </g>
+  <!-- 艮 001 -->
+  <g transform="rotate(135 60 60)">
+    <line x1="53" y1="17" x2="58.6" y2="17" stroke-width="1.7"/>
+    <line x1="61.4" y1="17" x2="67" y2="17" stroke-width="1.7"/>
+    <line x1="53" y1="20" x2="58.6" y2="20" stroke-width="1.7"/>
+    <line x1="61.4" y1="20" x2="67" y2="20" stroke-width="1.7"/>
+    <line x1="53" y1="23" x2="67" y2="23" stroke-width="1.7"/>
+  </g>
+  <!-- 坤 000 -->
+  <g transform="rotate(180 60 60)">
+    <line x1="53" y1="17" x2="58.6" y2="17" stroke-width="1.7"/>
+    <line x1="61.4" y1="17" x2="67" y2="17" stroke-width="1.7"/>
+    <line x1="53" y1="20" x2="58.6" y2="20" stroke-width="1.7"/>
+    <line x1="61.4" y1="20" x2="67" y2="20" stroke-width="1.7"/>
+    <line x1="53" y1="23" x2="58.6" y2="23" stroke-width="1.7"/>
+    <line x1="61.4" y1="23" x2="67" y2="23" stroke-width="1.7"/>
+  </g>
+  <!-- 震 100 -->
+  <g transform="rotate(225 60 60)">
+    <line x1="53" y1="17" x2="67" y2="17" stroke-width="1.7"/>
+    <line x1="53" y1="20" x2="58.6" y2="20" stroke-width="1.7"/>
+    <line x1="61.4" y1="20" x2="67" y2="20" stroke-width="1.7"/>
+    <line x1="53" y1="23" x2="58.6" y2="23" stroke-width="1.7"/>
+    <line x1="61.4" y1="23" x2="67" y2="23" stroke-width="1.7"/>
+  </g>
+  <!-- 离 101 -->
+  <g transform="rotate(270 60 60)">
+    <line x1="53" y1="17" x2="67" y2="17" stroke-width="1.7"/>
+    <line x1="53" y1="20" x2="58.6" y2="20" stroke-width="1.7"/>
+    <line x1="61.4" y1="20" x2="67" y2="20" stroke-width="1.7"/>
+    <line x1="53" y1="23" x2="67" y2="23" stroke-width="1.7"/>
+  </g>
+  <!-- 兑 110 -->
+  <g transform="rotate(315 60 60)">
+    <line x1="53" y1="17" x2="58.6" y2="17" stroke-width="1.7"/>
+    <line x1="61.4" y1="17" x2="67" y2="17" stroke-width="1.7"/>
+    <line x1="53" y1="20" x2="67" y2="20" stroke-width="1.7"/>
+    <line x1="53" y1="23" x2="67" y2="23" stroke-width="1.7"/>
+  </g>
+
+  <!-- 太极：S 形分割，阳在右实心 -->
+  <circle cx="60" cy="60" r="33" stroke-width="0.9"/>
+  <path d="M 60,27 A 16.5,16.5 0 0,1 60,60 A 16.5,16.5 0 0,0 60,93 A 33,33 0 0,1 60,27 Z" fill="currentColor" stroke="none"/>
+  <circle cx="60" cy="43.5" r="3.4" fill="currentColor" stroke="none"/>
+  <circle cx="60" cy="76.5" r="3.4" fill="var(--zhu,currentColor)" stroke="none"/>
+</svg>

@@ -1,0 +1,73 @@
+/* 只在「电脑浏览器」里生效：把整页收成一格手机，居中放在纸上。
+   手机上看（< 520px）完全不起作用，等于不存在，不影响设计稿本身的画布预览。 */
+
+@media (min-width: 520px) {
+  html {
+    background: var(--wash);
+  }
+
+  body {
+    width: 390px;
+    min-height: 100vh;
+    margin: 0 auto;
+    position: relative;
+    background: var(--bg);
+    border-inline: 1px solid var(--line);
+  }
+
+  /* 桌面端在手机两侧留白，滚动条跟着整页走 */
+  .mp-top {
+    position: sticky;
+    top: 0;
+  }
+
+  /* 固定底栏原本贴视口边缘，这里收进手机壳里（tabbar 与页面内 actionbar 同处理） */
+  .mp-tabbar,
+  .actionbar,
+  #match-actions {
+    left: 50%;
+    right: auto;
+    width: 390px;
+    transform: translateX(-50%);
+  }
+
+  /* 居中弹层同理，避免面板跑到手机外面 */
+  .picker-sheet,
+  .sheet-mask,
+  .gloss-sheet {
+    left: 50%;
+    right: auto;
+    width: 390px;
+    transform: translateX(-50%);
+  }
+
+  /* 手机壳右下角一枚小字，说明这是手机界面预览 */
+  body::after {
+    content: "手机界面预览 · 宽 390px";
+    position: fixed;
+    right: 24px;
+    bottom: 16px;
+    font: 12px/1 var(--font-sans, sans-serif);
+    letter-spacing: .06em;
+    color: var(--muted);
+    pointer-events: none;
+  }
+}
+
+/* 覆盖页面内嵌的旧式非内描阴影与固定色。 */
+.mp-seg .on, .seg3 button[aria-pressed="true"] { box-shadow: inset 0 0 0 1px var(--line); }
+.notice, .term { border-color: var(--line); }
+.mp-nav h1, .section-head h2, .p-name, .p-star { font-family: var(--font-serif); }
+.btn:not(.btn-ghost), .mini-action:not(.mini-ghost) { color: var(--primary-ink); }
+.btn-ghost { color: var(--text); }
+/* 原生下拉的选项是系统画的，必须显式给底色与字色，否则深底主题里是黑字黑底。 */
+option { background: var(--surface); color: var(--text); }
+select, input, textarea { color: var(--text); }
+.ai-btn, .seal { color: var(--accent-ink); }
+.mp-tabbar .is-on, .r-mark { color: var(--accent); }
+.mon.on span, .luck.on span, .dec.on span, .chip[aria-pressed="true"] span { color: var(--primary-ink); }
+.pillars, .board { border: 1px solid var(--line); outline: 1px solid var(--line-soft); outline-offset: 3px; }
+.card, .hero, .ai-card, .notice { outline: 1px solid var(--line-soft); outline-offset: -4px; }
+.hero::before, .ai-card::after { content:""; position:absolute; inset:6px; pointer-events:none; background:linear-gradient(var(--gold),var(--gold)) left top/6px 1px no-repeat,linear-gradient(var(--gold),var(--gold)) left top/1px 6px no-repeat,linear-gradient(var(--gold),var(--gold)) right top/6px 1px no-repeat,linear-gradient(var(--gold),var(--gold)) right top/1px 6px no-repeat,linear-gradient(var(--gold),var(--gold)) left bottom/6px 1px no-repeat,linear-gradient(var(--gold),var(--gold)) left bottom/1px 6px no-repeat,linear-gradient(var(--gold),var(--gold)) right bottom/6px 1px no-repeat,linear-gradient(var(--gold),var(--gold)) right bottom/1px 6px no-repeat; }
+
+.segbar button[aria-pressed="true"] { box-shadow: inset 0 0 0 1px var(--line); }

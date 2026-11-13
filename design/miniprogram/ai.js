@@ -2,8 +2,21 @@
 // 服务端每次最多接 2 个主题，所以这里自己分批、按顺序跑，跑完存进 localStorage 供报告页使用。
 (function (global) {
   "use strict";
+function mingliApiBase() {
+  var loc = window.location;
+  var host = loc.host || "";
+  var name = loc.hostname || "";
+  var loopback = name === "127.0.0.1" || name === "localhost" || name === "::1" || name === "[::1]";
+  // file:// 打开、或本机静态预览服务（如 serve.py 的 8899）都没有 /api：
+  // 这两种情况显式回到排盘服务端口，避免把请求发到静态服务器上 404。
+  if (!host || (loopback && host !== "127.0.0.1:8765" && host !== "localhost:8765")) {
+    return "http://127.0.0.1:8765";
+  }
+  // 其它情况（公网隧道、局域网 IP、8765 同源）一律用同源，由隧道/服务自己转发。
+  return loc.protocol + "//" + host;
+}
 
-  var ENDPOINT = "http://127.0.0.1:8765/api/v1/interpret";
+  var ENDPOINT = mingliApiBase() + "/api/v1/interpret";
   var CONSENT_VERSION = "2026-10";
   var STORE = "mingli.report.v1";
   var REPORTS = "mingli.reports.v1";

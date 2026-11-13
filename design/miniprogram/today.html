@@ -4,9 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="dsh-design" content="miniprogram">
-<title>今日流日 · 命理工具</title>
+<title>运势 · 流日 · 命理工具</title>
 <link rel="stylesheet" href="tokens.css">
 <link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="ornaments.css">
 <style>
   .day-head { padding-top: var(--space-4); }
   .day-head h1 { font-size: var(--fs-h1); line-height: 1.25; margin-top: var(--space-2); }
@@ -18,7 +19,7 @@
 
   .pair { margin-top: var(--space-3); display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); border-top: var(--hair); padding-top: var(--space-3); }
   .pair div { min-width: 0; }
-  .pair span { display: block; font-size: 11px; color: var(--muted); letter-spacing: .12em; }
+  .pair span { display: block; font-size: var(--fs-micro); color: var(--muted); letter-spacing: .12em; }
   .pair b { display: block; margin-top: 2px; font-family: var(--font-serif); font-weight: var(--w-head); font-size: var(--fs-h3); letter-spacing: .04em; }
 
   .rows { list-style: none; margin: var(--space-3) 0 0; padding: 0; }
@@ -31,12 +32,12 @@
   .tips b { font-family: var(--font-serif); font-weight: var(--w-head); font-size: var(--fs-meta); }
   .tips ul { margin: var(--space-2) 0 0; padding-left: 18px; font-size: var(--fs-meta); color: var(--muted); line-height: 1.75; }
 
-  .notice { margin-top: var(--space-4); padding: var(--space-4); border: 1px solid rgba(163, 58, 43, .35); border-radius: var(--radius); background: var(--surface); }
+  .notice { margin-top: var(--space-4); padding: var(--space-4); border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); border-radius: var(--radius); background: var(--surface); }
   .notice b { display: block; font-family: var(--font-serif); font-size: var(--fs-body); }
-  .notice p { margin-top: var(--space-2); font-size: 12px; color: var(--muted); line-height: 1.7; }
+  .notice p { margin-top: var(--space-2); font-size: var(--fs-meta); color: var(--muted); line-height: 1.7; }
   .notice .btn { display: inline-flex; width: auto; margin-top: var(--space-3); line-height: 1; }
   .who { margin-top: var(--space-4); display: grid; grid-template-columns: 1fr auto; gap: var(--space-2); align-items: center; }
-  .who label { grid-column: 1 / -1; font-size: 11px; color: var(--muted); letter-spacing: .12em; }
+  .who label { grid-column: 1 / -1; font-size: var(--fs-micro); color: var(--muted); letter-spacing: .12em; }
   .who select {
     width: 100%; min-height: 44px; padding: 0 var(--space-2);
     background: var(--bg); border: var(--hair); border-radius: var(--radius); color: var(--text); font-size: var(--fs-body);
@@ -46,30 +47,95 @@
     border-radius: var(--radius); box-shadow: inset 0 0 0 1px var(--line); font-size: var(--fs-meta);
   }
   .who .ghost[disabled] { opacity: .45; }
-  .who-note { margin-top: var(--space-2); font-size: 12px; color: var(--muted); }
+  .who-note { margin-top: var(--space-2); font-size: var(--fs-meta); color: var(--muted); }
+  .daybar { display: grid; grid-template-columns: 44px 1fr 44px; align-items: center; gap: var(--space-2); margin: var(--space-3) 0 0; }
+  .day-step {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 44px; border-radius: var(--radius); box-shadow: inset 0 0 0 1px var(--line);
+    font-family: var(--font-serif); font-size: var(--fs-h3); color: var(--text); text-decoration: none;
+  }
+  .day-now { position: relative; display: block; text-align: center; }
+  .day-now span {
+    display: block; min-height: 44px; line-height: 44px;
+    font-family: var(--font-serif); font-size: var(--fs-h3); letter-spacing: .04em;
+  }
+  .day-now { background: transparent; border: 0; padding: 0; cursor: pointer; }
+  .picker-sheet {
+    position: fixed; inset: 0; z-index: 60;
+    display: flex; align-items: flex-end;
+    background: rgba(0, 0, 0, .42);
+  }
+  .picker-sheet[hidden] { display: none; }
+  .sheet-panel {
+    width: 100%; background: var(--surface);
+    border-top: 1px solid var(--line);
+    border-radius: 12px 12px 0 0;
+    padding: var(--space-4) var(--gutter) calc(var(--space-5) + env(safe-area-inset-bottom, 0px));
+  }
+  .sheet-head {
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: var(--fs-meta); color: var(--muted); letter-spacing: .08em;
+  }
+  .sheet-x {
+    width: 44px; height: 44px; margin: -14px -8px -14px 0;
+    border: 0; background: transparent;
+    font-size: 20px; color: var(--muted);
+  }
+  .sheet-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-2); margin-top: var(--space-3); }
+  .sheet-field { display: block; }
+  .sheet-field span {
+    display: block; margin-bottom: var(--space-1);
+    font-size: var(--fs-micro); color: var(--muted);
+  }
+  .sheet-field select {
+    width: 100%; min-height: 44px; padding: 0 var(--space-2);
+    border: 1px solid var(--line); border-radius: var(--radius);
+    background: var(--bg); color: var(--text);
+    font-family: var(--font-sans); font-size: var(--fs-body);
+  }
+  .sheet-actions {
+    display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2); margin-top: var(--space-4);
+  }
+  .day-hint {
+    display: block; margin-top: 0;
+    font-size: var(--fs-micro); color: var(--accent); letter-spacing: .12em;
+    text-decoration: underline; text-underline-offset: 3px;
+  }
+  .day-now:active #day-label { color: var(--accent); }
 </style>
+<link rel="stylesheet" href="frame.css">
+  <script src="themes/switch.js"></script>
 </head>
 <body>
 <svg class="sprite" aria-hidden="true">
   <symbol id="i-back" viewBox="0 0 24 24"><path d="M14.5 6l-6 6 6 6"/></symbol>
+  <symbol id="i-today" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 3.5v2M12 18.5v2M4.5 12h2M17.5 12h2M6.7 6.7l1.4 1.4M15.9 15.9l1.4 1.4M17.3 6.7l-1.4 1.4M8.1 15.9l-1.4 1.4"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M12 4v16M4 12h16"/></symbol>
+  <symbol id="i-time" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-me" viewBox="0 0 24 24"><circle cx="12" cy="9" r="3.4"/><path d="M5.5 19.5c1.3-3.2 3.6-4.8 6.5-4.8s5.2 1.6 6.5 4.8"/></symbol>
 </svg>
 
 <header class="mp-top">
-  <div class="mp-status">
-    <span>9:41</span>
-    <span class="status-icons">
-      <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx=".8"/><rect x="5" y="5.5" width="3" height="6.5" rx=".8"/><rect x="10" y="3" width="3" height="9" rx=".8"/><rect x="15" y="0" width="3" height="12" rx=".8"/></svg>
-      <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1.5 4.3a9.5 9.5 0 0 1 13 0"/><path d="M4 7.1a6 6 0 0 1 8 0"/><circle cx="8" cy="10" r="1.3" fill="currentColor" stroke="none"/></svg>
-      <svg width="27" height="12" viewBox="0 0 27 12"><rect x=".5" y=".5" width="23" height="11" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="2" y="2" width="17" height="8" rx="1.8" fill="currentColor"/><path d="M25 4v4c.8-.3 1.4-1.1 1.4-2s-.6-1.7-1.4-2z" fill="currentColor" fill-opacity=".4"/></svg>
-    </span>
-  </div>
-  <div class="mp-nav">
-    <a class="mp-back" href="home.html" aria-label="返回今日"><svg class="ico"><use href="#i-back"/></svg></a>
-    <h1 class="head">今日流日</h1>
+<div class="mp-nav">
+    <h1 class="head">流日</h1>
   </div>
 </header>
 
 <main class="mp-page">
+<nav class="mp-seg" aria-label="切换视图">
+  <a href="annual.html">流年</a>
+  <a href="month.html">流月</a>
+  <a class="on" aria-current="page" href="today.html">流日</a>
+</nav>
+  <div class="daybar">
+    <a class="day-step" id="prev-day" href="today.html" aria-label="前一天">‹</a>
+    <button type="button" class="day-now" id="day-open" aria-haspopup="dialog">
+      <span id="day-label">今天</span>
+      <span class="day-hint">选日期</span>
+    </button>
+    <a class="day-step" id="next-day" href="today.html" aria-label="后一天">›</a>
+  </div>
+
   <div id="empty" class="notice" hidden>
     <b>还没有出生资料</b>
     <p>这一页把今天的干支和你的日主、当前大运放在一起看。填一次出生资料就能对照。</p>
@@ -79,6 +145,7 @@
   <div id="error" class="notice" hidden>
     <b>没连上本机排盘服务</b>
     <p id="error-text"></p>
+      <button type="button" class="btn ghost" id="retry">重试</button>
   </div>
 
   <div id="content" hidden>
@@ -117,19 +184,52 @@
 
     <section class="card" style="margin-top:var(--space-4)">
       <h2 class="head">让 AI 讲这一天</h2>
-      <p class="lead">把今天的干支放到你的盘上，讲节奏、场景和今天能做的事；输出经服务端复核。</p>
+      <p class="lead">把这一天的干支放到你的盘上，讲节奏、场景和这一天能做的事；输出经服务端复核。先有解读，才能存成长图。</p>
       <button class="ai-btn" id="today-ai" type="button" style="margin-top:var(--space-3)">生成这天的解读</button>
+      <button class="ai-btn" id="save-day" type="button" style="margin-top:var(--space-2)" hidden>存长图</button>
+        <p class="save-note" id="save-note-day" hidden></p>
+      <a class="ai-report-link" id="report-link" href="report.html" hidden>查看完整报告 · 存长图<svg class="ico" style="width:14px;height:14px"><use href="#i-chev"/></svg></a>
       <div class="ai-result" id="today-result"></div>
     </section>
   </div>
-</main>
+<div class="picker-sheet" id="day-sheet" hidden>
+    <div class="sheet-panel" role="dialog" aria-modal="true" aria-label="选择日期">
+      <div class="sheet-head">
+        <span>选一天</span>
+        <button type="button" class="sheet-x" id="day-sheet-close" aria-label="关闭">×</button>
+      </div>
+      <div class="sheet-row">
+        <label class="sheet-field"><span>年</span><select id="pick-year"></select></label>
+        <label class="sheet-field"><span>月</span><select id="pick-month"></select></label>
+        <label class="sheet-field"><span>日</span><select id="pick-day"></select></label>
+      </div>
+      <div class="sheet-actions">
+        <button type="button" class="btn btn-ghost" id="day-sheet-today">回到今天</button>
+        <button type="button" class="btn" id="day-sheet-go">看这一天</button>
+      </div>
+    </div>
+  </div>
 
+  
+
+</main>
+  <nav class="mp-tabbar" aria-label="主导航">
+  <a href="home.html"><svg class="ico"><use href="#i-today"/></svg>今日</a>
+  <a href="bazi.html"><svg class="ico"><use href="#i-chart"/></svg>命盘</a>
+  <a class="is-on" aria-current="page" href="today.html"><svg class="ico"><use href="#i-time"/></svg>运势</a>
+  <a href="me.html"><svg class="ico"><use href="#i-me"/></svg>我的</a>
+</nav>
+
+  <script src="boot.js"></script>
 <script src="profile.js"></script>
+<script src="demo.js"></script>
 <script src="glossary.js"></script>
 <script src="vendor/ai-contract.js"></script>
 <script src="vendor/report-structure.js"></script>
 <script src="vendor/bazi-knowledge.js"></script>
 <script src="ai.js"></script>
+<script src="vendor/report-image.js"></script>
+<script src="moment-image.js"></script>
 <script src="today-data.js"></script>
 </body>
 </html>

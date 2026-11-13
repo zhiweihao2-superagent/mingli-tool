@@ -1,0 +1,100 @@
+/* 设计系统「mingli-d-panmian」的组件样式：照网站上的按钮、输入框、卡片量出来的，全用 tokens.css 里的变量。复制到设计目录，在 tokens.css 后面 link */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 10px 0px;
+  border: 1px solid var(--color-text);
+  border-radius: var(--radius-sm);
+  background: var(--color-primary);
+  color: var(--color-primary-ink);
+  font: 400 15px/1.2 var(--font-sans);
+  letter-spacing: 2.1px;
+  cursor: pointer;
+  transition: filter var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+.btn:hover { filter: brightness(1.06); }
+.btn:active { transform: translateY(1px); }
+.btn:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.btn-secondary {
+  background: transparent;
+  color: var(--color-text);
+  border-color: var(--color-line);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--color-primary);
+  border-color: transparent;
+}
+
+.input {
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: 400 var(--text-md)/1.4 var(--font-sans);
+}
+.input::placeholder { color: var(--color-muted); }
+.input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-primary) 22%, transparent); }
+
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+  border: none;
+  box-shadow: none;
+  padding: 24px 24px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: var(--radius-sm);
+  background: color-mix(in oklab, var(--color-primary) 12%, var(--color-surface));
+  color: var(--color-primary);
+  font: 600 var(--text-xs)/1 var(--font-sans);
+}
+
+.link {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+.link:hover { text-decoration: underline; }
+
+/* 文字样式 */
+.display {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 3.06px;
+  color: var(--color-text);
+}
+.h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--color-text);
+}
+.h3 {
+  font: 600 var(--text-lg)/1.35 var(--font-display);
+}
+.body {
+  font-family: var(--font-sans);
+  font-size: var(--text-md);
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--color-text);
+}
+.caption {
+  font: 400 var(--text-sm)/1.5 var(--font-sans);
+  color: var(--color-muted);
+}

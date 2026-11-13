@@ -18,15 +18,36 @@
   var reportLink = document.getElementById("report-link");
   var lastChart = null;
   var saveChartButton = document.getElementById("save-chart");
+  var retryButton = document.getElementById("retry");
+  var resourceRetried = false;
+
+  // 公网隧道下偶发某个 vendor 文件 502，脚本没加载全时 window.MingliZiwei 就是 undefined。
+  // 那种情况不能报「Cannot read properties of undefined」——用户看不懂，也不知道该干什么。
+  function engineReady() {
+    return !!(
+      window.iztro && window.iztro.astro && typeof window.iztro.astro.withOptions === "function" &&
+      window.MingliZiwei && typeof window.MingliZiwei.calculate === "function" &&
+      window.MingliZiweiFacts && typeof window.MingliZiweiFacts.build === "function"
+    );
+  }
+
+  function showResourceError() {
+    errorText.textContent = "排盘程序没有加载完整——多半是网络中途断了。点下面的按钮重新加载一次就好。";
+    errorBox.hidden = false;
+    content.hidden = true;
+    if (retryButton) retryButton.textContent = "重新加载";
+  }
 
   function loadProfile() {
     try {
-      if (window.MingliProfile) return window.MingliProfile.currentProfile();
+      if (window.MingliProfile) {
+        var current = window.MingliProfile.currentProfile();
+        if (current) return current;
+      }
       var raw = localStorage.getItem(STORE);
-      return raw ? JSON.parse(raw) : null;
-    } catch (e) {
-      return null;
-    }
+      if (raw) return JSON.parse(raw);
+    } catch (e) { /* 存储不可用时退回示例盘 */ }
+    return window.MINGLI_DEMO_PROFILE || null;
   }
 
   function esc(text) {
@@ -168,6 +189,28 @@
     }
     content.hidden = false;
 
+    // 脚本没加载全就先自动补一次（隧道偶发 502），补不上再如实报「网络断了」
+    if (!engineReady() && !resourceRetried) {
+      resourceRetried = true;
+      var ensure = window.MingliBoot && window.MingliBoot.ensureChart;
+      if (typeof ensure === "function") {
+        ensure().then(function (result) {
+          if (result && result.ok) {
+            main();
+          } else {
+            showResourceError();
+          }
+        });
+        return;
+      }
+      showResourceError();
+      return;
+    }
+    if (!engineReady()) {
+      showResourceError();
+      return;
+    }
+
     try {
       var birth = profile.profile || {};
       var time = birth.time || {};
@@ -181,6 +224,21 @@
       }, { asOfYear: now.getFullYear(), asOfDate: today, asOfTimeIndex: 6 });
 
       lastChart = chart;
+      if (chart && chart.status && chart.status !== "ok") {
+        // 排盘层已给出具体原因（缺时辰 / 子时歧义 / 输入非法 / 引擎失败），照实显示，
+        // 不要一律说成「缺出生时辰」——那会把引擎问题说成用户问题。
+        var code = (chart.error && chart.error.code) || "";
+        var msg = (chart.error && chart.error.message) || "紫微排盘失败，请检查出生信息。";
+        errorText.textContent = msg;
+        errorBox.hidden = false;
+        content.hidden = true;
+        if (aiButton) {
+          aiButton.disabled = true;
+          aiButton.textContent = "先补出生时辰";
+        }
+        if (/TIME_(REQUIRED|INVALID)|RAT_HOUR/.test(code)) renderHourFix();
+        return;
+      }
       var astrolabe = chart.astrolabe || {};
       var palaces = chart.palaces || [];
       if (!palaces.length) throw new Error("没有生成十二宫");
@@ -203,14 +261,13 @@
       renderDecadal(palaces, age);
       renderKey(palaces);
     } catch (err) {
-      errorText.textContent = "紫微斗数必须有出生时辰才能排盘。知道大概几点就够——在下面点一个时辰，立刻重排。";
+      errorText.textContent = "紫微排盘出错：" + (err && err.message ? err.message : "未知原因") + "。可以点「重试」再排一次。";
       errorBox.hidden = false;
       content.hidden = true;
       if (aiButton) {
         aiButton.disabled = true;
-        aiButton.textContent = "先补出生时辰";
+        aiButton.textContent = "排盘出错";
       }
-      renderHourFix();
     }
   }
 
@@ -244,6 +301,12 @@
           aiResult.innerHTML = '<p class="ai-audit">正在生成 ' + done + "/" + total + " 批…（每批 20–40 秒）</p>";
         });
         window.MingliAi.renderOutput(aiResult, report);
+        try {
+          report.system = "紫微";
+          report.systemLabel = "紫微体系";
+          var saved = window.MingliAi.saveReport(report);
+          if (reportLink && saved) { reportLink.href = "report.html?id=" + encodeURIComponent(saved.id); }
+        } catch (e) { /* 存不下不影响当前展示 */ }
         if (reportLink) reportLink.hidden = false;
       } catch (err) {
         window.MingliAi.renderError(aiResult, "解读失败：" + (err && err.message ? err.message : err));
@@ -254,9 +317,23 @@
     });
   }
 
-  if (reportLink && window.MingliAi && window.MingliAi.loadReport()) reportLink.hidden = false;
+  (function () {
+    if (!reportLink || !window.MingliAi) return;
+    var latest = window.MingliAi.loadReport();
+    if (!latest) return;
+    if (latest.id) reportLink.href = "report.html?id=" + encodeURIComponent(latest.id);
+    reportLink.hidden = false;
+  })();
 
   if (window.MingliGlossary) window.MingliGlossary.bind(content);
 
   main();
+
+  if (retryButton) {
+    retryButton.addEventListener("click", function () {
+      retryButton.disabled = true;
+      retryButton.textContent = "重试中…";
+      location.reload();
+    });
+  }
 })();

@@ -1,0 +1,120 @@
+/* 符箓 —— 第四套皮肤（从 lab2 设计稿移植到真页面）
+   ────────────────────────────────────────────────────────────
+   契约与 songke / daoguan / qinglv 完全一致：21 个 :root 变量 + 若干装饰规则。
+   switch.js 只在 ?theme=fuyao 或 localStorage 记住 fuyao 时才插这个文件，
+   所以装饰规则一律带 :root 前缀 —— 主题没开时一行都不生效。
+
+   纸与线用真位图（../assets/fuyao/，codex 生图后二值化成淡墨 / 朱砂），
+   正文仍然是纯 CSS 颜色：--text 对 --surface 10.3:1，--muted 5.2:1，--accent 5.3:1。
+
+   卡底压平纸面：2026-11-13 定的方案 B —— --surface 从 #E4D5AC 收到 #DBC694，
+   相对纸面（#D8BF8D）的亮度差从 +13.3 降到 +3.8（1.06:1）。
+   原先卡片看着像在旧纸上贴了一张白纸；现在卡面与纸同明度，
+   靠 .card 的 1px 边框 + 内描线 + 卡头朱笔分出层级，读作「裱在同一张纸上」。
+   --surface-2 / --wash / --wash-deep 一并同比例压深，避免仍有亮块跳出来。
+
+   装饰只挂在「本身就是页边或空白」的位置：
+     body（纸底）/ .mp-nav::after（页头下沿）/ .mp-tabbar::before（底栏上沿）/
+     .section-head::before（区段题左端朱笔）/ .card-head::before（同上）/
+     .hero::after（首页封面下沿的云纹换云雷纹）/ .card（内描一道细线）
+   一条规则都不进 .pillars（四柱表）、.board（命盘格）、.ziwei .p-*（宫格）。 */
+
+:root {
+  --bg: #D9C79B;
+  --surface: #DBC694;
+  --surface-2: #D4BF8F;
+  --text: #1F1A12;
+  --muted: #57492F;
+  --line: #A08D66;
+  --line-soft: #BDAC83;
+  --primary: #2A2118;
+  --primary-ink: #F0E3C4;
+  --accent: #8E1E12;
+  --accent-ink: #F3E6C8;
+  --gold: #6E5A32;
+  --on: #F3E6C8;
+  --link: #8E1E12;
+  --wash: #CFB98B;
+  --wash-deep: #C3AD7D;
+  --nav-bg: #D9C79B;
+  --shadow-color: rgba(31, 26, 18, .10);
+  --art-ink: #3A2E1E;
+  --art-sun: #8E1E12;
+}
+
+/* ---- 纸：600px 无缝旧符纸 ----
+   平铺上去会发现霉斑比 lab2 里重得多 —— 那里只有 13 屏窄栏，这里是整页大面积。
+   所以先盖一层 30% 的暖白（#E9DCBA）：纤维和折痕留着，霉斑只剩淡淡一层，
+   正文对比度也不受影响（字在最上面一层）。盖太狠整张纸会退成一块奶油色，看不出纸
+   （44% 试过，霉斑和折痕几乎消失）；盖太浅霉斑又压过正文的灰。
+   html 用同一套，否则滚到底的回弹区会露出一条纯色 --bg。 */
+:root html,
+:root body {
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(rgba(233, 220, 186, .30), rgba(233, 220, 186, .30)),
+    url("../assets/fuyao/paper-deep-tile.png");
+  background-size: auto, 600px 600px;
+  background-repeat: repeat, repeat;
+}
+
+/* ---- 页头下沿：商周云雷纹压在分隔线上 ----
+   .mp-nav 已经是 position:relative，::after 直接落在 44px 高的导航条底部。
+   高度按原图比例走（900×300 = 3:1）：9px 高配 27px 宽，纹样才不会被拉成一排竖杠。 */
+:root .mp-nav::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 9px;
+  background: url("../assets/fuyao/leiwen.png") left center / auto 9px repeat-x;
+  opacity: .5; pointer-events: none;
+}
+
+/* ---- 页头不放印章 ----
+   试过在页头右端（胶囊左侧）钉一枚 24px 朱印：位图缩到这个尺寸只剩一团红线，
+   远看像个坏掉的小图标，还紧挨着居中标题，像标题的角标而不是印章。
+   lab2 那一版踩过同一个坑（22px 朱印最终删掉，改用流内 46px 的 .deco-yinzhang）。
+   真页面正文由 JS 注入、没有稳定的流内锚点，所以这里干脆不放印章：
+   朱色留在区段标题的朱笔、空态告示的朱框、底栏当前项上，面积更小但更准。 */
+
+/* ---- 底栏上沿：同一道纹，宽一点、实一点，给页脚收口 ---- */
+:root .mp-tabbar::before {
+  content: ""; position: absolute; left: 0; right: 0; top: -10px; height: 9px;
+  background: url("../assets/fuyao/leiwen.png") left center / auto 9px repeat-x;
+  opacity: .62; pointer-events: none;
+}
+
+/* ---- 区段标题：左端一道朱笔，标题右让 7px 免得笔尖顶字 ----
+   .section-head 是 flex + baseline；::before 绝对定位不参与 flex，不会把 .more 挤走。 */
+:root .section-head,
+:root .card-head { position: relative; }
+:root .section-head::before,
+:root .card-head::before {
+  content: ""; position: absolute; left: 0; top: 5px;
+  width: 2.5px; height: 13px; background: var(--accent); opacity: .92;
+}
+:root .section-head h2,
+:root .section-head .head,
+:root .card-head h2,
+:root .card-head .head { margin-left: 7px; }
+
+/* ---- 首页封面下沿：不加自己的纹 ----
+   试过把 ornaments.css 那个 mask 挂点换成云雷纹，结果是封面底部压出一条
+   近 20px 的实心深色横杠（leiwen.png 本身是密排的带状纹，缩到 18px 只剩墨）。
+   保持原样的祥云纹，只让 --gold 跟着符箓的赭墨走。 */
+
+/* ---- 卡片：内描一道细线，像裱过的纸 ----
+   用 outline + 负 offset，不新增伪元素，也不吃点击（outline 不接收指针事件）。
+   卡底与纸面同明度（见文件头「卡底压平纸面」），所以这道内线要够实才读得出来：
+   用 --line 而不是 --line-soft（后者对新卡底只有 1.33:1，1px 细线基本看不见）。 */
+:root .card { outline: 1px solid var(--line); outline-offset: -4px; }
+
+/* ---- 空态告示：朱框加深一档，右下角压一枚罗盘水印 ----
+   罗盘用 background-image 而不是 ::before —— 背景永远在文字下面，
+   不用给子元素补 z-index，也就不会盖住字。右下一角稍微出框，靠 overflow 裁掉。
+   尺寸与偏移调到「盘面顶弧落到正文最后一行之下」：128px / -18 时上沿会切到第二行字。 */
+:root .notice {
+  border-color: color-mix(in srgb, var(--accent) 46%, transparent);
+  background-image: url("../assets/fuyao/luopan-soft.png");
+  background-repeat: no-repeat;
+  background-position: right -30px bottom -34px;
+  background-size: 116px 116px;
+  overflow: hidden;
+}

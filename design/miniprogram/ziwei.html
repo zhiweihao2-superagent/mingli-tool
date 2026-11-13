@@ -7,6 +7,7 @@
 <title>紫微斗数 · 命理工具</title>
 <link rel="stylesheet" href="tokens.css">
 <link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="ornaments.css">
 <style>
   .idline { margin-top: var(--space-3); font-size: 12px; color: var(--muted); letter-spacing: 0; }
 
@@ -26,11 +27,11 @@
     overflow: hidden;
   }
   .p { background: var(--surface); padding: var(--space-2) 4px; min-height: 96px; min-width: 0; display: flex; flex-direction: column; gap: 0; }
-  .p-name { font-size: 10px; color: var(--muted); letter-spacing: 0; display: flex; justify-content: space-between; gap: 2px; }
+  .p-name { font-size: var(--fs-micro); color: var(--muted); letter-spacing: 0; display: flex; justify-content: space-between; gap: 2px; }
   .p-name em { font-style: normal; font-family: var(--font-serif); color: var(--text); white-space: nowrap; }
-  .p-star { font-family: var(--font-serif); font-size: 12px; line-height: 1.35; color: var(--text); white-space: nowrap; }
-  .p-star i { font-style: normal; font-size: 10px; color: var(--accent); margin-left: 1px; }
-  .p-line { font-size: 10px; line-height: 1.5; color: var(--muted); white-space: nowrap; }
+  .p-star { font-family: var(--font-serif); font-size: var(--fs-meta); font-weight: var(--w-head); line-height: 1.35; color: var(--text); white-space: nowrap; }
+  .p-star i { font-style: normal; font-size: var(--fs-micro); color: var(--accent); margin-left: 1px; }
+  .p-line { font-size: var(--fs-micro); line-height: 1.5; color: var(--muted); white-space: normal; overflow-wrap: anywhere; }
   .p-spacer { margin-top: auto; }
   .p.on { background: var(--wash); }
   .p.on .p-name { color: var(--accent); font-weight: 600; }
@@ -54,14 +55,15 @@
   .dec span { font-size: 12px; color: var(--muted); }
   .dec.on { background: var(--primary); box-shadow: none; }
   .dec.on b { color: var(--on); }
-  .dec.on span { color: rgba(247, 243, 234, .8); }
+  .dec.on span { color: var(--primary-ink); opacity: .82; }
 
   .keypalaces { list-style: none; margin: 0; padding: 0; border-top: var(--hair); }
-  .keypalaces li { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); padding: var(--space-3) 0; border-bottom: var(--hair); min-height: 48px; }
+  /* 辅星多的时候右对齐会挤成两行，这里改成上下两行：主星一行、辅星一行 */
+  .keypalaces li { display: grid; gap: 3px; padding: var(--space-3) 0; border-bottom: var(--hair); min-height: 48px; align-content: center; }
   .keypalaces b { font-family: var(--font-serif); font-weight: var(--w-head); font-size: var(--fs-body); letter-spacing: 0; }
-  .keypalaces .meta { text-align: right; letter-spacing: 0; font-size: 12px; }
+  .keypalaces .meta { text-align: left; letter-spacing: .02em; font-size: 12px; color: var(--muted); line-height: 1.5; }
 
-  .notice { margin-top: var(--space-4); padding: var(--space-4); border: 1px solid rgba(163, 58, 43, .35); border-radius: var(--radius); background: var(--surface); }
+  .notice { margin-top: var(--space-4); padding: var(--space-4); border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); border-radius: var(--radius); background: var(--surface); }
   .notice b { display: block; font-family: var(--font-serif); font-size: var(--fs-body); }
   .notice p { margin-top: var(--space-2); font-size: 12px; color: var(--muted); line-height: 1.7; }
   .notice .btn { display: inline-flex; width: auto; align-self: flex-start; margin-top: var(--space-3); line-height: 1; }
@@ -73,7 +75,7 @@
     border-radius: var(--radius); box-shadow: inset 0 0 0 1px var(--line);
   }
   .hour-fix-grid button b { font-family: var(--font-serif); font-size: var(--fs-body); }
-  .hour-fix-grid button span { font-size: 11px; color: var(--muted); }
+  .hour-fix-grid button span { font-size: var(--fs-micro); color: var(--muted); }
   .hour-fix-grid button:active { background: var(--wash); }
   .who-quick {
     max-width: 120px; min-height: 44px; padding: 0 var(--space-2);
@@ -81,35 +83,31 @@
     color: var(--text); font-size: var(--fs-meta);
   }
 </style>
+<link rel="stylesheet" href="frame.css">
+  <script src="themes/switch.js"></script>
 </head>
 <body>
 <svg class="sprite" aria-hidden="true">
   <symbol id="i-back" viewBox="0 0 24 24"><path d="M14.5 6l-6 6 6 6"/></symbol>
   <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 4.5l1.8 4.7 4.7 1.8-4.7 1.8L12 17.5l-1.8-4.7L5.5 11l4.7-1.8z"/><path d="M18 16.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></symbol>
   <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9.5 6l6 6-6 6"/></symbol>
+  <symbol id="i-today" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 3.5v2M12 18.5v2M4.5 12h2M17.5 12h2M6.7 6.7l1.4 1.4M15.9 15.9l1.4 1.4M17.3 6.7l-1.4 1.4M8.1 15.9l-1.4 1.4"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M12 4v16M4 12h16"/></symbol>
+  <symbol id="i-time" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-me" viewBox="0 0 24 24"><circle cx="12" cy="9" r="3.4"/><path d="M5.5 19.5c1.3-3.2 3.6-4.8 6.5-4.8s5.2 1.6 6.5 4.8"/></symbol>
 </svg>
 
 <header class="mp-top">
-  <div class="mp-status">
-    <span>9:41</span>
-    <span class="status-icons">
-      <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx=".8"/><rect x="5" y="5.5" width="3" height="6.5" rx=".8"/><rect x="10" y="3" width="3" height="9" rx=".8"/><rect x="15" y="0" width="3" height="12" rx=".8"/></svg>
-      <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1.5 4.3a9.5 9.5 0 0 1 13 0"/><path d="M4 7.1a6 6 0 0 1 8 0"/><circle cx="8" cy="10" r="1.3" fill="currentColor" stroke="none"/></svg>
-      <svg width="27" height="12" viewBox="0 0 27 12"><rect x=".5" y=".5" width="23" height="11" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="2" y="2" width="17" height="8" rx="1.8" fill="currentColor"/><path d="M25 4v4c.8-.3 1.4-1.1 1.4-2s-.6-1.7-1.4-2z" fill="currentColor" fill-opacity=".4"/></svg>
-    </span>
-  </div>
-  <div class="mp-nav">
-    <a class="mp-back" href="input.html" aria-label="返回出生信息"><svg class="ico"><use href="#i-back"/></svg></a>
+<div class="mp-nav">
     <h1 class="head">紫微斗数</h1>
   </div>
 </header>
 
 <main class="mp-page">
-  <nav class="mp-seg" aria-label="切换命盘体系">
-    <a href="bazi.html">八字</a>
-    <a class="on" href="ziwei.html" aria-current="page">紫微</a>
-    <a href="annual.html">年度</a>
-  </nav>
+  <nav class="mp-seg" aria-label="切换视图">
+  <a href="bazi.html">八字</a>
+  <a class="on" aria-current="page" href="ziwei.html">紫微</a>
+</nav>
 
   <div id="empty" class="notice" hidden>
     <b>还没有出生资料</b>
@@ -120,6 +118,7 @@
   <div id="error" class="notice" hidden>
     <b>没能排出这张盘</b>
     <p id="error-text"></p>
+      <button type="button" class="btn ghost" id="retry">重试</button>
   </div>
 
   <div id="content" hidden>
@@ -156,8 +155,17 @@
     </div>
     <ul class="keypalaces" id="keypalaces"></ul>
   </div>
-</main>
 
+
+</main>
+  <nav class="mp-tabbar" aria-label="主导航">
+  <a href="home.html"><svg class="ico"><use href="#i-today"/></svg>今日</a>
+  <a class="is-on" aria-current="page" href="bazi.html"><svg class="ico"><use href="#i-chart"/></svg>命盘</a>
+  <a href="today.html"><svg class="ico"><use href="#i-time"/></svg>运势</a>
+  <a href="me.html"><svg class="ico"><use href="#i-me"/></svg>我的</a>
+</nav>
+
+  <script src="boot.js"></script>
 <script src="vendor/iztro-v2.6.2.min.js"></script>
 <script src="vendor/ziwei-facts.js"></script>
 <script src="vendor/ziwei-adapter.js"></script>
@@ -167,6 +175,7 @@
 <script src="limits.js"></script>
 <script src="ai.js"></script>
 <script src="profile.js"></script>
+<script src="demo.js"></script>
 <script src="who-quick.js"></script>
 <script src="chart-image.js"></script>
 <script src="glossary.js"></script>

@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>D 盘面 · 三套主题皮肤</title>
+<style>
+/* 这一页是比稿台，不是设计稿本身：只用宋体、方角、无阴影、无外部资源。
+   三套主题的样式在 themes/*.css 里，这里只负责并排摆出来。 */
+* { box-sizing: border-box; }
+html { background: #D9CEB5; }
+body {
+  margin: 0;
+  padding: 22px 24px 40px;
+  font-family: "Songti SC", "STSong", "SimSun", "Source Han Serif SC", serif;
+  color: #1A140F;
+  font-size: 15px;
+  line-height: 1.7;
+  min-width: 0;
+}
+h1, h2, h3, p, dl, dd, dt { margin: 0; font-weight: normal; }
+
+/* ---- 页头 ---- */
+.top { display: flex; align-items: baseline; gap: 16px; border-bottom: 1px solid #1A140F; padding-bottom: 8px; }
+.top h1 { font-size: 22px; letter-spacing: .18em; }
+.top p { font-size: 12px; letter-spacing: .06em; color: #5B4F43; }
+.top .spacer { flex: 1; }
+.zoombar { display: flex; gap: 6px; }
+.zoombar button {
+  font: inherit; font-size: 12px; letter-spacing: .06em; padding: 3px 10px;
+  border: 1px solid #1A140F; background: transparent; color: #1A140F; cursor: pointer;
+}
+.zoombar button.on { background: #1A140F; color: #F0E5CB; }
+
+/* ---- 三列 ----
+   列宽用 auto、宽度落在 .col 上：这样缩放时整列（含边框与配色表）一起缩，
+   不会留下 390px 的空槽。 */
+.deck {
+  display: grid; grid-template-columns: repeat(3, auto); gap: 26px;
+  margin-top: 18px; align-items: start; justify-content: start;
+  /* 三列放不进视口时在这一层横向滚，别把整页撑宽 */
+  overflow-x: auto; overflow-y: hidden; padding-bottom: 10px;
+  scrollbar-width: thin;
+}
+.col { width: 392px; min-width: 0; }   /* 390 的机宽 + 两侧 1px 边框 */
+
+.head { border: 1px solid #1A140F; border-bottom: 0; padding: 12px 14px 11px; background: #F0E5CB; }
+.head .name { display: flex; align-items: baseline; gap: 10px; }
+.head .name b { font-size: 20px; letter-spacing: .2em; font-weight: normal; }
+.head .name span { font-size: 11px; letter-spacing: .12em; color: #5B4F43; }
+.head .say { font-size: 12px; letter-spacing: .04em; color: #4A4034; margin-top: 4px; }
+
+.pal { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px 10px; margin-top: 10px; }
+.pal div { display: flex; align-items: center; gap: 6px; font-size: 11px; letter-spacing: 0; color: #4A4034; }
+.pal i { display: block; width: 14px; height: 14px; border: 1px solid rgba(26, 20, 15, .5); flex: none; }
+.pal code { font-family: "Consolas", "Courier New", monospace; font-size: 11px; }
+
+.frames { border: 1px solid #1A140F; border-top: 0; }
+.frames figure { margin: 0; border-top: 1px solid #1A140F; }
+.frames figure:first-child { border-top: 1px solid #1A140F; }
+.frames figcaption {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 8px;
+  padding: 5px 10px; font-size: 11px; letter-spacing: .1em; color: #4A4034; background: #EADFC6;
+}
+.frames figcaption span { letter-spacing: 0; color: #6B5F50; }
+.frames iframe { display: block; width: 390px; height: 844px; border: 0; background: #F0E5CB; }
+
+/* 缩放：整列一起缩（.col 包含配色表与三屏），只缩这一层，否则子元素会叠乘。
+   Chromium 的 zoom 会连 iframe 盒子一起缩，不需要另外补偿高度。 */
+@media (max-width: 900px) {
+  body { padding: 16px 14px 30px; }
+  .top { flex-wrap: wrap; gap: 10px 14px; }
+  .top .spacer { flex-basis: 100%; height: 0; }
+  .deck { gap: 16px; }
+}
+
+body[data-zoom="70"] .deck { gap: 18px; }
+body[data-zoom="50"] .deck { gap: 13px; }
+body[data-zoom="70"] .col { zoom: .7; }
+body[data-zoom="50"] .col { zoom: .5; }
+
+.foot { margin-top: 26px; border-top: 1px solid #1A140F; padding-top: 10px; font-size: 12px; letter-spacing: .04em; color: #4A4034; }
+.foot p { margin: 0 0 4px; }
+.foot code { font-family: "Consolas", "Courier New", monospace; font-size: 11.5px; }
+</style>
+</head>
+<body data-zoom="100">
+
+<div class="top">
+  <h1>D 盘面 · 三套主题皮肤</h1>
+  <p>390×844 · d-chart.css 一行未改 · 主题只覆盖颜色与装饰层</p>
+  <span class="spacer"></span>
+  <div class="zoombar" role="group" aria-label="缩放">
+    <button type="button" data-zoom="100" class="on">原尺寸</button>
+    <button type="button" data-zoom="70">70%</button>
+    <button type="button" data-zoom="50">50%</button>
+  </div>
+</div>
+
+<div class="deck" id="deck"></div>
+
+<div class="foot">
+  <p>切主题的做法：本页给 iframe 的地址带上 <code>?theme=xuanji</code>，并在同源前提下由本页在该 iframe 的
+    <code>onload</code> 里往它的 <code>&lt;head&gt;</code> 末尾插一个 <code>&lt;link rel=stylesheet&gt;</code>。
+    双方同在 <code>127.0.0.1:8765/mp/lab2/</code>，所以 <code>contentDocument</code> 可读；
+    <code>d-chart-*.html</code> 一个字都不用改。</p>
+  <p>要脱离本页直链看，给页面 <code>&lt;head&gt;</code> 加一行 <code>&lt;script src="themes/theme-boot.js"&gt;&lt;/script&gt;</code>，
+    之后 <code>d-chart-home.html?theme=xingtu</code> 就能自己挂上主题（本次交付未改那些页面）。</p>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var THEMES = [
+    {
+      key: "xuanji",
+      name: "玄机",
+      tag: "近墨底 · 石青黛 · 硫磺金",
+      say: "夜里看星盘：底近墨，字冷米白，朱砂位换成一点硫磺金。",
+      pal: [
+        ["#14161B", "纸 / 底"],
+        ["#E6E1D2", "墨 / 正文"],
+        ["#C9A24C", "朱 / 印章·重点"],
+        ["#7F93A6", "淡墨 / 次要"],
+        ["#101216", "封面底（再暗半档）"],
+        ["#9FB4C6", "罗盘刻度字"]
+      ]
+    },
+    {
+      key: "fuyao",
+      name: "符箓",
+      tag: "旧黄纸 · 重朱砂 · 焦墨",
+      say: "一张供在案上的旧符纸：纸更黄更旧，朱更沉，加朱笔批注与符箓边饰。",
+      pal: [
+        ["#E7D9B8", "纸 / 底"],
+        ["#1C1710", "墨 / 正文（焦墨）"],
+        ["#8E1E12", "朱 / 印章·批注"],
+        ["#54452D", "淡墨 / 次要"],
+        ["#E2D2AC", "封面底（更旧）"],
+        ["#4A3C26", "罗盘刻度字"]
+      ]
+    },
+    {
+      key: "xingtu",
+      name: "星图",
+      tag: "藏青底 · 银灰 · 暗金",
+      say: "一张翻开的星图：藏青底铺星点与二十八宿细线，字银灰，金只做记号。",
+      pal: [
+        ["#1B2233", "纸 / 底"],
+        ["#DFE5F0", "墨 / 正文（银灰）"],
+        ["#C9A961", "朱 / 印章·记号（暗金）"],
+        ["#9FB0C9", "淡墨 / 次要"],
+        ["#171D2B", "封面底（图幅外框）"],
+        ["#B4C3D8", "罗盘刻度字"]
+      ]
+    }
+  ];
+
+  // 每套都看这三屏：封面（今日）/ 罗盘（八字）/ 命盘（紫微）
+  var SCREENS = [
+    ["home", "封面 · 今日"],
+    ["bazi", "罗盘 · 八字四柱"],
+    ["ziwei", "命盘 · 紫微十二宫"]
+  ];
+
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  }
+
+  // 主题挂载：同源 iframe 里插 <link>。iframe 内部跳转（点底栏 / 页内链接）会再触发 load，
+  // 这里重新挂一次，保证一直在同一套主题下，不会跳一次页面就退回纸色。
+  function mount(frame, key) {
+    var doc = null;
+    try {
+      doc = frame.contentDocument;
+    } catch (e) {
+      doc = null;
+    }
+    if (!doc || !doc.head) {
+      frame.setAttribute("data-mount", "blocked");
+      return;
+    }
+    var old = doc.querySelector('link[data-theme-injected="' + key + '"]');
+    if (old) return;
+    // 只清本页自己插的，别碰页面原有的 d-chart.css
+    var prev = doc.querySelectorAll("link[data-theme-injected]");
+    for (var i = 0; i < prev.length; i++) prev[i].parentNode.removeChild(prev[i]);
+
+    var link = doc.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "themes/" + key + ".css";
+    link.setAttribute("data-theme-injected", key);
+    doc.head.appendChild(link);
+    if (doc.documentElement) doc.documentElement.setAttribute("data-theme", key);
+    frame.setAttribute("data-mount", "ok");
+  }
+
+  var deck = document.getElementById("deck");
+
+  THEMES.forEach(function (t) {
+    var col = el("section", "col");
+
+    var head = el("div", "head");
+    var nameRow = el("div", "name");
+    var b = el("b", null, t.name);
+    var sp = el("span", null, t.tag);
+    nameRow.appendChild(b);
+    nameRow.appendChild(sp);
+    head.appendChild(nameRow);
+    head.appendChild(el("p", "say", t.say));
+
+    var pal = el("div", "pal");
+    t.pal.forEach(function (p) {
+      var row = el("div");
+      var sw = el("i");
+      sw.style.background = p[0];
+      row.appendChild(sw);
+      var code = el("code", null, p[0]);
+      row.appendChild(code);
+      row.appendChild(el("span", null, p[1]));
+      pal.appendChild(row);
+    });
+    head.appendChild(pal);
+    col.appendChild(head);
+
+    var frames = el("div", "frames");
+    SCREENS.forEach(function (s) {
+      var fig = el("figure");
+      var cap = el("figcaption");
+      cap.appendChild(el("b", null, s[1]));
+      cap.appendChild(el("span", null, "d-chart-" + s[0] + ".html?theme=" + t.key));
+      fig.appendChild(cap);
+
+      var frame = el("iframe");
+      frame.setAttribute("title", t.name + " · " + s[1]);
+      frame.setAttribute("loading", "lazy");
+      frame.setAttribute("data-theme", t.key);
+      // 真地址，带 ?theme=：方便右键「在新标签打开」对照，也是本页的语义来源
+      frame.src = "d-chart-" + s[0] + ".html?theme=" + t.key;
+      frame.addEventListener("load", function () {
+        mount(frame, t.key);
+      });
+      fig.appendChild(frame);
+      frames.appendChild(fig);
+    });
+    col.appendChild(frames);
+    deck.appendChild(col);
+  });
+
+  // 缩放
+  var bar = document.querySelector(".zoombar");
+  bar.addEventListener("click", function (e) {
+    var btn = e.target.closest("button[data-zoom]");
+    if (!btn) return;
+    document.body.setAttribute("data-zoom", btn.getAttribute("data-zoom"));
+    var all = bar.querySelectorAll("button");
+    for (var i = 0; i < all.length; i++) all[i].classList.toggle("on", all[i] === btn);
+  });
+
+  // 首次挂载完成后再补一轮：有的浏览器 lazy iframe 的 load 会晚一点，
+  // 未挂上的（data-mount 缺失）在这里兜一次。
+  window.addEventListener("load", function () {
+    var list = document.querySelectorAll("iframe[data-theme]");
+    for (var i = 0; i < list.length; i++) {
+      if (!list[i].getAttribute("data-mount")) mount(list[i], list[i].getAttribute("data-theme"));
+    }
+  });
+})();
+</script>
+</body>
+</html>

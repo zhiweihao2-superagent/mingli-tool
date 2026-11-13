@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>设计索引 · 命理工具</title>
+<link rel="stylesheet" href="tokens.css">
+<script src="themes/switch.js"></script>
+<style>
+  /* 颜色一律走 tokens.css + themes/*.css 的变量（tests/miniprogram_themes.test.cjs 会查
+     这里不许出现硬编码色），所以这一页自己也跟着 ?theme= 变色。 */
+  *{box-sizing:border-box}
+  body{
+    margin:0; padding:34px 20px 40px; background:var(--bg); color:var(--text);
+    font:15px/1.65 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+  }
+  header{max-width:880px;margin:0 auto 6px}
+  h1{
+    margin:0 0 4px; font-family:var(--font-serif); font-weight:500; font-size:25px; letter-spacing:.04em;
+  }
+  .sub{margin:0; color:var(--muted); font-size:13px}
+  .chips{display:flex; gap:6px; align-items:center; margin-top:13px; flex-wrap:wrap}
+  .chips .label{flex-basis:100%; font-size:12px; color:var(--muted); letter-spacing:.08em}
+  .chip{
+    display:inline-block; padding:5px 9px; border:1px solid var(--line);
+    background:var(--surface); color:var(--text); text-decoration:none; font-size:12.5px; white-space:nowrap;
+  }
+  .chip.on{border-color:var(--accent); color:var(--accent); box-shadow:inset 0 0 0 1px var(--accent)}
+  h2{
+    max-width:880px; margin:24px auto 10px; font-family:var(--font-serif); font-weight:500; font-size:17px;
+    padding-left:9px; border-left:2.5px solid var(--accent); letter-spacing:.04em;
+  }
+  h2 em{font-style:normal; color:var(--muted); font-size:12px; letter-spacing:.06em; margin-left:8px}
+  .grid{max-width:880px; margin:0 auto; display:grid; gap:10px; grid-template-columns:repeat(auto-fill,minmax(158px,1fr))}
+  .grid.small{grid-template-columns:repeat(auto-fill,minmax(132px,1fr))}
+  a.card{
+    display:block; padding:11px 13px; background:var(--surface); border:1px solid var(--line);
+    text-decoration:none; color:inherit;
+  }
+  a.card b{display:block; font-family:var(--font-serif); font-weight:500; font-size:16px; letter-spacing:.03em}
+  a.card span{display:block; margin-top:3px; font-size:12px; color:var(--muted); line-height:1.5}
+  a.card:hover{border-color:var(--accent)}
+  .grid.small a.card b{font-size:14px}
+  footer{max-width:880px; margin:28px auto 0; font-size:12px; color:var(--muted); line-height:1.8}
+  code{font-family:ui-monospace,Consolas,monospace; font-size:12px; background:var(--surface-2); padding:1px 4px}
+</style>
+</head>
+<body>
+<header>
+  <h1>命理工具 · 设计索引</h1>
+  <p class="sub">13 个真页面 + lab2 设计稿。点开即看，主题跟着下面这排走。</p>
+  <div class="chips">
+    <span class="label">主题</span>
+    <a class="chip" data-theme="songke" href="?theme=songke">原纸</a>
+    <a class="chip" data-theme="fuyao" href="?theme=fuyao">符箓</a>
+    <a class="chip" data-theme="qinglv" href="?theme=qinglv">青绿绢本</a>
+  </div>
+</header>
+
+<h2>页面<em>真项目 · design/miniprogram</em></h2>
+<div class="grid">
+  <a class="card" data-page="home" href="/mp/home.html"><b>首页 · 今日</b><span>远山封面、公历农历、快捷入口</span></a>
+  <a class="card" data-page="bazi" href="/mp/bazi.html"><b>八字</b><span>四柱、五行、神煞、大运</span></a>
+  <a class="card" data-page="ziwei" href="/mp/ziwei.html"><b>紫微斗数</b><span>十二宫盘、四化、大限</span></a>
+  <a class="card" data-page="today" href="/mp/today.html"><b>流日</b><span>当日干支、宜忌、逐步推演</span></a>
+  <a class="card" data-page="annual" href="/mp/annual.html"><b>流年</b><span>太岁、四化、一年主题</span></a>
+  <a class="card" data-page="month" href="/mp/month.html"><b>流月</b><span>十二月表、节气相对</span></a>
+  <a class="card" data-page="cycle" href="/mp/cycle.html"><b>时间坐标</b><span>大限与流年叠在一起看</span></a>
+  <a class="card" data-page="palace" href="/mp/palace.html"><b>宫位详表</b><span>单宫主星、星曜亮度</span></a>
+  <a class="card" data-page="match" href="/mp/match.html"><b>合盘对照</b><span>双人四柱、五行互补</span></a>
+  <a class="card" data-page="input" href="/mp/input.html"><b>出生信息</b><span>公历农历、真太阳时、分秒</span></a>
+  <a class="card" data-page="journal" href="/mp/journal.html"><b>记录</b><span>解读列表、空态</span></a>
+  <a class="card" data-page="me" href="/mp/me.html"><b>我的</b><span>档案、外观四档、关于</span></a>
+  <a class="card" data-page="report" href="/mp/report.html"><b>解读报告</b><span>长文排版、存成长图</span></a>
+</div>
+
+<h2>设计稿<em>lab2 · 每屏一张</em></h2>
+<div class="grid small">
+  <a class="card" data-page="d-chart-home" href="/mp/lab2/d-chart-home.html"><b>lab2 首页</b></a>
+  <a class="card" data-page="d-chart-bazi" href="/mp/lab2/d-chart-bazi.html"><b>lab2 八字</b></a>
+  <a class="card" data-page="d-chart-ziwei" href="/mp/lab2/d-chart-ziwei.html"><b>lab2 紫微</b></a>
+  <a class="card" data-page="d-chart-today" href="/mp/lab2/d-chart-today.html"><b>lab2 流日</b></a>
+  <a class="card" data-page="d-chart-annual" href="/mp/lab2/d-chart-annual.html"><b>lab2 流年</b></a>
+  <a class="card" data-page="d-chart-month" href="/mp/lab2/d-chart-month.html"><b>lab2 流月</b></a>
+  <a class="card" data-page="d-chart-cycle" href="/mp/lab2/d-chart-cycle.html"><b>lab2 大限</b></a>
+  <a class="card" data-page="d-chart-palace" href="/mp/lab2/d-chart-palace.html"><b>lab2 宫位</b></a>
+  <a class="card" data-page="d-chart-match" href="/mp/lab2/d-chart-match.html"><b>lab2 合盘</b></a>
+  <a class="card" data-page="d-chart-input" href="/mp/lab2/d-chart-input.html"><b>lab2 输入</b></a>
+  <a class="card" data-page="d-chart-journal" href="/mp/lab2/d-chart-journal.html"><b>lab2 记录</b></a>
+  <a class="card" data-page="d-chart-me" href="/mp/lab2/d-chart-me.html"><b>lab2 我的</b></a>
+  <a class="card" data-page="d-chart-report" href="/mp/lab2/d-chart-report.html"><b>lab2 报告</b></a>
+  <a class="card" href="/mp/lab2/_art.html"><b>素材画廊</b><span>27 件</span></a>
+  <a class="card" href="/mp/lab2/_themes.html"><b>三套比稿</b></a>
+</div>
+
+<footer>
+  索引页由 <code>.pair/gen-mp-index.cjs</code> 生成，页名与说明改脚本后重跑。
+  带 <code>?theme=</code> 打开任意一页，主题会记进 localStorage，之后点着走都不丢。
+</footer>
+
+<script>
+  // 把当前主题带进每张卡片，并把当前档高亮
+  (function () {
+    var q = new URLSearchParams(location.search).get("theme");
+    var saved = null;
+    try { saved = localStorage.getItem("mingli.theme.v1"); } catch (e) {}
+    var cur = q || saved || "songke";
+    document.querySelectorAll(".chip").forEach(function (a) {
+      if (a.dataset.theme === cur) a.classList.add("on");
+      else a.classList.remove("on");
+    });
+    if (q) {
+      document.querySelectorAll("a.card").forEach(function (a) {
+        a.href = a.getAttribute("href") + "?theme=" + q;
+      });
+    }
+  })();
+</script>
+</body>
+</html>

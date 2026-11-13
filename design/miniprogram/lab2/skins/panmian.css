@@ -1,0 +1,52 @@
+/* ============================================================
+   「D 盘面」皮肤 · panmian
+   ------------------------------------------------------------
+   用途：把 lab2 的 d-chart.css 里写死的颜色收成一层可替换的皮肤。
+   用法：在 d-chart.css 之后加载本文件即可（同优先级下后加载覆盖先加载）：
+
+       <link rel="stylesheet" href="d-chart.css">
+       <link rel="stylesheet" href="skins/panmian.css">
+
+   本文件不改任何结构、字号、间距，只改颜色。
+   换皮：复制本文件改下面「色板」一段的 4 个主色 + 6 个派生色，
+   其余规则不用动（选择器是固定的覆盖点）。
+   ============================================================ */
+
+:root {
+  /* ---- 色板：四主色 ---- */
+  --paper: #F0E5CB;   /* 纸底 */
+  --ink:   #1A140F;   /* 墨（正文、框线） */
+  --zhu:   #A32B1C;   /* 朱砂（印章、强调、数据落点） */
+  --faint: #5B4F43;   /* 淡墨（次要文字） */
+
+  /* ---- 派生：把 d-chart.css 里写死的 rgba 收成变量 ---- */
+  --line-dot:  rgba(26, 20, 15, .28);   /* 点线分隔（.rows li / .stars2 li / .theme-list li） */
+  --line-dot-2:rgba(26, 20, 15, .30);   /* 表单下划线（.field） */
+  --line-dash: rgba(26, 20, 15, .40);   /* 空态虚线框（.empty） */
+  --press-ink: rgba(26, 20, 15, .06);   /* 按下时的淡墨底（.btn:active） */
+  --press-zhu: rgba(163, 43, 28, .07);  /* 按下时的淡朱底（.btn.zhu:active / .months12 .on） */
+  --paper-ink: #F0E5CB;                  /* 反白时用的纸色（.seg a.on 的文字） */
+}
+
+/* ---- 覆盖点：d-chart.css 里写死颜色的 6 处 ---- */
+
+/* 1) 点线：记录、星曜列表、主题列表 */
+.rows li,
+.stars2 li,
+.theme-list li { border-bottom-color: var(--line-dot); }
+
+/* 2) 表单下划线 */
+.field { border-bottom-color: var(--line-dot-2); }
+
+/* 3) 空态虚线 */
+.empty { border-color: var(--line-dash); }
+
+/* 4) 按钮按下 */
+.btn:active { background: var(--press-ink); }
+.btn.zhu:active { background: var(--press-zhu); }
+
+/* 5) 选中月份 / 选中日夜 */
+.months12 .on { background: var(--press-zhu); }
+
+/* 6) 分段切换的选中项：反白文字跟纸色走 */
+.seg a.on { background: var(--ink); color: var(--paper-ink); }

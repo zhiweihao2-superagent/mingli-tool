@@ -1,0 +1,23 @@
+:root {
+  --bg: #F2EBDD;
+  --surface: #FBF7EE;
+  --surface-2: #F7F1E4;
+  --text: #1F1B16;
+  --muted: #6A6055;
+  --line: #D6C9B2;
+  --line-soft: #E7DDCA;
+  --primary: #23332F;
+  --primary-ink: #FBF7EE;
+  --accent: #9E3226;
+  --accent-ink: #FBF7EE;
+  --gold: #8A6A3C;
+  --on: #FBF7EE;
+  --link: #9E3226;
+  --wash: #E8DECB;
+  --wash-deep: #DED2BB;
+  --nav-bg: #F2EBDD;
+  --shadow-color: rgba(120,100,70,.10);
+  --art-ink: #23332F;
+  --art-sun: #9E3226;
+}
+:root .hero::after { mask-image: url("../ornaments/cloud.svg"); -webkit-mask-image: url("../ornaments/cloud.svg"); }

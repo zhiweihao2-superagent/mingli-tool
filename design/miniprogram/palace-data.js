@@ -14,12 +14,14 @@
 
   function loadProfile() {
     try {
-      if (window.MingliProfile) return window.MingliProfile.currentProfile();
+      if (window.MingliProfile) {
+        var current = window.MingliProfile.currentProfile();
+        if (current) return current;
+      }
       var raw = localStorage.getItem(STORE);
-      return raw ? JSON.parse(raw) : null;
-    } catch (e) {
-      return null;
-    }
+      if (raw) return JSON.parse(raw);
+    } catch (e) { /* 存储不可用时退回示例盘 */ }
+    return window.MINGLI_DEMO_PROFILE || null;
   }
 
   function wantedName() {

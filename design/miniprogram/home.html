@@ -7,6 +7,7 @@
 <title>今日 · 命理工具</title>
 <link rel="stylesheet" href="tokens.css">
 <link rel="stylesheet" href="app.css">
+<link rel="stylesheet" href="ornaments.css">
 <style>
   .top { display: flex; align-items: flex-start; justify-content: space-between; padding-top: var(--space-4); }
   .top h1 { font-size: var(--fs-h1); line-height: 1.3; margin-top: var(--space-2); }
@@ -23,17 +24,17 @@
 
   .dayline { display: flex; align-items: baseline; gap: var(--space-2); padding-top: var(--space-2); }
   .dayline b { font-family: var(--font-serif); font-weight: var(--w-head); font-size: var(--fs-h1); letter-spacing: .08em; }
-  .term { font-size: 12px; letter-spacing: .14em; color: var(--accent); border: 1px solid rgba(163, 58, 43, .35); border-radius: 2px; padding: 0 6px; line-height: 20px; }
+  .term { font-size: 12px; letter-spacing: .14em; color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); border-radius: 2px; padding: 0 6px; line-height: 20px; }
   .datepair { margin-top: var(--space-3); display: grid; grid-template-columns: 1fr 1fr; border-top: var(--hair); border-bottom: var(--hair); }
   .datepair div { padding: var(--space-3) 0; }
   .datepair div + div { border-left: var(--hair); padding-left: var(--space-4); }
-  .datepair span { display: block; font-size: 11px; color: var(--muted); letter-spacing: .16em; }
+  .datepair span { display: block; font-size: var(--fs-micro); color: var(--muted); letter-spacing: .16em; }
   .datepair b { display: block; margin-top: 2px; font-family: var(--font-serif); font-weight: var(--w-head); font-size: var(--fs-body); letter-spacing: .04em; }
-  .plate-note { margin-top: var(--space-2); font-size: 11px; color: var(--muted); }
+  .plate-note { margin-top: var(--space-2); font-size: var(--fs-micro); color: var(--muted); }
   .week { list-style: none; margin: var(--space-4) 0 0; padding: 0; display: grid; grid-template-columns: repeat(7, 1fr); }
   .week li { display: flex; flex-direction: column; align-items: center; gap: var(--space-2); font-size: var(--fs-meta); color: var(--muted); }
   .week i { width: 26px; height: 26px; border-radius: 50%; box-shadow: inset 0 0 0 1px var(--line); }
-  .week .done i { box-shadow: none; background: radial-gradient(circle at 46% 46%, rgba(42, 60, 56, .88) 0 40%, rgba(42, 60, 56, .52) 56%, rgba(42, 60, 56, .12) 68%, transparent 72%); }
+  .week .done i { box-shadow: none; background: radial-gradient(circle at 46% 46%, color-mix(in srgb, var(--primary) 88%, transparent) 0 40%, color-mix(in srgb, var(--primary) 52%, transparent) 56%, color-mix(in srgb, var(--primary) 12%, transparent) 68%, transparent 72%); }
   .week .today { color: var(--accent); font-weight: 600; }
   .week .today i { box-shadow: inset 0 0 0 1px var(--accent); background: radial-gradient(circle, var(--accent) 0 3px, transparent 3.5px); }
 
@@ -43,7 +44,7 @@
   .plate-art { height: 68px; border: var(--hair); border-radius: var(--radius); overflow: hidden; background: var(--surface); }
   .plate-art svg { width: 100%; height: 100%; }
   .plate h3 { font-size: 13px; margin-top: var(--space-2); line-height: 1.35; letter-spacing: .04em; }
-  .plate .meta { margin-top: 2px; font-size: 11px; line-height: 1.45; }
+  .plate .meta { margin-top: 2px; font-size: var(--fs-micro); line-height: 1.45; }
 
   .recent { list-style: none; margin: 0; padding: 0; border-top: var(--hair); }
   .recent li { border-bottom: var(--hair); }
@@ -54,10 +55,14 @@
   .recent .chev { flex: 0 0 24px; color: var(--muted); }
   .recent .chev .ico { width: 18px; height: 18px; }
 
+  .recent-empty { margin: 0; padding: var(--space-4) 0; border-top: var(--hair); font-size: var(--fs-small); color: var(--muted); line-height: 1.7; }
+
 
   .switch { flex: 0 0 auto; width: 46px; height: 28px; border-radius: var(--radius-pill); background: var(--primary); position: relative; }
   .switch::after { content: ""; position: absolute; top: 3px; right: 3px; width: 22px; height: 22px; border-radius: 50%; background: var(--surface); }
 </style>
+<link rel="stylesheet" href="frame.css">
+  <script src="themes/switch.js"></script>
 </head>
 <body>
 <svg class="sprite" aria-hidden="true">
@@ -76,17 +81,12 @@
   <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M15.2 8.8l-2 4.4-4.4 2 2-4.4z"/></symbol>
   <symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/></symbol>
   <symbol id="i-cycle" viewBox="0 0 24 24"><path d="M4.5 12a7.5 7.5 0 0 1 12.8-5.3L20 9"/><path d="M20 4.5V9h-4.5"/><path d="M19.5 12a7.5 7.5 0 0 1-12.8 5.3L4 15"/><path d="M4 19.5V15h4.5"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M12 4v16M4 12h16"/></symbol>
+  <symbol id="i-time" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7.5V12l3 2"/></symbol>
 </svg>
 
 <header class="mp-top">
-  <div class="mp-status">
-    <span>9:41</span>
-    <span class="status-icons">
-      <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx=".8"/><rect x="5" y="5.5" width="3" height="6.5" rx=".8"/><rect x="10" y="3" width="3" height="9" rx=".8"/><rect x="15" y="0" width="3" height="12" rx=".8"/></svg>
-      <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M1.5 4.3a9.5 9.5 0 0 1 13 0"/><path d="M4 7.1a6 6 0 0 1 8 0"/><circle cx="8" cy="10" r="1.3" fill="currentColor" stroke="none"/></svg>
-      <svg width="27" height="12" viewBox="0 0 27 12"><rect x=".5" y=".5" width="23" height="11" rx="3.2" fill="none" stroke="currentColor" stroke-opacity=".4"/><rect x="2" y="2" width="17" height="8" rx="1.8" fill="currentColor"/><path d="M25 4v4c.8-.3 1.4-1.1 1.4-2s-.6-1.7-1.4-2z" fill="currentColor" fill-opacity=".4"/></svg>
-    </span>
-  </div>
+
   <div class="mp-nav custom">
     <span class="brand"><b>命理工具</b></span>
   </div>
@@ -95,33 +95,33 @@
 <main class="mp-page" style="padding-top:0">
   <div class="top">
     <div>
-      <p class="dayline"><b>今日</b><span class="term">立冬</span></p>
+      <p class="dayline"><b>今日</b><span class="term" id="today-term" hidden></span></p>
     </div>
-    <span class="seal" aria-label="命理工具">命</span>
+    <a class="seal" href="me.html" aria-label="我的资料与设置">命</a>
   </div>
 
   <div class="datepair" aria-label="今天对应的公历与农历">
-    <div><span>公历</span><b>11 月 8 日 周日</b></div>
-    <div><span>农历</span><b>九月三十</b></div>
+    <div><span>公历</span><b id="today-solar">—</b></div>
+    <div><span>农历</span><b id="today-lunar">—</b></div>
   </div>
 
   <section class="hero">
     <div class="hero-art">
       <svg viewBox="0 0 343 132" preserveAspectRatio="xMidYMid slice" role="img" aria-label="晨光里的远山">
         <defs>
-          <linearGradient id="h-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E8E0CE"/><stop offset="1" stop-color="#F8F4EC"/></linearGradient>
-          <linearGradient id="h-far" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A3C38" stop-opacity=".22"/><stop offset="1" stop-color="#2A3C38" stop-opacity="0"/></linearGradient>
-          <linearGradient id="h-mid" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A3C38" stop-opacity=".44"/><stop offset=".8" stop-color="#2A3C38" stop-opacity=".05"/></linearGradient>
-          <linearGradient id="h-near" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A3C38" stop-opacity=".74"/><stop offset="1" stop-color="#2A3C38" stop-opacity=".3"/></linearGradient>
+          <linearGradient id="h-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--wash)"/><stop offset="1" stop-color="var(--surface)"/></linearGradient>
+          <linearGradient id="h-far" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--art-ink)" stop-opacity=".22"/><stop offset="1" stop-color="var(--art-ink)" stop-opacity="0"/></linearGradient>
+          <linearGradient id="h-mid" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--art-ink)" stop-opacity=".44"/><stop offset=".8" stop-color="var(--art-ink)" stop-opacity=".05"/></linearGradient>
+          <linearGradient id="h-near" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--art-ink)" stop-opacity=".74"/><stop offset="1" stop-color="var(--art-ink)" stop-opacity=".3"/></linearGradient>
         </defs>
         <rect x="-10" y="-10" width="363" height="160" fill="url(#h-sky)"/>
-        <circle cx="258" cy="40" r="34" fill="#FBF8F2" opacity=".7" filter="url(#blur-l)"/>
-        <circle cx="258" cy="40" r="18" fill="#A33A2B" opacity=".82"/>
+        <circle cx="258" cy="40" r="34" fill="var(--surface)" opacity=".7" filter="url(#blur-l)"/>
+        <circle cx="258" cy="40" r="18" fill="var(--art-sun)" opacity=".82"/>
         <path d="M-10 86 C20 74 42 56 70 52 C92 48 104 68 124 64 C150 58 160 36 188 34 C214 32 228 58 250 62 C274 66 292 54 314 58 C332 62 344 70 356 74 V150 H-10Z" fill="url(#h-far)" filter="url(#blur-m)"/>
         <path d="M-10 104 C20 94 40 80 62 80 C84 80 92 94 112 92 C136 90 150 70 174 72 C196 74 202 90 224 94 C248 98 264 84 286 86 C308 88 326 100 356 102 V150 H-10Z" fill="url(#h-mid)" filter="url(#blur-s)"/>
-        <ellipse cx="171" cy="98" rx="210" ry="12" fill="#F4EFE5" opacity=".9" filter="url(#blur-l)"/>
+        <ellipse cx="171" cy="98" rx="210" ry="12" fill="var(--surface)" opacity=".9" filter="url(#blur-l)"/>
         <path d="M-10 122 C30 114 52 108 80 112 C104 116 118 106 142 108 C170 110 184 120 212 120 C242 120 258 112 288 114 C312 116 330 120 356 124 V150 H-10Z" fill="url(#h-near)" filter="url(#blur-s)"/>
-        <g fill="none" stroke="#2A3C38" stroke-opacity=".45" stroke-width="1" stroke-linecap="round">
+        <g fill="none" stroke="var(--art-ink)" stroke-opacity=".45" stroke-width="1" stroke-linecap="round">
           <path d="M196 34q3-3 6 0q3-3 6 0"/>
           <path d="M214 26q2-2 4 0q2-2 4 0"/>
         </g>
@@ -129,88 +129,90 @@
     </div>
     <div class="hero-body">
       <p class="eyebrow">今日流日</p>
-      <h2 class="head hero-title">丙戌日<small>火土</small></h2>
-      <p class="meta">丙午年 己亥月 · 立冬第一天</p>
+      <h2 class="head hero-title" id="today-hero">—</h2>
+      <p class="meta" id="today-meta"></p>
       <a class="btn hero-btn" href="today.html">看今日流日 <svg class="ico"><use href="#i-arrow"/></svg></a>
     </div>
   </section>
 
   <div class="section-head">
     <div>
-      <h2 class="head">开始一张盘</h2>
-      <p class="plate-note">三张盘共用一份出生资料；没填过会先让你填。</p>
+      <h2 class="head">快捷入口</h2>
     </div>
-    <a class="more" href="journal.html">全部记录</a>
   </div>
   <div class="plates">
     <a class="plate" href="bazi.html">
       <div class="plate-art">
         <svg viewBox="0 0 196 112" preserveAspectRatio="xMidYMid slice" role="img" aria-label="四柱排布">
-          <rect x="-10" y="-10" width="216" height="132" fill="#F3EEE3"/>
-          <g stroke="#2A3C38" stroke-opacity=".28" stroke-width="1">
+          <rect x="-10" y="-10" width="216" height="132" fill="var(--surface-2)"/>
+          <g stroke="var(--art-ink)" stroke-opacity=".28" stroke-width="1">
             <path d="M34 18v76M64 18v76M94 18v76M124 18v76M154 18v76"/>
             <path d="M22 30h144M22 58h144M22 86h144"/>
           </g>
-          <g fill="#2A3C38" fill-opacity=".8">
+          <g fill="var(--art-ink)" fill-opacity=".8">
             <rect x="40" y="36" width="18" height="4" rx="2"/><rect x="40" y="64" width="18" height="4" rx="2"/>
             <rect x="70" y="36" width="18" height="4" rx="2"/><rect x="70" y="64" width="18" height="4" rx="2"/>
             <rect x="100" y="36" width="18" height="4" rx="2"/><rect x="100" y="64" width="18" height="4" rx="2"/>
           </g>
-          <rect x="130" y="36" width="18" height="4" rx="2" fill="#A33A2B"/>
-          <rect x="130" y="64" width="18" height="4" rx="2" fill="#A33A2B"/>
+          <rect x="130" y="36" width="18" height="4" rx="2" fill="var(--art-sun)"/>
+          <rect x="130" y="64" width="18" height="4" rx="2" fill="var(--art-sun)"/>
         </svg>
       </div>
-      <h3 class="head">本命八字</h3>
-      <p class="meta">四柱 · 十神</p>
+      <h3 class="head">八字</h3>
+      <p class="meta">四柱 · 旺衰 · 格局</p>
     </a>
     <a class="plate" href="ziwei.html">
       <div class="plate-art">
-        <svg viewBox="0 0 196 112" preserveAspectRatio="xMidYMid slice" role="img" aria-label="十二宫">
-          <rect x="-10" y="-10" width="216" height="132" fill="#EFE9DC"/>
-          <circle cx="98" cy="56" r="42" fill="none" stroke="#2A3C38" stroke-opacity=".3"/>
-          <circle cx="98" cy="56" r="26" fill="none" stroke="#2A3C38" stroke-opacity=".2" stroke-dasharray="1 5"/>
-          <g stroke="#2A3C38" stroke-opacity=".45" stroke-linecap="round">
-            <path d="M98 14v10M98 88v10M56 56h10M130 56h10M68 26l7 7M121 79l7 7M128 26l-7 7M75 79l-7 7"/>
+        <svg viewBox="0 0 196 112" preserveAspectRatio="xMidYMid slice" role="img" aria-label="十二宫方盘">
+          <rect x="-10" y="-10" width="216" height="132" fill="var(--surface-2)"/>
+          <rect x="66" y="22" width="64" height="64" fill="none" stroke="var(--art-ink)" stroke-opacity=".35"/>
+          <path d="M98 22v64M66 54h64" stroke="var(--art-ink)" stroke-opacity=".28"/>
+          <circle cx="98" cy="54" r="8" fill="none" stroke="var(--art-sun)"/>
+          <g fill="var(--art-ink)" fill-opacity=".7">
+            <circle cx="82" cy="38" r="2"/><circle cx="114" cy="38" r="2"/><circle cx="82" cy="70" r="2"/><circle cx="114" cy="70" r="2"/>
           </g>
-          <circle cx="98" cy="56" r="7" fill="#A33A2B"/>
         </svg>
       </div>
-      <h3 class="head">紫微命盘</h3>
-      <p class="meta">十二宫 · 四化</p>
+      <h3 class="head">紫微</h3>
+      <p class="meta">十二宫 · 主星 · 四化</p>
     </a>
     <a class="plate" href="annual.html">
       <div class="plate-art">
-        <svg viewBox="0 0 196 112" preserveAspectRatio="xMidYMid slice" role="img" aria-label="流年轴">
-          <rect x="-10" y="-10" width="216" height="132" fill="#F3EEE3"/>
-          <path d="M18 78h160" stroke="#2A3C38" stroke-opacity=".35"/>
-          <g fill="#2A3C38" fill-opacity=".75">
+        <svg viewBox="0 0 196 112" preserveAspectRatio="xMidYMid slice" role="img" aria-label="流运时间轴">
+          <rect x="-10" y="-10" width="216" height="132" fill="var(--surface-2)"/>
+          <path d="M18 78h160" stroke="var(--art-ink)" stroke-opacity=".35"/>
+          <g fill="var(--art-ink)" fill-opacity=".75">
             <circle cx="42" cy="78" r="4"/><circle cx="78" cy="78" r="4"/><circle cx="150" cy="78" r="4"/>
           </g>
-          <circle cx="114" cy="78" r="6" fill="#A33A2B"/>
-          <g stroke="#2A3C38" stroke-opacity=".3" stroke-linecap="round"><path d="M42 66v-10M78 66v-16M114 62v-22M150 66v-12"/></g>
+          <circle cx="114" cy="78" r="6" fill="var(--art-sun)"/>
+          <g stroke="var(--art-ink)" stroke-opacity=".3" stroke-linecap="round"><path d="M42 66v-10M78 66v-16M114 62v-22M150 66v-12"/></g>
         </svg>
       </div>
-      <h3 class="head">年度解读</h3>
-      <p class="meta">流年 · 流月</p>
+      <h3 class="head">流运</h3>
+      <p class="meta">流年 · 流月 · 流日</p>
     </a>
   </div>
 
   <div class="section-head">
     <h2 class="head">最近解读</h2>
-    <a class="more" href="journal.html">更多</a>
+    <a class="more" href="journal.html">全部记录</a>
   </div>
-  <ul class="recent">
-    <li><a href="bazi.html"><span class="r-mark">庚</span><span class="r-txt"><b>庚辰日主 · 事业与规则</b><span class="meta">11 月 7 日 · 八字</span></span><span class="chev"><svg class="ico"><use href="#i-chev"/></svg></span></a></li>
-    <li><a href="ziwei.html"><span class="r-mark">紫</span><span class="r-txt"><b>子女宫 · 贪狼在申</b><span class="meta">11 月 5 日 · 紫微</span></span><span class="chev"><svg class="ico"><use href="#i-chev"/></svg></span></a></li>
-    <li><a href="annual.html"><span class="r-mark">丙</span><span class="r-txt"><b>2026 丙午流年 · 三个主题</b><span class="meta">11 月 3 日 · 流年</span></span><span class="chev"><svg class="ico"><use href="#i-chev"/></svg></span></a></li>
-  </ul>
+  <p class="recent-empty" id="recent-note">还没有生成过解读。去命盘排一张盘、点「生成解读」，这里就会出现最近三条。</p>
+  <ul class="recent" id="recent-list" hidden></ul>
+
 </main>
 
 <nav class="mp-tabbar" aria-label="主导航">
   <a class="is-on" href="home.html" aria-current="page"><svg class="ico"><use href="#i-today"/></svg>今日</a>
-  <a href="journal.html"><svg class="ico"><use href="#i-journal"/></svg>记录</a>
+  <a href="bazi.html"><svg class="ico"><use href="#i-chart"/></svg>命盘</a>
+  <a href="today.html"><svg class="ico"><use href="#i-time"/></svg>运势</a>
   <a href="me.html"><svg class="ico"><use href="#i-me"/></svg>我的</a>
+</nav>
+
+  <script src="boot.js"></script>
 <script src="profile.js"></script>
+<script src="demo.js"></script>
 <script src="home-data.js"></script>
+<script src="home-recent.js"></script>
 </body>
 </html>

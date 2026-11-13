@@ -1,0 +1,24 @@
+:root {
+  --bg: #211917;
+  --surface: #302320;
+  --surface-2: #392B26;
+  --text: #F8F1E4;
+  --muted: #D7C5AD;
+  --line: #94765C;
+  --line-soft: #665044;
+  --primary: #9E3226;
+  --primary-ink: #FFF8EA;
+  --accent: #E9A294;
+  --accent-ink: #301916;
+  --gold: #D7B779;
+  --on: #FFF8EA;
+  --link: #E9A294;
+  --wash: #49352E;
+  --wash-deep: #584037;
+  --nav-bg: #211917;
+  --shadow-color: rgba(215,183,121,.10);
+  --art-ink: #7C6152;
+  --art-sun: #C98A72;
+}
+:root body::before { background: repeating-linear-gradient(90deg, var(--gold) 0 1px, transparent 1px 24px); opacity: .04; }
+:root .hero::after { mask-image: url("../ornaments/thunder.svg"); -webkit-mask-image: url("../ornaments/thunder.svg"); }

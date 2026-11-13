@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <!-- 云纹：横向可平铺，120×24。首尾都在 y=12/20，斜率 0，repeat-x 无接缝。
+       只用 currentColor（挂载处用 mask-image 时颜色由底色给，直接内联时由 color 给）。 -->
+  <!-- 主线：四分之一波的连续起伏 -->
+  <path d="M 0 12 Q 15 4 30 12 Q 45 4 60 12 Q 75 4 90 12 Q 105 4 120 12" stroke-width="1"/>
+  <!-- 卷云：每个波峰上一枚内卷的勾 -->
+  <path d="M 24.5 9.1 A 4.4 4.4 0 1 1 30 15.2" stroke-width=".8"/>
+  <path d="M 54.5 9.1 A 4.4 4.4 0 1 1 60 15.2" stroke-width=".8"/>
+  <path d="M 84.5 9.1 A 4.4 4.4 0 1 1 90 15.2" stroke-width=".8"/>
+  <path d="M 114.5 9.1 A 4.4 4.4 0 1 1 120 15.2" stroke-width=".8"/>
+  <!-- 下沿细线：错半相位，做出两层云气 -->
+  <path d="M 0 20 Q 15 14 30 20 Q 45 14 60 20 Q 75 14 90 20 Q 105 14 120 20" stroke-width=".6" opacity=".7"/>
+  <!-- 云头小点：每个波峰正上方一颗，只做气口 -->
+  <circle cx="0" cy="4.4" r=".9" fill="currentColor" stroke="none" opacity=".8"/>
+  <circle cx="30" cy="4.4" r=".9" fill="currentColor" stroke="none" opacity=".8"/>
+  <circle cx="60" cy="4.4" r=".9" fill="currentColor" stroke="none" opacity=".8"/>
+  <circle cx="90" cy="4.4" r=".9" fill="currentColor" stroke="none" opacity=".8"/>
+</svg>

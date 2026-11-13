@@ -2,9 +2,22 @@
 // 只描述两张盘放在一起的结构差异，不判断合不合，也不预测关系走向。
 (function () {
   "use strict";
+function mingliApiBase() {
+  var loc = window.location;
+  var host = loc.host || "";
+  var name = loc.hostname || "";
+  var loopback = name === "127.0.0.1" || name === "localhost" || name === "::1" || name === "[::1]";
+  // file:// 打开、或本机静态预览服务（如 serve.py 的 8899）都没有 /api：
+  // 这两种情况显式回到排盘服务端口，避免把请求发到静态服务器上 404。
+  if (!host || (loopback && host !== "127.0.0.1:8765" && host !== "localhost:8765")) {
+    return "http://127.0.0.1:8765";
+  }
+  // 其它情况（公网隧道、局域网 IP、8765 同源）一律用同源，由隧道/服务自己转发。
+  return loc.protocol + "//" + host;
+}
 
-  var API = "http://127.0.0.1:8765/api/v1/bazi/calculate";
-  var MATCH = "http://127.0.0.1:8765/api/v1/match";
+  var API = mingliApiBase() + "/api/v1/bazi/calculate";
+  var MATCH = mingliApiBase() + "/api/v1/match";
   var ELEMENTS = ["木", "火", "土", "金", "水"];
 
   var empty = document.getElementById("empty");
@@ -243,7 +256,7 @@
         paint(state.rows, "bazi");
       }).catch(function (err) {
         errorText.textContent = "请求失败：" + (err && err.message ? err.message : err) +
-          "。请确认本机服务在 127.0.0.1:8765 运行。";
+          "。排盘服务没有响应，请稍后点「重试」。";
         errorBox.hidden = false;
       });
     }

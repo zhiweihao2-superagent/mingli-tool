@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="196" viewBox="0 0 390 196" fill="none" stroke="currentColor" stroke-linecap="butt">
+<g transform="translate(288 80)">
+<circle r="17" stroke-width="0.68"/>
+<circle r="40" stroke-width="0.3825"/>
+<circle r="68" stroke-width="0.85"/>
+<circle r="78" stroke-width="0.34"/>
+<path d="M 0,-17 A 8.5,8.5 0 0,1 0,0 A 8.5,8.5 0 0,0 0,17 A 17,17 0 0,1 0,-17 Z" fill="currentColor" stroke="none"/>
+<circle cx="0" cy="-8.5" r="3.4" fill="#F0E5CB" stroke="none"/>
+<circle cx="0" cy="8.5" r="3.4" fill="currentColor" stroke="none"/>
+<g transform="rotate(0)">
+<path d="M -7 -47 H 7" stroke-width="1.87"/>
+<path d="M -7 -56 H 7" stroke-width="1.87"/>
+<path d="M -7 -65 H 7" stroke-width="1.87"/>
+</g>
+<g transform="rotate(45)">
+<path d="M -7 -47 H -1.82 M 1.82 -47 H 7" stroke-width="1.87"/>
+<path d="M -7 -56 H 7" stroke-width="1.87"/>
+<path d="M -7 -65 H 7" stroke-width="1.87"/>
+</g>
+<g transform="rotate(90)">
+<path d="M -7 -47 H -1.82 M 1.82 -47 H 7" stroke-width="1.87"/>
+<path d="M -7 -56 H 7" stroke-width="1.87"/>
+<path d="M -7 -65 H -1.82 M 1.82 -65 H 7" stroke-width="1.87"/>
+</g>
+<g transform="rotate(135)">
+<path d="M -7 -47 H -1.82 M 1.82 -47 H 7" stroke-width="1.87"/>
+<path d="M -7 -56 H -1.82 M 1.82 -56 H 7" stroke-width="1.87"/>
+<path d="M -7 -65 H 7" stroke-width="1.87"/>
+</g>
+<g transform="rotate(180)">
+<path d="M -7 -47 H -1.82 M 1.82 -47 H 7" stroke-width="1.87"/>
+<path d="M -7 -56 H -1.82 M 1.82 -56 H 7" stroke-width="1.87"/>
+<path d="M -7 -65 H -1.82 M 1.82 -65 H 7" stroke-width="1.87"/>
+</g>
+<g transform="rotate(225)">
+<path d="M -7 -47 H 7" stroke-width="1.87"/>
+<path d="M -7 -56 H -1.82 M 1.82 -56 H 7" stroke-width="1.87"/>
+<path d="M -7 -65 H -1.82 M 1.82 -65 H 7" stroke-width="1.87"/>
+</g>
+<g transform="rotate(270)">
+<path d="M -7 -47 H 7" stroke-width="1.87"/>
+<path d="M -7 -56 H -1.82 M 1.82 -56 H 7" stroke-width="1.87"/>
+<path d="M -7 -65 H 7" stroke-width="1.87"/>
+</g>
+<g transform="rotate(315)">
+<path d="M -7 -47 H 7" stroke-width="1.87"/>
+<path d="M -7 -56 H 7" stroke-width="1.87"/>
+<path d="M -7 -65 H -1.82 M 1.82 -65 H 7" stroke-width="1.87"/>
+</g>
+<text x="0.0" y="-78.0" font-size="8" font-family="Songti SC, SimSun, serif" fill="currentColor" stroke="none" text-anchor="middle" dominant-baseline="central">乾</text>
+<text x="55.2" y="-55.2" font-size="8" font-family="Songti SC, SimSun, serif" fill="currentColor" stroke="none" text-anchor="middle" dominant-baseline="central">巽</text>
+<text x="78.0" y="0.0" font-size="8" font-family="Songti SC, SimSun, serif" fill="currentColor" stroke="none" text-anchor="middle" dominant-baseline="central">坎</text>
+<text x="55.2" y="55.2" font-size="8" font-family="Songti SC, SimSun, serif" fill="currentColor" stroke="none" text-anchor="middle" dominant-baseline="central">艮</text>
+<text x="0.0" y="78.0" font-size="8" font-family="Songti SC, SimSun, serif" fill="currentColor" stroke="none" text-anchor="middle" dominant-baseline="central">坤</text>
+<text x="-55.2" y="55.2" font-size="8" font-family="Songti SC, SimSun, serif" fill="currentColor" stroke="none" text-anchor="middle" dominant-baseline="central">震</text>
+<text x="-78.0" y="0.0" font-size="8" font-family="Songti SC, SimSun, serif" fill="currentColor" stroke="none" text-anchor="middle" dominant-baseline="central">离</text>
+<text x="-55.2" y="-55.2" font-size="8" font-family="Songti SC, SimSun, serif" fill="currentColor" stroke="none" text-anchor="middle" dominant-baseline="central">兑</text>
+</g>
+</svg>

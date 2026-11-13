@@ -1,0 +1,24 @@
+:root {
+  --bg: #F8F3DE;
+  --surface: #FFFDF0;
+  --surface-2: #F5EED7;
+  --text: #183B3B;
+  --muted: #50665E;
+  --line: #B9C2A8;
+  --line-soft: #D9DEC8;
+  --primary: #285C59;
+  --primary-ink: #FFFDF0;
+  --accent: #A34E36;
+  --accent-ink: #FFFDF0;
+  --gold: #8B703D;
+  --on: #FFFDF0;
+  --link: #8B3E2D;
+  --wash: #E3EBD8;
+  --wash-deep: #CFDFC9;
+  --nav-bg: #F8F3DE;
+  --shadow-color: rgba(80,110,90,.10);
+  --art-ink: #2F5B4E;
+  --art-sun: #A34E36;
+}
+ :root .hero::after { mask-image: url("../ornaments/mountain.svg"); -webkit-mask-image: url("../ornaments/mountain.svg"); opacity: .38; }
+:root .mp-nav { border-bottom: 3px double var(--line); }

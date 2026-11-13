@@ -1,0 +1,70 @@
+/* 设计系统「mingli-d-panmian」的设计变量（从 http://127.0.0.1:8765/mp/lab2/d-chart-home.html、http://127.0.0.1:8765/mp/lab2/d-chart-bazi.html、http://127.0.0.1:8765/mp/lab2/d-chart-ziwei.html、http://127.0.0.1:8765/mp/lab2/d-chart-palace.html、http://127.0.0.1:8765/mp/lab2/d-chart-me.html 提取，2026-11-12）。复制到设计目录，每屏 <link rel="stylesheet" href="tokens.css"> */
+:root {
+  /* 颜色：按角色定义 */
+  --color-bg: #f0e5cb;          /* 页面背景 */
+  --color-surface: #f9f5ea;     /* 卡片、弹层 */
+  --color-surface-2: #e6dbc2;   /* 次一级表面、分组背景 */
+  --color-text: #1a140f;        /* 正文 */
+  --color-muted: #5b4f43;       /* 次要文字 */
+  --color-line: #1a140f;        /* 边框、分割线 */
+  --color-primary: #a32b1c;     /* 主色：关键按钮、选中态 */
+  --color-primary-ink: #ffffff; /* 主色上的文字 */
+  --color-accent: #a32b1c;      /* 点睛色，少用 */
+  --color-success: oklch(62% 0.14 150);
+  --color-warning: oklch(75% 0.15 75);
+  --color-danger: oklch(58% 0.2 25);
+
+  /* 字体 */
+  --font-sans: "Songti SC", STSong, SimSun, "Source Han Serif SC", serif;
+  --font-display: var(--font-sans);
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* 字号阶梯 */
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-md: 14px;
+  --text-lg: 16px;
+  --text-xl: 21px;
+  --text-2xl: 28px;
+  --text-3xl: 34px;
+  --text-4xl: 49px;
+
+  /* 间距（4 / 8 的倍数） */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* 圆角 */
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-full: 999px;
+
+  /* 阴影 */
+  --shadow-sm: none;
+  --shadow-md: none;
+
+  /* 动效 */
+  --ease: cubic-bezier(.2, .8, .2, 1);
+  --dur: 200ms;
+}
+
+/* 深色版（网站没有深色模式，下面是按主色色相配的起点）：<html data-theme="dark"> */
+[data-theme="dark"] {
+  --color-bg: oklch(18% 0.01 31);
+  --color-surface: oklch(22% 0.012 31);
+  --color-surface-2: oklch(26% 0.012 31);
+  --color-text: oklch(95% 0.005 85);
+  --color-muted: oklch(72% 0.01 85);
+  --color-line: oklch(32% 0.012 31);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur: 0ms; }
+}

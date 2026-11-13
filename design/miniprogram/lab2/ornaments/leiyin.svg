@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 24" fill="none" stroke="currentColor" stroke-linecap="butt" stroke-linejoin="miter" aria-hidden="true">
+  <!-- 雷纹（回纹）：横向可平铺，120×24，周期 30。基线与首尾都在 y=20，repeat-x 无接缝。
+       只作边饰：铺在页脚 / 区段下沿，不进入四柱表与命盘格内。 -->
+  <path d="M 0 20 H 120" stroke-width=".7"/>
+  <!-- 四个回纹钩：起于基线，上折，横走 14，再落回半高 -->
+  <path d="M 3 20 V 7 H 17 V 13" stroke-width=".9"/>
+  <path d="M 33 20 V 7 H 47 V 13" stroke-width=".9"/>
+  <path d="M 63 20 V 7 H 77 V 13" stroke-width=".9"/>
+  <path d="M 93 20 V 7 H 107 V 13" stroke-width=".9"/>
+  <!-- 钩内再收一小截，做出双层回纹的密度 -->
+  <path d="M 8 13 V 10 H 12" stroke-width=".7"/>
+  <path d="M 38 13 V 10 H 42" stroke-width=".7"/>
+  <path d="M 68 13 V 10 H 72" stroke-width=".7"/>
+  <path d="M 98 13 V 10 H 102" stroke-width=".7"/>
+  <!-- 基线下的短刻：每 15px 一道，压住节奏 -->
+  <path d="M 0 22.2 H 9 M 15 22.2 H 24 M 30 22.2 H 39 M 45 22.2 H 54 M 60 22.2 H 69 M 75 22.2 H 84 M 90 22.2 H 99 M 105 22.2 H 114" stroke-width=".6" opacity=".75"/>
+</svg>

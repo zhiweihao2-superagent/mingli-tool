@@ -2,8 +2,21 @@
 // 全部来自本机排盘服务的确定性结果，不用模型、不写死数据。
 (function () {
   "use strict";
+function mingliApiBase() {
+  var loc = window.location;
+  var host = loc.host || "";
+  var name = loc.hostname || "";
+  var loopback = name === "127.0.0.1" || name === "localhost" || name === "::1" || name === "[::1]";
+  // file:// 打开、或本机静态预览服务（如 serve.py 的 8899）都没有 /api：
+  // 这两种情况显式回到排盘服务端口，避免把请求发到静态服务器上 404。
+  if (!host || (loopback && host !== "127.0.0.1:8765" && host !== "localhost:8765")) {
+    return "http://127.0.0.1:8765";
+  }
+  // 其它情况（公网隧道、局域网 IP、8765 同源）一律用同源，由隧道/服务自己转发。
+  return loc.protocol + "//" + host;
+}
 
-  var API = "http://127.0.0.1:8765/api/v1/bazi/calculate";
+  var API = mingliApiBase() + "/api/v1/bazi/calculate";
   var STORE = "mingli.profile.v1";
 
   var empty = document.getElementById("empty");
@@ -18,18 +31,21 @@
   var cache = {};
   var lastData = null;
   var lastYear = null;
+var lastAiAnnual = null;
   var aiButton = document.querySelector(".ai-btn");
   var aiResult = document.getElementById("ai-result");
   var reportLink = document.getElementById("report-link");
 
   function loadProfile() {
     try {
-      if (window.MingliProfile) return window.MingliProfile.currentProfile();
+      if (window.MingliProfile) {
+        var current = window.MingliProfile.currentProfile();
+        if (current) return current;
+      }
       var raw = localStorage.getItem(STORE);
-      return raw ? JSON.parse(raw) : null;
-    } catch (e) {
-      return null;
-    }
+      if (raw) return JSON.parse(raw);
+    } catch (e) { /* 存储不可用时退回示例盘 */ }
+    return window.MINGLI_DEMO_PROFILE || null;
   }
 
   function esc(text) {
@@ -105,6 +121,7 @@
   }
 
   function render(data, year) {
+    fillYearPick(year, birthYear || 1900, 2100);
     var annual = (data.ai_facts.annual_cycles || []).filter(function (item) {
       return item.year === year;
     })[0] || {};
@@ -136,7 +153,7 @@
       var isNow = monthIndexOf(month);
       if (isNow && nowIndex < 0) nowIndex = index;
       var day = String(month.start || "").slice(5, 10).replace("-", "/");
-      return '<a class="mon' + (isNow ? " on" : "") + '" href="cycle.html?type=month&index=' + index + '"><b>' + esc(month.ganzhi) + "</b><span>" + esc(month.jie) +
+      return '<a class="mon' + (isNow ? " on" : "") + '" href="month.html?m=' + index + '&y=' + year + '"><b>' + esc(month.ganzhi) + "</b><span>" + esc(month.jie) +
         "</span><span class=\"mon-day\">" + esc(day) + "</span></a>";
     }).join("");
     var rail = document.getElementById("months");
@@ -170,10 +187,16 @@
       errorBox.hidden = true;
       lastData = data;
       lastYear = year;
+      if (lastAiAnnual) {
+        lastAiAnnual = null;
+        if (saveButton) { saveButton.hidden = true; saveButton.textContent = "存长图"; saveButton.disabled = true; }
+        if (saveNote) saveNote.hidden = true;
+        if (reportLink) reportLink.hidden = true;
+      }
       render(data, year);
     } catch (err) {
       errorText.textContent = "请求失败：" + (err && err.message ? err.message : err) +
-        "。请确认本机排盘服务在 127.0.0.1:8765 运行。";
+        "。排盘服务没有响应，请稍后点「重试」。";
       errorBox.hidden = false;
       content.hidden = true;
     }
@@ -197,6 +220,15 @@
           aiResult.innerHTML = '<p class="ai-audit">正在生成 ' + done + "/" + total + " 批…</p>";
         });
         window.MingliAi.renderOutput(aiResult, report);
+        lastAiAnnual = report || null;
+        if (saveButton) { saveButton.hidden = false; saveButton.disabled = false; saveButton.textContent = "存长图"; }
+        if (saveNote) saveNote.hidden = true;
+        try {
+          report.system = "流年";
+          report.systemLabel = "流年";
+          var savedYear = window.MingliAi.saveReport(report);
+          if (reportLink && savedYear) reportLink.href = "report.html?id=" + encodeURIComponent(savedYear.id);
+        } catch (e) { /* 忽略 */ }
         if (reportLink) reportLink.hidden = false;
       } catch (err) {
         window.MingliAi.renderError(aiResult, "解读失败：" + (err && err.message ? err.message : err));
@@ -207,6 +239,65 @@
     });
   }
 
+
+  var saveButton = document.getElementById("save-annual");
+  var saveNote = document.getElementById("save-note-annual");
+
+  if (saveButton) { saveButton.hidden = true; saveButton.textContent = "存长图"; }
+
+  if (saveButton && window.MingliMomentImage) {
+    saveButton.addEventListener("click", async function () {
+      if (!lastAiAnnual) {
+        if (saveNote) { saveNote.hidden = false; saveNote.textContent = "先让 AI 讲完这一年，长图里才有解读可以存。"; }
+        saveButton.textContent = "存长图";
+        setTimeout(function () { saveButton.textContent = "存长图"; }, 1800);
+        return;
+      }
+      if (!lastData) { saveButton.textContent = "还没有可画的内容"; setTimeout(function () { saveButton.textContent = "存长图"; }, 1600); return; }
+      var keep = saveButton.textContent;
+      saveButton.disabled = true;
+      saveButton.textContent = "正在出图…";
+      try {
+        var result = await window.MingliMomentImage.save(window.MingliMomentImage.fromAnnual(lastData, lastYear, lastAiAnnual));
+        saveButton.textContent = result && result.ok ? "已保存" : "导出失败";
+        if (saveNote) { saveNote.hidden = false; saveNote.textContent = result && result.ok ? "已存成 PNG，在浏览器的下载目录（一般叫「下载」或 Downloads）里。" : "出图失败，可以再点一次。"; }
+        if (result && !result.ok && result.reason) console.warn(result.reason);
+      } catch (err) {
+        saveButton.textContent = "导出失败";
+        console.warn(err);
+      } finally {
+        setTimeout(function () { saveButton.textContent = "存长图"; saveButton.disabled = !lastAiAnnual; }, 1800);
+      }
+    });
+  }
+
+
+  var yearPick = document.getElementById("year-pick");
+  var yearPickRange = null;
+
+  function fillYearPick(year, low, high) {
+    if (!yearPick) return;
+    var key = low + ":" + high;
+    if (yearPickRange !== key) {
+      var html = "";
+      for (var y = low; y <= high; y++) html += '<option value="' + y + '">' + y + "</option>";
+      yearPick.innerHTML = html;
+      yearPickRange = key;
+    }
+    yearPick.value = String(year);
+  }
+
+  if (yearPick) {
+    yearPick.addEventListener("change", function () {
+      var picked = Number(yearPick.value);
+      if (picked) onYearPicked(picked);
+    });
+  }
+
+  function onYearPicked(picked) {
+    if (picked !== selected) load(picked);
+  }
+
   profile = loadProfile();
   if (!profile) {
     empty.hidden = false;
@@ -214,5 +305,14 @@
     birthYear = Number(String(profile.profile.date || "").slice(0, 4)) || current;
     selected = Math.max(current, birthYear);
     load(selected);
+  }
+
+  var retryButton = document.getElementById("retry");
+  if (retryButton) {
+    retryButton.addEventListener("click", function () {
+      retryButton.disabled = true;
+      retryButton.textContent = "重试中…";
+      location.reload();
+    });
   }
 })();

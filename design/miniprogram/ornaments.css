@@ -1,0 +1,23 @@
+/* 边框与纹样只作用于容器，不进入盘面格子。 */
+body::before { content:""; position:fixed; inset:0; pointer-events:none; z-index:1; }
+/* z-index 要定位才生效，但 .mp-top 是 sticky、.mp-tabbar 与 .actionbar 是 fixed ——
+   早先这条统一写 position:relative，把三个都压回了文档流：页头不吸顶、
+   底栏跟着内容走到页尾（短页还停在屏幕中间，下面空一大片纸）。
+   改成分开写：定位交给 app.css 与各页自己的规则，这里只补 z-index。 */
+.mp-top { z-index:20; }
+.mp-tabbar { z-index:20; }
+.actionbar { z-index:20; }
+.mp-page, #match-actions, #actions { position:relative; z-index:2; }
+.frame-double { position:relative; border:1px solid var(--line); padding:var(--space-3) var(--space-4); }
+.frame-double::after { content:""; position:absolute; inset:3px; border:1px solid var(--line-soft); pointer-events:none; }
+.pillars, .board { outline:1px solid var(--line-soft); outline-offset:3px; }
+.corner-mark { position:relative; }
+.corner-mark::before, .corner-mark::after { content:""; position:absolute; width:6px; height:6px; pointer-events:none; border:0 solid var(--gold); }
+.corner-mark::before { top:0; left:0; border-width:1px 0 0 1px; }
+.corner-mark::after { right:0; bottom:0; border-width:0 1px 1px 0; }
+.rule-ink { height:1px; background:var(--line-soft); border:0; margin:var(--space-5) 0; }
+.seal-ink { display:inline-grid; place-items:center; width:36px; height:36px; border:2px solid var(--accent); color:var(--accent); font:500 17px/1 var(--font-serif); }
+.ganzhi, .branch-pair { font-family:var(--font-serif); letter-spacing:.2em; }
+.star-name { font-family:var(--font-serif); }
+.hero { position:relative; }
+.hero::after { content:""; position:absolute; left:0; right:0; bottom:0; height:18px; pointer-events:none; opacity:.34; background:var(--gold); -webkit-mask:repeat-x left bottom / 120px 18px; mask:repeat-x left bottom / 120px 18px; }
